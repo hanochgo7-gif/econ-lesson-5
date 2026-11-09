@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>שאלה 5 · צוואר בקבוק</title>
+<meta name="description" content="העמקה לשאלה 5: צוואר בקבוק ועקומת תמורה שבורה, עם סימולטור, בנייה שלב אחר שלב ותרגול.">
+<meta property="og:image" content="img/factory.webp">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Secular+One&display=swap">
+<style>
+/* Layout: one reading column that follows the question (story → simulator → build the curve → section 2 → section 3 → beyond → exam answer → practice). Same tokens as the lesson 1 page so the two feel like one book. */
+:root{
+  --paper:#f4f6fa; --surface:#ffffff; --ink:#141a2c; --muted:#566079; --line:#dce2ec; --grid:#e8ecf3; --control:#858ea3;
+  --accent:#2340d0; --accent-soft:#e7ecff; --pen:#b8351f; --pen-soft:#fcebe7;
+  --good:#167a4c; --good-soft:#e2f3ea; --bad:#b4311d; --bad-soft:#fbe9e5;
+  --sun:#8a5a00; --sun-soft:#fdf3dc;
+  --c-labor:#8f5800; --c-mach:#087575; --c-floor:#8a3ccf;
+  --c-labor-soft:#f6ead4; --c-mach-soft:#d9f0ef; --c-floor-soft:#efe2fb;
+  --font-display:'Secular One','IBM Plex Sans Hebrew','Segoe UI',Arial,sans-serif;
+  --font-body:'IBM Plex Sans Hebrew','Segoe UI',Arial,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1220; --surface:#161b2c; --ink:#e7eaf3; --muted:#9ba3ba; --line:#2a3249; --grid:#1f2639; --control:#6a7490;
+  --accent:#8299ff; --accent-soft:#1f2851; --pen:#ff8c74; --pen-soft:#3a201b;
+  --good:#4fca93; --good-soft:#123427; --bad:#ff8c74; --bad-soft:#3a201b;
+  --sun:#f2c14e; --sun-soft:#33280f;
+  --c-labor:#f2b346; --c-mach:#45cccc; --c-floor:#bc8fff;
+  --c-labor-soft:#3a2c10; --c-mach-soft:#0f3333; --c-floor-soft:#2c1f45; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1220; --surface:#161b2c; --ink:#e7eaf3; --muted:#9ba3ba; --line:#2a3249; --grid:#1f2639; --control:#6a7490;
+  --accent:#8299ff; --accent-soft:#1f2851; --pen:#ff8c74; --pen-soft:#3a201b;
+  --good:#4fca93; --good-soft:#123427; --bad:#ff8c74; --bad-soft:#3a201b;
+  --sun:#f2c14e; --sun-soft:#33280f;
+  --c-labor:#f2b346; --c-mach:#45cccc; --c-floor:#bc8fff;
+  --c-labor-soft:#3a2c10; --c-mach-soft:#0f3333; --c-floor-soft:#2c1f45; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:1.125rem;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{width:100%;max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:60px}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,6vw,2.8rem)} h2{font-size:1.75rem} h3{font-size:1.3rem}
+p{margin:0} strong{font-weight:700} a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.m{font-family:var(--font-mono);font-size:.92em;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
+section p,section li{max-width:36em}
+.eyebrow{font-size:.875rem;color:var(--muted);font-weight:600}
+.lead{font-size:1.1rem;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:4px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.sec-head .eyebrow{color:var(--accent)}
+
+.top{padding-top:44px;display:flex;flex-direction:column;gap:16px}
+.jump{display:flex;flex-wrap:wrap;gap:8px}
+.jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--control);background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}
+.jump a.main{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px clamp(16px,4vw,24px);display:flex;flex-direction:column;gap:12px}
+.brief{background:var(--accent-soft);border-radius:10px;padding:10px 14px;font-weight:600;font-size:1.06rem}
+.brief .lbl{font-size:.875rem;color:var(--accent);font-weight:700;margin-inline-end:8px}
+.trap{background:var(--pen-soft);border-radius:10px;padding:12px 16px;font-size:1rem}
+.trap b{color:var(--pen)}
+.exam{border:1.5px dashed var(--pen);background:var(--pen-soft);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:8px}
+.exam .who{font-size:.875rem;font-weight:700;color:var(--pen)}
+.note{font-size:.95rem;color:var(--muted)}
+.pic{margin:0;display:flex;flex-direction:column;gap:8px}
+.pic img{width:100%;height:auto;aspect-ratio:3/2;border-radius:14px;display:block;border:1px solid var(--line);background:var(--surface)}
+.pic figcaption{font-size:.95rem;color:var(--muted)}
+
+/* data table */
+.tscroll{overflow-x:auto;max-width:100%}
+table.t{border-collapse:collapse;width:100%;font-size:1rem}
+.t th,.t td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line)}
+.t thead th{font-size:.9rem;color:var(--muted);font-weight:600}
+.t td.n{font-family:var(--font-mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;text-align:right}
+.t caption{caption-side:top;text-align:right;font-weight:700;padding-bottom:6px}
+.t tr.hi td,.t tr.hi th{background:var(--accent-soft)}
+th.labor,td.labor{color:var(--c-labor)} th.mach,td.mach{color:var(--c-mach)} th.floor,td.floor{color:var(--c-floor)}
+
+/* boxes (3 resources) */
+.res3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.res{border-radius:12px;padding:12px 14px;border:2px solid currentColor;display:flex;flex-direction:column;gap:2px;min-width:0}
+.res b{font-size:1.05rem}
+.res span{font-family:var(--font-mono);font-size:1.1rem}
+.res.labor{color:var(--c-labor);background:var(--c-labor-soft)} .res.mach{color:var(--c-mach);background:var(--c-mach-soft)} .res.floor{color:var(--c-floor);background:var(--c-floor-soft)}
+.res .sm{font-family:var(--font-body);font-size:.92rem;color:var(--ink)}
+@media (max-width:560px){.res3{grid-template-columns:1fr}}
+
+/* lab */
+.lab{background:var(--surface);border:1.5px solid var(--ink);border-radius:16px;padding:18px clamp(14px,3vw,22px);display:flex;flex-direction:column;gap:14px}
+.lab-title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tag{font-family:var(--font-mono);font-size:.8rem;background:var(--ink);color:var(--paper);padding:2px 8px;border-radius:4px}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:720px){.lab-grid{grid-template-columns:1fr}}
+.range{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
+.range label{font-weight:600;font-size:1rem}
+.range output{font-family:var(--font-mono);font-weight:600;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:4px 10px;min-width:4.2em;text-align:center}
+input[type=range]{width:100%;accent-color:var(--accent);height:44px}
+.meter{display:flex;flex-direction:column;gap:4px}
+.meter .row{display:flex;justify-content:space-between;gap:8px;font-size:.95rem}
+.meter .row b{font-weight:700}
+.bar{height:16px;border-radius:999px;background:var(--grid);overflow:hidden;position:relative;border:1px solid var(--line)}
+.bar i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:999px;transition:width .25s}
+.meter.labor i{background:var(--c-labor)} .meter.mach i{background:var(--c-mach)} .meter.floor i{background:var(--c-floor)}
+.meter.boss .row b::after{content:" · הבוס";font-weight:700}
+.meter.boss .bar{outline:3px solid var(--pen);outline-offset:1px}
+.readout{background:var(--paper);border-radius:10px;padding:12px 14px;font-size:1rem;min-height:3.4em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:600 .95rem var(--font-body);border:1.5px solid var(--control);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 16px;cursor:pointer;min-height:44px}
+.btn:hover{border-color:var(--accent)}
+.btn[aria-pressed="true"],.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* charts */
+.chart{width:100%;height:auto;display:block;direction:ltr;max-width:100%}
+.chart text{font-family:var(--font-body)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.92rem;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px;vertical-align:middle;margin-inline-end:6px}
+
+/* steps / stepper */
+.steps{margin:0;padding-inline-start:1.4em;display:flex;flex-direction:column;gap:10px}
+.steps li::marker{font-family:var(--font-mono);color:var(--accent);font-weight:600}
+.eq{font-family:var(--font-mono);direction:ltr;text-align:right;background:var(--paper);border-radius:8px;padding:8px 12px;overflow-x:auto;white-space:nowrap;line-height:1.9;font-size:.98rem}
+.stepcap{background:var(--paper);border-radius:10px;padding:12px 14px;min-height:5.2em}
+
+/* stairs */
+.stairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stair{border-radius:12px;padding:12px 14px;border:2px solid currentColor;display:flex;flex-direction:column;gap:4px;min-width:0}
+.stair .big{font-family:var(--font-display);font-size:1.8rem;line-height:1.1}
+.stair .sm{color:var(--ink);font-size:.95rem}
+.stair.labor{color:var(--c-labor);background:var(--c-labor-soft)} .stair.floor{color:var(--c-floor);background:var(--c-floor-soft)} .stair.mach{color:var(--c-mach);background:var(--c-mach-soft)}
+@media (max-width:560px){.stairs{grid-template-columns:1fr}}
+
+/* practice */
+.qrow{display:grid;grid-template-columns:minmax(0,1fr) 7.5em auto;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:8px 0}
+.qrow label{font-size:1rem}
+.qrow input{font:600 1.05rem var(--font-mono);padding:8px 10px;border:1.5px solid var(--control);border-radius:8px;background:var(--surface);color:var(--ink);width:100%;min-height:44px;direction:ltr;text-align:center}
+.qrow .st{font-weight:700;min-width:2.2em;text-align:center}
+.qrow .st.ok{color:var(--good)} .qrow .st.no{color:var(--bad)}
+@media (max-width:520px){.qrow{grid-template-columns:1fr 6.5em auto}}
+details.sol{border:1.5px solid var(--good);border-radius:12px;background:var(--surface)}
+details.sol>summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--good);min-height:44px;display:flex;align-items:center}
+.sol-body{padding:0 16px 16px;display:flex;flex-direction:column;gap:10px}
+.mist{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.mist li{background:var(--surface);border:1px solid var(--line);border-inline-start:5px solid var(--pen);border-radius:8px;padding:10px 14px}
+.mist b{color:var(--pen)}
+footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padding-top:16px}
+.wrap>*,.stack>*,.lab>*,.box>*,.exam>*,.lab-grid>*,.sol-body>*{min-width:0}
+.eq{max-width:100%}
+.t td.n{white-space:nowrap}
+@media (max-width:620px){#buildChart text,#areaChart text{font-size:21px!important}#simChart text{font-size:16px!important}}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap" dir="rtl" lang="he">
+
+<header class="top">
+  <div class="eyebrow">מבוא למיקרו כלכלה · שיעור 1 · העמקה לשאלה 5</div>
+  <h1>צוואר בקבוק: למה העקומה נשברת</h1>
+  <p class="lead">שאלה 5 לוקחת את הדוגמה של "מכונות ועבודה" מהמצגת ומוסיפה גורם שלישי. כאן נבין אותה עד הסוף: נשחק עם המפעל, נבנה את העקומה בעצמנו, ונלך כמה צעדים מעבר למה שהשאלה שואלת.</p>
+  <nav class="jump" aria-label="קפיצה לחלקי הדף">
+    <a class="main" href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">בונים את העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a>
+  </nav>
+</header>
+
+<main class="wrap" style="gap:64px">
+
+<!-- STORY -->
+<section id="story" class="stack" aria-labelledby="h-story">
+  <div class="sec-head"><div class="eyebrow">שלב 0</div><h2 id="h-story">השאלה בשפה של בני אדם</h2></div>
+  <p>יש מפעל שבונה שני דברים: <strong>מכוניות</strong> (נקרא להן X) ו<strong>טרקטורים</strong> (Y). כדי לבנות, המפעל לוקח משלוש "קופסאות":</p>
+  <div class="res3">
+    <div class="res labor"><b>עובדים</b><span>1,600 שעות</span><span class="sm">מכונית לוקחת 200 · טרקטור 100</span></div>
+    <div class="res mach"><b>מכונות</b><span>80 שעות</span><span class="sm">מכונית לוקחת 5 · טרקטור 10</span></div>
+    <div class="res floor"><b>מקום</b><span>90 מ״ר</span><span class="sm">מכונית לוקחת 10 · טרקטור 10</span></div>
+  </div>
+  <figure class="pic"><img src="img/factory.webp" alt="מפעל עם שלוש קופסאות: עובדים, מכונות ומקום. קופסת המקום כמעט ריקה ונדלקת בה נורת אזהרה" loading="lazy"><figcaption>שלוש קופסאות, פס ייצור אחד. ברגע שאחת מהן מתרוקנת, הפס עוצר.</figcaption></figure>
+  <p class="brief"><span class="lbl">הכלל היחיד</span>הקופסה שנגמרת ראשונה היא "הבוס". היא קובעת כמה אפשר לבנות. כל השאר נשאר עם עודף שלא משתמשים בו.</p>
+  <p>השאלה מבקשת שלושה דברים:</p>
+  <ol class="steps">
+    <li><strong>סעיף 1:</strong> לבנות את עקומת התמורה, כלומר כל הצירופים הכי טובים של מכוניות וטרקטורים.</li>
+    <li><strong>סעיף 2:</strong> למצוא את "המחיר" של טרקטור, כלומר על כמה מכוניות מוותרים כדי לבנות עוד טרקטור.</li>
+    <li><strong>סעיף 3:</strong> לבדוק מה משתנה כשמוסיפים מקום (100 מ״ר במקום 90).</li>
+  </ol>
+  <figure class="pic"><img src="img/bottleneck.webp" alt="שלושה צינורות נכנסים לבקבוק. הצינור הסגול צר, ולכן יוצא רק זרם דק, בזמן ששני הצינורות האחרים גולשים" loading="lazy"><figcaption>למה "צוואר בקבוק"? כמה שיזרום בצינורות הרחבים, מה שיוצא נקבע לפי החלק הכי צר.</figcaption></figure>
+</section>
+
+<!-- SIMULATOR -->
+<section id="sim" class="stack" aria-labelledby="h-sim">
+  <div class="sec-head"><div class="eyebrow">שלב 1 · משחקים לפני שמחשבים</div><h2 id="h-sim">המפעל שלכם</h2></div>
+  <p>בחרו כמה טרקטורים לבנות. המפעל יחשב כמה מכוניות עוד נכנסות, ויראה לכם איזו קופסה נגמרת ראשונה. שימו לב איך "הבוס" מתחלף כשמזיזים את המחוון.</p>
+  <div class="lab">
+    <div class="lab-title"><span class="tag">ניסוי 1</span><h3>כמה טרקטורים?</h3></div>
+    <div class="range"><label for="simY">טרקטורים (Y)</label><input id="simY" type="range" min="0" max="8" step="0.5" value="3" aria-describedby="simRead"><output id="simYo" for="simY">3</output></div>
+    <div class="lab-grid">
+      <div class="stack" style="gap:12px">
+        <div class="meter labor" id="mLabor"><div class="row"><b>עובדים</b><span id="tLabor"></span></div><div class="bar"><i></i></div></div>
+        <div class="meter mach" id="mMach"><div class="row"><b>מכונות</b><span id="tMach"></span></div><div class="bar"><i></i></div></div>
+        <div class="meter floor" id="mFloor"><div class="row"><b>מקום</b><span id="tFloor"></span></div><div class="bar"><i></i></div></div>
+        <p class="readout" id="simRead" aria-live="polite"></p>
+      </div>
+      <svg class="chart" id="simChart" viewBox="0 0 360 340" role="img" aria-label="עקומת התמורה עם הנקודה שבחרתם"></svg>
+    </div>
+    <p class="note">הפס הצבעוני = כמה מהקופסה בשימוש. הקופסה עם המסגרת האדומה היא זו שהתרוקנה, הבוס. האפור שנשאר בפסים האחרים הוא משאב שעומד בלי עבודה.</p>
+  </div>
+  <p>ראיתם? כשבונים מעט טרקטורים, <strong style="color:var(--c-labor)">העובדים</strong> נגמרים ראשונים. באמצע, <strong style="color:var(--c-floor)">המקום</strong> נגמר ראשון. וכשבונים הרבה טרקטורים, <strong style="color:var(--c-mach)">המכונות</strong> נגמרות ראשונות. שלושה בוסים שונים, ולכן לעקומה יש שלושה קטעים.</p>
+</section>
+
+<!-- BUILD -->
+<section id="build" class="stack" aria-labelledby="h-build">
+  <div class="sec-head"><div class="eyebrow">שלב 2 · סעיף 1</div><h2 id="h-build">בונים את העקומה בארבעה מהלכים</h2></div>
+  <p>עכשיו נעשה את זה כמו במבחן. לכל קופסה כותבים <strong>אילוץ</strong>: "מה שלוקחים לא יכול לעבור את מה שיש". הסימן ≤ אומר "לכל היותר".</p>
+  <div class="lab">
+    <div class="lab-title"><span class="tag">ניסוי 2</span><h3>מהלך אחרי מהלך</h3></div>
+    <svg class="chart" id="buildChart" viewBox="0 0 520 440" role="img" aria-label="בניית עקומת התמורה בשלבים"></svg>
+    <div class="legend"><span><i style="background:var(--c-labor)"></i>עובדים</span><span><i style="background:var(--c-mach)"></i>מכונות</span><span><i style="background:var(--c-floor)"></i>מקום</span><span><i style="background:var(--accent);height:6px"></i>עקומת התמורה</span></div>
+    <div class="stepcap" id="buildCap" aria-live="polite"></div>
+    <div class="btns"><button class="btn" id="bPrev" type="button">→ הקודם</button><button class="btn primary" id="bNext" type="button">הבא ←</button><span class="note" id="bCount" style="align-self:center"></span></div>
+  </div>
+  <h3>האילוצים, בכתב</h3>
+  <p>מחלקים כל אילוץ במספר שליד Y, כדי ש־Y יעמוד לבד. ככה רואים מיד את הקו:</p>
+  <div class="eq">200X + 100Y ≤ 1600  →  Y ≤ 16 − 2X      (עובדים)</div>
+  <div class="eq">5X + 10Y ≤ 80       →  Y ≤ 8 − 0.5X     (מכונות)</div>
+  <div class="eq">10X + 10Y ≤ 90      →  Y ≤ 9 − X        (מקום)</div>
+  <p>בכל X, Y צריך לקיים את <strong>שלושת</strong> האילוצים ביחד. לכן העקומה היא תמיד <strong>הקו הנמוך</strong> מבין השלושה. הקו הגבוה מבטיח משהו שאין לנו.</p>
+  <h3>הפינות</h3>
+  <p>משווים כל שני קווים (יש שלושה זוגות), ובודקים כל נקודה מול הקו השלישי:</p>
+  <div class="tscroll"><table class="t"><caption>שלוש נקודות מפגש, אחת נפסלת</caption>
+    <thead><tr><th scope="col">זוג</th><th scope="col">משווים</th><th scope="col">נקודה</th><th scope="col">בדיקה מול השלישי</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">מכונות + מקום</th><td class="n">8 − 0.5X = 9 − X</td><td class="n">B(2, 7)</td><td>עובדים: <span class="m">1,100 ≤ 1,600</span> ✓</td></tr>
+      <tr><th scope="row">עובדים + מקום</th><td class="n">16 − 2X = 9 − X</td><td class="n">C(7, 2)</td><td>מכונות: <span class="m">55 ≤ 80</span> ✓</td></tr>
+      <tr><th scope="row">עובדים + מכונות</th><td class="n">16 − 2X = 8 − 0.5X</td><td class="n">(5⅓, 5⅓)</td><td>מקום: <span class="m">106⅔ &gt; 90</span> ✗ נפסלת</td></tr>
+    </tbody></table></div>
+  <p>ועוד שני קצוות: רק טרקטורים <span class="m">A(0, 8)</span>, ורק מכוניות <span class="m">D(8, 0)</span>. סך הכל ארבע נקודות.</p>
+  <div class="exam"><div class="who">ככה כותבים את העקומה</div>
+    <div class="eq" style="background:transparent;padding:0">Y = 8 − 0.5X    ,  0 ≤ X ≤ 2   (מכונות)</div>
+    <div class="eq" style="background:transparent;padding:0">Y = 9 − X       ,  2 ≤ X ≤ 7   (מקום)</div>
+    <div class="eq" style="background:transparent;padding:0">Y = 16 − 2X     ,  7 ≤ X ≤ 8   (עובדים)</div>
+  </div>
+  <p class="trap"><b>למה הנקודה <span class="m">(5⅓, 5⅓)</span> "נראית" נכונה ועדיין שגויה?</b> היא אכן המקום שבו העובדים והמכונות נגמרים יחד. אבל כדי להגיע אליה צריך 106⅔ מ״ר, ויש רק 90. נקודה שחורגת מאילוץ אחד היא מחוץ לעקומה, כלומר בלתי אפשרית.</p>
+</section>
+
+<!-- SECTION 2 -->
+<section id="s2" class="stack" aria-labelledby="h-s2">
+  <div class="sec-head"><div class="eyebrow">שלב 3 · סעיף 2</div><h2 id="h-s2">כמה מכוניות "עולה" טרקטור</h2></div>
+  <p>המחיר של טרקטור = כמה מכוניות מוותרים כדי לבנות עוד טרקטור אחד. זו <strong>העלות האלטרנטיבית השולית</strong>. והסוד: המחיר נקבע רק לפי <strong>הבוס</strong>, הקופסה שנגמרה.</p>
+  <p class="brief"><span class="lbl">הנוסחה</span>מחיר טרקטור = כמה טרקטור לוקח מהבוס ÷ כמה מכונית לוקחת מהבוס</p>
+  <p>למה זה עובד? אם הבוס ריק, כדי לבנות טרקטור צריך "לפנות" לו מקום בקופסה הזאת, כלומר לוותר על מכוניות שמשתמשות בה. כמה מכוניות? בדיוק כמה שצריך כדי לשחרר את מה שטרקטור לוקח.</p>
+  <div class="stairs">
+    <div class="stair labor"><b>מ־0 עד 2 טרקטורים</b><span class="big">½ מכונית</span><span class="sm">הבוס: עובדים. טרקטור לוקח 100, מכונית 200. ‏100 ÷ 200 = ½.</span></div>
+    <div class="stair floor"><b>מ־2 עד 7 טרקטורים</b><span class="big">1 מכונית</span><span class="sm">הבוס: מקום. שניהם לוקחים 10 מ״ר. ‏10 ÷ 10 = 1.</span></div>
+    <div class="stair mach"><b>מ־7 עד 8 טרקטורים</b><span class="big">2 מכוניות</span><span class="sm">הבוס: מכונות. טרקטור לוקח 10, מכונית 5. ‏10 ÷ 5 = 2.</span></div>
+  </div>
+  <p>שימו לב שהמחיר <strong>עולה</strong> ככל שבונים יותר טרקטורים: ½, אחר כך 1, אחר כך 2. זה בדיוק "חוק העלות האלטרנטיבית העולה" מהשיעור, ולכן העקומה <strong>קמורה</strong> (בולטת החוצה). ההבדל מעקומה חלקה: כאן המחיר קופץ במדרגות ולא עולה בהדרגה, ולכן העקומה <strong>שבורה</strong>.</p>
+  <p class="trap"><b>טעות נפוצה:</b> לכתוב את השיפוע במקום את המחיר. בקטע של העובדים השיפוע הוא −2 (Y יורד ב־2 כש־X עולה ב־1). אבל השאלה שואלת על <strong>טרקטור</strong> במונחי מכוניות, כלומר ΔX ÷ ΔY = ½. תמיד שואלים את עצמכם: "מה אני קונה, ובמה אני משלם?"</p>
+  <p class="note">ובכיוון ההפוך? מחיר של מכונית במונחי טרקטורים הוא פשוט ההופכי: בקטע העובדים 2, במקום 1, במכונות ½.</p>
+</section>
+
+<!-- SECTION 3 + WHAT IF -->
+<section id="s3" class="stack" aria-labelledby="h-s3">
+  <div class="sec-head"><div class="eyebrow">שלב 4 · סעיף 3, ועוד</div><h2 id="h-s3">מה קורה כשמוסיפים מקום</h2></div>
+  <p>סעיף 3 שואל על 100 מ״ר. אבל למה לעצור שם? הזיזו את המחוון ותראו את כל הסיפור.</p>
+  <div class="lab">
+    <div class="lab-title"><span class="tag">ניסוי 3</span><h3>כמה מקום יש במפעל?</h3></div>
+    <div class="range"><label for="area">מקום (מ״ר)</label><input id="area" type="range" min="60" max="120" step="5" value="100" aria-describedby="areaRead"><output id="areaO" for="area">100</output></div>
+    <div class="btns" role="group" aria-label="ערכים מהשאלה"><button class="btn" type="button" data-a="90">90 (סעיפים 1–2)</button><button class="btn" type="button" data-a="100">100 (סעיף 3)</button></div>
+    <svg class="chart" id="areaChart" viewBox="0 0 520 440" role="img" aria-label="עקומת התמורה לפי כמות המקום"></svg>
+    <div class="legend"><span><i style="background:var(--muted)"></i>העקומה של 90 מ״ר (מקווקו)</span><span><i style="background:var(--accent);height:6px"></i>העקומה עכשיו</span></div>
+    <div class="readout" id="areaRead" aria-live="polite"></div>
+  </div>
+  <div class="exam"><div class="who">התשובה לסעיף 3 (100 מ״ר)</div>
+    <p>אילוץ המקום נהיה <span class="m">X + Y ≤ 10</span>. העובדים והמכונות לא השתנו. הפינות החדשות: <span class="m">B(4, 6)</span> ו־<span class="m">C(6, 4)</span>. הקצוות נשארים <span class="m">A(0, 8)</span> ו־<span class="m">D(8, 0)</span>, כי שם המקום ממילא לא היה הבוס.</p>
+    <p>המחירים לא משתנים (½, 1, 2), כי כמה כל רכב לוקח מכל קופסה לא השתנה. משתנים רק <strong>הגבולות</strong> בין הקטעים: קטע המקום מתקצר, וקטעי העובדים והמכונות מתארכים. העקומה זזה החוצה רק באמצע.</p>
+  </div>
+  <h3>שלושה דברים שהמחוון מלמד (מעבר לשאלה)</h3>
+  <ol class="steps">
+    <li><strong>עד 80 מ״ר:</strong> המקום הוא הבוס לאורך כל העקומה. העקומה הופכת ל<strong>קו ישר</strong>, והמחיר קבוע (1). זה "רובינזון" מהשיעור: משאב אחד שמגביל הכל.</li>
+    <li><strong>בין 80 ל־106⅔ מ״ר:</strong> שלושה בוסים, שלושה קטעים. ככל שמוסיפים מקום, קטע המקום מתקצר.</li>
+    <li><strong>מעל 106⅔ מ״ר:</strong> המקום כבר אף פעם לא נגמר ראשון. להוסיף עוד מקום לא משנה כלום. נשארים שני קטעים עם פינה אחת ב־<span class="m">(5⅓, 5⅓)</span>, הנקודה שנפסלה קודם.</li>
+  </ol>
+  <p class="brief"><span class="lbl">השיעור הגדול</span>להוסיף משאב עוזר רק איפה שהוא הבוס. משאב שלא נגמר הוא כסף שזרקתם.</p>
+</section>
+
+<!-- BEYOND -->
+<section id="beyond" class="stack" aria-labelledby="h-beyond">
+  <div class="sec-head"><div class="eyebrow">שלב 5 · צעדים קדימה</div><h2 id="h-beyond">שאלות שהמרצה יכול לשאול אחרי זה</h2></div>
+
+  <div class="box">
+    <h3>1. "המפעל רוצה לבנות אותו מספר מכוניות וטרקטורים. כמה מכל אחד?"</h3>
+    <p>"אותו מספר" אומר <span class="m">Y = X</span>. מחפשים איפה הקו הזה פוגש את העקומה. ב־<span class="m">X = Y</span> אנחנו בקטע של המקום (בין 2 ל־7), אז מציבים באילוץ המקום:</p>
+    <div class="eq">X + X = 9  →  X = 4.5 ,  Y = 4.5</div>
+    <p>ומי מובטל? עובדים: <span class="m">200·4.5 + 100·4.5 = 1,350</span> מתוך 1,600, אז <strong>250 שעות עבודה</strong> עומדות. מכונות: <span class="m">5·4.5 + 10·4.5 = 67.5</span> מתוך 80, אז <strong>12.5 שעות מכונה</strong> עומדות.</p>
+    <p class="note">זו בדיוק הדוגמה של "Y = 2X" מהמצגת (נושא 9, להעמקה), רק עם יחס אחר.</p>
+  </div>
+
+  <div class="box">
+    <h3>2. "יש אבטלה, אבל הנקודה על העקומה. איך זה מסתדר?"</h3>
+    <p>בשיעור למדנו: נקודה <strong>בתוך</strong> העקומה = בזבוז. אז איך יכולים להיות עובדים בלי עבודה בנקודה <strong>על</strong> העקומה?</p>
+    <p>התשובה: כאן אי אפשר להעסיק אותם. כל רכב צריך "מתכון" קבוע. אם המקום נגמר, אין איפה לשים עוד רכב, ולכן עובד נוסף לא יכול לבנות כלום. זו <strong>אבטלה מבנית</strong>: לא בזבוז של המפעל, אלא חוסר במשאב אחר. אי אפשר לייצר יותר משני המוצרים, ולכן הנקודה יעילה.</p>
+    <p class="note">בנקודה <span class="m">B(2, 7)</span>: ‏500 שעות עבודה עומדות. בנקודה <span class="m">C(7, 2)</span>: ‏25 שעות מכונה עומדות. בסימולטור למעלה רואים את זה בפסים.</p>
+  </div>
+
+  <div class="box">
+    <h3>3. "אפשר לקנות עוד יחידה של משאב אחד. מה כדאי לקנות?"</h3>
+    <p>תלוי איפה אתם על העקומה. קונים רק את <strong>הבוס</strong>:</p>
+    <ul class="steps" style="list-style:disc">
+      <li>מייצרים בעיקר מכוניות (קטע CD)? חסרים <span style="color:var(--c-labor);font-weight:700">עובדים</span>.</li>
+      <li>מייצרים תמהיל באמצע (קטע BC)? חסר <span style="color:var(--c-floor);font-weight:700">מקום</span>. זה בדיוק מה שסעיף 3 עשה.</li>
+      <li>מייצרים בעיקר טרקטורים (קטע AB)? חסרות <span style="color:var(--c-mach);font-weight:700">מכונות</span>.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>4. "חייבים מספרים שלמים?"</h3>
+    <p>במבחן בדרך כלל מתייחסים לעקומה כרציפה, כמו בפתרון כאן. אם השאלה אומרת במפורש "יחידות שלמות", בוחרים מתוך הנקודות השלמות על העקומה או מתחתיה. למשל ב־1 טרקטור אפשר 7.5 מכוניות, כלומר בפועל 7.</p>
+  </div>
+</section>
+
+<!-- EXAM -->
+<section id="exam" class="stack" aria-labelledby="h-exam">
+  <div class="sec-head"><div class="eyebrow">שלב 6</div><h2 id="h-exam">התשובה המלאה, כמו שמגישים</h2></div>
+  <div class="exam">
+    <div class="who">סעיף 1</div>
+    <p>נסמן X = מכוניות, Y = טרקטורים. אילוצי הייצור:</p>
+    <div class="eq" style="background:transparent;padding:0">כוח אדם: 200X + 100Y ≤ 1600 → Y ≤ 16 − 2X</div>
+    <div class="eq" style="background:transparent;padding:0">מכונות:  5X + 10Y ≤ 80 → Y ≤ 8 − 0.5X</div>
+    <div class="eq" style="background:transparent;padding:0">שטח:    10X + 10Y ≤ 90 → Y ≤ 9 − X</div>
+    <p>עקומת התמורה היא המעטפת התחתונה של האילוצים, כי בכל נקודה הגורם שנגמר ראשון מגביל את הייצור. נקודות המפגש הרלוונטיות: <span class="m">B(2, 7)</span> (מכונות ושטח) ו־<span class="m">C(7, 2)</span> (כוח אדם ושטח). מפגש כוח האדם והמכונות <span class="m">(5⅓, 5⅓)</span> נפסל כי הוא חורג מאילוץ השטח. נקודות הקצה: <span class="m">A(0, 8)</span> ו־<span class="m">D(8, 0)</span>. העקומה ABCD שבורה, ובכל קטע גורם אחר הוא צוואר הבקבוק: מכונות ב־AB, שטח ב־BC, כוח אדם ב־CD.</p>
+    <div class="who">סעיף 2</div>
+    <p>מחיר טרקטור במונחי מכוניות הוא העלות האלטרנטיבית השולית שלו, ‎|ΔX/ΔY|. בכל קטע הוא שווה ליחס בין צריכת גורם צוואר הבקבוק של טרקטור לזו של מכונית: ב־CD ‏100/200 = ½, ב־BC ‏10/10 = 1, ב־AB ‏10/5 = 2. המחיר עולה ככל שמייצרים יותר טרקטורים, ולכן העקומה קמורה לראשית ושבורה.</p>
+    <div class="who">סעיף 3</div>
+    <p>אילוץ השטח הופך ל־X + Y ≤ 10. נקודות המפגש החדשות: <span class="m">B(4, 6)</span> ו־<span class="m">C(6, 4)</span>. נקודות הקצה A ו־D לא משתנות, כי בהן השטח אינו הגורם המגביל. המחירים בכל קטע לא משתנים (2, 1, ½), כי מקדמי הייצור לא השתנו. העקומה מתרחבת רק בקטע שבו השטח מגביל, קטע BC מתקצר, וקטעי AB ו־CD מתארכים.</p>
+  </div>
+  <h3>טעויות שעולות נקודות</h3>
+  <ul class="mist">
+    <li><b>ללכת על הקו הגבוה.</b> העקומה היא תמיד הקו הנמוך. הגבוה מבטיח משאב שכבר נגמר.</li>
+    <li><b>לשכוח לבדוק מול האילוץ השלישי.</b> כך נכנסת לעקומה הנקודה <span class="m">(5⅓, 5⅓)</span>, שאי אפשר להגיע אליה.</li>
+    <li><b>לבלבל שיפוע עם מחיר.</b> שואלים "טרקטור במונחי מכוניות"? מחשבים ΔX ÷ ΔY, לא ΔY ÷ ΔX.</li>
+    <li><b>לחשוב שבסעיף 3 כל העקומה זזה.</b> רק הקטע שבו השטח היה הבוס זז. הקצוות והמחירים נשארים.</li>
+    <li><b>לקרוא לעודף משאבים "בזבוז".</b> בנקודה על העקומה זו אבטלה מבנית, לא חוסר יעילות.</li>
+  </ul>
+</section>
+
+<!-- PRACTICE -->
+<section id="practice" class="stack" aria-labelledby="h-prac">
+  <div class="sec-head"><div class="eyebrow">שלב 7 · עכשיו לבד</div><h2 id="h-prac">שאלה תאומה: המפעל קנה מכונות</h2></div>
+  <p>אותו מפעל, אותו מתכון, אבל עכשיו יש <strong>100 שעות מכונה</strong> במקום 80. עובדים (1,600) ומקום (90) לא השתנו. מלאו את המספרים ולחצו "בדיקה".</p>
+  <div class="box" id="prac">
+    <div class="qrow"><label for="p1">רק טרקטורים: כמה אפשר?</label><input id="p1" inputmode="decimal" autocomplete="off"><span class="st" id="s1" aria-live="polite"></span></div>
+    <div class="qrow"><label for="p2">רק מכוניות: כמה אפשר?</label><input id="p2" inputmode="decimal" autocomplete="off"><span class="st" id="s2st" aria-live="polite"></span></div>
+    <div class="qrow"><label for="p3">כמה פינות (נקודות שבירה) יש עכשיו לעקומה?</label><input id="p3" inputmode="numeric" autocomplete="off"><span class="st" id="s3st" aria-live="polite"></span></div>
+    <div class="qrow"><label for="p4">בפינה: כמה מכוניות (X)?</label><input id="p4" inputmode="decimal" autocomplete="off"><span class="st" id="s4" aria-live="polite"></span></div>
+    <div class="qrow"><label for="p5">בפינה: כמה טרקטורים (Y)?</label><input id="p5" inputmode="decimal" autocomplete="off"><span class="st" id="s5" aria-live="polite"></span></div>
+    <div class="qrow"><label for="p6">מחיר טרקטור (במכוניות) כשבונים מעט טרקטורים</label><input id="p6" inputmode="decimal" autocomplete="off" placeholder="למשל 0.5"><span class="st" id="s6" aria-live="polite"></span></div>
+    <div class="qrow"><label for="p7">מחיר טרקטור (במכוניות) כשבונים הרבה טרקטורים</label><input id="p7" inputmode="decimal" autocomplete="off"><span class="st" id="s7" aria-live="polite"></span></div>
+    <div class="btns"><button class="btn primary" id="check" type="button">בדיקה</button><button class="btn" id="reset" type="button">ניקוי</button></div>
+    <p class="readout" id="pracRead" role="status"></p>
+  </div>
+  <details class="sol"><summary>פתרון השאלה התאומה</summary>
+    <div class="sol-body">
+      <p>אילוץ המכונות נהיה <span class="m">5X + 10Y ≤ 100</span>, כלומר <span class="m">Y ≤ 10 − 0.5X</span>.</p>
+      <p><strong>רק טרקטורים:</strong> עובדים 16, מכונות 10, מקום 9. הכי קטן: <strong>9</strong>, והבוס עכשיו הוא המקום.</p>
+      <p><strong>רק מכוניות:</strong> עובדים 8, מכונות 20, מקום 9. הכי קטן: <strong>8</strong> (עובדים).</p>
+      <p><strong>פינות:</strong> מכונות ומקום נפגשים ב־<span class="m">10 − 0.5X = 9 − X</span>, כלומר X = −2. זה מחוץ לגרף, אז הם לא נפגשים בכלל. עובדים ומקום נפגשים ב־<span class="m">C(7, 2)</span> ✓. עובדים ומכונות ב־<span class="m">(4, 8)</span>, שצריכה 120 מ״ר ✗. לכן יש <strong>פינה אחת</strong>, ב־<span class="m">(7, 2)</span>.</p>
+      <p><strong>מחירים:</strong> בין 0 ל־2 טרקטורים הבוס הוא העובדים: ½. בין 2 ל־9 טרקטורים הבוס הוא המקום: 1.</p>
+      <p class="brief"><span class="lbl">המסקנה</span>אחרי שקנו מכונות, המכונות אף פעם לא נגמרות ראשונות. הן הפסיקו להיות צוואר בקבוק, והקטע שלהן נעלם מהעקומה.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>העמקה לשאלה 5 בתרגיל 1 (עקומת התמורה ועלות אלטרנטיבית). האיורים נוצרו ב־Higgsfield.</footer>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg';
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function el(t,a,p,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;if(p)p.appendChild(e);return e;}
+const fmt=(x,d=2)=>{const r=Math.round(x*10**d)/10**d;return (Object.is(r,-0)?0:r).toLocaleString('en-US');};
+const frac=x=>{const t={'5.333':'5⅓','106.667':'106⅔','3.5':'3½'};const k=(Math.round(x*1000)/1000).toString();return t[k]||fmt(x)};
+
+/* model: X cars, Y tractors */
+const NEED={labor:{x:200,y:100,cap:1600,name:'עובדים',verb:'מספיקים',c:'--c-labor'},mach:{x:5,y:10,cap:80,name:'מכונות',verb:'מספיקות',c:'--c-mach'},floor:{x:10,y:10,cap:90,name:'מקום',verb:'מספיק',c:'--c-floor'}};
+const cars=v=>Math.abs(v-0.5)<1e-9?'חצי מכונית':Math.abs(v-1)<1e-9?'מכונית אחת':fmt(v)+' מכוניות';
+function lines(area){ // y = a - b x
+  return {labor:{a:16,b:2},mach:{a:8,b:0.5},floor:{a:area/10,b:1}};
+}
+function envelope(area){
+  const L=lines(area); const keys=Object.keys(L);
+  const xmax=Math.min(...keys.map(k=>L[k].a/L[k].b));
+  let xs=[0,xmax];
+  for(let i=0;i<3;i++)for(let j=i+1;j<3;j++){const p=L[keys[i]],q=L[keys[j]];if(p.b!==q.b){const x=(p.a-q.a)/(p.b-q.b);if(x>0&&x<xmax)xs.push(x);}}
+  xs=[...new Set(xs.map(x=>Math.round(x*1e6)/1e6))].sort((a,b)=>a-b);
+  const yAt=x=>Math.max(0,Math.min(...keys.map(k=>L[k].a-L[k].b*x)));
+  let pts=xs.map(x=>({x,y:yAt(x)}));
+  // drop collinear vertices
+  pts=pts.filter((p,i)=>{if(i===0||i===pts.length-1)return true;const a=pts[i-1],c=pts[i+1];return Math.abs((p.y-a.y)*(c.x-p.x)-(c.y-p.y)*(p.x-a.x))>1e-6;});
+  const segs=[];for(let i=0;i<pts.length-1;i++){const mx=(pts[i].x+pts[i+1].x)/2;let best=null,bv=1e9;for(const k of keys){const v=L[k].a-L[k].b*mx;if(v<bv-1e-9){bv=v;best=k;}}segs.push({from:pts[i],to:pts[i+1],boss:best,price:1/L[best].b});}
+  return {pts,segs,L,yAt,xmax};
+}
+
+/* generic chart */
+function chart(svg,W,H,max,opts){
+  svg.innerHTML='';const ink=css('--ink'),muted=css('--muted'),grid=css('--grid');
+  const m={l:46,r:18,t:18,b:44};const pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const X=x=>m.l+x/max*pw, Y=y=>m.t+ph-y/max*ph;
+  for(let i=0;i<=max;i+=(max>10?2:1)){
+    el('line',{x1:X(i),y1:Y(0),x2:X(i),y2:Y(max),stroke:grid},svg);el('line',{x1:X(0),y1:Y(i),x2:X(max),y2:Y(i),stroke:grid},svg);
+    el('text',{x:X(i),y:Y(0)+20,'font-size':13,fill:muted,'text-anchor':'middle'},svg,i);
+    if(i>0)el('text',{x:X(0)-8,y:Y(i)+4,'font-size':13,fill:muted,'text-anchor':'end'},svg,i);
+  }
+  el('line',{x1:X(0),y1:Y(0),x2:X(max),y2:Y(0),stroke:ink,'stroke-width':1.5},svg);
+  el('line',{x1:X(0),y1:Y(0),x2:X(0),y2:Y(max),stroke:ink,'stroke-width':1.5},svg);
+  el('text',{x:X(max),y:Y(0)+38,'font-size':14,'font-weight':600,fill:ink,'text-anchor':'end'},svg,'מכוניות (X)');
+  el('text',{x:X(0)+6,y:Y(max)+4,'font-size':14,'font-weight':600,fill:ink,'text-anchor':'start'},svg,'טרקטורים (Y)');
+  const defs=el('defs',{},svg);const cp=el('clipPath',{id:svg.id+'c'},defs);el('rect',{x:X(0),y:Y(max),width:pw,height:ph},cp);
+  return {X,Y,clip:`url(#${svg.id}c)`};
+}
+function drawLine(svg,c,l,color,dash,width,max){
+  const x2=Math.min(max,l.a/l.b);el('line',{x1:c.X(0),y1:c.Y(l.a),x2:c.X(x2),y2:c.Y(l.a-l.b*x2),stroke:color,'stroke-width':width||2,'stroke-dasharray':dash||'','clip-path':c.clip},svg);
+}
+function poly(svg,c,pts,color,width,dash){el('polyline',{points:pts.map(p=>c.X(p.x)+','+c.Y(p.y)).join(' '),fill:'none',stroke:color,'stroke-width':width,'stroke-linejoin':'round','stroke-dasharray':dash||''},svg);}
+function dot(svg,c,p,color,label,dx,dy){el('circle',{cx:c.X(p.x),cy:c.Y(p.y),r:6,fill:css('--surface'),stroke:color,'stroke-width':2.5},svg);if(label)el('text',{x:c.X(p.x)+(dx||8),y:c.Y(p.y)+(dy||-8),'font-size':14,'font-weight':700,fill:css('--ink'),'font-family':'IBM Plex Mono, monospace'},svg,label);}
+
+/* ---------- Lab 1: simulator ---------- */
+function sim(){
+  const y=+$('#simY').value; $('#simYo').textContent=fmt(y);
+  const env=envelope(90);
+  const cap={};for(const k in NEED){const n=NEED[k];cap[k]=(n.cap-n.y*y)/n.x;}
+  const x=Math.max(0,Math.min(cap.labor,cap.mach,cap.floor));
+  let boss=Object.keys(cap).filter(k=>Math.abs(cap[k]-x)<1e-9);
+  const ids={labor:'#mLabor',mach:'#mMach',floor:'#mFloor'},tx={labor:'#tLabor',mach:'#tMach',floor:'#tFloor'},unit={labor:'שעות',mach:'שעות',floor:'מ״ר'};
+  for(const k in NEED){const n=NEED[k];const used=n.x*x+n.y*y;const pct=Math.min(100,used/n.cap*100);
+    $(ids[k]).querySelector('i').style.width=pct+'%';$(ids[k]).classList.toggle('boss',boss.includes(k));
+    $(tx[k]).textContent=`${fmt(used,1)} מתוך ${n.cap.toLocaleString('en-US')} ${unit[k]}`+(n.cap-used>1e-6?` · ${fmt(n.cap-used,1)} עומדות`:' · ריקה');}
+  const bossNames=boss.map(k=>NEED[k].name).join(' ו');
+  const parts=Object.keys(cap).map(k=>`${NEED[k].name} ${NEED[k].verb} ל־${fmt(cap[k])}`).join(', ');
+  $('#simRead').innerHTML=`בונים <b>${fmt(y)}</b> טרקטורים. ${parts} מכוניות. הכי קטן מנצח: <b>${fmt(x)} מכוניות</b>. ${boss.length>1?`כאן נגמרים יחד <b>${bossNames}</b>: זו פינה בעקומה.`:`הבוס: <b>${bossNames}</b>.`}`;
+  const svg=$('#simChart');const c=chart(svg,360,340,10);
+  for(const k in env.L)drawLine(svg,c,env.L[k],css(NEED[k].c),'5 4',1.6,10);
+  poly(svg,c,env.pts,css('--accent'),4);
+  el('line',{x1:c.X(0),y1:c.Y(y),x2:c.X(x),y2:c.Y(y),stroke:css('--muted'),'stroke-dasharray':'3 4'},svg);
+  el('line',{x1:c.X(x),y1:c.Y(y),x2:c.X(x),y2:c.Y(0),stroke:css('--muted'),'stroke-dasharray':'3 4'},svg);
+  el('circle',{cx:c.X(x),cy:c.Y(y),r:8,fill:css(NEED[boss[0]].c),stroke:css('--surface'),'stroke-width':2.5},svg);
+  svg.setAttribute('aria-label',`עקומת התמורה. הנקודה: ${fmt(x)} מכוניות ו־${fmt(y)} טרקטורים. הבוס: ${bossNames}.`);
+}
+$('#simY').addEventListener('input',sim);
+
+/* ---------- Lab 2: stepper ---------- */
+const STEPS=[
+ {cap:'נתחיל מצירים ריקים. על הציר האופקי מכוניות (X), על האנכי טרקטורים (Y). כל נקודה בגרף היא "כמה מכל אחד בונים".'},
+ {k:'labor',cap:'<b style="color:var(--c-labor)">מהלך 1 · עובדים:</b> ‏Y ≤ 16 − 2X. רק טרקטורים? העובדים מספיקים ל־16. רק מכוניות? ל־8. כל מה שמתחת לקו הכתום, העובדים מספיקים לו.'},
+ {k:'mach',cap:'<b style="color:var(--c-mach)">מהלך 2 · מכונות:</b> ‏Y ≤ 8 − 0.5X. רק טרקטורים? 8. רק מכוניות? 16. הקו הטורקיז שוכב יותר, כי מכונית לוקחת מעט שעות מכונה.'},
+ {k:'floor',cap:'<b style="color:var(--c-floor)">מהלך 3 · מקום:</b> ‏Y ≤ 9 − X. רק טרקטורים או רק מכוניות? 9. השטח האפור הוא המקום שבו <b>כל שלוש</b> הקופסאות מספיקות.'},
+ {env:true,cap:'<b style="color:var(--accent)">מהלך 4 · הקו הנמוך:</b> בכל X לוקחים את הקו הנמוך מבין השלושה. יוצאת עקומה שבורה עם שתי פינות: <span class="m">B(2, 7)</span> ו־<span class="m">C(7, 2)</span>. הנקודה <span class="m">(5⅓, 5⅓)</span>, שבה העובדים והמכונות נפגשים, נמצאת מעל קו המקום ולכן נפסלת.'}
+];
+let step=0;
+function build(){
+  const svg=$('#buildChart');const c=chart(svg,520,440,16);const env=envelope(90);
+  const shown=STEPS.slice(1,step+1).map(s=>s.k).filter(Boolean);
+  if(step>=3){const pts=[{x:0,y:0},...env.pts.slice().reverse().reverse()];el('polygon',{points:[{x:0,y:0},...env.pts].map(p=>c.X(p.x)+','+c.Y(p.y)).join(' '),fill:css('--accent-soft'),stroke:'none'},svg);}
+  for(const k of shown){const l=env.L[k];drawLine(svg,c,l,css(NEED[k].c),step>=4?'6 5':'',step>=4?1.8:3,16);
+    if(step<4){const pos={labor:[3.4,9.6],mach:[11.2,3.1],floor:[5.3,4.4]}[k];
+      el('text',{x:c.X(pos[0]),y:c.Y(pos[1]),'font-size':14,'font-weight':700,fill:css(NEED[k].c),'paint-order':'stroke',stroke:css('--surface'),'stroke-width':4},svg,`${NEED[k].name}`);
+      const ix=Math.min(16,l.a/l.b);
+      el('text',{x:c.X(0)+(k==='labor'?34:8),y:c.Y(l.a)+(k==='mach'?16:-6),'font-size':13,'font-weight':700,fill:css(NEED[k].c)},svg,fmt(l.a));
+      el('text',{x:c.X(ix)+(k==='floor'?10:-4),y:c.Y(0)-8,'font-size':13,'font-weight':700,fill:css(NEED[k].c),'text-anchor':k==='floor'?'start':'end'},svg,fmt(ix));}}
+  if(step>=4){poly(svg,c,env.pts,css('--accent'),5);
+    const lab=['A','B','C','D'];env.pts.slice().reverse().forEach((p,i)=>{});
+    const named=[{p:{x:0,y:8},n:'A(0,8)',dx:8,dy:-8},{p:{x:2,y:7},n:'B(2,7)',dx:8,dy:-10},{p:{x:7,y:2},n:'C(7,2)',dx:8,dy:-10},{p:{x:8,y:0},n:'D(8,0)',dx:6,dy:-10}];
+    named.forEach(o=>dot(svg,c,o.p,css('--accent'),o.n,o.dx,o.dy));
+    el('circle',{cx:c.X(16/3),cy:c.Y(16/3),r:6,fill:'none',stroke:css('--pen'),'stroke-width':2.5},svg);
+    el('text',{x:c.X(16/3)+10,y:c.Y(16/3)-8,'font-size':13,'font-weight':700,fill:css('--pen')},svg,'(5⅓,5⅓) ✗');}
+  $('#buildCap').innerHTML=STEPS[step].cap;$('#bCount').textContent=`${step} מתוך ${STEPS.length-1}`;
+  $('#bPrev').disabled=step===0;$('#bNext').disabled=step===STEPS.length-1;
+}
+$('#bNext').onclick=()=>{if(step<STEPS.length-1){step++;build();}};
+$('#bPrev').onclick=()=>{if(step>0){step--;build();}};
+
+/* ---------- Lab 3: area what-if ---------- */
+function areaLab(){
+  const A=+$('#area').value;$('#areaO').textContent=A;
+  $$('[data-a]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.a===A?'true':'false'));
+  const svg=$('#areaChart');const c=chart(svg,520,440,12);
+  const base=envelope(90),env=envelope(A);
+  el('polygon',{points:[{x:0,y:0},...env.pts].map(p=>c.X(p.x)+','+c.Y(p.y)).join(' '),fill:css('--accent-soft'),stroke:'none'},svg);
+  for(const k in env.L)drawLine(svg,c,env.L[k],css(NEED[k].c),'5 4',1.6,12);
+  if(A!==90)poly(svg,c,base.pts,css('--muted'),2.5,'7 5');
+  env.segs.forEach(s=>{el('line',{x1:c.X(s.from.x),y1:c.Y(s.from.y),x2:c.X(s.to.x),y2:c.Y(s.to.y),stroke:css(NEED[s.boss].c),'stroke-width':6,'stroke-linecap':'round'},svg);});
+  env.pts.forEach(p=>dot(svg,c,p,css('--accent'),`(${frac(p.x)},${frac(p.y)})`,8,-8));
+  const desc=env.segs.slice().reverse().map(s=>`${frac(s.to.y)}–${frac(s.from.y)} טרקטורים: הבוס ${NEED[s.boss].name}, טרקטור עולה ${cars(s.price)}`).join(' · ');
+  let msg;
+  if(A<=80)msg=`עם ${A} מ״ר המקום הוא הבוס בכל העקומה. העקומה היא <b>קו ישר</b>, וטרקטור תמיד עולה מכונית אחת.`;
+  else if(A>=320/3)msg=`עם ${A} מ״ר המקום אף פעם לא נגמר ראשון. נשארו שני קטעים (עובדים ומכונות) עם פינה אחת ב־<span class="m">(5⅓, 5⅓)</span>. להוסיף עוד מקום לא ישנה כלום.`;
+  else msg=`עם ${A} מ״ר יש שלושה קטעים. ${desc}.`;
+  $('#areaRead').innerHTML=msg+(A!==90?' <span class="note">הקו האפור המקווקו הוא העקומה של 90 מ״ר.</span>':'');
+  // colored segments are on top; label segments color legend in readout
+  svg.setAttribute('aria-label',`עקומת התמורה עם ${A} מ״ר. פינות: ${env.pts.map(p=>`(${frac(p.x)}, ${frac(p.y)})`).join(', ')}.`);
+}
+$('#area').addEventListener('input',areaLab);
+$$('[data-a]').forEach(b=>b.onclick=()=>{$('#area').value=b.dataset.a;areaLab();});
+
+/* ---------- Practice ---------- */
+const ANS=[['#p1','#s1',9],['#p2','#s2st',8],['#p3','#s3st',1],['#p4','#s4',7],['#p5','#s5',2],['#p6','#s6',0.5],['#p7','#s7',1]];
+function parse(v){v=(v||'').trim().replace(',','.').replace('½','0.5');if(/^\d+\/\d+$/.test(v)){const[a,b]=v.split('/');return +a/+b;}return v===''?NaN:+v;}
+$('#check').onclick=()=>{let ok=0,filled=0;ANS.forEach(([i,s,a])=>{const v=parse($(i).value);const st=$(s);if(isNaN(v)){st.textContent='';st.className='st';return;}filled++;
+  if(Math.abs(v-a)<0.01){ok++;st.textContent='✓';st.className='st ok';st.setAttribute('aria-label','נכון');}else{st.textContent='✗';st.className='st no';st.setAttribute('aria-label','לא נכון');}});
+  $('#pracRead').innerHTML=filled===0?'עוד לא מילאתם תשובות.':ok===ANS.length?'<b>הכל נכון.</b> שימו לב למסקנה: המכונות הפסיקו להיות צוואר בקבוק.':`${ok} מתוך ${filled} נכונות. רמז: בדקו כל זוג קווים מול הקו השלישי, וזכרו שגם הקצוות יכולים להשתנות.`;};
+$('#reset').onclick=()=>{ANS.forEach(([i,s])=>{$(i).value='';$(s).textContent='';$(s).className='st';});$('#pracRead').textContent='';};
+
+function all(){sim();build();areaLab();}
+all();
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',all);
+new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+
+</body>
+</html>
