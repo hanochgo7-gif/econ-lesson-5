@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ביקוש וגמישות · שיעור 5</title>
+<meta name="description" content="שיעור 5 במבוא לכלכלה, מוסבר מאפס: ביקוש, גמישות, פדיון וביקוש שוקי.">
+<meta property="og:title" content="ביקוש וגמישות · שיעור 5">
+<meta property="og:description" content="שיעור מבוא לכלכלה מוסבר מאפס, עם סרטון מוקרא, ניסויים אינטראקטיביים ובוחן.">
+<meta property="og:image" content="img/intro-poster.webp">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Suez+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=Amatic+SC:wght@700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a printed risograph workbook — one reading column, illustrations bleed wider, labs sit on "graph paper" panels */
+:root{
+  --paper:#F4EDE0; --paper-2:#EBE2D1; --ink:#1E2944; --ink-soft:#4A5470;
+  --coral:#E0533B; --sun:#F2B632; --mint:#4FA88C; --line:#D6CBB6;
+  --coral-ink:#A8361F; --mint-ink:#23664F; --sun-ink:#7A5800;
+  --line-strong:#8C826E; --sun-line:#A87400; --mint-line:#3E8E75;
+  --btn-go:#A8361F; --on-go:#FFFFFF; --on-sun:#1E2944;
+  --hl-sun:rgba(242,182,50,.45); --hl-mint:rgba(79,168,140,.30); --hl-coral:rgba(224,83,59,.18);
+  --card:#FBF7EF; --grid:rgba(30,41,68,.07);
+  --f-display:"Suez One","Frank Ruhl Libre",Georgia,serif;
+  --f-body:"IBM Plex Sans Hebrew","Arial Hebrew",Arial,sans-serif;
+  --f-hand:"Amatic SC","Comic Sans MS",cursive;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#151B2B; --paper-2:#1C2437; --ink:#F1E9DA; --ink-soft:#B9B3A6;
+  --coral:#F2735C; --sun:#F5C452; --mint:#6CC3A6; --line:#323B52;
+  --coral-ink:#F2735C; --mint-ink:#6CC3A6; --sun-ink:#F5C452;
+  --line-strong:#7A84A0; --sun-line:#F5C452; --mint-line:#6CC3A6;
+  --btn-go:#F2735C; --on-go:#151B2B; --on-sun:#1E2944;
+  --hl-sun:rgba(245,196,82,.30); --hl-mint:rgba(108,195,166,.25); --hl-coral:rgba(242,115,92,.22);
+  --card:#1B2234; --grid:rgba(241,233,218,.06); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#151B2B; --paper-2:#1C2437; --ink:#F1E9DA; --ink-soft:#B9B3A6;
+  --coral:#F2735C; --sun:#F5C452; --mint:#6CC3A6; --line:#323B52;
+  --coral-ink:#F2735C; --mint-ink:#6CC3A6; --sun-ink:#F5C452;
+  --line-strong:#7A84A0; --sun-line:#F5C452; --mint-line:#6CC3A6;
+  --btn-go:#F2735C; --on-go:#151B2B; --on-sun:#1E2944;
+  --hl-sun:rgba(245,196,82,.30); --hl-mint:rgba(108,195,166,.25); --hl-coral:rgba(242,115,92,.22);
+  --card:#1B2234; --grid:rgba(241,233,218,.06); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.75}
+.page{direction:rtl;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 80px}
+.col{max-width:760px;margin-inline:auto}
+.col p,.col li{max-width:62ch}
+.wide{max-width:1080px;margin-inline:auto}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.2;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,5vw,44px)}
+h3{font-size:24px}
+p{margin:0}
+ul,ol{margin:0;padding-inline-start:22px;display:flex;flex-direction:column;gap:8px}
+.stack{display:flex;flex-direction:column;gap:18px}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.nw{white-space:nowrap}
+mark{background:linear-gradient(transparent 35%,var(--hl-sun) 35%,var(--hl-sun) 90%,transparent 90%);color:inherit;padding-inline:2px}
+mark.m{background:linear-gradient(transparent 35%,var(--hl-mint) 35%,var(--hl-mint) 90%,transparent 90%)}
+mark.c{background:linear-gradient(transparent 35%,var(--hl-coral) 35%,var(--hl-coral) 90%,transparent 90%)}
+a{color:var(--coral-ink)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.soft{font-size:16px;color:var(--ink-soft)}
+
+.skip{position:absolute;inset-inline-start:8px;top:-80px;z-index:20;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;font-size:16px;text-decoration:none}
+.skip:focus{top:8px}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-bottom:1px solid var(--line);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.bar nav{direction:rtl;display:flex;gap:6px;overflow-x:auto;padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px));scrollbar-width:none;max-width:1080px;margin-inline:auto;-webkit-mask-image:linear-gradient(to left,#000 85%,transparent);mask-image:linear-gradient(to left,#000 85%,transparent)}
+.bar a{flex:none;text-decoration:none;color:var(--ink-soft);font-size:16px;padding:4px 14px;border-radius:99px;border:1px solid transparent;white-space:nowrap;min-height:40px;display:inline-flex;align-items:center}
+.bar a:hover{color:var(--ink);border-color:var(--line-strong)}
+.bar a.on{color:var(--paper);background:var(--ink)}
+main:focus{outline:none}
+
+/* hero */
+.hero{padding-top:36px;display:grid;gap:26px}
+.eyebrow{font-family:var(--f-hand);font-size:30px;color:var(--coral-ink);line-height:1}
+.hero h1{font-size:clamp(44px,9vw,92px);letter-spacing:-.01em}
+.hero h1 span{color:var(--coral-ink)}
+.lede{font-size:20px;color:var(--ink-soft);max-width:62ch}
+.frame{position:relative;border-radius:14px;overflow:hidden;background:var(--paper-2);border:1px solid var(--line);max-width:100%}
+.frame img,.frame video{display:block;width:100%;height:auto}
+.frame video{aspect-ratio:16/9;object-fit:cover}
+.frame video.r43{aspect-ratio:4/3}
+.vidctl{position:absolute;inset-block-end:10px;inset-inline-start:10px;min-width:44px;min-height:44px;padding:0 14px;border-radius:99px;border:2px solid #fff;background:rgba(20,27,43,.85);color:#fff;font:inherit;font-size:16px;cursor:pointer}
+.cap{font-size:16px;color:var(--ink-soft);padding:8px 2px 0}
+.promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.promise div{border-top:3px solid var(--ink);padding-top:10px;font-size:16px}
+.promise b{display:block;font-family:var(--f-display);font-weight:400;font-size:19px}
+
+/* sections */
+section.part{padding-top:90px;scroll-margin-top:64px}
+.part-head{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.part-no{font-family:var(--f-hand);font-size:32px;color:var(--mint-ink);line-height:1}
+.figure{margin:28px 0}
+
+.note{font-family:var(--f-body);font-size:18px;line-height:1.6;font-weight:500;color:var(--ink);background:var(--card);border-inline-start:4px dotted var(--coral-ink);padding:8px 14px;border-radius:0 8px 8px 0}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.rule{border-inline-start:5px solid var(--sun);background:var(--card);padding:14px 18px;border-radius:0 10px 10px 0}
+.rule.mint{border-color:var(--mint)}
+.rule.coral{border-color:var(--coral)}
+.rule>b:first-child{display:block;font-size:16px;color:var(--ink-soft);font-weight:700}
+.fix{border:2px dashed var(--coral-ink);border-radius:12px;padding:14px 18px;background:var(--hl-coral)}
+.fix>b:first-child{color:var(--ink)}
+.mt{margin-top:18px}
+
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--f-mono);font-size:16px;direction:rtl;justify-content:flex-start}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:8px;background:var(--paper-2);border:1px solid var(--line-strong);white-space:nowrap}
+.up{color:var(--coral-ink);font-weight:600}.down{color:var(--mint-ink);font-weight:600}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.two>*{min-width:0}
+@media (max-width:720px){.two{grid-template-columns:1fr}}
+
+/* labs */
+.lab{background-color:var(--card);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:22px 22px;border:1.5px solid var(--ink);border-radius:14px;padding:20px;margin:28px 0;display:flex;flex-direction:column;gap:16px}
+.lab-title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.lab-title .tag{font-family:var(--f-body);font-size:14px;font-weight:700;background:var(--ink);color:var(--paper);padding:2px 10px;border-radius:4px}
+.lab-title h3{font-size:22px}
+.how{font-size:16px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+button.b{font:inherit;font-size:16px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);padding:9px 16px;min-height:44px;border-radius:99px;line-height:1.3}
+button.b:hover{background:var(--paper-2)}
+button.b.on{background:var(--ink);color:var(--paper)}
+button.b.go{background:var(--btn-go);border-color:var(--btn-go);color:var(--on-go)}
+button.b[aria-disabled=true]{opacity:.6;cursor:not-allowed}
+svg text{font-family:var(--f-body)}
+.svgwrap svg{display:block;width:100%;height:auto;direction:ltr}
+.readout{font-size:17px;min-height:3.2em}
+.readout b{font-family:var(--f-display);font-weight:400}
+
+.range{display:grid;grid-template-columns:120px 1fr 72px;align-items:center;gap:12px;font-size:16px}
+.range output{font-family:var(--f-mono);text-align:center;background:var(--paper);border:1px solid var(--line-strong);border-radius:6px;padding:2px 4px;direction:ltr}
+.range input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:44px;background:transparent;margin:0}
+.range input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:var(--line-strong)}
+.range input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:var(--line-strong)}
+.range input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:var(--coral-ink);border:3px solid var(--paper);box-shadow:0 0 0 1.5px var(--ink)}
+.range input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:var(--coral-ink);border:3px solid var(--paper);box-shadow:0 0 0 1.5px var(--ink)}
+@media (max-width:560px){.range{grid-template-columns:1fr 72px}.range label{grid-column:1/-1}}
+.inputs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:560px){.inputs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.inputs label{display:flex;flex-direction:column;font-size:16px;color:var(--ink-soft);gap:4px}
+.inputs input{font:inherit;font-family:var(--f-mono);font-size:17px;padding:6px 8px;min-height:44px;border:1.5px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);width:100%;direction:ltr;text-align:right}
+.steps{display:flex;flex-direction:column;gap:10px;font-size:17px}
+.steps .s{display:grid;grid-template-columns:minmax(28px,auto) 1fr;gap:10px;align-items:start}
+.steps .s>*{min-width:0}
+.steps .n{min-width:26px;height:26px;padding:0 6px;border-radius:99px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:14px;font-family:var(--f-mono);margin-top:3px}
+.formula{font-family:var(--f-mono);font-size:17px;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.verdict{font-family:var(--f-display);font-size:22px;padding:10px 14px;border-radius:10px;background:var(--hl-sun)}
+.fl{display:block;direction:ltr;unicode-bidi:isolate;text-align:right;font-family:var(--f-mono);font-size:16px;margin:2px 0}
+.tbl bdi{white-space:nowrap}
+
+/* big formula */
+.bigf{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;padding:24px 10px;direction:ltr}
+.frac{display:inline-flex;flex-direction:column;align-items:center;font-family:var(--f-mono);font-size:22px}
+.frac span:first-child{border-bottom:2.5px solid var(--ink);padding:0 10px 4px}
+.frac span:last-child{padding-top:4px}
+.eta{font-family:var(--f-display);font-size:48px;color:var(--coral-ink)}
+
+/* percent grid */
+.pct{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:18px;align-items:center}
+@media (max-width:560px){.pct{grid-template-columns:1fr}.pct svg{max-width:220px}}
+
+/* tables */
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:17px;font-variant-numeric:tabular-nums}
+th,td{border:1.5px solid var(--ink);padding:8px 10px;text-align:center}
+th{font-family:var(--f-display);font-weight:400;background:var(--paper-2)}
+tbody th{font-family:var(--f-body);font-weight:700}
+td.hot{background:var(--hl-sun);font-weight:700}
+td.cool{background:var(--hl-mint)}
+.arrow-up{color:var(--coral-ink);font-weight:700}.arrow-dn{color:var(--mint-ink);font-weight:700}
+
+/* cases */
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.cases{grid-template-columns:1fr}}
+.case{border:1.5px solid var(--ink);border-radius:12px;padding:16px;background:var(--card);display:flex;flex-direction:column;gap:8px}
+.case .k{font-family:var(--f-mono);font-size:17px}
+.case h3{font-size:21px}
+.case p{font-size:17px}
+
+/* quiz */
+.q{border-top:1.5px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:10px}
+.q .qq{font-weight:700}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts button{font:inherit;font-size:17px;text-align:right;cursor:pointer;border:1.5px solid var(--line-strong);background:var(--card);color:var(--ink);padding:9px 14px;min-height:44px;border-radius:10px}
+.opts button:hover{border-color:var(--ink)}
+.opts button[aria-disabled=true]{cursor:default}
+.opts button.right{border-color:var(--mint-ink);background:var(--hl-mint)}
+.opts button.wrong{border-color:var(--coral-ink);background:var(--hl-coral)}
+.fb{font-size:17px;color:var(--ink)}
+.score{font-family:var(--f-display);font-size:24px}
+
+/* cheat */
+.cheat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.cheat{grid-template-columns:1fr}}
+.cheat div{border:1.5px solid var(--ink);border-radius:10px;padding:12px 14px;background:var(--card);font-size:17px;min-width:0}
+.cheat h3{font-size:19px;margin-bottom:4px}
+
+footer{padding-top:70px;font-size:16px;color:var(--ink-soft)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.t{transition:all .45s cubic-bezier(.2,.8,.2,1)}
+.intro{display:flex;flex-direction:column;gap:12px;background:var(--card);border:1.5px solid var(--ink);border-radius:16px;padding:16px}
+.intro-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.intro-head h2{font-size:clamp(24px,4vw,32px)}
+.intro-len{font-size:16px;color:var(--ink-soft)}
+.intro-frame video{aspect-ratio:16/9;width:100%;height:auto;display:block;background:var(--paper-2)}
+.transcript summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+.transcript p{margin:0 0 10px;max-width:62ch}
+</style>
+
+<div class="page" lang="he" dir="rtl">
+<a class="skip" href="#main">דילוג לתוכן השיעור</a>
+<div class="bar"><nav id="nav" aria-label="חלקי השיעור">
+  <a href="#p1">1 · למה העקומה יורדת</a><a href="#p2">2 · מה מזיז את הקו</a><a href="#p3">3 · גמישות</a><a href="#p4">4 · 3 מקרים ו־2 קצוות</a><a href="#p5">5 · פדיון</a><a href="#p6">6 · ביקוש שוקי</a><a href="#p7">7 · פונקציית ביקוש</a><a href="#quiz">בוחן</a><a href="#cheat">דף סיכום</a>
+</nav></div>
+
+<main id="main" tabindex="-1">
+<header class="hero wide">
+  <div class="col stack" style="max-width:860px;margin-inline:0">
+    <div class="eyebrow">מבוא לכלכלה · שיעור מספר 5</div>
+    <h1>למה כשמשהו <span>מתייקר</span>,<br>קונים ממנו פחות?</h1>
+    <p class="lede">כל השיעור הזה הוא בעצם תשובה אחת לשאלה הזאת, ועוד שאלה אחת: <b>בכמה</b> פחות. נתחיל מאפס, בלי מושגים מוכרים מראש, ונבנה הכל צעד אחרי צעד עם דוגמאות מהחיים.</p>
+  </div>
+  <section class="intro" aria-labelledby="introTitle">
+    <div class="intro-head">
+      <h2 id="introTitle">צפו קודם: כל השיעור בדקה וחצי</h2>
+      <span class="intro-len"><bdi dir="ltr">1:34</bdi> דקות · עם קריינות וכתוביות</span>
+    </div>
+    <figure class="frame intro-frame" style="margin:0">
+      <video id="introVid" controls playsinline preload="metadata" poster="img/intro-poster.webp" aria-label="סרטון פתיחה עם קריינות: ביקוש, גמישות, פדיון וביקוש שוקי">
+        <source src="vid/intro.mp4" type="video/mp4">
+      </video>
+    </figure>
+    <details class="transcript">
+      <summary>תמליל הסרטון</summary>
+      <p>למה כשמשהו מתייקר, קונים ממנו פחות? ובעיקר, בכמה פחות? זה מה שנלמד היום.</p>
+      <p>דמיינו שאתם במדבר. בקבוק המים הראשון שווה לכם הון. השני, קצת פחות. והחמישי? אתם כבר בקושי צריכים אותו.</p>
+      <p>זה הביקוש: ככל שהמחיר יורד, כך קונים יותר. בגרף, המחיר על הציר האנכי, הכמות על האופקי, ועקומת הביקוש יורדת.</p>
+      <p>ויש דברים שמזיזים את כל הקו: שינוי בהכנסה, במחיר של מוצר תחליפי או משלים, או בטעם הקונים.</p>
+      <p>ובכמה? זו הגמישות. ביקוש גמיש כמו גומייה: המחיר עולה קצת, והקונים בורחים. ביקוש קשיח כמו מוט פלדה: המחיר עולה, וכמעט כולם נשארים.</p>
+      <p>ובקצוות: תרופה חיונית קונים כמעט בכל מחיר. אבל בין דוכני לימונדה זהים, מי שמעלה מחיר אפילו באגורה, נשאר בלי קונים.</p>
+      <p>ולמה זה חשוב למוכר? כי הפדיון, מחיר כפול כמות, תלוי בגמישות. כשהביקוש גמיש, העלאת מחיר מכניסה פחות כסף. כשהוא קשיח, דווקא יותר.</p>
+      <p>וכשמחברים את הכמויות של כל הקונים, בכל מחיר, מקבלים את הביקוש השוקי.</p>
+      <p>אז בואו נתחיל, צעד אחרי צעד, ונגלה איך כל זה עובד.</p>
+    </details>
+  </section>
+  <div class="promise">
+    <div><b>עקומת הביקוש</b>מה היא אומרת ולמה היא יורדת</div>
+    <div><b>תזוזות</b>מה גורם לכל הקו לזוז ימינה או שמאלה</div>
+    <div><b>גמישות</b>כמה חזק הכמות מגיבה לשינוי במחיר</div>
+    <div><b>פדיון ונוסחאות</b>כמה כסף נכנס לקופה של המוכר, ואיך פותרים שאלות מבחן</div>
+  </div>
+  <figure class="frame" style="margin:0" aria-label="בית הקפה מהסרטון">
+    <video id="heroVid" data-loop muted loop playsinline preload="metadata" poster="img/hero.webp" aria-label="קיוסק קפה: המוכרת מעלה מחיר וחלק מהלקוחות מוותרים">
+      <source src="vid/hero.mp4" type="video/mp4">
+    </video>
+  </figure>
+</header>
+
+<!-- ============ PART 1 ============ -->
+<section class="part col" id="p1">
+  <div class="part-head"><div class="part-no">חלק 1</div><h2>למה עקומת הביקוש יורדת</h2></div>
+  <div class="stack">
+    <p><b>"ביקוש"</b> זו פשוט רשימה של תשובות לשאלה אחת: <i>אם המחיר יהיה 10 ₪, כמה תקנו? ואם 8 ₪? ואם 5 ₪?</i> כששמים את כל התשובות על גרף, מקבלים קו. ובכל ספר כלכלה בעולם הקו הזה <mark>יורד</mark>: מחיר גבוה ← קונים מעט. מחיר נמוך ← קונים הרבה.</p>
+  </div>
+
+  <div class="box stack mt">
+    <h3>איך קוראים גרף של ביקוש (פעם אחת, וזה לכל השיעור)</h3>
+    <figure class="frame" style="margin:0"><img src="img/axes.webp" alt="גרף כמו פינה: על הקו העומד תגית מחיר מטפסת למעלה (יקר יותר), ועל הקו השוכב שורה של שקיות שהולכת ומתארכת (יותר יחידות)" loading="lazy"></figure>
+    <p>לגרף יש שני קווים ישרים, שנקראים "צירים".</p>
+    <ul>
+      <li><b>הציר שעומד (למעלה־למטה) הוא המחיר.</b> מסמנים אותו באות <bdi dir="ltr"><b>P</b></bdi>, מהמילה האנגלית <span lang="en">Price</span>, מחיר. ככל שעולים למעלה, המחיר יקר יותר.</li>
+      <li><b>הציר ששוכב (ימינה־שמאלה) הוא הכמות.</b> מסמנים אותו באות <bdi dir="ltr"><b>Q</b></bdi>, מהמילה <span lang="en">Quantity</span>, כמות. ככל שהולכים ימינה, קונים יותר יחידות.</li>
+      <li>כל נקודה על הקו עונה על שאלה אחת: "במחיר הזה, כמה יקנו?"</li>
+      <li>לזוז <b>ימינה</b> = קונים <b>יותר</b>. לזוז <b>שמאלה</b> = קונים <b>פחות</b>.</li>
+    </ul>
+    <p>ועוד מילה אחת: בכלכלה קוראים לקו הזה <b>"עקומה"</b>, גם כשהוא ישר לגמרי. "עקומת ביקוש" = קו הביקוש. גם באתר בעברית, ציר המחיר נמצא בצד <b>שמאל</b> של הגרף, בדיוק כמו בספרים.</p>
+    <p>"הקו יורד" פירושו: ככל שהולכים ימינה (יותר כמות), הקו נמוך יותר (מחיר זול יותר).</p>
+    <p class="note">איך לקרוא את החיצים בשיעור: <b>←</b> פירושו "ולכן". <b>↑</b> פירושו "עלה". <b>↓</b> פירושו "ירד".</p>
+  </div>
+
+  <div class="stack mt">
+    <p>למה הקו יורד? בגלל משהו שנקרא <mark>תועלת שולית פוחתת</mark>. נפרק את זה למילים:</p>
+    <ul>
+      <li><b>תועלת</b> = כמה טוב המוצר עושה לי, כמה הוא שווה לי.</li>
+      <li><b>שולית</b> = של היחידה הנוספת, זאת שעוד לא קיבלתי.</li>
+      <li><b>פוחתת</b> = הולכת וקטנה.</li>
+    </ul>
+    <p>ביחד: כל יחידה נוספת שווה לי קצת פחות מהקודמת. נשמע מפחיד, אבל זה הכי אינטואיטיבי שיש:</p>
+  </div>
+  <figure class="figure frame">
+    <video data-loop muted loop playsinline preload="metadata" poster="img/water.webp" aria-label="מטייל במדבר: הבקבוק הראשון משמח מאוד, החמישי כבר משעמם"><source src="vid/water.mp4" type="video/mp4"></video>
+  </figure>
+  <div class="stack">
+    <p>אתם במדבר, צמאים מאוד. מישהו מציע בקבוק מים ראשון. כמה תשלמו עליו? 100 ₪ בלי למצמץ. הבקבוק השני? עדיין שווה, אבל פחות. הבקבוק החמישי? כבר יש לכם ערימה, ואתם כמעט לא צריכים אותו. <b>כל יחידה נוספת שווה לכם פחות מהקודמת.</b></p>
+    <p>שימו לב להבדל חשוב: <b>התועלת הכוללת</b> (כמה טוב לכם מכל הבקבוקים ביחד) עדיין גדלה עם כל בקבוק. אבל <b>התועלת מהבקבוק הנוסף</b> קטנה. ובהתאם, גם <b>הנכונות לשלם</b> עליו קטנה.</p>
+    <p>ולכן: כדי שתקנו עוד ועוד יחידות, המוכר חייב להוריד את המחיר. זה כל הסוד של הקו היורד.</p>
+  </div>
+
+  <div class="lab" id="labWater">
+    <div class="lab-title"><span class="tag">ניסוי 1</span><h3>תנו לו עוד בקבוק</h3></div>
+    <p class="how">לחצו על הכפתור הכתום שוב ושוב. גובה כל עמודה = כמה המטייל מוכן לשלם על הבקבוק הזה.</p>
+    <div class="svgwrap"><svg id="waterSvg" viewBox="0 0 620 280" role="img" aria-label="גרף עמודות ריק: עוד לא נתתם בקבוקים."></svg></div>
+    <div class="btns"><button type="button" class="b go" id="waterAdd">תנו עוד בקבוק <span aria-hidden="true">💧</span></button><button type="button" class="b" id="waterReset">מהתחלה</button></div>
+    <p class="readout" id="waterRead" aria-live="polite">לחצו על הכפתור כדי לתת למטייל את הבקבוק הראשון.</p>
+  </div>
+
+  <div class="rule"><b>הכלל הכי חשוב בחלק הזה</b>
+    שינוי במחיר של המוצר עצמו <u>לא מזיז את הקו</u>. הוא רק גורם לנו <mark>לזוז לאורך הקו</mark> לנקודה אחרת עליו. (המחיר עלה ← הנקודה מטפסת למעלה על אותו קו ← והיא גם זזה שמאלה, כלומר קונים פחות.)
+    <br><br>שתי מילים שנשמעות דומות, וחשוב להבדיל ביניהן במבחן:
+    <br><b>כמות מבוקשת</b> = מספר אחד: כמה קונים במחיר מסוים. זו נקודה על הקו.
+    <br><b>ביקוש</b> = כל הקו כולו.
+    <br>מחיר המוצר עצמו משנה את <u>הכמות המבוקשת</u>. דברים אחרים משנים את <u>הביקוש</u>, ועליהם בחלק הבא.
+  </div>
+  <p class="note mt">מהמחברת: "כל שינוי במחיר המוצר = תנועה על העקומה" ✓</p>
+  <div class="rule mint mt"><b>בקיצור</b>כל יחידה נוספת שווה לנו פחות, ולכן קונים יותר רק כשהמחיר יורד. שינוי במחיר המוצר עצמו רק מזיז אותנו על הקו.</div>
+</section>
+
+<!-- ============ PART 2 ============ -->
+<section class="part col" id="p2">
+  <div class="part-head"><div class="part-no">חלק 2</div><h2>מה מזיז את כל הקו</h2></div>
+  <div class="stack">
+    <p>למה זה חשוב? כי בחיים מחיר הקפה יכול להישאר בדיוק אותו דבר, ובכל זאת בית הקפה ימכור פתאום יותר או פחות. מה קרה? משהו <b>אחר</b> השתנה.</p>
+    <p>אז אם מחיר המוצר עצמו רק מזיז אותנו <i>על</i> הקו, מה מזיז את <b>הקו כולו</b>? יש שלושה דברים עיקריים (יש עוד, למשל מספר הצרכנים בשוק וציפיות לעתיד). כשהם משתנים, בכל מחיר ומחיר אנשים רוצים כמות אחרת:</p>
+    <ul>
+      <li><mark class="c">ימינה (גדל)</mark> = רוצים <b>יותר</b> בכל מחיר (כל הקו זז, כלומר הביקוש עצמו גדל)</li>
+      <li><mark class="m">שמאלה (קטן)</mark> = רוצים <b>פחות</b> בכל מחיר (כל הקו זז, כלומר הביקוש עצמו קטן)</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:30px">גורם 1 · הכנסה</h3>
+  <div class="two" style="margin-top:12px;align-items:center">
+    <figure class="frame" style="margin:0"><img src="img/income.webp" alt="אישה מקבלת העלאה במשכורת ויוצאת עם עגלה מלאה: הכנסה עולה, ולכן הביקוש למוצר נורמלי זז ימינה" loading="lazy"></figure>
+    <div class="stack">
+      <p>קיבלתם העלאה במשכורת? אתם קונים יותר כמעט מכל דבר. הקו זז <b>ימינה</b>.</p>
+      <p>מוצר כזה נקרא <mark>מוצר נורמלי</mark>. רוב המוצרים הם כאלה.</p>
+      <p class="soft">במחברת זה נקרא <b>שינוי בהכנסה הנומינלית</b>: "נומינלית" = המשכורת בשקלים, כמו שהיא כתובה בתלוש.</p>
+      <p class="soft">יש מוצרים הפוכים, <b>מוצר נחות</b>: כשמרוויחים יותר קונים מהם <i>פחות</i>. למה? כי קנינו אותם רק כי לא היה כסף לחלופה הטובה יותר. קיבלתם העלאה? מחליפים את האוטובוס במונית, ואת האטריות האינסטנט בארוחה אמיתית. "נחות" לא אומר "גרוע", רק "מוצר שעוזבים כשיש יותר כסף".</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:40px">גורם 2 · המחיר של מוצר <u>אחר</u></h3>
+  <div class="stack" style="margin-top:10px">
+    <p>כאן יש שני סוגים, וזה החלק שהכי הרבה אנשים מתבלבלים בו. נקרא למוצר שלנו <bdi dir="ltr"><b>X</b></bdi> ולמוצר האחר <bdi dir="ltr"><b>Y</b></bdi>.</p>
+    <p class="soft">ככה נקרא את הקיצורים: <bdi dir="ltr"><b>P<sub>y</sub></b></bdi> = המחיר של Y. <bdi dir="ltr"><b>Q<sub>y</sub></b></bdi> = הכמות שקונים מ־Y. <bdi dir="ltr"><b>D<sub>x</sub></b></bdi> = הביקוש ל־X (<bdi dir="ltr">D</bdi> מהמילה <span lang="en">Demand</span>, ביקוש). האות הקטנה למטה אומרת "של מי".</p>
+  </div>
+  <div class="two" style="margin-top:16px">
+    <div class="stack">
+      <figure class="frame" style="margin:0"><img src="img/substitutes.webp" alt="נדנדה בין תה לקפה: התה התייקר, ולכן קונים יותר קפה. תחליפיים" loading="lazy"></figure>
+      <h3>מוצרים תחליפיים</h3>
+      <p>אחד <b>במקום</b> השני. תה או קפה. קולה או פפסי.</p>
+      <p>התה (Y) התייקר ← קונים פחות תה ← עוברים לקפה ← הביקוש לקפה (X) <b>עולה</b>.</p>
+      <div class="chain" role="img" aria-label="מחיר Y עולה, ולכן הכמות של Y יורדת, ולכן הביקוש ל־X עולה"><span class="chip" dir="ltr">P<sub>y</sub> <span class="up">↑</span></span><span aria-hidden="true">←</span><span class="chip" dir="ltr">Q<sub>y</sub> <span class="down">↓</span></span><span aria-hidden="true">←</span><span class="chip" dir="ltr">D<sub>x</sub> <span class="up">↑</span></span></div>
+    </div>
+    <div class="stack">
+      <figure class="frame" style="margin:0"><img src="img/complements.webp" alt="תחנת דלק ומכוניות שלא נמכרות: הדלק התייקר, ולכן הביקוש למכוניות יורד. משלימים" loading="lazy"></figure>
+      <h3>מוצרים משלימים</h3>
+      <p>הולכים <b>ביחד</b>. מכונית ודלק. מדפסת ודיו.</p>
+      <p>הדלק (Y) התייקר ← נוסעים פחות ← פחות שווה לקנות מכונית ← הביקוש למכוניות (X) <b>יורד</b>.</p>
+      <div class="chain" role="img" aria-label="מחיר Y עולה, ולכן הכמות של Y יורדת, ולכן הביקוש ל־X יורד"><span class="chip" dir="ltr">P<sub>y</sub> <span class="up">↑</span></span><span aria-hidden="true">←</span><span class="chip" dir="ltr">Q<sub>y</sub> <span class="down">↓</span></span><span aria-hidden="true">←</span><span class="chip" dir="ltr">D<sub>x</sub> <span class="down">↓</span></span></div>
+    </div>
+  </div>
+  <p class="note mt">טריק: תמיד שואלים "מה קרה לכמות של Y?" ואז "האם X הולך איתו או נגדו?"</p>
+  <div class="fix mt"><b>טעות נפוצה:</b> "מחיר הקפה עלה, אז הביקוש לקפה ירד והקו זז שמאלה." לא! שינוי במחיר של הקפה <u>עצמו</u> אף פעם לא מזיז את הקו של הקפה. רק הנקודה זזה עליו. הקו זז רק כשמשהו <u>אחר</u> משתנה: הכנסה, מחיר של מוצר אחר, או טעמים.</div>
+
+  <h3 style="margin-top:40px">גורם 3 · טעמים ואופנה</h3>
+  <div class="two" style="margin-top:12px;align-items:center">
+    <figure class="frame" style="margin:0"><img src="img/tastes.webp" alt="המון רץ אחרי נעלי סניקרס חדשות והנעל הישנה נשכחת: שינוי בטעמים מזיז את כל עקומת הביקוש" loading="lazy"></figure>
+    <p>מה אנשים אוהבים ומה פחות. נעלי סניקרס נכנסו לאופנה? הקו שלהן זז <b>ימינה</b>. מחקר חדש אמר שסוכר מזיק? הביקוש לממתקים זז <b>שמאלה</b>. אותו מחיר בדיוק, כמות אחרת לגמרי.</p>
+  </div>
+
+  <div class="lab" id="labShift">
+    <div class="lab-title"><span class="tag">ניסוי 2</span><h3>תזיזו את הקו בעצמכם</h3></div>
+    <p class="how">בחרו מה קרה בעולם, ותראו אם <b>הקו זז</b> או שרק <b>הנקודה זזה עליו</b>. המוצר שלנו (X) הוא קפה. הנקודה הצהובה = המחיר והכמות היום. אם הקו זז, תראו את הקו הישן מקווקו (<bdi dir="ltr">D₀</bdi>) ואת הקו החדש (<bdi dir="ltr">D₁</bdi>): ה־0 = לפני, ה־1 = אחרי.</p>
+    <div class="btns" id="shiftBtns" role="group" aria-label="מה קרה בעולם?">
+      <button type="button" class="b" aria-pressed="false" data-k="own">מחיר הקפה עצמו עלה</button>
+      <button type="button" class="b" aria-pressed="false" data-k="inc">ההכנסה שלי עלתה</button>
+      <button type="button" class="b" aria-pressed="false" data-k="sub">התה (תחליף) התייקר</button>
+      <button type="button" class="b" aria-pressed="false" data-k="comp">העוגיות (משלים) התייקרו</button>
+      <button type="button" class="b" aria-pressed="false" data-k="taste">מחקר: קפה מזיק לבריאות</button>
+      <button type="button" class="b" data-k="reset">איפוס</button>
+    </div>
+    <div class="svgwrap"><svg id="shiftSvg" viewBox="0 0 560 340" role="img" aria-label="עקומת ביקוש לקפה. הנקודה: מחיר 9, כמות 9."></svg></div>
+    <div class="readout" id="shiftRead" aria-live="polite">לחצו על אחד הכפתורים.</div>
+  </div>
+  <div class="rule mint"><b>בקיצור</b>הכנסה, מחיר של מוצר אחר וטעמים מזיזים את כל הקו: ימינה = רוצים יותר בכל מחיר, שמאלה = רוצים פחות בכל מחיר.</div>
+</section>
+
+<!-- ============ PART 3 ============ -->
+<section class="part col" id="p3">
+  <div class="part-head"><div class="part-no">חלק 3</div><h2>גמישות: כמה חזק הכמות מגיבה למחיר</h2></div>
+  <div class="rule mint"><b>בקצרה</b>גמישות אומרת בכמה אחוז הכמות משתנה כשהמחיר משתנה באחוז אחד. מחשבים: אחוז השינוי בכמות חלקי אחוז השינוי במחיר.</div>
+  <div class="stack mt">
+    <p>עד עכשיו ידענו <b>לאיזה כיוון</b> הכמות זזה כשהמחיר עולה (למטה, כמעט תמיד). עכשיו השאלה החשובה באמת: <mark>בכמה?</mark></p>
+    <p>למה זה משנה? כי מי שמחליט על מחיר רוצה לדעת מראש מה יקרה. בעל מכולת שוקל להעלות את מחיר הקוטג׳. המדינה שוקלת להעלות מס על סיגריות. אם הלקוחות כמעט לא יגיבו, ייכנס יותר כסף. אם הם יברחו, ייכנס פחות. המילה שמודדת את זה היא <b>גמישות</b>.</p>
+  </div>
+  <figure class="figure frame">
+    <video class="r43" data-loop muted loop playsinline preload="metadata" poster="img/elastic.webp" aria-label="גומייה נמתחת בקלות לעומת מוט פלדה שלא זז"><source src="vid/elastic.mp4" type="video/mp4"></video>
+  </figure>
+  <div class="two">
+    <div class="box stack"><h3 style="color:var(--coral-ink)">גמיש = גומייה</h3><p>נוגעים קצת במחיר ← הכמות "נמתחת" המון. אנשים רגישים מאוד למחיר.</p></div>
+    <div class="box stack"><h3>קשיח = מוט פלדה</h3><p>מושכים חזק במחיר ← הכמות כמעט לא זזה. אנשים יקנו בכל מקרה.</p></div>
+  </div>
+
+  <h3 style="margin-top:40px">דוגמאות מהמחברת</h3>
+  <div class="stack" style="margin-top:12px">
+    <div class="rule"><b>דלק · קשיח</b>מחירי הדלק עולים, ועדיין צריכת הדלק נשארת כמעט אותו דבר. צריך להגיע לעבודה, אין ברירה. אין לנו רגישות לזה.</div>
+    <div class="rule coral"><b>קוטג׳ · מחאה</b>ב־2011 מחיר הקוטג׳ טיפס לכ־8 ₪ במשך כמה שנים, וצרכנים פתחו בחרם מאורגן ("מחאת הקוטג׳"). המכירות ירדו, והיצרנים הורידו מחירים. שימו לב: חרם הוא בעצם שינוי בהעדפות (כל הקו זז שמאלה), ולא רק תגובה למחיר. אבל הוא מראה שכשיש תחליפים (גבינות אחרות), צרכנים יכולים להגיב חזק.</div>
+    <div class="rule mint"><b>חטיף מול סל ירקות</b>חטיף התייקר ב־10%? זה עוד כמה אגורות, חלק זעיר מהתקציב (קשיח). סל הירקות השבועי התייקר ב־10%? זה עשרות שקלים, ומורגש בכיס (רגיש יותר). ככל שהמוצר תופס חלק גדול יותר מהתקציב, הביקוש גמיש יותר.</div>
+  </div>
+
+  <div class="box stack mt">
+    <h3>מה קובע אם ביקוש גמיש או קשיח?</h3>
+    <ol>
+      <li><b>יש תחליפים?</b> הרבה תחליפים ← גמיש (דוכני לימונדה זהים). אין תחליף ← קשיח (אינסולין).</li>
+      <li><b>כמה זה מהתקציב?</b> חלק גדול מהכסף ← גמיש יותר (סל ירקות). חלק קטן ← קשיח יותר (חטיף).</li>
+      <li><b>חיוני או מותרות?</b> מוצר חיוני ← קשיח (תרופה, דלק לעבודה). מותרות ← גמיש (חופשה בחו״ל).</li>
+      <li><b>זמן.</b> מיד אחרי עליית מחיר קשה לשנות הרגלים (קשיח יותר). לאורך זמן מוצאים חלופות (גמיש יותר).</li>
+    </ol>
+  </div>
+
+  <div class="box stack mt">
+    <h3>תזכורת קצרה: איך מחשבים "בכמה אחוז זה השתנה"</h3>
+    <div class="pct">
+      <svg id="pctSvg" viewBox="0 0 248 248" role="img" aria-label="רשת של 100 עיגולים, 10 מהם צבועים: 10%" class="ltr" style="width:100%;height:auto"></svg>
+      <div class="stack" style="gap:10px">
+        <p>אחוז זה פשוט "מתוך 100". בריבוע יש בדיוק 100 עיגולים.</p>
+        <div class="range"><label for="pctSlider">כמה צבועים</label><input id="pctSlider" type="range" min="0" max="100" value="10"><output id="pctOut" for="pctSlider" aria-live="off">10%</output></div>
+        <p class="readout" id="pctRead" aria-live="polite" style="min-height:0"></p>
+      </div>
+    </div>
+    <p>כדי לדעת בכמה אחוז משהו השתנה, עושים 3 צעדים:</p>
+    <ol>
+      <li><b>כמה זה השתנה?</b> מורידים: אחרי פחות לפני.</li>
+      <li><b>מחלקים במה שהיה לפני.</b></li>
+      <li><b>כופלים ב־100.</b></li>
+    </ol>
+    <p><b>דוגמה:</b> הקוטג׳ עלה מ־5 ₪ ל־6 ₪.<br>
+    1. <bdi dir="ltr">6 − 5 = 1</bdi> ₪ (התייקר בשקל).<br>
+    2. <bdi dir="ltr">1 ÷ 5 = 0.2</bdi><br>
+    3. <bdi dir="ltr">0.2 × 100 = 20%</bdi>. הקוטג׳ התייקר ב־<bdi dir="ltr">20%</bdi>.</p>
+    <p>למה מחלקים במה שהיה <b>לפני</b>? כי השאלה היא "בכמה זה השתנה <i>ביחס למה שהיה</i>".</p>
+    <p>ואם יצא מספר עם מינוס? זה אומר שמשהו <b>ירד</b>. למשל מ־100 כוסות ל־90: <bdi dir="ltr">90 − 100 = −10</bdi>, ואז <bdi dir="ltr">−10 ÷ 100 = −0.1</bdi>, כלומר <bdi dir="ltr"><b>−10%</b></bdi>.</p>
+  </div>
+
+  <h3 style="margin-top:40px">הנוסחה</h3>
+  <p style="margin-top:8px">גמישות מסמנים באות היוונית <bdi dir="ltr"><b>η</b></bdi> ("אֵטָה", במחברת היא נראית כמו n). זה פשוט מספר אחד שמתקבל מחלוקה: אחוז השינוי בכמות, חלקי אחוז השינוי במחיר. בעברית פשוטה: "על כל 1% שהמחיר זז, בכמה אחוז זזה הכמות?"</p>
+  <div class="box" style="margin-top:14px">
+    <div class="bigf" dir="ltr" role="img" aria-label="אטה שווה אחוז השינוי בכמות חלקי אחוז השינוי במחיר, כלומר הכמות אחרי פחות הכמות לפני חלקי הכמות לפני, חלקי המחיר אחרי פחות המחיר לפני חלקי המחיר לפני">
+      <span class="eta">η</span><span style="font-size:30px">=</span>
+      <span class="frac"><span>%ΔQ</span><span>%ΔP</span></span>
+      <span style="font-size:30px">=</span>
+      <span class="frac"><span>(Q₁ − Q₀) / Q₀</span><span>(P₁ − P₀) / P₀</span></span>
+    </div>
+    <div class="stack" style="font-size:17px;color:var(--ink-soft);gap:8px">
+      <p><bdi dir="ltr"><b>Δ</b></bdi> (קוראים "דֶלְתָא") = "השינוי". <bdi dir="ltr"><b>%ΔQ</b></bdi> = בכמה אחוז השתנתה הכמות. <bdi dir="ltr"><b>%ΔP</b></bdi> = בכמה אחוז השתנה המחיר.</p>
+      <p>הקו באמצע (קו השבר) פירושו "חלקי": את מה שלמעלה מחלקים במה שלמטה.</p>
+      <p>המספרים הקטנים ליד האותיות הם רק תוויות: <bdi dir="ltr"><b>Q₀</b></bdi> ("קיו־אפס") = הכמות לפני השינוי, <bdi dir="ltr"><b>Q₁</b></bdi> = הכמות אחרי. אותו דבר ב־<bdi dir="ltr">P₀</bdi> ו־<bdi dir="ltr">P₁</bdi>. תמיד מחלקים במה שהיה <b>לפני</b>.</p>
+    </div>
+  </div>
+  <div class="rule mt"><b>3 כללי זהב</b>
+    <ol>
+      <li>תמיד מדברים <b>באחוזים</b>, אף פעם לא בשקלים או ביחידות. למה? שקל אחד יותר על מסטיק של 2 ₪ זה הרבה (<bdi dir="ltr">50%</bdi>). שקל אחד יותר על מכונית זה כלום. האחוז מאפשר להשוות בהוגנות.</li>
+      <li>הגמישות כמעט תמיד יוצאת <b>שלילית</b>, כלומר עם מינוס. למה? כי כשהמחיר עולה (פלוס) הכמות יורדת (מינוס), ומינוס חלקי פלוס נותן מינוס.</li>
+      <li>לכן פשוט מורידים את המינוס. לזה קוראים <b>ערך מוחלט</b>, ומסמנים אותו בשני קווים עומדים: <bdi dir="ltr" class="nw">|−2| = 2</bdi> (קוראים "הערך המוחלט של מינוס 2 הוא 2").</li>
+    </ol>
+  </div>
+
+  <h3 style="margin-top:36px">דוגמה פתורה: בית הקפה</h3>
+  <div class="steps" style="margin-top:12px">
+    <div class="s"><span class="n">1</span><p>כוס קפה עולה <b>20 ₪</b> ונמכרות <b>100</b> כוסות ביום.</p></div>
+    <div class="s"><span class="n">2</span><p>המחיר עולה ל־<b>22 ₪</b>. בכמה אחוז? <bdi dir="ltr">(22 − 20) ÷ 20 = 2 ÷ 20 = 0.1</bdi> ← <b><bdi dir="ltr">+10%</bdi></b>.</p></div>
+    <div class="s"><span class="n">3</span><p>הכמות יורדת ל־<b>90</b> כוסות. בכמה אחוז? <bdi dir="ltr">(90 − 100) ÷ 100 = −10 ÷ 100 = −0.1</bdi> ← <b><bdi dir="ltr">−10%</bdi></b>.</p></div>
+    <div class="s"><span class="n">4</span><p>מחלקים את אחוז הכמות באחוז המחיר: <span class="formula" dir="ltr">η = −10% ÷ +10% = −1</span>. מורידים את המינוס: <b>1</b>.</p></div>
+    <div class="s"><span class="n">5</span><p>יצא בדיוק 1 ← זו <mark>גמישות יחידתית</mark>.</p></div>
+  </div>
+  <p class="soft" style="margin-top:10px">שימו לב: הפדיון (מחיר כפול כמות) ירד מעט, מ־<bdi dir="ltr">2,000</bdi> ל־<bdi dir="ltr">1,980</bdi> ₪, כי השינוי די גדול. בשינויים קטנים, בגמישות יחידתית הפדיון כמעט לא זז. (על פדיון נלמד בחלק 5.)</p>
+
+  <div class="lab" id="labCalc">
+    <div class="lab-title"><span class="tag">ניסוי 3</span><h3>מחשבון גמישות שמראה את הדרך</h3></div>
+    <p class="how">בחרו דוגמה או הקלידו מספרים משלכם, ותראו את כל השלבים.</p>
+    <div class="btns" id="calcPresets" role="group" aria-label="דוגמאות מוכנות">
+      <button type="button" class="b on" aria-pressed="true" data-p="20,22,100,90">קפה (מהשיעור)</button>
+      <button type="button" class="b" aria-pressed="false" data-p="7,8,100,97">דלק</button>
+      <button type="button" class="b" aria-pressed="false" data-p="5,6,100,60">קוטג׳</button>
+      <button type="button" class="b" aria-pressed="false" data-p="10,10.1,100,98">שאלת מבחן: מחיר <bdi dir="ltr">+1%</bdi>, כמות <bdi dir="ltr">−2%</bdi></button>
+    </div>
+    <div class="inputs">
+      <label for="cP0"><span>מחיר לפני (<bdi dir="ltr">P₀</bdi>)</span><input id="cP0" type="number" step="any" inputmode="decimal" value="20"></label>
+      <label for="cP1"><span>מחיר אחרי (<bdi dir="ltr">P₁</bdi>)</span><input id="cP1" type="number" step="any" inputmode="decimal" value="22"></label>
+      <label for="cQ0"><span>כמות לפני (<bdi dir="ltr">Q₀</bdi>)</span><input id="cQ0" type="number" step="any" inputmode="decimal" value="100"></label>
+      <label for="cQ1"><span>כמות אחרי (<bdi dir="ltr">Q₁</bdi>)</span><input id="cQ1" type="number" step="any" inputmode="decimal" value="90"></label>
+    </div>
+    <div class="steps" id="calcSteps"></div>
+    <p class="sr" id="calcLive" aria-live="polite"></p>
+    <p class="soft">מספרי הדלק והקוטג׳ הם להמחשה בלבד.</p>
+  </div>
+</section>
+
+<!-- ============ PART 4 ============ -->
+<section class="part col" id="p4">
+  <div class="part-head"><div class="part-no">חלק 4</div><h2>3 מקרים ו־2 קצוות</h2></div>
+  <p>ברגע שחישבנו את הגמישות והורדנו ממנה את המינוס (זה <bdi dir="ltr">|η|</bdi>), שואלים שאלה אחת: האם יצא יותר מ־1, בדיוק 1, או פחות מ־1? זה כל הסיפור.</p>
+  <p class="soft" style="margin-top:6px">הסימן <bdi dir="ltr"><b>&gt;</b></bdi> פירושו "גדול מ־", והסימן <bdi dir="ltr"><b>&lt;</b></bdi> פירושו "קטן מ־". טריק: הצד הפתוח של הסימן תמיד פונה למספר הגדול.</p>
+  <div class="cases" style="margin-top:18px">
+    <div class="case"><div class="k"><bdi dir="ltr">|η| &gt; 1</bdi></div><h3 style="color:var(--coral-ink)">ביקוש גמיש</h3><p>הכמות משתנה <b>יותר</b> מהמחיר. מחיר עלה 1% ← כמות ירדה <i>ביותר</i> מ־1%.</p></div>
+    <div class="case"><div class="k"><bdi dir="ltr">|η| = 1</bdi></div><h3>גמישות יחידתית</h3><p>הכמות משתנה <b>באותו אחוז בדיוק</b> כמו המחיר (בכיוון ההפוך). הקפה שלנו.</p></div>
+    <div class="case"><div class="k"><bdi dir="ltr">|η| &lt; 1</bdi></div><h3 style="color:var(--mint-ink)">ביקוש קשיח</h3><p>הכמות משתנה <b>פחות</b> מהמחיר. מחיר עלה 1% ← כמות ירדה <i>בפחות</i> מ־1%.</p></div>
+  </div>
+  <div class="fix mt">
+    <b>שימו לב, תיקון למחברת:</b> ביקוש <b>קשיח</b> הוא כש־<bdi dir="ltr">|η| &lt; 1</bdi>. במחברת כתוב בטעות "ביקוש קשיח (שווה ל־1)", אבל "שווה ל־1" זו גמישות <b>יחידתית</b>.
+    <br>ועוד תיקון קטן: בשורה של הביקוש הגמיש כתוב "הכמות המבוקשת תרד בפחות מ־1%". צריך להיות "תרד ב<b>יותר</b> מ־1%" (ה"גדול מ־1" שבסוגריים נכון).
+    <br>הטבלה בעמוד 2 של המחברת נכונה.
+  </div>
+
+  <h3 style="margin-top:44px">הקצוות: קשיח לחלוטין וגמיש לחלוטין</h3>
+  <div class="two" style="margin-top:14px">
+    <div class="stack">
+      <figure class="frame" style="margin:0"><img src="img/insulin.webp" alt="בית מרקחת: קונים את אותה כמות אינסולין גם כשהמחיר זינק. ביקוש קשיח לחלוטין" loading="lazy"></figure>
+      <h3><bdi dir="ltr">η = 0</bdi> · קשיח לחלוטין</h3>
+      <p>חולה סוכרת צריך בדיוק 5 מנות אינסולין. מחיר 100, 300 או 400? יקנה 5. <b>אין ברירה אלא לרכוש.</b></p>
+      <p class="soft">למה 0? הכמות לא השתנתה בכלל: <bdi dir="ltr">0%</bdi> חלקי כל מספר = 0.</p>
+      <p class="soft">בגרף: קו <b>אנכי</b> (עומד). לא משנה כמה גבוה המחיר, הכמות נשארת 5.</p>
+      <svg viewBox="0 0 220 160" class="ltr" style="max-width:280px" role="img" aria-label="גרף: קו ביקוש אנכי בכמות 5. בכל מחיר קונים 5, ולכן אטה שווה 0"><g stroke="var(--ink)" stroke-width="2" fill="none"><path d="M40 10 V140 H210"/><path d="M120 18 V140" stroke="var(--mint-line)" stroke-width="4"/></g><g stroke="var(--line-strong)" stroke-dasharray="4 4"><path d="M40 40 H120"/><path d="M40 80 H120"/><path d="M40 110 H120"/></g><g font-size="12" fill="var(--ink)"><text x="10" y="20">P</text><text x="200" y="156">Q</text><text x="115" y="156">5</text><text x="36" y="44" text-anchor="end">400</text><text x="36" y="84" text-anchor="end">300</text><text x="36" y="114" text-anchor="end">100</text><text x="130" y="60" fill="var(--mint-ink)">η = 0</text></g></svg>
+    </div>
+    <div class="stack">
+      <figure class="frame" style="margin:0"><video class="r43" data-loop muted loop playsinline preload="metadata" poster="img/lemonade.webp" aria-label="דוכני לימונדה זהים, הדוכן שהעלה מחיר נשאר ריק"><source src="vid/lemonade.mp4" type="video/mp4"></video></figure>
+      <h3><bdi dir="ltr">η = ∞</bdi> (אינסוף) · גמיש לחלוטין</h3>
+      <p>שישה דוכנים מוכרים <b>בדיוק</b> אותה לימונדה. דוכן אחד העלה מחיר באגורה? כולם עוברים לשכנים, והוא נשאר עם אפס. הצרכן מוכן לקנות <b>רק במחיר מסוים</b>.</p>
+      <p class="soft">בגרף: קו <b>אופקי</b> (שוכב). במחיר הזה בדיוק, קונים כמה שרוצים. אגורה אחת מעליו, הכמות אפס. "אינסוף" כאן פירושו: מחלקים שינוי ענק בכמות בשינוי זעיר במחיר, והמספר שיוצא עצום.</p>
+      <svg viewBox="0 0 220 160" class="ltr" style="max-width:280px" role="img" aria-label="גרף: קו ביקוש אופקי. מעל המחיר הזה אף אחד לא קונה, ולכן אטה שווה אינסוף"><g stroke="var(--ink)" stroke-width="2" fill="none"><path d="M40 10 V140 H210"/><path d="M40 75 H205" stroke="var(--coral)" stroke-width="4"/></g><g font-size="12" fill="var(--ink)"><text x="10" y="20">P</text><text x="200" y="156">Q</text><text x="140" y="65" fill="var(--coral-ink)">η = ∞</text><text x="70" y="40">אף אחד לא קונה</text></g></svg>
+    </div>
+  </div>
+
+  <div class="box stack" style="margin-top:30px">
+    <h3>איך מזהים בגרף?</h3>
+    <div class="two" style="align-items:center">
+      <p>מניחים שני קווי ביקוש שעוברים דרך אותה נקודה. <b>בנקודת החיתוך עצמה</b>, הקו ה<b>שטוח</b> יותר (כמו כביש כמעט ישר) הוא ה<b>גמיש</b> יותר: מספיק שהמחיר זז קצת, והכמות בורחת רחוק. הקו ה<b>תלול</b> יותר (כמו עלייה חדה) הוא ה<b>קשיח</b> יותר: המחיר זז הרבה, והכמות כמעט במקום. (רק שם, בנקודה המשותפת, אפשר להשוות גמישות לפי השיפוע.)</p>
+      <svg viewBox="0 0 260 180" class="ltr" style="max-width:320px;width:100%" role="img" aria-label="שני קווי ביקוש שנחתכים בנקודה אחת: קו שטוח מסומן גמיש, וקו תלול מסומן קשיח"><g stroke="var(--ink)" stroke-width="2" fill="none"><path d="M30 10 V160 H250"/></g><line x1="40" y1="60" x2="240" y2="110" stroke="var(--coral)" stroke-width="4"/><line x1="95" y1="15" x2="160" y2="155" stroke="var(--mint-line)" stroke-width="4"/><circle cx="120" cy="80" r="6" fill="var(--sun)" stroke="var(--ink)" stroke-width="2"/><g font-size="13" fill="var(--ink)"><text x="185" y="88">גמיש (שטוח)</text><text x="160" y="150">קשיח (תלול)</text><text x="12" y="20">P</text><text x="240" y="176">Q</text></g></svg>
+    </div>
+  </div>
+  <div class="rule mint mt"><b>בקיצור</b>מחשבים אחוז שינוי בכמות חלקי אחוז שינוי במחיר, מורידים את המינוס, ומשווים ל־1: יותר = גמיש, בדיוק = יחידתי, פחות = קשיח.</div>
+  <p class="mt">יופי, עכשיו יודעים לסווג כל מוצר: גמיש, קשיח או יחידתי. אבל למה למוכר אכפת מהמילים האלה? כי הן אומרות לו אם העלאת מחיר תכניס לו יותר כסף או פחות. זה החלק הבא.</p>
+</section>
+
+<!-- ============ PART 5 ============ -->
+<section class="part col" id="p5">
+  <div class="part-head"><div class="part-no">חלק 5</div><h2>פדיון: למה למוכר אכפת מכל זה</h2></div>
+  <div class="two" style="align-items:center">
+    <figure class="frame" style="margin:0"><img src="img/revenue.webp" alt="מלבן של מטבעות: רוחב = כמות הלקוחות, גובה = המחיר. השטח = הפדיון" loading="lazy"></figure>
+    <div class="stack">
+      <p><b>פדיון</b> = כל הכסף שנכנס לקופה. מבחינת הקונים זו ההוצאה שלהם, מבחינת המוכר זו ההכנסה שלו.</p>
+      <div class="verdict" style="text-align:center"><span class="formula" dir="ltr" style="font-size:24px">TR = P · Q</span></div>
+      <p class="soft"><bdi dir="ltr"><b>TR</b></bdi> = ראשי תיבות של <span lang="en">Total Revenue</span>, "סך ההכנסות". הנקודה באמצע (<bdi dir="ltr">·</bdi>) פירושה "כפול".</p>
+    </div>
+  </div>
+  <div class="stack mt">
+    <p>מחיר כפול כמות. דוגמה: פלאפל ב־20 ₪, נמכרו 50 מנות ← <bdi dir="ltr">20 × 50 = 1,000</bdi> ₪ בקופה.</p>
+    <p>ובגרף? זה בדיוק <mark>השטח של המלבן</mark> מתחת לנקודה על קו הביקוש. "שטח" של מלבן = רוחב כפול גובה, כמו לחשב כמה אריחים יש ברצפה. הגובה הוא המחיר, הרוחב הוא הכמות.</p>
+  </div>
+  <div class="fix mt"><b>טעות נפוצה:</b> פדיון הוא <u>לא</u> רווח. פדיון = כל הכסף שנכנס לקופה. רווח = מה שנשאר אחרי שמשלמים על חומרים, שכירות ועובדים. בשיעור הזה מדברים רק על פדיון.</div>
+  <div class="stack mt">
+    <p>והנה למה גמישות כל כך חשובה: <b>אם מעלים מחיר, האם נכנס יותר כסף או פחות?</b> התשובה תלויה בגמישות.</p>
+    <p>שתי דוגמאות קטנות. בשתיהן המחיר עולה ב־<bdi dir="ltr">10%</bdi>, מ־10 ₪ ל־11 ₪:</p>
+    <p><b>קשיח (נסיעה באוטובוס):</b> הנוסעים כמעט לא מוותרים. 100 נסיעות יורדות ל־98. לפני: <bdi dir="ltr">10 × 100 = 1,000</bdi> ₪. אחרי: <bdi dir="ltr">11 × 98 = 1,078</bdi> ₪. <b>יותר כסף.</b></p>
+    <p><b>גמיש (קוטג׳ בזמן המחאה):</b> אנשים מוותרים בהמונים. 100 יחידות יורדות ל־70. לפני: <bdi dir="ltr">1,000</bdi> ₪. אחרי: <bdi dir="ltr">11 × 70 = 770</bdi> ₪. <b>פחות כסף.</b></p>
+  </div>
+
+  <div class="lab" id="labRev">
+    <div class="lab-title"><span class="tag">ניסוי 4</span><h3>משחקים במחיר ורואים את המלבן</h3></div>
+    <p class="how">בחרו סוג ביקוש, והזיזו את המחוון. השוו את הפס שנוסף למעלה (הרווחתם ממחיר גבוה) לפס שנעלם מימין (הפסדתם לקוחות). מי גדול יותר? המלבן הירוק עם המסגרת הרציפה = לפני. המלבן עם הפסים והמסגרת המקווקוות = אחרי.</p>
+    <div class="btns" id="revType" role="group" aria-label="סוג הביקוש">
+      <button type="button" class="b on" aria-pressed="true" data-e="2">ביקוש גמיש</button>
+      <button type="button" class="b" aria-pressed="false" data-e="0.4">ביקוש קשיח</button>
+      <button type="button" class="b" aria-pressed="false" data-e="1">גמישות יחידתית</button>
+    </div>
+    <div class="range"><label for="revSlider">שינוי במחיר</label><input id="revSlider" type="range" min="-30" max="30" step="5" value="20"><output id="revOut" for="revSlider" aria-live="off">+20%</output></div>
+    <div class="svgwrap"><svg id="revSvg" viewBox="0 0 560 370" role="img" aria-label="מלבני פדיון לפני ואחרי"></svg></div>
+    <div class="readout" id="revRead" aria-live="polite"></div>
+  </div>
+
+  <h3>הטבלה מהמחברת, מוסברת</h3>
+  <div class="tbl" style="margin-top:12px">
+    <table>
+      <caption class="sr">מה קורה לכמות ולפדיון כשהמחיר עולה, לפי סוג הביקוש</caption>
+      <thead><tr><th scope="col">מה קורה כש…</th><th scope="col">גמיש</th><th scope="col">קשיח</th><th scope="col">יחידתי</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">מחיר (P)</th><td class="arrow-up">↑ עולה</td><td class="arrow-up">↑ עולה</td><td class="arrow-up">↑ עולה</td></tr>
+        <tr><th scope="row">כמות (Q)</th><td class="arrow-dn">↓↓ יורדת הרבה</td><td class="arrow-dn">↓ יורדת קצת</td><td class="arrow-dn">↓ באותו אחוז</td></tr>
+        <tr><th scope="row">פדיון (<bdi dir="ltr">P·Q</bdi>)</th><td class="hot">יורד ↓</td><td class="hot">עולה ↑</td><td class="hot">לא משתנה =</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="soft" style="margin-top:8px">ואם המחיר <b>יורד</b>? הכל הפוך: בגמיש הפדיון עולה, בקשיח הוא יורד, וביחידתי הוא לא משתנה.</p>
+  <p class="note mt">בשורה אחת: בגמיש הפדיון הולך <u>נגד</u> המחיר, בקשיח הוא הולך <u>עם</u> המחיר.</p>
+  <div class="stack mt">
+    <p>שימו לב: בגמישות יחידתית הקו בגרף הוא לא ישר אלא <b>מעוגל</b>, כמו מגלשה שמתחילה תלולה ונהיית שטוחה (בשפה של מתמטיקה קוראים לזה "היפרבולה", ולא צריך לזכור את המילה). זה בדיוק הציור במחברת. כל המלבנים מתחתיו באותו שטח, ולכן הפדיון לא משתנה.</p>
+    <div class="box"><b>דוגמה מהמחברת: "היו לי 20 ₪".</b> נניח שיש לכם בדיוק 20 ₪ לגלידות, ואתם תמיד מוציאים את כולם. גלידה ב־20 ₪ ← קונים 1. ב־10 ₪ ← קונים 2. ב־5 ₪ ← קונים 4. בכל מחיר המוכר מקבל בדיוק 20 ₪. זו גמישות יחידתית, והקו שמתקבל הוא הקו המעוגל.</div>
+    <p class="soft">ועוד דבר: על קו ביקוש <b>ישר</b>, הגמישות לא קבועה. היא משתנה מנקודה לנקודה: במחירים הגבוהים (בחלק העליון של הקו) הביקוש גמיש יותר, ובמחירים הנמוכים קשיח יותר. הקווים בניסוי 4 נבנו כך שהגמישות קבועה לכל אורכם, ולכן הם מעוגלים.</p>
+  </div>
+  <div class="rule mint mt"><b>בקיצור</b>בביקוש קשיח העלאת מחיר מכניסה יותר כסף, בגמיש היא מכניסה פחות, וביחידתי הפדיון לא משתנה.</div>
+</section>
+
+<!-- ============ PART 6 ============ -->
+<section class="part col" id="p6">
+  <div class="part-head"><div class="part-no">חלק 6</div><h2>ביקוש שוקי: מחברים אנשים</h2></div>
+  <div class="two" style="align-items:center">
+    <figure class="frame" style="margin:0"><img src="img/market.webp" alt="שלושה חברים שהגלידות שלהם מתחברות לערימה אחת: ביקוש שוקי הוא סכום הכמויות של כולם" loading="lazy"></figure>
+    <div class="stack">
+      <p>מוכר הפלאפל לא מוכר לאדם אחד. הוא רוצה לדעת כמה ימכור לכל השכונה. עד עכשיו דיברנו על צרכן אחד, אבל בשוק יש הרבה אנשים, ולכל אחד יש עקומת ביקוש משלו.</p>
+      <p><mark>ביקוש שוקי</mark> = בכל מחיר, מחברים כמה <b>כולם ביחד</b> רוצים לקנות.</p>
+      <p>לזה קוראים <b>סכימה אופקית</b>. "סכימה" = חיבור, סכום. "אופקית" = לרוחב, כי הכמויות נמצאות על הציר ששוכב. בכל מחיר הולכים בשורה ושואלים כל אחד "כמה תקנה?", ואז מחברים. המחיר נשאר אותו מחיר, כי כולם עומדים מול אותו מדף.</p>
+    </div>
+  </div>
+  <div class="fix mt"><b>טעות נפוצה:</b> לחבר את המחירים. אף פעם לא מחברים מחירים, רק כמויות. במחיר 4 כרמל קונה 3 ועומר קונה 2 ← השוק קונה 5, והמחיר עדיין 4.</div>
+
+  <div class="lab" id="labMarket">
+    <div class="lab-title"><span class="tag">ניסוי 5</span><h3>שלושה חברים: כרמל, עומר ושלום, כל אחד והביקוש שלו</h3></div>
+    <p class="how">בטבלה רואים כמה כל אחד קונה בכל מחיר. לחצו כדי להוסיף את שלום, ותראו איך הביקוש השוקי גדל.</p>
+    <div class="btns"><button type="button" class="b" id="mkAdd">הוסיפו את שלום לשוק</button></div>
+    <div class="tbl"><table id="mkTable"></table></div>
+    <div class="svgwrap"><svg id="mkSvg" viewBox="0 0 560 320" role="img" aria-label="עקומות ביקוש אישיות ושוקית"></svg></div>
+    <p class="readout" id="mkRead" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- ============ PART 7 ============ -->
+<section class="part col" id="p7">
+  <div class="part-head"><div class="part-no">חלק 7</div><h2>פונקציית ביקוש: כל השיעור בשורה אחת</h2></div>
+  <div class="rule mint"><b>בקצרה</b>פונקציית ביקוש היא נוסחה שמכניסים לה מחיר, הכנסה ומחיר של מוצר אחר, והיא אומרת כמה יקנו. הסימן (פלוס או מינוס) לפני כל אות מספר לנו איזה מוצר זה.</div>
+  <div class="two mt" style="align-items:center">
+    <figure class="frame" style="margin:0"><img src="img/machine.webp" alt="מכונה עם שלושה כפתורים: מחיר, ארנק ומוצר אחר. יוצאים ממנה ארגזים: הכמות" loading="lazy"></figure>
+    <div class="stack">
+      <p>"פונקציה" זו מילה מפחידה לדבר פשוט: פונקציית ביקוש היא "מכונה". מכניסים לה מחיר, הכנסה, מחיר של מוצר אחר וטעמים, והיא מוציאה <b>כמה יחידות יקנו</b>.</p>
+      <p class="formula" dir="ltr" style="font-size:20px">Qd = d(Px, Py, I, T)</p>
+      <p class="soft">איך קוראים את השורה הזאת: "<b>הכמות המבוקשת (<bdi dir="ltr">Qd</bdi>) תלויה ב־</b>: מחיר המוצר, מחיר מוצר אחר, הכנסה וטעמים". הסוגריים פשוט אומרים "תלוי במה שבפנים".</p>
+      <p class="soft">האות הקטנה ליד P אומרת של מי המחיר: <bdi dir="ltr"><b>Px</b></bdi> = המחיר של המוצר שלנו (X). <bdi dir="ltr"><b>Py</b></bdi> = המחיר של המוצר האחר (Y). <bdi dir="ltr"><b>I</b></bdi> = הכנסה (<span lang="en">Income</span>). <bdi dir="ltr"><b>T</b></bdi> = טעמים (<span lang="en">Taste</span>).</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:36px">הדוגמה מהשיעור</h3>
+  <div class="box stack" style="margin-top:12px">
+    <div class="ltr" dir="ltr" style="text-align:center;font-family:var(--f-mono);font-size:clamp(20px,4.6vw,30px);padding:10px 0">
+      Qx = 100 <span style="color:var(--coral-ink)">− 2Px</span> <span style="color:var(--mint-ink)">+ 3I</span> <span style="color:var(--sun-ink)">− 0.5Py</span>
+    </div>
+    <p>מספר צמוד לאות פירושו "כפול": <bdi dir="ltr"><b>2Px</b></bdi> = 2 כפול המחיר. בואו נציב מספרים: המחיר 10, ההכנסה 10, מחיר Y הוא 20.<br>
+    <bdi dir="ltr">Qx = 100 − 2·10 + 3·10 − 0.5·20 = 100 − 20 + 30 − 10</bdi> = <b>100 יחידות</b>.</p>
+    <div class="steps">
+      <div class="s"><span class="n" dir="ltr">100</span><p><b>הבסיס:</b> טעמים והעדפות, כל מה שלא תלוי במספרים האחרים.</p></div>
+      <div class="s"><span class="n" dir="ltr" style="background:var(--coral-ink);color:var(--paper)">−2</span><p><b>מחיר המוצר עצמו:</b> מינוס, כמו שציפינו. כל שקל ש־X מתייקר ← 2 יחידות פחות.</p></div>
+      <div class="s"><span class="n" dir="ltr" style="background:var(--mint-ink);color:var(--paper)">+3</span><p><b>הכנסה:</b> <mark>פלוס ← X הוא מוצר נורמלי</mark> (יותר כסף ← יותר קונים). אם היה כתוב מינוס ← מוצר נחות.</p></div>
+      <div class="s"><span class="n" dir="ltr" style="background:var(--sun);color:var(--on-sun)">−0.5</span><p><b>מחיר מוצר אחר:</b> <mark>מינוס ← X ו־Y משלימים</mark>. כל שקל ש־Y מתייקר ← קונים חצי יחידה פחות מ־X. הם "הולכים ביחד", כמו קפה ועוגייה. אם היה כתוב פלוס (Y מתייקר ← קונים יותר X) ← תחליפיים, כמו תה וקפה.</p></div>
+    </div>
+  </div>
+  <p class="note mt">במבחן לא יגידו לכם "זה מוצר נורמלי". צריך לזהות לבד מהסימן (פלוס או מינוס).</p>
+
+  <div class="lab" id="labFn">
+    <div class="lab-title"><span class="tag">ניסוי 6</span><h3>תסובבו את הכפתורים של המכונה</h3></div>
+    <p class="how">נסו: הזיזו רק את ההכנסה, והכמות עולה (מוצר נורמלי). הזיזו רק את מחיר Y, והכמות יורדת (משלימים). ההכנסה כאן היא פשוט מספר לדוגמה, בלי יחידות.</p>
+    <div class="range"><label for="fPx">מחיר X (<bdi dir="ltr">Px</bdi>)</label><input id="fPx" type="range" min="0" max="50" value="10"><output id="oPx" for="fPx" aria-live="off">10</output></div>
+    <div class="range"><label for="fI">הכנסה (<bdi dir="ltr">I</bdi>)</label><input id="fI" type="range" min="0" max="40" value="10"><output id="oI" for="fI" aria-live="off">10</output></div>
+    <div class="range"><label for="fPy">מחיר Y (<bdi dir="ltr">Py</bdi>)</label><input id="fPy" type="range" min="0" max="80" value="20"><output id="oPy" for="fPy" aria-live="off">20</output></div>
+    <div class="box" id="fCalc" style="font-family:var(--f-mono);font-size:17px;text-align:center"></div>
+    <p class="sr" id="fnLive" aria-live="polite"></p>
+  </div>
+
+  <h3 style="margin-top:40px">ניסוח הפוך: מחיר כפונקציה של כמות</h3>
+  <p style="margin-top:8px">לפעמים במבחן נותנים נוסחה "הפוכה", שבה המחיר עומד לבד בצד אחד של סימן ה־=. נתחיל מנוסחה קלה:</p>
+  <div class="two" style="margin-top:14px">
+    <div class="stack">
+      <div class="verdict" style="text-align:center"><span class="formula" dir="ltr" style="font-size:24px">Px = 25 − 5Qx</span></div>
+      <p><b>25</b> = <b>החותך</b>. "חותך" = המקום שבו הקו פוגש (חותך) את ציר המחיר. כאן: במחיר 25 אף אחד לא קונה כלום.</p>
+      <p><bdi dir="ltr"><b>−5</b></bdi> = <b>השיפוע</b>. "שיפוע" = כמה הקו תלול, כמו שיפוע של עלייה בכביש. כאן: כדי שיקנו עוד יחידה אחת, המחיר צריך לרדת ב־5 ₪.</p>
+      <p>ואם המחיר 0 (בחינם)? מציבים: <bdi dir="ltr">0 = 25 − 5Q</bdi>. מוסיפים <bdi dir="ltr">5Q</bdi> לשני הצדדים: <bdi dir="ltr">5Q = 25</bdi>. מחלקים ב־5: <b><bdi dir="ltr">Q = 5</bdi></b>. כלומר, גם בחינם יקחו רק 5. זו הנקודה שבה הקו פוגש את ציר הכמות.</p>
+      <div class="steps">
+        <div class="s"><span class="n">?</span><p><b>שאלה:</b> המחיר 20. כמה יקנו?</p></div>
+        <div class="s"><span class="n">1</span><p>"מציבים" = שמים את המספר במקום האות. המחיר 20, אז במקום <bdi dir="ltr">Px</bdi> כותבים 20: <span class="formula" dir="ltr">20 = 25 − 5Qx</span></p></div>
+        <div class="s"><span class="n">2</span><p>המטרה: להשאיר את <bdi dir="ltr">Qx</bdi> לבד. "אגפים" = שני הצדדים של סימן ה־=. זה כמו מאזניים: מה שעושים לצד אחד, עושים גם לשני. מורידים 25 משני הצדדים: <span class="formula" dir="ltr">20 − 25 = −5Qx</span>, כלומר <span class="formula" dir="ltr">−5 = −5Qx</span></p></div>
+        <div class="s"><span class="n">3</span><p>מחלקים את שני הצדדים ב־(<bdi dir="ltr">−5</bdi>): <span class="formula" dir="ltr">Qx = 1</span> ← יחידה אחת.</p></div>
+      </div>
+      <p class="soft">על קו ישר כמו זה, הגמישות משתנה לאורך הקו: מעל מחיר 12.5 הביקוש גמיש, ומתחת קשיח.</p>
+    </div>
+    <div class="lab" style="margin:0">
+      <div class="range"><label for="invP">מחיר (<bdi dir="ltr">Px</bdi>)</label><input id="invP" type="range" min="0" max="25" value="20"><output id="invOut" for="invP" aria-live="off">20</output></div>
+      <div class="svgwrap"><svg id="invSvg" viewBox="0 0 320 290" role="img" aria-label="גרף Px = 25 − 5Qx"></svg></div>
+      <p class="readout" id="invRead" aria-live="polite"></p>
+    </div>
+  </div>
+  <div class="rule mint mt"><b>בקיצור</b>בפונקציית ביקוש מסתכלים על הסימן: פלוס לפני ההכנסה = נורמלי, מינוס = נחות. פלוס לפני <bdi dir="ltr">Py</bdi> = תחליפיים, מינוס = משלימים.</div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="part col" id="quiz">
+  <div class="part-head"><div class="part-no">בוחן</div><h2>בדקו את עצמכם</h2></div>
+  <p>9 שאלות בסגנון מבחן. לחצו על תשובה ותקבלו הסבר מיד.</p>
+  <div id="quizBox" class="stack" style="margin-top:20px"></div>
+  <p class="score" id="quizScore" role="status" style="margin-top:20px"></p>
+</section>
+
+<!-- ============ CHEAT ============ -->
+<section class="part col" id="cheat">
+  <div class="part-head"><div class="part-no">לפני המבחן</div><h2>דף סיכום</h2></div>
+  <div class="cheat">
+    <div><h3>עקומת ביקוש יורדת</h3>בגלל תועלת שולית פוחתת: כל יחידה נוספת שווה לי פחות.</div>
+    <div><h3>תזוזה על הקו מול תזוזת הקו</h3>מחיר המוצר עצמו ← על הקו (הכמות המבוקשת משתנה). הכנסה, מחיר מוצר אחר, טעמים ← כל הקו זז (הביקוש משתנה).</div>
+    <div><h3>תחליפיים</h3><bdi dir="ltr">P<sub>y</sub>↑</bdi> ← <bdi dir="ltr">Q<sub>y</sub>↓</bdi> ← <bdi dir="ltr">D<sub>x</sub>↑</bdi> (תה וקפה)</div>
+    <div><h3>משלימים</h3><bdi dir="ltr">P<sub>y</sub>↑</bdi> ← <bdi dir="ltr">Q<sub>y</sub>↓</bdi> ← <bdi dir="ltr">D<sub>x</sub>↓</bdi> (דלק ומכונית)</div>
+    <div><h3>נורמלי מול נחות</h3>הכנסה↑ ← ביקוש↑ = נורמלי. הכנסה↑ ← ביקוש↓ = נחות.</div>
+    <div><h3>גמישות</h3><span class="formula" dir="ltr">η = %ΔQ / %ΔP</span>. תמיד באחוזים, כמעט תמיד שלילית, מורידים את המינוס (ערך מוחלט).</div>
+    <div><h3>3 מקרים</h3><bdi dir="ltr">|η| &gt; 1</bdi> גמיש · <bdi dir="ltr">|η| = 1</bdi> יחידתי · <bdi dir="ltr">|η| &lt; 1</bdi> קשיח</div>
+    <div><h3>קצוות</h3><bdi dir="ltr">η = 0</bdi> קו אנכי (אינסולין) · <bdi dir="ltr">η = ∞</bdi> קו אופקי (דוכנים זהים)</div>
+    <div><h3>מה קובע גמישות</h3>תחליפים, חלק מהתקציב, חיוני או מותרות, וזמן.</div>
+    <div><h3>פדיון</h3><span class="formula" dir="ltr">TR = P·Q</span> = שטח המלבן (לא רווח!). גמיש: נגד המחיר. קשיח: עם המחיר. יחידתי: קבוע.</div>
+    <div><h3>ביקוש שוקי</h3>סכימה אופקית: בכל מחיר מחברים את הכמויות של כולם. לא מחברים מחירים.</div>
+    <div><h3>סימנים בפונקציה</h3><bdi dir="ltr">+I</bdi> נורמלי, <bdi dir="ltr">−I</bdi> נחות · <bdi dir="ltr">+Py</bdi> תחליפי, <bdi dir="ltr">−Py</bdi> משלים</div>
+    <div><h3>נוסחה הפוכה</h3>למשל <bdi dir="ltr">P = 25 − 5Q</bdi>: המספר הבודד (25) = החותך, המחיר שבו אף אחד לא קונה. המספר ליד Q (<bdi dir="ltr">−5</bdi>) = השיפוע. מציבים את המחיר ומשאירים את Q לבד בצד אחד.</div>
+  </div>
+</section>
+
+<footer class="col">
+  השיעור נבנה מסיכום השיעור בכתב יד (שיעור מספר 5). האיורים והסרטונים נוצרו ב־Higgsfield.
+</footer>
+</main>
+</div>
+
+<script>
+(function(){
+document.documentElement.lang='he';document.documentElement.dir='rtl';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const NS="http://www.w3.org/2000/svg";
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+const fmt=(x,d=1)=>{const r=Math.round(x*10**d)/10**d;return (Object.is(r,-0)?0:r).toLocaleString('en-US',{maximumFractionDigits:d}).replace(/^-/,'−');};
+const N=(x,d=1)=>`<bdi dir="ltr">${fmt(x,d)}</bdi>`;
+const PC=(x,d=2)=>(x>0?'+':'')+fmt(x,d)+'%';
+const say=(()=>{const t={};return (node,txt)=>{clearTimeout(t[node.id]);t[node.id]=setTimeout(()=>{node.textContent=txt;},450);};})();
+const setOn=(x,on)=>{x.classList.toggle('on',!!on);x.setAttribute('aria-pressed',on?'true':'false');};
+function fsz(svg,base){const vb=svg.viewBox.baseVal.width||560;const w=svg.getBoundingClientRect().width||vb;return Math.max(base,Math.round(14*vb/w));}
+const chain=(a,b,c)=>`<bdi dir="ltr">P<sub>y</sub>${a}</bdi> ← <bdi dir="ltr">Q<sub>y</sub>${b}</bdi> ← <bdi dir="ltr">D<sub>x</sub>${c}</bdi>`;
+
+/* videos: pause control, play when visible, respect reduced motion, poster fallback */
+const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+$$('video[data-loop]').forEach(v=>{
+  const b=document.createElement('button');b.type='button';b.className='vidctl';
+  const set=()=>{const p=v.paused;b.textContent=p?'▶ הפעלה':'❚❚ השהיה';b.setAttribute('aria-label',(p?'הפעלת הסרטון: ':'השהיית הסרטון: ')+(v.getAttribute('aria-label')||''));};
+  b.addEventListener('click',()=>{v.dataset.user='1';if(v.paused)v.play().catch(()=>{});else v.pause();});
+  v.addEventListener('play',set);v.addEventListener('pause',set);
+  v.after(b);set();
+  if(!reduce.matches&&'IntersectionObserver' in window){new IntersectionObserver(([e])=>{if(e.isIntersecting){if(!v.dataset.user)v.play().catch(()=>{});}else if(!v.paused)v.pause();},{threshold:.25}).observe(v);}
+  const s=v.querySelector('source');
+  if(s)s.addEventListener('error',()=>{const img=document.createElement('img');img.src=v.getAttribute('poster');img.alt=v.getAttribute('aria-label')||'';b.remove();v.replaceWith(img);});
+});
+
+/* nav highlight */
+const links=$$('#nav a');const secs=links.map(a=>$(a.getAttribute('href')));
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});const on=links.find(a=>a.classList.contains('on'));if(on)on.scrollIntoView({block:'nearest',inline:'center'});}})},{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>s&&io.observe(s));}
+
+/* ---------- Lab 1: water ---------- */
+const WU=[100,60,30,12,4,0];
+let wn=0;
+function drawWater(){
+  const svg=$('#waterSvg');svg.innerHTML='';
+  const f=fsz(svg,14),narrow=f>18;
+  const x0=40,bw=78,gap=18,y0=280-f*1.6-6,h=y0-f*1.6-14;
+  const ink=css('--ink');
+  el('line',{x1:x0-10,y1:y0,x2:610,y2:y0,stroke:ink,'stroke-width':2},svg);
+  for(let i=0;i<6;i++){
+    const x=x0+i*(bw+gap);
+    const hh=i<wn?WU[i]/100*h:0;
+    if(i<wn) el('rect',{x,y:y0-hh,width:bw,height:Math.max(hh,0.01),rx:6,fill:i===wn-1?css('--coral'):css('--sun'),stroke:ink,'stroke-width':1.5,class:'t'},svg);
+    else el('rect',{x,y:y0-30,width:bw,height:30,rx:6,fill:'none',stroke:css('--line-strong'),'stroke-dasharray':'4 4'},svg);
+    el('text',{x:x+bw/2,y:y0+f+6,'font-size':f,fill:ink,'text-anchor':'middle'},svg,narrow?String(i+1):'בקבוק '+(i+1));
+    if(i<wn) el('text',{x:x+bw/2,y:y0-hh-8,'font-size':f,'font-weight':700,fill:ink,'text-anchor':'middle'},svg,WU[i]+' ₪');
+  }
+  if(wn>1){const pts=[];for(let i=0;i<wn;i++)pts.push((x0+i*(bw+gap)+bw/2)+','+(y0-WU[i]/100*h));el('polyline',{points:pts.join(' '),fill:'none',stroke:ink,'stroke-width':2.5,'stroke-dasharray':'6 5'},svg);}
+  svg.setAttribute('aria-label',wn?'גרף עמודות, ערך כל בקבוק למטייל: '+WU.slice(0,wn).map((v,i)=>`בקבוק ${i+1}: ${v} ₪`).join(', ')+'. הערך יורד מבקבוק לבקבוק.':'גרף עמודות ריק: עוד לא נתתם בקבוקים.');
+  const msgs=['לחצו על הכפתור כדי לתת למטייל את הבקבוק הראשון.',
+  '<b>בקבוק 1:</b> הוא צמא מאוד. מוכן לשלם 100 ₪.',
+  '<b>בקבוק 2:</b> עדיין שווה, אבל הצמא כבר פחות חזק. 60 ₪.',
+  '<b>בקבוק 3:</b> כבר שתה שניים. 30 ₪ ולא יותר.',
+  '<b>בקבוק 4:</b> נחמד, אבל לא קריטי. 12 ₪.',
+  '<b>בקבוק 5:</b> כמעט לא צריך אותו. 4 ₪.',
+  '<b>בקבוק 6:</b> שווה לו 0. גובה כל עמודה = כמה הוא מוכן לשלם על הבקבוק הזה. ראיתם איך הקו המקווקו יורד? <mark>זו בדיוק עקומת ביקוש יורדת.</mark> קראו את זה כך: אם בקבוק עולה 30 ₪, הוא יקנה 3 בקבוקים (כל בקבוק ששווה לו לפחות 30 ₪). אם המחיר 12 ₪, הוא יקנה 4. מחיר נמוך יותר ← כמות גדולה יותר.'];
+  $('#waterRead').innerHTML=msgs[wn];
+  const add=$('#waterAdd'),full=wn>=6;add.setAttribute('aria-disabled',full?'true':'false');
+  add.innerHTML=full?'המטייל כבר לא צמא · לחצו "מהתחלה"':'תנו עוד בקבוק <span aria-hidden="true">💧</span>';
+}
+$('#waterAdd').onclick=()=>{if(wn<6){wn++;drawWater();}};
+$('#waterReset').onclick=()=>{wn=0;drawWater();};
+
+/* ---------- Lab 2: shift ---------- */
+let shiftKey=null;
+function drawShift(){
+  const svg=$('#shiftSvg');svg.innerHTML='';
+  const f=fsz(svg,14);
+  const S={x0:50,y0:340-f*1.6-8,w:480,qmax:24,pmax:24};S.h=S.y0-24;
+  const sx=q=>S.x0+q/S.qmax*S.w, sy=p=>S.y0-p/S.pmax*S.h;
+  const ink=css('--ink'),soft=css('--ink-soft');
+  const defs=el('defs',{},svg);
+  el('path',{d:`M${S.x0} ${S.y0-S.h-10} V${S.y0} H${S.x0+S.w+10}`,fill:'none',stroke:ink,'stroke-width':2},svg);
+  el('text',{x:S.x0+8,y:S.y0-S.h+f,'font-size':f,fill:ink,'text-anchor':'start'},svg,'מחיר P');
+  el('text',{x:S.x0+S.w+8,y:S.y0+f+6,'font-size':f,fill:ink,'text-anchor':'end'},svg,'כמות Q');
+  const line=(a,color,dash,label)=>{el('line',{x1:sx(0),y1:sy(a),x2:sx(a),y2:sy(0),stroke:color,'stroke-width':4,'stroke-dasharray':dash||'','stroke-linecap':'round',class:'t'},svg);el('text',{x:sx(a)-6,y:sy(0)-10,'font-size':f,fill:ink,'text-anchor':'end'},svg,label);};
+  let a=18,move=false;
+  const k=shiftKey;
+  if(k==='inc'||k==='sub'){a=22;}
+  if(k==='comp'||k==='taste'){a=14;}
+  if(k==='own'){move=true;}
+  const mcol=a>=18?css('--coral'):css('--mint-line');
+  const m=el('marker',{id:'ah',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs);el('path',{d:'M0 0 L10 5 L0 10 z',fill:mcol},m);
+  if(a!==18) line(18,css('--line-strong'),'7 6','D₀');
+  line(a,a>18?css('--coral'):a<18?css('--mint-line'):ink,'',a===18?'D':'D₁');
+  if(a!==18){const ym=sy(9);el('path',{d:`M${sx(9)+(a>18?10:-10)} ${ym} L${sx(a-9)+(a>18?-8:8)} ${ym}`,stroke:mcol,'stroke-width':3,'marker-end':'url(#ah)',fill:'none'},svg);}
+  const p=move?13:9,q=move?5:a-9;
+  if(move){el('circle',{cx:sx(9),cy:sy(9),r:7,fill:'none',stroke:soft,'stroke-width':2,'stroke-dasharray':'3 3'},svg);
+    el('path',{d:`M${sx(9)-6} ${sy(9)-10} L${sx(5)+10} ${sy(13)+8}`,stroke:css('--coral'),'stroke-width':3,fill:'none','marker-end':'url(#ah)'},svg);}
+  el('line',{x1:S.x0,y1:sy(p),x2:sx(q),y2:sy(p),stroke:soft,'stroke-dasharray':'4 4'},svg);
+  el('line',{x1:sx(q),y1:sy(p),x2:sx(q),y2:S.y0,stroke:soft,'stroke-dasharray':'4 4'},svg);
+  el('circle',{cx:sx(q),cy:sy(p),r:8,fill:css('--sun'),stroke:ink,'stroke-width':2,class:'t'},svg);
+  el('text',{x:S.x0-6,y:sy(p)+f/3,'font-size':f,fill:ink,'text-anchor':'end'},svg,p);
+  el('text',{x:sx(q),y:S.y0+f+6,'font-size':f,fill:ink,'text-anchor':'middle'},svg,q);
+  const M={
+    own:'<b>תזוזה לאורך הקו.</b> הקו נשאר במקום! רק הנקודה טיפסה למעלה ושמאלה: מחיר 9 ← 13, כמות 9 ← 5. זה שינוי ב<b>כמות המבוקשת</b>, לא בביקוש.',
+    inc:'<b>הקו זז ימינה.</b> יותר כסף ← באותו מחיר (9) קונים עכשיו 13 במקום 9. קפה הוא מוצר נורמלי.',
+    sub:'<b>הקו זז ימינה.</b> התה התייקר ← שותים פחות תה ← עוברים לקפה. '+chain('↑','↓','↑')+'.',
+    comp:'<b>הקו זז שמאלה.</b> העוגיות שהולכות עם הקפה התייקרו ← קונים פחות עוגיות ← פחות קפה. '+chain('↑','↓','↓')+'.',
+    taste:'<b>הקו זז שמאלה.</b> הטעמים השתנו. באותו מחיר בדיוק, אנשים רוצים פחות.'};
+  $('#shiftRead').innerHTML=k&&M[k]?M[k]:'לחצו על אחד הכפתורים. הנקודה הצהובה = המחיר והכמות היום.';
+  svg.setAttribute('aria-label',{own:'עקומת הביקוש לא זזה. הנקודה עלתה לאורך הקו: מחיר 13, כמות 5 (קודם מחיר 9, כמות 9).',inc:'עקומת הביקוש זזה ימינה. במחיר 9 הכמות עלתה מ־9 ל־13.',sub:'עקומת הביקוש זזה ימינה. במחיר 9 הכמות עלתה מ־9 ל־13.',comp:'עקומת הביקוש זזה שמאלה. במחיר 9 הכמות ירדה מ־9 ל־5.',taste:'עקומת הביקוש זזה שמאלה. במחיר 9 הכמות ירדה מ־9 ל־5.'}[k]||'עקומת ביקוש לקפה. הנקודה: מחיר 9, כמות 9.');
+}
+$$('#shiftBtns button').forEach(b=>b.onclick=()=>{shiftKey=b.dataset.k==='reset'?null:b.dataset.k;$$('#shiftBtns button:not([data-k=reset])').forEach(x=>setOn(x,x===b&&shiftKey));drawShift();});
+
+/* ---------- percent grid ---------- */
+function drawPct(){
+  const n=+$('#pctSlider').value;$('#pctOut').textContent=n+'%';
+  const svg=$('#pctSvg');svg.innerHTML='';
+  for(let i=0;i<100;i++){const r=Math.floor(i/10),c=i%10;el('circle',{cx:16+c*24,cy:16+r*24,r:9,fill:i<n?css('--coral'):'none',stroke:i<n?css('--coral-ink'):css('--line-strong'),'stroke-width':1.5},svg);}
+  $('#pctRead').innerHTML=`<b>${n}</b> מתוך 100 צבועים. כלומר <b><bdi dir="ltr">${n}%</bdi></b>.`;
+  svg.setAttribute('aria-label',`רשת של 100 עיגולים, ${n} מהם צבועים: ${n}%`);
+  $('#pctSlider').setAttribute('aria-valuetext',`${n} מתוך 100, כלומר ${n}%`);
+}
+$('#pctSlider').addEventListener('input',drawPct);
+
+/* ---------- Lab 3: calc ---------- */
+function calc(){
+  const P0=parseFloat($('#cP0').value),P1=parseFloat($('#cP1').value),Q0=parseFloat($('#cQ0').value),Q1=parseFloat($('#cQ1').value);
+  const box=$('#calcSteps'),live=$('#calcLive');
+  if(!(P0>0)||!(Q0>0)||isNaN(P1)||isNaN(Q1)||P1===P0){box.innerHTML='<p>צריך מחיר וכמות "לפני" גדולים מ־0, ומחיר "אחרי" ששונה מ"לפני".</p>';say(live,'צריך מחיר וכמות "לפני" גדולים מ־0, ומחיר "אחרי" ששונה מ"לפני".');return;}
+  const rq=(Q1-Q0)/Q0, rp=(P1-P0)/P0, dq=rq*100, dp=rp*100, e=dq/dp, a=Math.abs(e);
+  let kind;
+  if(e>0) kind='שימו לב: <bdi dir="ltr">η</bdi> יצאה חיובית. בדקו את המספרים (בביקוש רגיל המחיר והכמות זזים בכיוונים הפוכים).';
+  else if(a===0) kind='קשיח לחלוטין (<bdi dir="ltr">η = 0</bdi>)';
+  else if(Math.abs(a-1)<0.005) kind='גמישות יחידתית (<bdi dir="ltr">|η| = 1</bdi>)';
+  else if(a>1) kind='ביקוש גמיש (<bdi dir="ltr">|η| &gt; 1</bdi>)';
+  else kind='ביקוש קשיח (<bdi dir="ltr">|η| &lt; 1</bdi>)';
+  const TR0=P0*Q0,TR1=P1*Q1,trp=(TR1-TR0)/TR0*100;
+  const trTxt=Math.abs(TR1-TR0)<1e-9?'<b>לא השתנה</b>':TR1>TR0?`<b>עלה</b> ב־<bdi dir="ltr">${fmt(trp,2)}%</bdi>`:`<b>ירד</b> ב־<bdi dir="ltr">${fmt(-trp,2)}%</bdi>`;
+  box.innerHTML=`
+  <div class="s"><span class="n">1</span><p>שינוי באחוזים בכמות:<span class="fl" dir="ltr">(${fmt(Q1,2)} − ${fmt(Q0,2)}) ÷ ${fmt(Q0,2)} = ${fmt(rq,4)}</span>כפול 100 ← <b><bdi dir="ltr">${PC(dq)}</bdi></b></p></div>
+  <div class="s"><span class="n">2</span><p>שינוי באחוזים במחיר:<span class="fl" dir="ltr">(${fmt(P1,2)} − ${fmt(P0,2)}) ÷ ${fmt(P0,2)} = ${fmt(rp,4)}</span>כפול 100 ← <b><bdi dir="ltr">${PC(dp)}</bdi></b></p></div>
+  <div class="s"><span class="n">3</span><p>מחלקים את אחוז הכמות באחוז המחיר:<span class="fl" dir="ltr">η = ${PC(dq)} ÷ ${PC(dp)} = ${fmt(e,2)}</span>בלי המינוס: <b>${N(a,2)}</b></p></div>
+  <div class="s"><span class="n">4</span><p class="verdict">${kind}</p></div>
+  <div class="s"><span class="n">₪</span><p>פדיון (נלמד בחלק 5):<span class="fl" dir="ltr">לפני: ${fmt(P0,2)} × ${fmt(Q0,2)} = ${fmt(TR0,2)}</span><span class="fl" dir="ltr">אחרי: ${fmt(P1,2)} × ${fmt(Q1,2)} = ${fmt(TR1,2)}</span>הפדיון ${trTxt}</p></div>`;
+  say(live,`גמישות ${fmt(e,2)}, בלי המינוס ${fmt(a,2)}: ${kind.replace(/<[^>]+>/g,'')}`);
+}
+['#cP0','#cP1','#cQ0','#cQ1'].forEach(s=>$(s).addEventListener('input',()=>{$$('#calcPresets button').forEach(b=>setOn(b,false));calc();}));
+$$('#calcPresets button').forEach(b=>b.onclick=()=>{const [a,c,d,f]=b.dataset.p.split(',');$('#cP0').value=a;$('#cP1').value=c;$('#cQ0').value=d;$('#cQ1').value=f;$$('#calcPresets button').forEach(x=>setOn(x,x===b));calc();});
+
+/* ---------- Lab 4: revenue ---------- */
+let revE=2;
+function drawRev(){
+  const svg=$('#revSvg');svg.innerHTML='';
+  const f=fsz(svg,14);
+  const R={x0:60,w:470,qmax:22,pmax:16};R.y0=370-2*f-16;R.h=R.y0-20;
+  const rx=q=>R.x0+q/R.qmax*R.w, ry=p=>R.y0-p/R.pmax*R.h;
+  const ink=css('--ink');
+  const pct=+$('#revSlider').value;$('#revOut').textContent=(pct>0?'+':'')+pct+'%';
+  const P0=10,Q0=10,P1=P0*(1+pct/100),Q1=Q0*Math.pow(P1/P0,-revE);
+  const defs=el('defs',{},svg);
+  const cp=el('clipPath',{id:'rc'},defs);el('rect',{x:R.x0,y:R.y0-R.h,width:R.w,height:R.h},cp);
+  const pat=el('pattern',{id:'hatch',width:9,height:9,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs);
+  el('line',{x1:0,y1:0,x2:0,y2:9,stroke:css('--coral'),'stroke-width':3.5,'stroke-opacity':.6},pat);
+  el('rect',{x:R.x0,y:ry(P0),width:rx(Q0)-R.x0,height:R.y0-ry(P0),fill:css('--hl-mint'),stroke:css('--mint-line'),'stroke-width':2.5},svg);
+  el('rect',{x:R.x0,y:ry(P1),width:Math.max(0,rx(Math.min(Q1,R.qmax))-R.x0),height:R.y0-ry(P1),fill:'url(#hatch)',stroke:css('--coral'),'stroke-width':2.5,'stroke-dasharray':'8 5',class:'t'},svg);
+  const pts=[];for(let p=1.5;p<=R.pmax;p+=0.1){const q=Q0*Math.pow(p/P0,-revE);if(q<=R.qmax+2)pts.push(rx(q)+','+ry(p));}
+  el('polyline',{points:pts.join(' '),fill:'none',stroke:ink,'stroke-width':3.5,'clip-path':'url(#rc)'},svg);
+  el('path',{d:`M${R.x0} ${R.y0-R.h-10} V${R.y0} H${R.x0+R.w+10}`,fill:'none',stroke:ink,'stroke-width':2},svg);
+  el('text',{x:R.x0+8,y:R.y0-R.h+f,'font-size':f,fill:ink,'text-anchor':'start'},svg,'מחיר P');
+  el('text',{x:R.x0+R.w+8,y:R.y0+f+6,'font-size':f,fill:ink,'text-anchor':'end'},svg,'כמות Q');
+  el('circle',{cx:rx(Q0),cy:ry(P0),r:6,fill:css('--mint-line')},svg);
+  if(Q1<=R.qmax) el('circle',{cx:rx(Q1),cy:ry(P1),r:7,fill:css('--coral')},svg);
+  let y0l=ry(P0)+f/3,y1l=ry(P1)+f/3;
+  if(pct!==0&&Math.abs(y1l-y0l)<f){if(P1>P0){y1l=y0l-f;}else{y1l=y0l+f;}}
+  el('text',{x:R.x0-6,y:y0l,'font-size':f,fill:css('--mint-ink'),'text-anchor':'end'},svg,'10');
+  if(pct!==0)el('text',{x:R.x0-6,y:y1l,'font-size':f,fill:css('--coral-ink'),'text-anchor':'end'},svg,fmt(P1));
+  el('text',{x:rx(Q0),y:R.y0+f+4,'font-size':f,fill:css('--mint-ink'),'text-anchor':'middle'},svg,'10');
+  if(Q1<=R.qmax&&pct!==0) el('text',{x:rx(Q1),y:R.y0+2*f+8,'font-size':f,fill:css('--coral-ink'),'text-anchor':'middle'},svg,fmt(Q1));
+  const TR0=P0*Q0,TR1=P1*Q1,d=TR1-TR0;
+  const name=revE===2?'גמיש':revE===1?'יחידתי':'קשיח';
+  const res=Math.abs(d)<0.05?'<b>לא השתנה בכלל</b>. בגמישות יחידתית כל המלבנים באותו שטח.':d>0?`<b>עלה</b> ב־${N(d)} ₪`:`<b>ירד</b> ב־${N(-d)} ₪`;
+  $('#revRead').innerHTML=pct===0?'הזיזו את המחוון כדי לשנות את המחיר.':
+  `ביקוש ${name}: מחיר ${N(P0)} ← ${N(P1)}, כמות ${N(10)} ← ${N(Q1)}.<br>פדיון: <span style="color:var(--mint-ink)">לפני (מלבן ירוק, מסגרת רציפה) ${N(TR0)} ₪</span> ← <span style="color:var(--coral-ink)">אחרי (מלבן עם פסים, מסגרת מקווקוות) ${N(TR1)} ₪</span>. הפדיון ${res}`;
+  svg.setAttribute('aria-label',`מלבן הפדיון לפני: מחיר 10 כפול כמות 10 = 100 ₪. מלבן הפדיון אחרי: מחיר ${fmt(P1)} כפול כמות ${fmt(Q1)} = ${fmt(TR1)} ₪.`);
+  $('#revSlider').setAttribute('aria-valuetext',pct===0?'בלי שינוי במחיר':`המחיר ${pct>0?'עולה':'יורד'} ב־${Math.abs(pct)}%, ל־${fmt(P1)} ₪`);
+}
+$('#revSlider').addEventListener('input',drawRev);
+$$('#revType button').forEach(b=>b.onclick=()=>{revE=+b.dataset.e;$$('#revType button').forEach(x=>setOn(x,x===b));drawRev();});
+
+/* ---------- Lab 5: market ---------- */
+const MK={P:[10,8,6,4,2,0],C:[0,1,2,3,4,5],O:[0,0,1,2,3,4],S:[0,2,4,6,8,10]};
+let withS=false;
+function drawMarket(){
+  const t=$('#mkTable');
+  let h='<caption class="sr">כמה כל אחד קונה בכל מחיר, והסכום בשוק</caption><thead><tr><th scope="col">מחיר P</th><th scope="col">כרמל</th><th scope="col">עומר</th>'+(withS?'<th scope="col">שלום</th>':'')+'<th scope="col">ביקוש שוקי (Σ = סכום)</th></tr></thead><tbody>';
+  MK.P.forEach((p,i)=>{const sum=MK.C[i]+MK.O[i]+(withS?MK.S[i]:0);
+    h+=`<tr><th scope="row">${p}</th><td>${MK.C[i]}</td><td>${MK.O[i]}</td>${withS?`<td class="cool">${MK.S[i]}</td>`:''}<td class="hot"><bdi dir="ltr">${MK.C[i]}+${MK.O[i]}${withS?'+'+MK.S[i]:''} = ${sum}</bdi></td></tr>`;});
+  t.innerHTML=h+'</tbody>';
+  const svg=$('#mkSvg');svg.innerHTML='';const ink=css('--ink');
+  const f=fsz(svg,13);
+  const x0=50,y0=320-f-14,w=490,hh=y0-24,qm=20,pm=10;const X=q=>x0+q/qm*w,Y=p=>y0-p/pm*hh;
+  el('path',{d:`M${x0} ${y0-hh-10} V${y0} H${x0+w+10}`,fill:'none',stroke:ink,'stroke-width':2},svg);
+  for(let q=0;q<=20;q+=5)el('text',{x:X(q),y:y0+f+6,'font-size':f,fill:ink,'text-anchor':'middle'},svg,q);
+  for(let p=0;p<=10;p+=2)el('text',{x:x0-8,y:Y(p)+f/3,'font-size':f,fill:ink,'text-anchor':'end'},svg,p);
+  const tot=MK.P.map((p,i)=>MK.C[i]+MK.O[i]+(withS?MK.S[i]:0));MK.T=tot;
+  const series=[['C','כרמל',css('--sun-line'),3],['O','עומר',css('--mint-line'),3]];if(withS)series.push(['S','שלום',css('--ink-soft'),3]);
+  series.push(['T','שוק (סכום), הקו העבה',css('--coral'),5.5]);
+  series.forEach(([k,n,c,sw],j)=>{el('polyline',{points:MK.P.map((p,i)=>X(MK[k][i])+','+Y(p)).join(' '),fill:'none',stroke:c,'stroke-width':sw},svg);
+    const ly=24+j*f*1.45;el('line',{x1:x0+w-4,y1:ly-f/3,x2:x0+w-34,y2:ly-f/3,stroke:c,'stroke-width':sw},svg);el('text',{x:x0+w-42,y:ly,'font-size':f,fill:ink,'text-anchor':'end','font-weight':k==='T'?700:400},svg,n);});
+  el('line',{x1:x0,y1:Y(4),x2:X(tot[3]),y2:Y(4),stroke:ink,'stroke-dasharray':'3 4'},svg);
+  $('#mkRead').innerHTML=withS?`עם שלום, במחיר 4 השוק כולו קונה <b><bdi dir="ltr">3 + 2 + 6 = 11</bdi></b> יחידות. הקו העבה (שוק) זז ימינה: יותר צרכנים = יותר ביקוש בכל מחיר.`:`במחיר 4, כרמל קונה 3 ועומר קונה 2. השוק כולו: <b><bdi dir="ltr">3 + 2 = 5</bdi></b>. הקו העבה (שוק) הוא סכום אופקי של הקווים האישיים.`;
+  $('#mkAdd').textContent=withS?'הוציאו את שלום':'הוסיפו את שלום לשוק';
+  svg.setAttribute('aria-label',`עקומות ביקוש של ${withS?'כרמל, עומר ושלום':'כרמל ועומר'}, וקו הביקוש השוקי שהוא הסכום שלהן. במחיר 4 השוק קונה ${tot[3]} יחידות.`);
+}
+$('#mkAdd').onclick=()=>{withS=!withS;drawMarket();};
+
+/* ---------- Lab 6: function ---------- */
+function drawFn(){
+  const Px=+$('#fPx').value,I=+$('#fI').value,Py=+$('#fPy').value;
+  $('#oPx').textContent=Px;$('#oI').textContent=I;$('#oPy').textContent=Py;
+  const Q=100-2*Px+3*I-0.5*Py;
+  $('#fCalc').innerHTML=`<div dir="ltr"><span class="nw">Qx = 100</span> <span class="nw" style="color:var(--coral-ink)">− 2·${Px}</span> <span class="nw" style="color:var(--mint-ink)">+ 3·${I}</span> <span class="nw" style="color:var(--sun-ink)">− 0.5·${Py}</span><br>
+  <span class="nw">= 100</span> <span class="nw" style="color:var(--coral-ink)">− ${2*Px}</span> <span class="nw" style="color:var(--mint-ink)">+ ${3*I}</span> <span class="nw" style="color:var(--sun-ink)">− ${fmt(0.5*Py)}</span></div>
+  <div dir="rtl" style="font-family:var(--f-body);margin-top:6px">= <b style="font-size:24px;font-family:var(--f-mono)">${Q<0?'0':fmt(Q)}</b> ${Q<0?'(לא קונים כמות שלילית)':'יחידות'}</div>`;
+  $('#fPx').setAttribute('aria-valuetext',Px+' ₪');$('#fI').setAttribute('aria-valuetext','הכנסה '+I);$('#fPy').setAttribute('aria-valuetext',Py+' ₪');
+  say($('#fnLive'),'הכמות המבוקשת: '+(Q<0?0:fmt(Q))+' יחידות');
+}
+['#fPx','#fI','#fPy'].forEach(s=>$(s).addEventListener('input',drawFn));
+
+/* ---------- inverse ---------- */
+function drawInv(){
+  const P=+$('#invP').value;$('#invOut').textContent=P;const Q=(25-P)/5;
+  const svg=$('#invSvg');svg.innerHTML='';const ink=css('--ink');
+  const f=fsz(svg,13);
+  const x0=46,y0=290-f-12,w=250,h=y0-30;const X=q=>x0+q/6*w,Y=p=>y0-p/27*h;
+  el('path',{d:`M${x0} ${y0-h-10} V${y0} H${x0+w+10}`,fill:'none',stroke:ink,'stroke-width':2},svg);
+  el('line',{x1:X(0),y1:Y(25),x2:X(5),y2:Y(0),stroke:ink,'stroke-width':3.5},svg);
+  el('text',{x:x0-6,y:Y(25)+f/3,'font-size':f,fill:ink,'text-anchor':'end'},svg,'25');
+  el('text',{x:X(5),y:y0+f+4,'font-size':f,fill:ink,'text-anchor':'middle'},svg,'5');
+  el('text',{x:x0+8,y:y0-h+f/2,'font-size':f,fill:ink,'text-anchor':'start'},svg,'Px');
+  el('text',{x:x0+w+8,y:y0+f+4,'font-size':f,fill:ink,'text-anchor':'end'},svg,'Qx');
+  el('line',{x1:x0,y1:Y(P),x2:X(Q),y2:Y(P),stroke:css('--coral'),'stroke-dasharray':'4 4','stroke-width':2},svg);
+  el('line',{x1:X(Q),y1:Y(P),x2:X(Q),y2:y0,stroke:css('--coral'),'stroke-dasharray':'4 4','stroke-width':2},svg);
+  el('circle',{cx:X(Q),cy:Y(P),r:7,fill:css('--coral')},svg);
+  if(P!==25&&P!==0&&Math.abs(Y(P)-Y(25))>f){el('text',{x:x0-6,y:Y(P)+f/3,'font-size':f,fill:css('--coral-ink'),'text-anchor':'end'},svg,P);}
+  if(Q!==5&&Q!==0&&Math.abs(X(Q)-X(5))>f*1.5) el('text',{x:X(Q),y:y0+f+4,'font-size':f,fill:css('--coral-ink'),'text-anchor':'middle'},svg,fmt(Q,2));
+  $('#invRead').innerHTML=`<bdi dir="ltr">${P} = 25 − 5Qx</bdi> ← <b><bdi dir="ltr">Qx = ${fmt(Q,2)}</bdi></b>`;
+  svg.setAttribute('aria-label',`הקו Px = 25 − 5Qx. במחיר ${P} קונים ${fmt(Q,2)} יחידות.`);
+  $('#invP').setAttribute('aria-valuetext',`מחיר ${P} ₪, כמות ${fmt(Q,2)}`);
+}
+$('#invP').addEventListener('input',drawInv);
+
+/* ---------- Quiz ---------- */
+const QZ=[
+ ['מחיר הפיצה עלה, ולכן קניתם פחות פיצות. מה קרה בגרף של הפיצה?',['תזוזה לאורך עקומת הביקוש','העקומה זזה שמאלה','העקומה זזה ימינה'],0,'שינוי במחיר של הפיצה <b>עצמה</b> = תזוזה על הקו: הנקודה מטפסת למעלה (יקר יותר) ושמאלה (קונים פחות). הקו עצמו לא זז. הקו זז ימינה או שמאלה רק כשמשהו <b>אחר</b> משתנה: הכנסה, מחיר של מוצר אחר או טעמים.'],
+ ['קיבלתם העלאה במשכורת וקניתם יותר נעליים. מה קרה לעקומת הביקוש לנעליים?',['לא זזה, רק הכמות השתנתה','זזה ימינה, ונעליים הן מוצר נורמלי','זזה שמאלה, ונעליים הן מוצר נחות'],1,'הכנסה היא לא המחיר של הנעליים, ולכן כל הקו זז. קניתם יותר ← הקו זז ימינה ← מוצר נורמלי. "לא זזה" שגוי כי רק מחיר הנעליים עצמן משאיר את הקו במקום. "נחות" שגוי כי במוצר נחות קונים <i>פחות</i> כשמרוויחים יותר.'],
+ ['מחיר הקפה עלה מאוד. מה יקרה לביקוש לתה?',['יעלה (העקומה זזה ימינה)','ירד (העקומה זזה שמאלה)','לא ישתנה'],0,'קפה ותה הם תחליפיים, אחד במקום השני. הקפה התייקר ← שותים פחות קפה ← עוברים לתה ← הביקוש לתה עולה (הקו של התה זז ימינה). "ירד" הייתה נכונה אם הם היו משלימים, כמו קפה ועוגייה.'],
+ ['מחיר הדיו למדפסות זינק. מה יקרה לביקוש למדפסות?',['יעלה','ירד','לא ישתנה'],1,'מדפסת ודיו הם משלימים, הולכים ביחד. הדיו התייקר ← משתמשים בו פחות ← פחות שווה לקנות מדפסת ← הביקוש למדפסות יורד. "יעלה" הייתה נכונה רק אם הם היו תחליפיים.'],
+ ['המחיר עלה ב־10% והכמות המבוקשת ירדה ב־5%. מה הגמישות ואיזה ביקוש זה?',['η = −2, גמיש','η = −0.5, קשיח','η = −1, יחידתי'],1,'מחלקים את השינוי בכמות בשינוי במחיר: <bdi dir="ltr">−5% ÷ 10% = −0.5</bdi>. מורידים את המינוס: 0.5, וזה פחות מ־1 ← <b>קשיח</b>. מי שקיבל <bdi dir="ltr">−2</bdi> הפך את השבר. זכרו: הכמות (Q) תמיד למעלה, המחיר (P) למטה.'],
+ ['הביקוש למוצר גמיש, והמוכר מעלה מחיר. מה יקרה לפדיון?',['יעלה','ירד','לא ישתנה'],1,'בגמיש הכמות יורדת (באחוזים) יותר ממה שהמחיר עולה. דוגמה: מחיר מ־10 ל־11 ₪ (<bdi dir="ltr">+10%</bdi>), כמות מ־100 ל־80 (<bdi dir="ltr">−20%</bdi>). פדיון: <bdi dir="ltr">1,000</bdi> ₪ ← 880 ₪. ירד. "יעלה" נכון רק בקשיח, ו"לא ישתנה" רק ביחידתי.'],
+ ['לחולה סוכרת אין תחליף לאינסולין. מה הגמישות של הביקוש שלו?',['η = ∞, קו אופקי','η = 1','η = 0, קו אנכי'],2,'אין לו ברירה: יקנה אותה כמות בכל מחיר. הכמות לא זזה בכלל ← <bdi dir="ltr">η = 0</bdi> ← קו אנכי (עומד). <bdi dir="ltr">η = ∞</bdi> זה ההפך הגמור, כמו דוכני הלימונדה: אגורה יותר וכולם בורחים. <bdi dir="ltr">η = 1</bdi> זה מקרה האמצע.'],
+ ['בפונקציה Qx = 100 − 2Px + 3I − 0.5Py, מה נכון?',['X מוצר נחות, X ו־Y תחליפיים','X מוצר נורמלי, X ו־Y משלימים','X מוצר נורמלי, X ו־Y תחליפיים'],1,'מסתכלים רק על הסימן לפני כל אות. לפני I יש <b>פלוס</b> (<bdi dir="ltr">+3I</bdi>): יותר הכנסה ← יותר X ← נורמלי. לפני <bdi dir="ltr">Py</bdi> יש <b>מינוס</b> (<bdi dir="ltr">−0.5Py</bdi>): Y התייקר ← קונים פחות X ← הולכים ביחד ← משלימים. פלוס לפני <bdi dir="ltr">Py</bdi> היה אומר תחליפיים.'],
+ ['נתונה הנוסחה Px = 25 − 5Qx. המחיר 15. כמה יחידות יקנו?',['2','3','5'],0,'מציבים 15 במקום <bdi dir="ltr">Px</bdi>: <bdi dir="ltr">15 = 25 − 5Q</bdi>. מורידים 25 משני הצדדים: <bdi dir="ltr">−10 = −5Q</bdi>. מחלקים ב־(<bdi dir="ltr">−5</bdi>): <b><bdi dir="ltr">Q = 2</bdi></b>. התשובה 5 היא הכמות כשהמחיר 0 (בחינם), לא כשהוא 15.']];
+const fixBidi=s=>s.replace(/(η = [−∞\d.]+|Qx = 100 − 2Px \+ 3I − 0\.5Py|Px = 25 − 5Qx)/g,'<bdi dir="ltr">$1</bdi>');
+const answered={};
+function drawQuiz(){
+  const box=$('#quizBox');box.innerHTML='';
+  QZ.forEach((q,qi)=>{const d=document.createElement('div');d.className='q';
+    d.innerHTML=`<p class="qq" id="qq${qi}">${qi+1}. ${fixBidi(q[0])}</p><div class="opts" role="group" aria-labelledby="qq${qi}">${q[1].map((o,oi)=>`<button type="button" data-q="${qi}" data-o="${oi}">${fixBidi(o)}</button>`).join('')}</div><p class="fb" id="fb${qi}" role="status"></p>`;box.appendChild(d);});
+  box.addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(!b)return;const qi=+b.dataset.q,oi=+b.dataset.o;if(qi in answered)return;answered[qi]=oi===QZ[qi][2];
+    $$(`button[data-q="${qi}"]`).forEach(x=>{const o=+x.dataset.o;x.setAttribute('aria-disabled','true');
+      if(o===QZ[qi][2]){x.classList.add('right');x.insertAdjacentHTML('afterbegin','<span aria-hidden="true">✓ </span><span class="sr">התשובה הנכונה: </span>');}
+      else if(o===oi){x.classList.add('wrong');x.insertAdjacentHTML('afterbegin','<span aria-hidden="true">✗ </span><span class="sr">בחרתם, לא נכון: </span>');}});
+    $('#fb'+qi).innerHTML=(answered[qi]?'<b style="color:var(--mint-ink)">נכון!</b> ':'<b style="color:var(--coral-ink)">לא בדיוק.</b> ')+QZ[qi][3];
+    const n=Object.keys(answered).length,c=Object.values(answered).filter(Boolean).length;
+    $('#quizScore').textContent=n===QZ.length?`ציון: ${c} מתוך ${QZ.length}${c===QZ.length?' · מוכנים למבחן':c>=6?' · כמעט שם, חזרו על מה שפספסתם':' · שווה לעבור שוב על חלקים 2 עד 5'}`:`עניתם על ${n} מתוך ${QZ.length}`;});
+}
+
+function all(){drawWater();drawShift();drawPct();calc();drawRev();drawMarket();drawFn();drawInv();}
+all();drawQuiz();
+const mq=matchMedia('(prefers-color-scheme: dark)');mq.addEventListener&&mq.addEventListener('change',all);
+new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(all,150);});
+
+/* speak arrows in Hebrew for screen readers */
+(function(){const map={'←':'ולכן','→':'ולכן','↑':'עולה','↓':'יורד'},root=$('.page');
+function fix(r){if(r.nodeType!==1)return;const tw=document.createTreeWalker(r,NodeFilter.SHOW_TEXT,{acceptNode:n=>/[←→↑↓]/.test(n.data)&&n.parentElement&&!n.parentElement.closest('svg,script,style,[aria-hidden],[role=img],.sr,.arrow-up,.arrow-dn')?1:2});const ns=[];while(tw.nextNode())ns.push(tw.currentNode);
+ ns.forEach(n=>{const f=document.createDocumentFragment();n.data.split(/([←→↑↓])/).forEach(p=>{if(map[p]){const v=document.createElement('span');v.setAttribute('aria-hidden','true');v.textContent=p;const s=document.createElement('span');s.className='sr';s.textContent=' '+map[p]+' ';f.append(v,s);}else if(p)f.append(p);});n.replaceWith(f);});}
+fix(root);new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(x=>fix(x)))).observe(root,{childList:true,subtree:true});})();
+})();
+</script>
+
+</body>
+</html>
