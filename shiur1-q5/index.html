@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>שאלות 5 ו־6 · תרגיל 1</title>
-<meta name="description" content="העמקה לשאלות 5 ו־6: צוואר בקבוק, יתרון יחסי ומילון סימנים, עם ניסויים אינטראקטיביים ותרגול.">
+<meta name="description" content="פתרון מלא לשאלות 5 ו־6 לפי השלבים של המורה, עם מילון סימנים, ניסויים אינטראקטיביים ותרגול.">
 <meta property="og:image" content="img/factory.webp">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -178,6 +178,29 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
 th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .btn.plot{min-width:64px;font-family:var(--font-mono);font-size:1.05rem}
 .btn.plot:disabled{opacity:1;background:var(--pen-soft);border-color:var(--pen);color:var(--pen);cursor:default}
+
+.pill{display:inline-block;border-radius:999px;padding:0 10px;font-size:.92rem;font-weight:700;border:1.5px solid currentColor}
+.pill.t{color:var(--c-mach)} .pill.d{color:var(--accent)} .pill.w{color:var(--sun)}
+.tstep{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px clamp(12px,3vw,20px)}
+.tnum{width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--surface);display:grid;place-items:center;font-family:var(--font-mono);font-weight:600;font-size:1.1rem}
+.tstep.bonus .tnum{background:var(--sun)}
+.tbody{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tbody>*{min-width:0}
+.tbody h3{font-size:1.3rem}
+.teach{border-inline-start:4px solid var(--c-mach);background:var(--c-mach-soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.teach b{color:var(--c-mach)}
+.did{display:flex;flex-direction:column;gap:8px;min-width:0}
+.did>b:first-child{color:var(--accent)}
+.why{border-inline-start:4px solid var(--sun);background:var(--sun-soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.why b{color:var(--sun)}
+.t td.hl{font-weight:700}
+@media (max-width:520px){.tstep{grid-template-columns:1fr}.tnum{width:36px;height:36px}}
+
+.eq.mixed{direction:rtl;text-align:right;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;white-space:normal}
+.eq.mixed .hx{font-family:var(--font-body);font-weight:600;white-space:nowrap}
+.eq.mixed .mx{white-space:normal}
+.eq.mixed .sg{white-space:nowrap}
+.eq.mixed .sg.op{color:var(--muted)}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -187,9 +210,9 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 <header class="top">
   <div class="eyebrow">מבוא למיקרו כלכלה · שיעור 1 · העמקה לשאלות 5 ו־6</div>
   <h1>צוואר בקבוק ויתרון יחסי</h1>
-  <p class="lead">שתי השאלות האחרונות בתרגיל, עד הסוף. <strong>שאלה 5</strong>: מפעל עם שלושה משאבים, ועקומה שנשברת. <strong>שאלה 6</strong>: קיבוץ עם חמש חלקות, ועקומה שנבנית לפי יתרון יחסי. לפני הכל יש מילון שמסביר כל סימן ולמה שמים אותו.</p>
+  <p class="lead">שתי השאלות האחרונות בתרגיל, עד הסוף. בתחילת כל שאלה יש <strong>פתרון מלא לפי השלבים של המורה</strong>, עם הסבר של כל צעד, ואחריו הסברים, ניסויים ותרגול. <strong>שאלה 5</strong>: מפעל עם שלושה משאבים, ועקומה שנשברת. <strong>שאלה 6</strong>: קיבוץ עם חמש חלקות, ועקומה שנבנית לפי יתרון יחסי. לפני הכל יש מילון שמסביר כל סימן ולמה שמים אותו.</p>
   <nav class="jump" aria-label="קפיצה לחלקי הדף">
-    <a class="main" href="#symbols">מילון הסימנים</a><span class="sep">שאלה 5:</span><a href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a><span class="sep">שאלה 6:</span><a href="#q6story">הסיפור</a><a href="#q6s2">מחירים</a><a href="#q6lab">ניסוי</a><a href="#q6s4">נקודות</a><a href="#q6exam">ככה כותבים</a><a href="#q6prac">תרגול</a>
+    <a class="main" href="#symbols">מילון הסימנים</a><span class="sep">שאלה 5:</span><a href="#q5full">פתרון מלא</a><a href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a><span class="sep">שאלה 6:</span><a href="#q6full">פתרון מלא</a><a href="#q6story">הסיפור</a><a href="#q6s2">מחירים</a><a href="#q6lab">ניסוי</a><a href="#q6s4">נקודות</a><a href="#q6exam">ככה כותבים</a><a href="#q6prac">תרגול</a>
   </nav>
 </header>
 
@@ -220,6 +243,129 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 </section>
 
 <div class="part-sep" id="q5"><span>שאלה 5</span><h2>צוואר בקבוק: למה העקומה נשברת</h2></div>
+<!-- FULL SOLUTION Q5, by the teacher's steps -->
+<section id="q5full" class="stack" aria-labelledby="h-q5full">
+  <div class="sec-head"><div class="eyebrow">שאלה 5 · הפתרון המלא</div><h2 id="h-q5full">פותרים לפי השלבים של המורה</h2></div>
+  <p>כל שלב בנוי משלושה חלקים: <span class="pill t">מה המורה ביקשה</span> (מתוך "המתכון, צעד אחר צעד" בשיעור), <span class="pill d">מה עשיתי</span> (החישוב), ו<span class="pill w">למה</span> (מה זה אומר במילים). X = מכוניות, Y = טרקטורים.</p>
+
+  <article class="tstep"><div class="tnum">1</div><div class="tbody">
+    <h3>אילוץ לכל גורם ייצור</h3>
+    <p class="teach"><b>המורה:</b> "אילוץ לכל גורם: (כמה מכונית צריכה)·X + (כמה טרקטור צריך)·Y ≤ (כמה יש)". במצגת: <bdi dir="ltr">Ax·X + Ay·Y ≤ A</bdi>.</p>
+    <div class="did"><b>מה עשיתי:</b> סידרתי את הנתונים בטבלה. ‏Ax = כמה מכונית לוקחת, ‏Ay = כמה טרקטור לוקח, ‏A = כמה יש. אחר כך הצבתי בתבנית.
+      <div class="tscroll"><table class="t"><thead><tr><th scope="col">גורם</th><th scope="col">Ax (מכונית)</th><th scope="col">Ay (טרקטור)</th><th scope="col">A (יש)</th></tr></thead>
+      <tbody><tr><th scope="row" class="labor">עבודה</th><td class="n">200</td><td class="n">100</td><td class="n">1600</td></tr><tr><th scope="row" class="mach">מכונות</th><td class="n">5</td><td class="n">10</td><td class="n">80</td></tr><tr><th scope="row" class="floor">שטח</th><td class="n">10</td><td class="n">10</td><td class="n">90</td></tr></tbody></table></div>
+      <div class="eq mixed"><span class="hx">עבודה:</span><bdi dir="ltr" class="mx">200X + 100Y ≤ 1600</bdi></div><div class="eq mixed"><span class="hx">מכונות:</span><bdi dir="ltr" class="mx">5X + 10Y ≤ 80</bdi></div><div class="eq mixed"><span class="hx">שטח:</span><bdi dir="ltr" class="mx">10X + 10Y ≤ 90</bdi></div></div>
+    <p class="why"><b>למה:</b> ‏200X = שעות העבודה שכל המכוניות לוקחות (200 לכל אחת, כפול מספר המכוניות). ‏100Y = מה שהטרקטורים לוקחים. ביחד זה כל מה שמשתמשים בו, וזה צריך להיות ≤ ממה שיש. ≤ ולא =, כי מותר שיישאר עודף.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">2</div><div class="tbody">
+    <h3>משאירים את Y לבד</h3>
+    <p class="teach"><b>המורה:</b> "משאירים את Y לבד (מחלקים במספר שליד Y)". במצגת: <bdi dir="ltr">Y ≤ A/Ay − (Ax/Ay)·X</bdi>.</p>
+    <div class="did"><b>מה עשיתי:</b> חילקתי כל אילוץ במספר שליד Y. אחר כך העברתי את X לצד השני: הורדתי אותו משני הצדדים.
+      <div class="eq mixed"><span class="hx">עבודה:</span><bdi dir="ltr" class="mx"><span class="sg">200X + 100Y ≤ 1600</span> <span class="sg op">/:100</span>  <span class="sg op">→</span> <span class="sg">2X + Y ≤ 16</span> <span class="sg op">→</span> <span class="sg">Y ≤ 16 − 2X</span></bdi></div>
+      <div class="eq mixed"><span class="hx">מכונות:</span><bdi dir="ltr" class="mx"><span class="sg">5X + 10Y ≤ 80</span> <span class="sg op">/:10</span>  <span class="sg op">→</span> <span class="sg">0.5X + Y ≤ 8</span> <span class="sg op">→</span> <span class="sg">Y ≤ 8 − 0.5X</span></bdi></div>
+      <div class="eq mixed"><span class="hx">שטח:</span><bdi dir="ltr" class="mx"><span class="sg">10X + 10Y ≤ 90</span> <span class="sg op">/:10</span>  <span class="sg op">→</span> <span class="sg">X + Y ≤ 9</span> <span class="sg op">→</span> <span class="sg">Y ≤ 9 − X</span></bdi></div>
+      <p class="note">בדיקה עם נוסחת המצגת, למשל בעבודה: <bdi dir="ltr">A/Ay = 1600/100 = 16</bdi>, ‏<bdi dir="ltr">Ax/Ay = 200/100 = 2</bdi>, ולכן <bdi dir="ltr">Y ≤ 16 − 2X</bdi>. אותה תוצאה.</p></div>
+    <p class="why"><b>למה:</b> בצורה <bdi dir="ltr">Y ≤ a − b·X</bdi> רואים מיד את הקו. ‏a = איפה הוא פוגש את ציר ה־Y (כמה טרקטורים אם לא בונים מכוניות). ‏b = כמה טרקטורים יורדים על כל מכונית. בלי השלב הזה אי אפשר לצייר ולהשוות.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">3</div><div class="tbody">
+    <h3>הקצוות</h3>
+    <p class="teach"><b>המורה:</b> "לכל אילוץ בדוק כמה Y אם X=0, וכמה X אם Y=0. הקצוות של העקומה הם הקטנים מכולם".</p>
+    <div class="did"><b>מה עשיתי:</b> הצבתי X=0 (רק טרקטורים) ו־Y=0 (רק מכוניות) בכל אילוץ.
+      <div class="tscroll"><table class="t"><thead><tr><th scope="col">אילוץ</th><th scope="col">X = 0 (רק טרקטורים)</th><th scope="col">Y = 0 (רק מכוניות)</th></tr></thead>
+      <tbody><tr><th scope="row" class="labor">עבודה</th><td class="n">Y = 16</td><td class="n">0 = 16 − 2X → X = 8</td></tr>
+      <tr><th scope="row" class="mach">מכונות</th><td class="n hl">Y = 8</td><td class="n">0 = 8 − 0.5X → X = 16</td></tr>
+      <tr><th scope="row" class="floor">שטח</th><td class="n">Y = 9</td><td class="n">0 = 9 − X → X = 9</td></tr>
+      <tr class="hi"><th scope="row">הכי קטן</th><td class="n"><b>Y = 8 → A(0, 8)</b></td><td class="n"><b>X = 8 → D(8, 0)</b></td></tr></tbody></table></div></div>
+    <p class="why"><b>למה הקטן?</b> המשאב שנגמר ראשון עוצר הכל. אם בונים רק טרקטורים, המכונות מספיקות רק ל־8, ולכן לא משנה שהעבודה מספיקה ל־16. אם בונים רק מכוניות, העבודה מספיקה רק ל־8.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">4</div><div class="tbody">
+    <h3>נקודות המפגש</h3>
+    <p class="teach"><b>המורה:</b> "השווה כל שני אילוצים. יש שלושה זוגות, אז שלוש נקודות".</p>
+    <div class="did"><b>מה עשיתי:</b> בכל זוג כתבתי = בין שני הקווים, אספתי את ה־X לצד אחד ואת המספרים לצד השני, ומצאתי X. אחר כך הצבתי את X באחד הקווים כדי למצוא Y.
+      <div class="eq mixed"><span class="hx">מכונות = שטח:</span><bdi dir="ltr" class="mx"><span class="sg">8 − 0.5X = 9 − X</span> <span class="sg op">→</span> <span class="sg">X − 0.5X = 9 − 8</span> <span class="sg op">→</span> <span class="sg">0.5X = 1</span> <span class="sg op">→</span> <span class="sg">X = 2 ,  Y = 9 − 2 = 7</span></bdi></div>
+      <div class="eq mixed"><span class="hx">עבודה = שטח:</span><bdi dir="ltr" class="mx"><span class="sg">16 − 2X = 9 − X</span> <span class="sg op">→</span> <span class="sg">16 − 9 = 2X − X</span> <span class="sg op">→</span> <span class="sg">X = 7</span> <span class="sg op">→</span> <span class="sg">Y = 9 − 7 = 2</span></bdi></div>
+      <div class="eq mixed"><span class="hx">עבודה = מכונות:</span><bdi dir="ltr" class="mx"><span class="sg">16 − 2X = 8 − 0.5X</span> <span class="sg op">→</span> <span class="sg">16 − 8 = 2X − 0.5X</span> <span class="sg op">→</span> <span class="sg">8 = 1.5X</span> <span class="sg op">→</span> <span class="sg">X = 5⅓ ,  Y = 16 − 10⅔ = 5⅓</span></bdi></div></div>
+    <p class="why"><b>למה =?</b> בנקודת מפגש שני המשאבים נגמרים בדיוק באותו רגע. אלה המקומות שבהם "הבוס" מתחלף, ושם העקומה יכולה להישבר.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">5</div><div class="tbody">
+    <h3>בדיקה מול האילוץ השלישי</h3>
+    <p class="teach"><b>המורה:</b> "כל נקודה בודקים מול האילוץ השלישי. חורגת? זורקים אותה".</p>
+    <div class="did"><b>מה עשיתי:</b> הצבתי כל נקודה באילוץ המקורי (מצעד 1) של הגורם שלא השתתף במפגש.
+      <div class="eq mixed"><bdi dir="ltr" class="mx">(2, 7)</bdi><span class="hx">מול עבודה:</span><bdi dir="ltr" class="mx"><span class="sg">200·2 + 100·7 = 400 + 700 = 1100 ≤ 1600  ✓</span> <span class="sg op">→</span> <span class="sg">B(2, 7)</span></bdi></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">(7, 2)</bdi><span class="hx">מול מכונות:</span><bdi dir="ltr" class="mx"><span class="sg">5·7 + 10·2 = 35 + 20 = 55 ≤ 80        ✓</span> <span class="sg op">→</span> <span class="sg">C(7, 2)</span></bdi></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">(5⅓, 5⅓)</bdi><span class="hx">מול שטח:</span><bdi dir="ltr" class="mx">10·5⅓ + 10·5⅓ = 106⅔ &gt; 90               ✗</bdi><span class="hx">נזרקת</span></div></div>
+    <p class="why"><b>למה בודקים?</b> נקודת מפגש מבטיחה ששני משאבים מספיקים, אבל לא את השלישי. בנקודה (5⅓, 5⅓) העבודה והמכונות מספיקות, אבל צריך 106⅔ מ״ר ויש רק 90. כלומר היא מחוץ לעקומה: בלתי אפשרית.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">6</div><div class="tbody">
+    <h3>הקו הנמוך: כותבים את העקומה</h3>
+    <p class="teach"><b>המורה:</b> "העקומה היא בכל X הקו הנמוך מבין האילוצים. כותבים אותה בחלקים: משוואה, טווח של X, ומי צוואר הבקבוק".</p>
+    <div class="did"><b>מה עשיתי:</b> סידרתי את ארבע הנקודות לפי X: ‏A(0, 8), ‏B(2, 7), ‏C(7, 2), ‏D(8, 0). בין כל שתי נקודות שכנות בדקתי איזה קו הוא הנמוך. זה הגורם שנגמר שם.
+      <div class="eq mixed"><bdi dir="ltr" class="mx">Y = 8 − 0.5X ,   0 ≤ X ≤ 2</bdi><span class="hx">(קטע AB, צוואר בקבוק: מכונות)</span></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">Y = 9 − X    ,   2 ≤ X ≤ 7</bdi><span class="hx">(קטע BC, צוואר בקבוק: שטח)</span></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">Y = 16 − 2X  ,   7 ≤ X ≤ 8</bdi><span class="hx">(קטע CD, צוואר בקבוק: עבודה)</span></div>
+      <svg class="chart" id="solChart5" viewBox="0 0 520 440" role="img" aria-label="עקומת התמורה של שאלה 5 עם הנקודות A, B, C, D"></svg></div>
+    <p class="why"><b>למה הנמוך ולמה הטווח?</b> כל קו גבוה יותר "מבטיח" משאב שכבר נגמר. הטווח <bdi dir="ltr">0 ≤ X ≤ 2</bdi> אומר שהמשוואה נכונה רק בקטע הזה, כי רק שם המכונות הן הבוס.</p>
+    <div class="exam"><div class="who">ככה כותבים בתשובה (סעיף 1)</div><p>עקומת התמורה היא המעטפת התחתונה של שלושת האילוצים, כי בכל נקודה הגורם שנגמר ראשון מגביל את הייצור. נקודות המפגש הרלוונטיות הן B(2, 7) ו־C(7, 2). הנקודה (5⅓, 5⅓) נפסלת, כי היא חורגת מאילוץ השטח. נקודות הקצה הן A(0, 8) ו־D(8, 0). העקומה ABCD שבורה: ב־AB צוואר הבקבוק הוא המכונות, ב־BC השטח, וב־CD העבודה.</p></div>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">7</div><div class="tbody">
+    <h3>סעיף 2: מחיר טרקטור במונחי מכוניות</h3>
+    <p class="teach"><b>המורה:</b> "כמה מהגורם המגביל טרקטור צריך, חלקי כמה ממנו מכונית צריכה". בפתרון שבשיעור: "מחלקים את השינוי במכוניות (X) בשינוי בטרקטורים (Y)", וממלאים טבלה של חלק, ייצור, ויתור ועלות.</p>
+    <div class="did"><b>מה עשיתי:</b> חישבתי בשתי הדרכים, כדי לוודא שיוצא אותו דבר.
+      <p><b>דרך א׳, מהנקודות</b> (ΔX ÷ ΔY):</p>
+      <div class="eq">AB:  (0 − 2) / (8 − 7) = −2 / 1  →  2</div>
+      <div class="eq">BC:  (2 − 7) / (7 − 2) = −5 / 5  →  1</div>
+      <div class="eq">CD:  (7 − 8) / (2 − 0) = −1 / 2  →  ½</div>
+      <p><b>דרך ב׳, מהגורם המגביל:</b> מכונות ‏10 ÷ 5 = 2. שטח ‏10 ÷ 10 = 1. עבודה ‏100 ÷ 200 = ½.</p>
+      <div class="tscroll"><table class="t"><thead><tr><th scope="col">חלק</th><th scope="col">ייצור (טרקטורים)</th><th scope="col">ויתור (מכוניות)</th><th scope="col">עלות</th><th scope="col">צוואר בקבוק</th></tr></thead>
+      <tbody><tr><th scope="row">AB</th><td class="n">1</td><td class="n">2</td><td class="n"><b>2</b></td><td class="mach">מכונות</td></tr>
+      <tr><th scope="row">BC</th><td class="n">5</td><td class="n">5</td><td class="n"><b>1</b></td><td class="floor">שטח</td></tr>
+      <tr><th scope="row">CD</th><td class="n">2</td><td class="n">1</td><td class="n"><b>½</b></td><td class="labor">עבודה</td></tr></tbody></table></div></div>
+    <p class="why"><b>למה מורידים את המינוס?</b> המינוס רק אומר שכשטרקטורים עולים, מכוניות יורדות. המחיר הוא "כמה מוותרים", וזו כמות חיובית. <b>למה ΔX למעלה?</b> שואלים כמה <u>מכוניות</u> (X) עולה <u>טרקטור</u> (Y). מה שמשלמים בו למעלה, מה שקונים למטה.</p>
+    <div class="exam"><div class="who">ככה כותבים בתשובה (סעיף 2)</div><p>מחיר הטרקטור במונחי מכוניות הוא העלות האלטרנטיבית השולית שלו. בכל קטע הוא נקבע לפי גורם הייצור שמהווה צוואר בקבוק: היחס בין הכמות שטרקטור צורך ממנו לכמות שמכונית צורכת ממנו. ב־CD ½, ב־BC 1, ב־AB 2. ככל שמייצרים יותר טרקטורים, טרקטור נוסף עולה יותר מכוניות, ולכן העקומה קמורה ושבורה.</p></div>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">8</div><div class="tbody">
+    <h3>סעיף 3: השטח גדל ל־100 מ״ר</h3>
+    <p class="teach"><b>המורה:</b> "משנים רק את אילוץ השטח (100 במקום 90) וחוזרים על צעדים 3–6".</p>
+    <div class="did"><b>מה עשיתי:</b> שיניתי רק את השורה של השטח, וחזרתי על שלבים 3–6.
+      <div class="eq mixed"><span class="hx">שטח חדש:</span><bdi dir="ltr" class="mx"><span class="sg">10X + 10Y ≤ 100</span> <span class="sg op">/:10</span>  <span class="sg op">→</span> <span class="sg">X + Y ≤ 10</span> <span class="sg op">→</span> <span class="sg">Y ≤ 10 − X</span></bdi></div>
+      <p><b>שלב 3, קצוות:</b> השטח מספיק עכשיו ל־10 בכל קצה, אבל המכונות (8) והעבודה (8) עדיין קטנות יותר. לכן A(0, 8) ו־D(8, 0) לא זזות.</p>
+      <p><b>שלב 4, מפגשים:</b></p>
+      <div class="eq mixed"><span class="hx">מכונות = שטח:</span><bdi dir="ltr" class="mx"><span class="sg">8 − 0.5X = 10 − X</span> <span class="sg op">→</span> <span class="sg">0.5X = 2</span> <span class="sg op">→</span> <span class="sg">X = 4 ,  Y = 10 − 4 = 6</span></bdi></div>
+      <div class="eq mixed"><span class="hx">עבודה = שטח:</span><bdi dir="ltr" class="mx"><span class="sg">16 − 2X = 10 − X</span> <span class="sg op">→</span> <span class="sg">X = 6</span> <span class="sg op">→</span> <span class="sg">Y = 10 − 6 = 4</span></bdi></div>
+      <div class="eq mixed"><span class="hx">עבודה = מכונות:</span><bdi dir="ltr" class="mx">(5⅓, 5⅓)</bdi><span class="hx">כמו קודם</span></div>
+      <p><b>שלב 5, בדיקות:</b></p>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">(4, 6)</bdi><span class="hx">מול עבודה:</span><bdi dir="ltr" class="mx"><span class="sg">200·4 + 100·6 = 1400 ≤ 1600  ✓</span> <span class="sg op">→</span> <span class="sg">B(4, 6)</span></bdi></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">(6, 4)</bdi><span class="hx">מול מכונות:</span><bdi dir="ltr" class="mx"><span class="sg">5·6 + 10·4 = 70 ≤ 80        ✓</span> <span class="sg op">→</span> <span class="sg">C(6, 4)</span></bdi></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">(5⅓, 5⅓)</bdi><span class="hx">מול שטח:</span><bdi dir="ltr" class="mx">106⅔ &gt; 100                  ✗</bdi><span class="hx">נזרקת</span></div>
+      <p><b>שלב 6, העקומה החדשה:</b></p>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">Y = 8 − 0.5X ,   0 ≤ X ≤ 4</bdi><span class="hx">(מכונות)</span></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">Y = 10 − X   ,   4 ≤ X ≤ 6</bdi><span class="hx">(שטח)</span></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">Y = 16 − 2X  ,   6 ≤ X ≤ 8</bdi><span class="hx">(עבודה)</span></div>
+      <p><b>מחירים:</b></p>
+      <div class="eq">AB: (0 − 4)/(8 − 6) = −4/2 → 2 ;   BC: (4 − 6)/(6 − 4) = −2/2 → 1 ;   CD: (6 − 8)/(4 − 0) = −2/4 → ½</div>
+      <svg class="chart" id="solChart5b" viewBox="0 0 520 440" role="img" aria-label="עקומת התמורה עם 90 ועם 100 מ״ר"></svg>
+      <div class="legend"><span><i style="background:var(--muted)"></i>90 מ״ר (מקווקו)</span><span><i style="background:var(--accent);height:6px"></i>100 מ״ר</span></div></div>
+    <p class="why"><b>למה רק האמצע זז?</b> הוספנו רק שטח. השטח היה הבוס רק בקטע האמצעי, ולכן רק שם העקומה יוצאת החוצה. המחירים נשארו (2, 1, ½), כי כמה כל רכב צורך מכל משאב לא השתנה.</p>
+    <div class="exam"><div class="who">ככה כותבים בתשובה (סעיף 3)</div><p>אילוץ השטח הופך ל־X + Y ≤ 10. נקודות המפגש החדשות הן B(4, 6) ו־C(6, 4). נקודות הקצה A(0, 8) ו־D(8, 0) לא משתנות, כי בהן השטח אינו הגורם המגביל. המחירים בכל קטע לא משתנים (2, 1, ½), כי מקדמי הייצור לא השתנו. העקומה מתרחבת רק בקטע שבו השטח מגביל: קטע BC מתקצר, וקטעי AB ו־CD מתארכים.</p></div>
+  </div></article>
+
+  <article class="tstep bonus"><div class="tnum">+</div><div class="tbody">
+    <h3>בונוס: התפלגות גורמי הייצור</h3>
+    <p class="teach"><b>מהמצגת:</b> השקף "התפלגות גורמי הייצור". בודקים, בכל פינה, איזה משאב לא מנוצל עד הסוף.</p>
+    <div class="did"><b>מה עשיתי:</b> הצבתי כל פינה באילוץ שלא משתתף בה, וחיסרתי מהכמות שיש.
+      <div class="eq mixed"><bdi dir="ltr" class="mx">B(2, 7):</bdi><span class="hx">עבודה</span><bdi dir="ltr" class="mx"><span class="sg">200·2 + 100·7 = 1100</span> <span class="sg op">→</span> <span class="sg">1600 − 1100 = 500</span></bdi><span class="hx">שעות עבודה מובטלות</span></div>
+      <div class="eq mixed"><bdi dir="ltr" class="mx">C(7, 2):</bdi><span class="hx">מכונות</span><bdi dir="ltr" class="mx"><span class="sg">5·7 + 10·2 = 55</span> <span class="sg op">→</span> <span class="sg">80 − 55 = 25</span></bdi><span class="hx">שעות מכונה מובטלות</span></div></div>
+    <p class="why"><b>למה זה לא בזבוז?</b> זו <strong>אבטלה מבנית</strong>: אי אפשר להעסיק את העובדים, כי חסר משאב אחר (שטח). אי אפשר לייצר יותר משני המוצרים, ולכן הנקודות עדיין על העקומה ויעילות.</p>
+  </div></article>
+</section>
+
 
 <!-- STORY -->
 <section id="story" class="stack" aria-labelledby="h-story">
@@ -275,9 +421,9 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
   </div>
   <h3>האילוצים, בכתב</h3>
   <p>מחלקים כל אילוץ במספר שליד Y, כדי ש־Y יעמוד לבד. ככה רואים מיד את הקו:</p>
-  <div class="eq">200X + 100Y ≤ 1600  →  Y ≤ 16 − 2X      (עובדים)</div>
-  <div class="eq">5X + 10Y ≤ 80       →  Y ≤ 8 − 0.5X     (מכונות)</div>
-  <div class="eq">10X + 10Y ≤ 90      →  Y ≤ 9 − X        (מקום)</div>
+  <div class="eq mixed"><bdi dir="ltr" class="mx"><span class="sg">200X + 100Y ≤ 1600</span> <span class="sg op">→</span> <span class="sg">Y ≤ 16 − 2X</span></bdi><span class="hx">(עובדים)</span></div>
+  <div class="eq mixed"><bdi dir="ltr" class="mx"><span class="sg">5X + 10Y ≤ 80</span> <span class="sg op">→</span> <span class="sg">Y ≤ 8 − 0.5X</span></bdi><span class="hx">(מכונות)</span></div>
+  <div class="eq mixed"><bdi dir="ltr" class="mx"><span class="sg">10X + 10Y ≤ 90</span> <span class="sg op">→</span> <span class="sg">Y ≤ 9 − X</span></bdi><span class="hx">(מקום)</span></div>
   <p class="symnote"><b>מה הסימנים עושים כאן?</b> ‏<a href="#sym-le">≤</a> = "לכל היותר": מותר להשאיר עודף, אסור לעבור. ‏<a href="#sym-arr">→</a> = "ולכן": אחרי שמחלקים את <u>שני</u> הצדדים באותו מספר (בפתרון שלכם זה כתוב <bdi dir="ltr">/:100</bdi>), מקבלים שורה פשוטה יותר. ‏<a href="#sym-minus">−</a> לפני X אומר שהקו יורד: כל מכונית נוספת "גונבת" מקום מהטרקטורים.</p>
   <p>בכל X, Y צריך לקיים את <strong>שלושת</strong> האילוצים ביחד. לכן העקומה היא תמיד <strong>הקו הנמוך</strong> מבין השלושה. הקו הגבוה מבטיח משהו שאין לנו.</p>
   <h3>הפינות</h3>
@@ -291,9 +437,9 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
     </tbody></table></div>
   <p>ועוד שני קצוות: רק טרקטורים <span class="m">A(0, 8)</span>, ורק מכוניות <span class="m">D(8, 0)</span>. סך הכל ארבע נקודות.</p>
   <div class="exam"><div class="who">ככה כותבים את העקומה</div>
-    <div class="eq" style="background:transparent;padding:0">Y = 8 − 0.5X    ,  0 ≤ X ≤ 2   (מכונות)</div>
-    <div class="eq" style="background:transparent;padding:0">Y = 9 − X       ,  2 ≤ X ≤ 7   (מקום)</div>
-    <div class="eq" style="background:transparent;padding:0">Y = 16 − 2X     ,  7 ≤ X ≤ 8   (עובדים)</div>
+    <div class="eq mixed" style="background:transparent;padding:0"><bdi dir="ltr" class="mx">Y = 8 − 0.5X    ,  0 ≤ X ≤ 2</bdi><span class="hx">(מכונות)</span></div>
+    <div class="eq mixed" style="background:transparent;padding:0"><bdi dir="ltr" class="mx">Y = 9 − X       ,  2 ≤ X ≤ 7</bdi><span class="hx">(מקום)</span></div>
+    <div class="eq mixed" style="background:transparent;padding:0"><bdi dir="ltr" class="mx">Y = 16 − 2X     ,  7 ≤ X ≤ 8</bdi><span class="hx">(עובדים)</span></div>
   </div>
   <p class="symnote"><b>למה יש בסוף כל שורה טווח כמו <bdi dir="ltr">0 ≤ X ≤ 2</bdi>?</b> כי לעקומה השבורה יש שלוש משוואות, וכל אחת נכונה רק בקטע שבו הגורם שלה הוא הבוס. הטווח אומר לבודק "השורה הזאת עובדת רק כאן". בלי טווח, נראה כאילו כל אחת מהמשוואות היא העקומה כולה.</p>
   <p class="trap"><b>למה הנקודה <span class="m">(5⅓, 5⅓)</span> "נראית" נכונה ועדיין שגויה?</b> היא אכן המקום שבו העובדים והמכונות נגמרים יחד. אבל כדי להגיע אליה צריך 106⅔ מ״ר, ויש רק 90. נקודה שחורגת מאילוץ אחד היא מחוץ לעקומה, כלומר בלתי אפשרית.</p>
@@ -382,9 +528,9 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
   <div class="exam">
     <div class="who">סעיף 1</div>
     <p>נסמן X = מכוניות, Y = טרקטורים. אילוצי הייצור:</p>
-    <div class="eq" style="background:transparent;padding:0">כוח אדם: 200X + 100Y ≤ 1600 → Y ≤ 16 − 2X</div>
-    <div class="eq" style="background:transparent;padding:0">מכונות:  5X + 10Y ≤ 80 → Y ≤ 8 − 0.5X</div>
-    <div class="eq" style="background:transparent;padding:0">שטח:    10X + 10Y ≤ 90 → Y ≤ 9 − X</div>
+    <div class="eq mixed" style="background:transparent;padding:0"><span class="hx">כוח אדם:</span><bdi dir="ltr" class="mx"><span class="sg">200X + 100Y ≤ 1600</span> <span class="sg op">→</span> <span class="sg">Y ≤ 16 − 2X</span></bdi></div>
+    <div class="eq mixed" style="background:transparent;padding:0"><span class="hx">מכונות:</span><bdi dir="ltr" class="mx"><span class="sg">5X + 10Y ≤ 80</span> <span class="sg op">→</span> <span class="sg">Y ≤ 8 − 0.5X</span></bdi></div>
+    <div class="eq mixed" style="background:transparent;padding:0"><span class="hx">שטח:</span><bdi dir="ltr" class="mx"><span class="sg">10X + 10Y ≤ 90</span> <span class="sg op">→</span> <span class="sg">Y ≤ 9 − X</span></bdi></div>
     <p>עקומת התמורה היא המעטפת התחתונה של האילוצים, כי בכל נקודה הגורם שנגמר ראשון מגביל את הייצור. נקודות המפגש הרלוונטיות: <span class="m">B(2, 7)</span> (מכונות ושטח) ו־<span class="m">C(7, 2)</span> (כוח אדם ושטח). מפגש כוח האדם והמכונות <span class="m">(5⅓, 5⅓)</span> נפסל כי הוא חורג מאילוץ השטח. נקודות הקצה: <span class="m">A(0, 8)</span> ו־<span class="m">D(8, 0)</span>. העקומה ABCD שבורה, ובכל קטע גורם אחר הוא צוואר הבקבוק: מכונות ב־AB, שטח ב־BC, כוח אדם ב־CD.</p>
     <div class="who">סעיף 2</div>
     <p>מחיר טרקטור במונחי מכוניות הוא העלות האלטרנטיבית השולית שלו, ‎|ΔX/ΔY|. בכל קטע הוא שווה ליחס בין צריכת גורם צוואר הבקבוק של טרקטור לזו של מכונית: ב־CD ‏100/200 = ½, ב־BC ‏10/10 = 1, ב־AB ‏10/5 = 2. המחיר עולה ככל שמייצרים יותר טרקטורים, ולכן העקומה קמורה לראשית ושבורה.</p>
@@ -430,6 +576,82 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- ===================== QUESTION 6 ===================== -->
 <div class="part-sep" id="q6"><span>שאלה 6</span><h2>יתרון יחסי: איזו חלקה עוברת קודם</h2></div>
+<!-- FULL SOLUTION Q6, by the teacher's steps -->
+<section id="q6full" class="stack" aria-labelledby="h-q6full">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · הפתרון המלא</div><h2 id="h-q6full">פותרים לפי השלבים של המורה</h2></div>
+  <p>אותו מבנה: <span class="pill t">מה המורה ביקשה</span>, <span class="pill d">מה עשיתי</span>, <span class="pill w">למה</span>. X = טון ירקות, Y = טון חיטה.</p>
+
+  <article class="tstep"><div class="tnum">1</div><div class="tbody">
+    <h3>לכל חלקה: כמה עולה טון ירקות?</h3>
+    <p class="teach"><b>המורה:</b> "לכל חלקה: כמה עולה טון ירקות? מה מוותרים ÷ מה מקבלים, כלומר חיטה ÷ ירקות".</p>
+    <div class="did"><b>מה עשיתי:</b> לכל חלקה חילקתי את החיטה שלה (מה שמוותרים) בירקות שלה (מה שמקבלים).
+      <div class="tscroll"><table class="t"><thead><tr><th scope="col">חלקה</th><th scope="col">ייצור (ירקות)</th><th scope="col">ויתור (חיטה)</th><th scope="col">חישוב</th><th scope="col">עלות</th></tr></thead>
+      <tbody><tr><th scope="row">A</th><td class="n">100</td><td class="n">500</td><td class="n">500 ÷ 100</td><td class="n"><b>5</b></td></tr>
+      <tr><th scope="row">B</th><td class="n">200</td><td class="n">50</td><td class="n">50 ÷ 200</td><td class="n"><b>¼</b></td></tr>
+      <tr><th scope="row">C</th><td class="n">300</td><td class="n">450</td><td class="n">450 ÷ 300</td><td class="n"><b>1½</b></td></tr>
+      <tr><th scope="row">D</th><td class="n">400</td><td class="n">0</td><td class="n">0 ÷ 400</td><td class="n"><b>0</b></td></tr>
+      <tr><th scope="row">E</th><td class="n">500</td><td class="n">600</td><td class="n">600 ÷ 500</td><td class="n"><b>1.2</b></td></tr></tbody></table></div></div>
+    <p class="why"><b>למה בסדר הזה?</b> ÷ עונה על "כמה לכל אחד". מה ששילמנו (חיטה) למעלה, מה שקיבלנו (ירקות) למטה, ולכן התוצאה היא "כמה טון חיטה לכל טון ירקות". למשל ב־A: ‏500 ÷ 100 = 5 טון חיטה לכל טון ירקות. ב־D: ‏0 ÷ 400 = 0, כי לא מוותרים על כלום.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">2</div><div class="tbody">
+    <h3>מסדרים מהזולה ליקרה</h3>
+    <p class="teach"><b>המורה:</b> "מסדרים מהזולה ליקרה".</p>
+    <div class="did"><b>מה עשיתי:</b> סידרתי את העלויות מהקטנה לגדולה:
+      <div class="eq">D (0)  →  B (¼)  →  E (1.2)  →  C (1½)  →  A (5)</div></div>
+    <p class="why"><b>למה?</b> רוצים לקבל ירקות במחיר הכי נמוך. לכן קודם מעבירים את החלקה שבה מוותרים על הכי מעט חיטה. זה עקרון היתרון היחסי.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">3</div><div class="tbody">
+    <h3>התחלה: הכל חיטה</h3>
+    <p class="teach"><b>המורה:</b> "התחלה: הכול חיטה. 0 ירקות, ו־500+50+450+0+600 = 1,600 טון חיטה".</p>
+    <div class="did"><b>מה עשיתי:</b> חיברתי את שורת החיטה. זו נקודת ההתחלה. בשביל הבדיקה חישבתי גם את הקצה השני: הכל ירקות.
+      <div class="eq mixed"><span class="hx">הכל חיטה:</span><bdi dir="ltr" class="mx"><span class="sg">500 + 50 + 450 + 0 + 600 = 1600</span> <span class="sg op">→</span> <span class="sg">(0, 1600)</span></bdi></div>
+      <div class="eq mixed"><span class="hx">הכל ירקות:</span><bdi dir="ltr" class="mx"><span class="sg">100 + 200 + 300 + 400 + 500 = 1500</span> <span class="sg op">→</span> <span class="sg">(1500, 0)</span></bdi></div></div>
+    <p class="why"><b>למה?</b> אלה שני הקצוות של העקומה: כל האדמה בגידול אחד. בנקודה <bdi dir="ltr">(0, 1600)</bdi> המספר הראשון הוא X (ירקות) והשני Y (חיטה).</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">4</div><div class="tbody">
+    <h3>מעבירים את הזולה לירקות</h3>
+    <p class="teach"><b>המורה:</b> "מעבירים את הזולה לירקות: מוסיפים את הירקות שלה, מורידים את החיטה שלה, ורושמים נקודה".</p>
+    <div class="did"><b>מה עשיתי:</b> הזולה היא D. הוספתי 400 ל־X והורדתי 0 מ־Y.
+      <div class="eq">D:  (0 + 400 ,  1600 − 0)  →  (400, 1600)</div></div>
+    <p class="why"><b>למה + ו־−?</b> כשהחלקה עוברת לירקות, הירקות גדלים (+ ל־X) והחיטה שלה נעלמת (− מ־Y). ב־D לא נעלם כלום, כי היא לא גידלה חיטה.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">5</div><div class="tbody">
+    <h3>חוזרים עם החלקה הבאה, עד שהכל ירקות</h3>
+    <p class="teach"><b>המורה:</b> "חוזרים עם החלקה הבאה, עד שהכול ירקות".</p>
+    <div class="did"><b>מה עשיתי:</b> המשכתי לפי הסדר. בכל פעם התחלתי מהנקודה האחרונה.
+      <div class="eq">B:  (400 + 200 ,   1600 − 50)   →  (600, 1550)</div>
+      <div class="eq">E:  (600 + 500 ,   1550 − 600)  →  (1100, 950)</div>
+      <div class="eq">C:  (1100 + 300 ,  950 − 450)   →  (1400, 500)</div>
+      <div class="eq">A:  (1400 + 100 ,  500 − 500)   →  (1500, 0)</div>
+      <p class="note">בדיקה: הנקודה האחרונה <bdi dir="ltr">(1500, 0)</bdi> יצאה בדיוק כמו הקצה "הכל ירקות" משלב 3. ✓</p></div>
+    <p class="why"><b>למה מתחילים מהנקודה האחרונה?</b> כל חלקה מתווספת למה שכבר יש. הירקות מצטברים, והחיטה הולכת ונגמרת.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">6</div><div class="tbody">
+    <h3>מסמנים, מחברים ובודקים שהעקומה קמורה</h3>
+    <p class="teach"><b>המורה:</b> "מסמנים את 6 הנקודות ומחברים בסרגל. בדיקה: הקו נעשה תלול יותר מקטע לקטע, ולכן הוא קמור".</p>
+    <div class="did"><b>מה עשיתי:</b> סימנתי את 6 הנקודות וחיברתי בקווים ישרים. כדי לבדוק שהעקומה תלולה יותר בכל קטע, חישבתי את השיפוע של כל קטע (ΔY ÷ ΔX):
+      <div class="eq">D:  0 / 400 = 0</div>
+<div class="eq">B:  −50 / 200 = −¼</div>
+<div class="eq">E:  −600 / 500 = −1.2</div>
+<div class="eq">C:  −450 / 300 = −1½</div>
+<div class="eq">A:  −500 / 100 = −5</div>
+      <svg class="chart" id="solChart6" viewBox="0 0 540 440" role="img" aria-label="עקומת התמורה של הקיבוץ עם שש הנקודות"></svg></div>
+    <p class="why"><b>למה בסרגל?</b> בתוך כל חלקה המחיר קבוע, ולכן כל קטע הוא קו ישר. <b>למה זה קמור?</b> בלי המינוס, השיפועים הם 0, ¼, 1.2, 1½, 5. הם עולים כל הזמן, כלומר כל טון ירקות נוסף עולה יותר חיטה, ולכן הקו מתעקל החוצה.</p>
+  </div></article>
+
+  <article class="tstep"><div class="tnum">7</div><div class="tbody">
+    <h3>ההסבר: העיקרון</h3>
+    <p class="teach"><b>המורה:</b> "בהסבר כותבים: יתרון יחסי. קודם החלקה שבה העלות האלטרנטיבית השולית של ירקות הכי נמוכה".</p>
+    <div class="exam"><div class="who">ככה כותבים בתשובה</div><p>העקומה נבנתה לפי עקרון היתרון היחסי: כדי להגדיל את ייצור הירקות, מעבירים בכל פעם את החלקה שבה העלות האלטרנטיבית השולית של טון ירקות (בטון חיטה) היא הנמוכה ביותר מבין החלקות שנותרו. הסדר הוא D, B, E, C, A. כיוון שהעלות עולה מחלקה לחלקה (0, ¼, 1.2, 1½, 5), העקומה קמורה.</p></div>
+    <p class="why"><b>שתי תוספות שמוסיפות נקודות:</b> (1) חלקה E מגדלת הכי הרבה משני הגידולים (יתרון מוחלט), ובכל זאת היא שלישית בתור. את הסדר קובע היתרון היחסי, לא המוחלט. (2) הנקודה <bdi dir="ltr">(0, 1600)</bdi> אינה יעילה, כי <bdi dir="ltr">(400, 1600)</bdi> נותנת אותה כמות חיטה ועוד 400 טון ירקות בחינם.</p>
+  </div></article>
+</section>
+
 
 <section id="q6story" class="stack" aria-labelledby="h-q6a">
   <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 0</div><h3 id="h-q6a" style="font-size:1.6rem">השאלה בשפה של בני אדם</h3></div>
@@ -447,8 +669,8 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 <section id="q6s1" class="stack" aria-labelledby="h-q6b">
   <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 1</div><h3 id="h-q6b" style="font-size:1.6rem">הקצוות: הכל חיטה, או הכל ירקות</h3></div>
   <p>קודם הכי פשוט: מה קורה אם כל החלקות מגדלות את אותו דבר? פשוט מחברים את השורה בטבלה.</p>
-  <div class="eq">500 + 50 + 450 + 0 + 600 = 1600   →   (0, 1600)      הכל חיטה</div>
-  <div class="eq">100 + 200 + 300 + 400 + 500 = 1500  →   (1500, 0)      הכל ירקות</div>
+  <div class="eq mixed"><bdi dir="ltr" class="mx"><span class="sg">500 + 50 + 450 + 0 + 600 = 1600</span> <span class="sg op">→</span> <span class="sg">(0, 1600)</span></bdi><span class="hx">הכל חיטה</span></div>
+  <div class="eq mixed"><bdi dir="ltr" class="mx"><span class="sg">100 + 200 + 300 + 400 + 500 = 1500</span> <span class="sg op">→</span> <span class="sg">(1500, 0)</span></bdi><span class="hx">הכל ירקות</span></div>
   <p class="symnote"><b>הסימנים כאן:</b> ‏<b>+</b> מחבר את מה שכל חלקה מגדלת. ‏<b>=</b> נותן את הסכום. ‏<b>→</b> אומר "ולכן הנקודה היא". בנקודה <bdi dir="ltr">(0, 1600)</bdi> המספר הראשון הוא 0, כי X הוא ירקות ויש 0 ירקות.</p>
   <p>אלה שני הקצוות של העקומה. כל השאר נמצא ביניהם, והשאלה היא <strong>באיזה מסלול</strong> הולכים מהקצה האחד לשני.</p>
 </section>
@@ -765,7 +987,25 @@ $('#check6').onclick=()=>{let ok=0,filled=0;ANS6.forEach(([i,s,a])=>{const raw=(
   $('#prac6Read').innerHTML=filled===0?'עוד לא מילאתם תשובות.':ok===ANS6.length?'<b>הכל נכון.</b> שימו לב: N מגדלת הכי הרבה ירקות, ובכל זאת היא שלישית.':`${ok} מתוך ${filled} נכונות. רמז: מחיר = חיטה ÷ ירקות, ומסדרים מהזול ליקר.`;};
 $('#reset6').onclick=()=>{ANS6.forEach(([i,s])=>{$(i).value='';$(s).textContent='';$(s).className='st';});$('#prac6Read').textContent='';};
 
-function all(){sim();build();areaLab();kib();}
+function solCharts(){
+  {const svg=$('#solChart5');const c=chart(svg,520,440,10);const env=envelope(90);
+   for(const k in env.L)drawLine(svg,c,env.L[k],css(NEED[k].c),'5 4',1.6,10);
+   env.segs.forEach(s=>el('line',{x1:c.X(s.from.x),y1:c.Y(s.from.y),x2:c.X(s.to.x),y2:c.Y(s.to.y),stroke:css(NEED[s.boss].c),'stroke-width':6,'stroke-linecap':'round'},svg));
+   [['A',0,8],['B',2,7],['C',7,2],['D',8,0]].forEach(([n,x,y])=>dot(svg,c,{x,y},css('--accent'),`${n}(${x},${y})`,8,-10));
+   el('circle',{cx:c.X(16/3),cy:c.Y(16/3),r:6,fill:'none',stroke:css('--pen'),'stroke-width':2.5},svg);
+   el('text',{x:c.X(16/3)+10,y:c.Y(16/3)-8,'font-size':13,'font-weight':700,fill:css('--pen')},svg,'(5⅓,5⅓) ✗');}
+  {const svg=$('#solChart5b');const c=chart(svg,520,440,10);const e90=envelope(90),e100=envelope(100);
+   poly(svg,c,e90.pts,css('--muted'),2.5,'7 5');
+   e100.segs.forEach(s=>el('line',{x1:c.X(s.from.x),y1:c.Y(s.from.y),x2:c.X(s.to.x),y2:c.Y(s.to.y),stroke:css(NEED[s.boss].c),'stroke-width':6,'stroke-linecap':'round'},svg));
+   [['A',0,8],['B',4,6],['C',6,4],['D',8,0]].forEach(([n,x,y])=>dot(svg,c,{x,y},css('--accent'),`${n}(${x},${y})`,8,-10));}
+  {const svg=$('#solChart6');const c=chart2(svg,540,440,1500,1700,300,400,'ירקות X (טון)','חיטה Y (טון)');
+   poly(svg,c,bestPts,css('--accent'),5);
+   const lab=['התחלה','D','B','E','C','A'];
+   bestPts.forEach((p,i)=>{el('circle',{cx:c.X(p.x),cy:c.Y(p.y),r:6,fill:css('--surface'),stroke:css('--accent'),'stroke-width':2.5},svg);
+     el('text',{x:c.X(p.x)+(i===5?-8:8),y:c.Y(p.y)+(i===0?18:-10),'font-size':13,'font-weight':700,fill:css('--ink'),'text-anchor':i===5?'end':'start'},svg,`(${p.x},${p.y})`);});}
+}
+
+function all(){sim();build();areaLab();kib();solCharts();}
 all();
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',all);
 new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
