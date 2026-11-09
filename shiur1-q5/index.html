@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>שאלה 5 · צוואר בקבוק</title>
-<meta name="description" content="העמקה לשאלה 5: צוואר בקבוק ועקומת תמורה שבורה, עם סימולטור, בנייה שלב אחר שלב ותרגול.">
+<title>שאלות 5 ו־6 · תרגיל 1</title>
+<meta name="description" content="העמקה לשאלות 5 ו־6: צוואר בקבוק, יתרון יחסי ומילון סימנים, עם ניסויים אינטראקטיביים ותרגול.">
 <meta property="og:image" content="img/factory.webp">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -156,6 +156,28 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
 .eq{max-width:100%}
 .t td.n{white-space:nowrap}
 @media (max-width:620px){#buildChart text,#areaChart text{font-size:21px!important}#simChart text{font-size:16px!important}}
+
+.jump .sep{color:var(--muted);font-size:.9rem;align-self:center;margin-inline:4px}
+.part-sep{display:flex;flex-direction:column;gap:6px;background:var(--ink);color:var(--paper);border-radius:16px;padding:18px clamp(16px,4vw,24px);scroll-margin-top:16px}
+.part-sep span{font-family:var(--font-mono);font-size:.9rem;opacity:.8}
+.part-sep h2{color:var(--paper)}
+.syms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.syms{grid-template-columns:1fr}}
+.sym{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;font-size:.98rem;line-height:1.6;scroll-margin-top:16px;min-width:0}
+.sym .s{font-family:var(--font-mono);font-size:1.5rem;font-weight:600;color:var(--accent)}
+.sym:target{outline:3px solid var(--accent);outline-offset:2px}
+.fracs{display:inline-flex;flex-direction:column;align-items:center;font-size:.8em;line-height:1;vertical-align:middle}
+.fracs span:first-child{border-bottom:2px solid currentColor;padding:0 3px 2px}
+.symnote{background:var(--sun-soft);border-inline-start:4px solid var(--sun);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.symnote b{color:var(--sun)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.stairs.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:620px){.stairs.five{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stairs.five .stair{color:var(--accent);background:var(--accent-soft)}
+th.veg{color:var(--good)} th.wheat{color:var(--sun)}
+.btn.plot{min-width:64px;font-family:var(--font-mono);font-size:1.05rem}
+.btn.plot:disabled{opacity:1;background:var(--pen-soft);border-color:var(--pen);color:var(--pen);cursor:default}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -163,15 +185,41 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
 <div class="wrap" dir="rtl" lang="he">
 
 <header class="top">
-  <div class="eyebrow">מבוא למיקרו כלכלה · שיעור 1 · העמקה לשאלה 5</div>
-  <h1>צוואר בקבוק: למה העקומה נשברת</h1>
-  <p class="lead">שאלה 5 לוקחת את הדוגמה של "מכונות ועבודה" מהמצגת ומוסיפה גורם שלישי. כאן נבין אותה עד הסוף: נשחק עם המפעל, נבנה את העקומה בעצמנו, ונלך כמה צעדים מעבר למה שהשאלה שואלת.</p>
+  <div class="eyebrow">מבוא למיקרו כלכלה · שיעור 1 · העמקה לשאלות 5 ו־6</div>
+  <h1>צוואר בקבוק ויתרון יחסי</h1>
+  <p class="lead">שתי השאלות האחרונות בתרגיל, עד הסוף. <strong>שאלה 5</strong>: מפעל עם שלושה משאבים, ועקומה שנשברת. <strong>שאלה 6</strong>: קיבוץ עם חמש חלקות, ועקומה שנבנית לפי יתרון יחסי. לפני הכל יש מילון שמסביר כל סימן ולמה שמים אותו.</p>
   <nav class="jump" aria-label="קפיצה לחלקי הדף">
-    <a class="main" href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">בונים את העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a>
+    <a class="main" href="#symbols">מילון הסימנים</a><span class="sep">שאלה 5:</span><a href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a><span class="sep">שאלה 6:</span><a href="#q6story">הסיפור</a><a href="#q6s2">מחירים</a><a href="#q6lab">ניסוי</a><a href="#q6s4">נקודות</a><a href="#q6exam">ככה כותבים</a><a href="#q6prac">תרגול</a>
   </nav>
 </header>
 
 <main class="wrap" style="gap:64px">
+<!-- SYMBOLS -->
+<section id="symbols" class="stack" aria-labelledby="h-sym">
+  <div class="sec-head"><div class="eyebrow">לפני שמתחילים</div><h2 id="h-sym">מילון הסימנים</h2></div>
+  <p>בשתי השאלות יש הרבה סימנים. כל סימן הוא בעצם <strong>קיצור של משפט</strong>. כאן מופיע כל אחד מהם: איך קוראים אותו, מה הוא אומר, ו<strong>למה בכלל שמים אותו</strong>. אם בהמשך סימן לא ברור, חזרו לכאן.</p>
+  <div class="syms">
+    <article class="sym" id="sym-xy"><div class="s">X ‏, ‏Y</div><div><b>קוראים:</b> "איקס", "וואי"</div><div><b>אומר:</b> שם קצר לכמות. X תמיד על הציר האופקי (ימינה), Y על האנכי (למעלה).</div><div><b>למה:</b> כדי לא לכתוב בכל שורה "מספר המכוניות". בשאלה 5: ‏X = מכוניות, Y = טרקטורים. בשאלה 6: ‏X = טון ירקות, Y = טון חיטה.</div></article>
+    <article class="sym" id="sym-pt"><div class="s"><bdi dir="ltr">B(2, 7)</bdi></div><div><b>קוראים:</b> "נקודה B, שתיים ושבע"</div><div><b>אומר:</b> המספר <u>הראשון</u> הוא X (כמה ימינה), <u>השני</u> הוא Y (כמה למעלה). האות לפני היא שם הנקודה.</div><div><b>למה:</b> הסדר הזה הוא מוסכמה עולמית, אז כולם קוראים אותו אותו דבר. השם נותן דרך קצרה לדבר על חלק מהעקומה, למשל "הקטע AB".</div></article>
+    <article class="sym" id="sym-mul"><div class="s"><bdi dir="ltr">200X</bdi> ‏· ‏<bdi dir="ltr">2·10</bdi></div><div><b>קוראים:</b> "מאתיים כפול איקס"</div><div><b>אומר:</b> מספר שצמוד לאות = כפול. הנקודה באמצע (·) = כפול.</div><div><b>למה:</b> 200X = "200 שעות לכל מכונית, כפול מספר המכוניות". משתמשים בנקודה ולא ב־× כי × נראה כמו האות X ומבלבל.</div></article>
+    <article class="sym" id="sym-div"><div class="s">÷ ‏, ‏/ ‏, ‏<span class="fracs"><span>a</span><span>b</span></span></div><div><b>קוראים:</b> "חלקי"</div><div><b>אומר:</b> שלוש דרכים לכתוב חילוק. קו השבר = מה שלמעלה חלקי מה שלמטה.</div><div><b>למה:</b> חילוק עונה על "כמה לכל אחד". ‏1,600 ÷ 200 = 8 אומר: "שעות העבודה מספיקות ל־8 מכוניות".</div></article>
+    <article class="sym" id="sym-le"><div class="s">≤</div><div><b>קוראים:</b> "קטן או שווה", "לכל היותר"</div><div><b>אומר:</b> נוסחה קוראים משמאל לימין. מה שלפני הסימן (כמה משתמשים) לא יכול לעבור את מה שאחריו (כמה יש). ‏<bdi dir="ltr">10X + 10Y ≤ 90</bdi> = "המקום שהרכבים תופסים, לכל היותר 90".</div><div><b>למה ולא =?</b> כי מותר להשתמש בפחות ממה שיש (נשאר עודף), ואסור להשתמש ביותר. סימן = היה מחייב לגמור הכל עד הסוף, וזה לא נכון.</div></article>
+    <article class="sym" id="sym-gt"><div class="s">&lt; ‏, ‏&gt;</div><div><b>קוראים:</b> "קטן מ", "גדול מ"</div><div><b>אומר:</b> השוואה בין שני מספרים. הצד הפתוח של הסימן תמיד פונה למספר הגדול.</div><div><b>למה:</b> בבדיקה של נקודה: ‏<bdi dir="ltr">106⅔ &gt; 90</bdi> אומר "צריך יותר מקום ממה שיש", ולכן הנקודה נפסלת.</div></article>
+    <article class="sym" id="sym-eq"><div class="s">=</div><div><b>קוראים:</b> "שווה"</div><div><b>אומר:</b> שני הצדדים בדיוק אותו מספר.</div><div><b>למה כאן?</b> כשמחפשים פינה, כותבים = בין שני קווים, כי בפינה שני הגורמים נגמרים <u>בדיוק</u> באותו רגע.</div></article>
+    <article class="sym" id="sym-arr"><div class="s">→</div><div><b>קוראים:</b> "ולכן", "ומכאן"</div><div><b>אומר:</b> הצעד הבא בחישוב, או התוצאה.</div><div><b>למה:</b> כדי לחסוך מילים ולהראות שהשורה הבאה נובעת מהקודמת. בתוך נוסחה החץ מצביע ימינה, כי נוסחאות נקראות משמאל לימין.</div></article>
+    <article class="sym" id="sym-both"><div class="s"><bdi dir="ltr">/:100</bdi></div><div><b>קוראים:</b> "מחלקים ב־100"</div><div><b>אומר:</b> מחלקים את <u>שני</u> הצדדים של השורה ב־100.</div><div><b>למה מותר?</b> אם עושים אותו דבר לשני הצדדים, הקשר ביניהם נשמר, כמו מאזניים. <b>למה עושים?</b> כדי לקבל מספרים קטנים: <bdi dir="ltr">200X + 100Y ≤ 1600</bdi> נהיה <bdi dir="ltr">2X + Y ≤ 16</bdi>.</div></article>
+    <article class="sym" id="sym-range"><div class="s"><bdi dir="ltr">0 ≤ X ≤ 2</bdi></div><div><b>קוראים:</b> "X בין 0 ל־2"</div><div><b>אומר:</b> הטווח שבו המשוואה נכונה.</div><div><b>למה:</b> לעקומה השבורה יש כמה משוואות, וכל אחת נכונה רק בקטע שלה, איפה שהגורם שלה הוא הבוס. בלי הטווח, המשוואה הייתה "ממשיכה" גם לאזור שבו היא כבר לא נכונה.</div></article>
+    <article class="sym" id="sym-minus"><div class="s">−</div><div><b>קוראים:</b> "מינוס"</div><div><b>אומר:</b> פעולת חיסור, או מספר שלילי.</div><div><b>למה:</b> בעקומה, מינוס אומר "יורד": ב־<bdi dir="ltr">Y = 16 − 2X</bdi>, כל מכונית נוספת מורידה 2 טרקטורים.</div></article>
+    <article class="sym" id="sym-delta"><div class="s">Δ</div><div><b>קוראים:</b> "דלתא"</div><div><b>אומר:</b> "השינוי". ‏ΔX = כמה X השתנה (אחרי פחות לפני).</div><div><b>למה:</b> זו אות יוונית שמתמטיקאים בחרו לשינוי, וכולם משתמשים בה. מחיר = ‏ΔX ÷ ΔY: בכמה X השתנה, לכל שינוי של 1 ב־Y.</div></article>
+    <article class="sym" id="sym-abs"><div class="s">| −2 |</div><div><b>קוראים:</b> "ערך מוחלט של מינוס 2"</div><div><b>אומר:</b> המספר בלי המינוס. ‏|−2| = 2.</div><div><b>למה:</b> מחיר הוא "כמה מוותרים", וזו תמיד כמות חיובית. המינוס רק סיפר שהקו יורד. כשכותבים את המחיר, מורידים אותו.</div></article>
+    <article class="sym" id="sym-frac"><div class="s">½ ‏, ‏¼ ‏, ‏5⅓</div><div><b>קוראים:</b> "חצי", "רבע", "חמש ושליש"</div><div><b>אומר:</b> שברים. ‏5⅓ = 5 ועוד שליש.</div><div><b>למה לא 5.33?</b> כי 5.333... לא נגמר. השבר מדויק, והעיגול מכניס טעות קטנה.</div></article>
+    <article class="sym" id="sym-sub"><div class="s"><bdi dir="ltr">Lx ‏, ‏Ymax</bdi></div><div><b>קוראים:</b> "אל־איקס", "וואי מקס"</div><div><b>אומר:</b> האות הקטנה מתחת = "של מי". ‏Lx = שעות עבודה ליחידת X. ‏Ymax = הכי הרבה Y.</div><div><b>למה:</b> כדי להבדיל בין כמה דברים דומים בלי להמציא אות חדשה לכל אחד.</div></article>
+    <article class="sym" id="sym-check"><div class="s">✓ ‏, ‏✗ ‏, ‏≈</div><div><b>קוראים:</b> "עובר", "נפסל", "בערך"</div><div><b>אומר:</b> ✓ = הנקודה עברה את הבדיקה. ✗ = היא נפסלת. ≈ = בערך, אחרי עיגול.</div><div><b>למה:</b> כדי שהבודק יראה מיד שבדקתם כל נקודה מול כל האילוצים.</div></article>
+    <article class="sym" id="sym-units"><div class="s">מ״ר ‏, ‏טון</div><div><b>קוראים:</b> "מטר רבוע", "טון"</div><div><b>אומר:</b> יחידות מידה. הן מספרות <u>מה</u> סופרים.</div><div><b>למה:</b> ‏"5" לבד לא אומר כלום. "5 טון חיטה לכל טון ירקות" אומר בדיוק מה מוותרים ובשביל מה. במבחן כותבים יחידות בתשובה.</div></article>
+  </div>
+</section>
+
+<div class="part-sep" id="q5"><span>שאלה 5</span><h2>צוואר בקבוק: למה העקומה נשברת</h2></div>
 
 <!-- STORY -->
 <section id="story" class="stack" aria-labelledby="h-story">
@@ -230,6 +278,7 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
   <div class="eq">200X + 100Y ≤ 1600  →  Y ≤ 16 − 2X      (עובדים)</div>
   <div class="eq">5X + 10Y ≤ 80       →  Y ≤ 8 − 0.5X     (מכונות)</div>
   <div class="eq">10X + 10Y ≤ 90      →  Y ≤ 9 − X        (מקום)</div>
+  <p class="symnote"><b>מה הסימנים עושים כאן?</b> ‏<a href="#sym-le">≤</a> = "לכל היותר": מותר להשאיר עודף, אסור לעבור. ‏<a href="#sym-arr">→</a> = "ולכן": אחרי שמחלקים את <u>שני</u> הצדדים באותו מספר (בפתרון שלכם זה כתוב <bdi dir="ltr">/:100</bdi>), מקבלים שורה פשוטה יותר. ‏<a href="#sym-minus">−</a> לפני X אומר שהקו יורד: כל מכונית נוספת "גונבת" מקום מהטרקטורים.</p>
   <p>בכל X, Y צריך לקיים את <strong>שלושת</strong> האילוצים ביחד. לכן העקומה היא תמיד <strong>הקו הנמוך</strong> מבין השלושה. הקו הגבוה מבטיח משהו שאין לנו.</p>
   <h3>הפינות</h3>
   <p>משווים כל שני קווים (יש שלושה זוגות), ובודקים כל נקודה מול הקו השלישי:</p>
@@ -246,6 +295,7 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
     <div class="eq" style="background:transparent;padding:0">Y = 9 − X       ,  2 ≤ X ≤ 7   (מקום)</div>
     <div class="eq" style="background:transparent;padding:0">Y = 16 − 2X     ,  7 ≤ X ≤ 8   (עובדים)</div>
   </div>
+  <p class="symnote"><b>למה יש בסוף כל שורה טווח כמו <bdi dir="ltr">0 ≤ X ≤ 2</bdi>?</b> כי לעקומה השבורה יש שלוש משוואות, וכל אחת נכונה רק בקטע שבו הגורם שלה הוא הבוס. הטווח אומר לבודק "השורה הזאת עובדת רק כאן". בלי טווח, נראה כאילו כל אחת מהמשוואות היא העקומה כולה.</p>
   <p class="trap"><b>למה הנקודה <span class="m">(5⅓, 5⅓)</span> "נראית" נכונה ועדיין שגויה?</b> היא אכן המקום שבו העובדים והמכונות נגמרים יחד. אבל כדי להגיע אליה צריך 106⅔ מ״ר, ויש רק 90. נקודה שחורגת מאילוץ אחד היא מחוץ לעקומה, כלומר בלתי אפשרית.</p>
 </section>
 
@@ -254,6 +304,7 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
   <div class="sec-head"><div class="eyebrow">שלב 3 · סעיף 2</div><h2 id="h-s2">כמה מכוניות "עולה" טרקטור</h2></div>
   <p>המחיר של טרקטור = כמה מכוניות מוותרים כדי לבנות עוד טרקטור אחד. זו <strong>העלות האלטרנטיבית השולית</strong>. והסוד: המחיר נקבע רק לפי <strong>הבוס</strong>, הקופסה שנגמרה.</p>
   <p class="brief"><span class="lbl">הנוסחה</span>מחיר טרקטור = כמה טרקטור לוקח מהבוס ÷ כמה מכונית לוקחת מהבוס</p>
+  <p class="symnote"><b>הסימנים:</b> ‏<a href="#sym-div">÷</a> = חלקי, "כמה לכל אחד". ‏<a href="#sym-frac">½</a> = חצי. כשכתוב "‏100 ÷ 200 = ½" זה אומר: טרקטור לוקח חצי ממה שמכונית לוקחת, ולכן הוא "עולה" חצי מכונית.</p>
   <p>למה זה עובד? אם הבוס ריק, כדי לבנות טרקטור צריך "לפנות" לו מקום בקופסה הזאת, כלומר לוותר על מכוניות שמשתמשות בה. כמה מכוניות? בדיוק כמה שצריך כדי לשחרר את מה שטרקטור לוקח.</p>
   <div class="stairs">
     <div class="stair labor"><b>מ־0 עד 2 טרקטורים</b><span class="big">½ מכונית</span><span class="sm">הבוס: עובדים. טרקטור לוקח 100, מכונית 200. ‏100 ÷ 200 = ½.</span></div>
@@ -261,7 +312,7 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
     <div class="stair mach"><b>מ־7 עד 8 טרקטורים</b><span class="big">2 מכוניות</span><span class="sm">הבוס: מכונות. טרקטור לוקח 10, מכונית 5. ‏10 ÷ 5 = 2.</span></div>
   </div>
   <p>שימו לב שהמחיר <strong>עולה</strong> ככל שבונים יותר טרקטורים: ½, אחר כך 1, אחר כך 2. זה בדיוק "חוק העלות האלטרנטיבית העולה" מהשיעור, ולכן העקומה <strong>קמורה</strong> (בולטת החוצה). ההבדל מעקומה חלקה: כאן המחיר קופץ במדרגות ולא עולה בהדרגה, ולכן העקומה <strong>שבורה</strong>.</p>
-  <p class="trap"><b>טעות נפוצה:</b> לכתוב את השיפוע במקום את המחיר. בקטע של העובדים השיפוע הוא −2 (Y יורד ב־2 כש־X עולה ב־1). אבל השאלה שואלת על <strong>טרקטור</strong> במונחי מכוניות, כלומר ΔX ÷ ΔY = ½. תמיד שואלים את עצמכם: "מה אני קונה, ובמה אני משלם?"</p>
+  <p class="trap"><b>טעות נפוצה:</b> לכתוב את השיפוע במקום את המחיר (<a href="#sym-delta">Δ</a> = "השינוי", ו־<a href="#sym-abs">|…|</a> = בלי מינוס). בקטע של העובדים השיפוע הוא −2 (Y יורד ב־2 כש־X עולה ב־1). אבל השאלה שואלת על <strong>טרקטור</strong> במונחי מכוניות, כלומר ΔX ÷ ΔY = ½. תמיד שואלים את עצמכם: "מה אני קונה, ובמה אני משלם?"</p>
   <p class="note">ובכיוון ההפוך? מחיר של מכונית במונחי טרקטורים הוא פשוט ההופכי: בקטע העובדים 2, במקום 1, במכונות ½.</p>
 </section>
 
@@ -377,9 +428,145 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
   </details>
 </section>
 
+<!-- ===================== QUESTION 6 ===================== -->
+<div class="part-sep" id="q6"><span>שאלה 6</span><h2>יתרון יחסי: איזו חלקה עוברת קודם</h2></div>
+
+<section id="q6story" class="stack" aria-labelledby="h-q6a">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 0</div><h3 id="h-q6a" style="font-size:1.6rem">השאלה בשפה של בני אדם</h3></div>
+  <p>לקיבוץ יש <strong>5 חלקות אדמה</strong>. כל חלקה יכולה לגדל <strong>ירקות</strong> או <strong>חיטה</strong>, אבל לא את שניהם. כל חלקה טובה במשהו אחר, כי לכל אחת אדמה אחרת.</p>
+  <figure class="pic"><img src="img/kibbutz.webp" alt="קיבוץ עם חמש חלקות שונות, בחלקן חיטה ובחלקן ירקות. חקלאי עם לוח כתיבה מחליט איזו חלקה להעביר לירקות" loading="lazy"><figcaption>חמש חלקות, חמש אדמות שונות. השאלה: אם רוצים יותר ירקות, את איזו חלקה מעבירים קודם?</figcaption></figure>
+  <div class="tscroll"><table class="t"><caption>כמה כל חלקה מגדלת בשנה (בטון)</caption>
+    <thead><tr><th scope="col">חלקה</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th></tr></thead>
+    <tbody><tr><th scope="row" class="veg">אם מגדלים בה ירקות</th><td class="n">100</td><td class="n">200</td><td class="n">300</td><td class="n">400</td><td class="n">500</td></tr>
+    <tr><th scope="row" class="wheat">אם מגדלים בה חיטה</th><td class="n">500</td><td class="n">50</td><td class="n">450</td><td class="n">0</td><td class="n">600</td></tr></tbody></table></div>
+  <p>השאלה מבקשת לבנות את <strong>עקומת התמורה</strong> (כל הצירופים הכי טובים של ירקות וחיטה) ולהסביר לפי איזה <strong>עיקרון</strong> בנינו אותה.</p>
+  <p class="brief"><span class="lbl">הכלל היחיד</span>מעבירים לירקות קודם את החלקה שבה <strong>מוותרים על הכי מעט חיטה</strong> לכל טון ירקות. זה נקרא <strong>יתרון יחסי</strong>.</p>
+  <p class="note">סימנים בשאלה הזאת: X = טון ירקות (ציר אופקי), Y = טון חיטה (ציר אנכי). נקודה כמו <bdi dir="ltr">(400, 1600)</bdi> = ‏400 טון ירקות ו־1,600 טון חיטה. ראו <a href="#sym-pt">מילון הסימנים</a>.</p>
+</section>
+
+<section id="q6s1" class="stack" aria-labelledby="h-q6b">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 1</div><h3 id="h-q6b" style="font-size:1.6rem">הקצוות: הכל חיטה, או הכל ירקות</h3></div>
+  <p>קודם הכי פשוט: מה קורה אם כל החלקות מגדלות את אותו דבר? פשוט מחברים את השורה בטבלה.</p>
+  <div class="eq">500 + 50 + 450 + 0 + 600 = 1600   →   (0, 1600)      הכל חיטה</div>
+  <div class="eq">100 + 200 + 300 + 400 + 500 = 1500  →   (1500, 0)      הכל ירקות</div>
+  <p class="symnote"><b>הסימנים כאן:</b> ‏<b>+</b> מחבר את מה שכל חלקה מגדלת. ‏<b>=</b> נותן את הסכום. ‏<b>→</b> אומר "ולכן הנקודה היא". בנקודה <bdi dir="ltr">(0, 1600)</bdi> המספר הראשון הוא 0, כי X הוא ירקות ויש 0 ירקות.</p>
+  <p>אלה שני הקצוות של העקומה. כל השאר נמצא ביניהם, והשאלה היא <strong>באיזה מסלול</strong> הולכים מהקצה האחד לשני.</p>
+</section>
+
+<section id="q6s2" class="stack" aria-labelledby="h-q6c">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 2</div><h3 id="h-q6c" style="font-size:1.6rem">כמה "עולה" טון ירקות בכל חלקה</h3></div>
+  <p>מעבירים חלקה מחיטה לירקות. מה <strong>מקבלים</strong>? את הירקות שלה. על מה <strong>מוותרים</strong>? על החיטה שלה. כמו מחיר בחנות:</p>
+  <p class="brief"><span class="lbl">הנוסחה</span>מחיר טון ירקות = <b>מה שמוותרים ÷ מה שמקבלים</b> = <b>חיטה ÷ ירקות</b></p>
+  <p class="symnote"><b>למה דווקא בסדר הזה?</b> ‏÷ עונה על "כמה לכל אחד". בחנות: שילמתם 10 ₪ וקיבלתם 2 פלאפלים, אז 10 ÷ 2 = 5 ₪ <u>לכל פלאפל</u>. מה ששילמתם למעלה, מה שקיבלתם למטה. פה "שילמנו" בחיטה וקיבלנו ירקות, ולכן חיטה ÷ ירקות = כמה טון חיטה עולה כל טון ירקות. אם מחלקים הפוך, מקבלים את המחיר של <u>חיטה</u>, וזו שאלה אחרת.</p>
+  <div class="tscroll"><table class="t" id="costTable"><caption>מחיר טון ירקות בכל חלקה (בטון חיטה)</caption>
+    <thead><tr><th scope="col">חלקה</th><th scope="col">מקבלים (ירקות)</th><th scope="col">מוותרים (חיטה)</th><th scope="col">חישוב</th><th scope="col">מחיר</th><th scope="col">תור</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">D</th><td class="n">400</td><td class="n">0</td><td class="n">0 ÷ 400</td><td class="n"><b>0</b></td><td><b>1</b> · חינם</td></tr>
+      <tr><th scope="row">B</th><td class="n">200</td><td class="n">50</td><td class="n">50 ÷ 200</td><td class="n"><b>¼</b></td><td><b>2</b></td></tr>
+      <tr><th scope="row">E</th><td class="n">500</td><td class="n">600</td><td class="n">600 ÷ 500</td><td class="n"><b>1.2</b></td><td><b>3</b></td></tr>
+      <tr><th scope="row">C</th><td class="n">300</td><td class="n">450</td><td class="n">450 ÷ 300</td><td class="n"><b>1½</b></td><td><b>4</b></td></tr>
+      <tr><th scope="row">A</th><td class="n">100</td><td class="n">500</td><td class="n">500 ÷ 100</td><td class="n"><b>5</b></td><td><b>5</b> · הכי יקרה</td></tr>
+    </tbody></table></div>
+  <p>איך קוראים שורה? <strong>חלקה B:</strong> כל טון ירקות שמגדלים בה עולה רבע טון חיטה. זול! <strong>חלקה A:</strong> כל טון ירקות בה עולה 5 טון חיטה. יקר מאוד. האדמה שלה מצוינת לחיטה, וחבל לבזבז אותה על ירקות.</p>
+  <p class="symnote"><b>ומה עם D?</b> ‏0 ÷ 400 = 0. אפס חלקי כל מספר הוא אפס: אם מוותרים על כלום, המחיר הוא כלום. D לא מגדלת חיטה בכלל, אז להעביר אותה לירקות זה "חינם".</p>
+</section>
+
+<section id="q6lab" class="stack" aria-labelledby="h-q6d">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 3 · משחקים</div><h3 id="h-q6d" style="font-size:1.6rem">נסו בעצמכם: באיזה סדר להעביר?</h3></div>
+  <p>לחצו על החלקות לפי הסדר שבו אתם רוצים להעביר אותן מחיטה לירקות. הגרף יצייר את המסלול שלכם, ויגיד לכם כמה חיטה הפסדתם לעומת הסדר הכי טוב. נסו פעם אחת סדר "לפי מי שמגדלת הכי הרבה ירקות" (E קודם), ופעם אחת לפי המחיר.</p>
+  <div class="lab">
+    <div class="lab-title"><span class="tag">ניסוי 4</span><h3>הקיבוץ שלכם</h3></div>
+    <div class="btns" id="plotBtns" role="group" aria-label="חלקות להעברה לירקות">
+      <button class="btn plot" type="button" data-p="A">A</button><button class="btn plot" type="button" data-p="B">B</button><button class="btn plot" type="button" data-p="C">C</button><button class="btn plot" type="button" data-p="D">D</button><button class="btn plot" type="button" data-p="E">E</button>
+    </div>
+    <div class="btns"><button class="btn" type="button" id="plotUndo">ביטול צעד</button><button class="btn" type="button" id="plotReset">מהתחלה</button><button class="btn" type="button" id="plotBest">הראו את הסדר הנכון</button></div>
+    <svg class="chart" id="kibChart" viewBox="0 0 540 440" role="img" aria-label="עקומת התמורה של הקיבוץ"></svg>
+    <div class="legend"><span><i style="background:var(--pen);height:5px"></i>המסלול שלכם</span><span><i style="background:var(--accent);height:5px"></i>הסדר הכי טוב (עקומת התמורה)</span></div>
+    <p class="readout" id="kibRead" aria-live="polite"></p>
+  </div>
+  <p>מה ראיתם? כשהולכים לפי המחיר (D, B, E, C, A), כל קטע תלול יותר מהקודם, והקו בולט החוצה. זו <strong>עקומת התמורה</strong>. כל סדר אחר נותן קו <strong>מתחתיה</strong>: אותה כמות ירקות, אבל פחות חיטה. כלומר בזבוז.</p>
+</section>
+
+<section id="q6s4" class="stack" aria-labelledby="h-q6e">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 4</div><h3 id="h-q6e" style="font-size:1.6rem">הנקודות של העקומה, צעד אחר צעד</h3></div>
+  <p>מתחילים מ"הכל חיטה" <bdi dir="ltr">(0, 1600)</bdi>. בכל צעד מעבירים את החלקה הבאה בתור: <strong>מוסיפים</strong> את הירקות שלה ל־X, ו<strong>מורידים</strong> את החיטה שלה מ־Y.</p>
+  <div class="eq">D:  (0 + 400 ,  1600 − 0)    →  (400, 1600)</div>
+  <div class="eq">B:  (400 + 200 ,  1600 − 50)  →  (600, 1550)</div>
+  <div class="eq">E:  (600 + 500 ,  1550 − 600) →  (1100, 950)</div>
+  <div class="eq">C:  (1100 + 300 ,  950 − 450) →  (1400, 500)</div>
+  <div class="eq">A:  (1400 + 100 ,  500 − 500) →  (1500, 0)</div>
+  <p class="symnote"><b>למה + בצד אחד ו־− בצד השני?</b> בתוך הסוגריים יש שני מספרים: הראשון הוא X (ירקות) והשני הוא Y (חיטה). כשהחלקה עוברת לירקות, הירקות <u>גדלים</u>, ולכן +. החיטה <u>קטנה</u>, ולכן −. ה־→ אומר "ולכן הנקודה החדשה היא".</p>
+  <div class="stairs five">
+    <div class="stair"><b>D</b><span class="big">0</span><span class="sm">400 טון ירקות בחינם</span></div>
+    <div class="stair"><b>B</b><span class="big">¼</span><span class="sm">כמעט חינם</span></div>
+    <div class="stair"><b>E</b><span class="big">1.2</span><span class="sm">כבר עולה משהו</span></div>
+    <div class="stair"><b>C</b><span class="big">1½</span><span class="sm">יקר יותר</span></div>
+    <div class="stair"><b>A</b><span class="big">5</span><span class="sm">הכי יקר</span></div>
+  </div>
+  <p>המחיר <strong>עולה</strong> מחלקה לחלקה: 0, ¼, 1.2, 1½, 5. לכן כל קטע בעקומה תלול יותר מהקודם, והעקומה <strong>קמורה</strong>. זה בדיוק כמו "לבוש ומזון" מהשיעור: לא כל המשאבים טובים באותה מידה, ומשתמשים קודם במתאימים ביותר.</p>
+</section>
+
+<section id="q6s5" class="stack" aria-labelledby="h-q6f">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 5</div><h3 id="h-q6f" style="font-size:1.6rem">יתרון מוחלט מול יתרון יחסי</h3></div>
+  <div class="two">
+    <div class="box"><h3>יתרון מוחלט</h3><p>מי שמגדל <strong>הכי הרבה</strong>. חלקה E מגדלת הכי הרבה ירקות (500) <u>וגם</u> הכי הרבה חיטה (600). יש לה יתרון מוחלט בשניהם.</p></div>
+    <div class="box"><h3>יתרון יחסי</h3><p>מי שמוותר <strong>הכי מעט</strong>. בירקות זו D (מחיר 0), ואחריה B (¼). זה מה שקובע את הסדר.</p></div>
+  </div>
+  <p>אז למה E, הכי "חזקה", רק שלישית בתור? כי היא טובה מאוד <strong>גם</strong> בחיטה. כל טון ירקות בה עולה 1.2 טון חיטה, יותר מאשר ב־D או ב־B. זה בדיוק עורך הדין מהשיעור: הוא מקליד מהר יותר מהמזכירה, ובכל זאת היא מקלידה, כי בשבילו ההקלדה "יקרה".</p>
+  <p class="trap"><b>עוד נקודה שמוסיפה ניקוד:</b> הנקודה <bdi dir="ltr">(0, 1600)</bdi> היא <strong>לא יעילה</strong>. למה? הנקודה <bdi dir="ltr">(400, 1600)</bdi> נותנת אותה כמות חיטה ועוד 400 טון ירקות בחינם (חלקה D). לכן הקטע הראשון של העקומה <strong>שטוח</strong>, ואין סיבה לעצור בתחילתו.</p>
+</section>
+
+<section id="q6exam" class="stack" aria-labelledby="h-q6g">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 6</div><h3 id="h-q6g" style="font-size:1.6rem">התשובה המלאה, כמו שמגישים</h3></div>
+  <div class="exam">
+    <div class="who">בניית העקומה</div>
+    <p>נסמן X = טון ירקות, Y = טון חיטה. נקודות הקצה: כל החלקות בחיטה <bdi dir="ltr">(0, 1600)</bdi>, וכל החלקות בירקות <bdi dir="ltr">(1500, 0)</bdi>.</p>
+    <p>לכל חלקה מחשבים את העלות האלטרנטיבית של טון ירקות במונחי חיטה (ויתור ÷ ייצור): ‏A = 5, ‏B = ¼, ‏C = 1½, ‏D = 0, ‏E = 1.2.</p>
+    <p>מעבירים את החלקות לירקות מהזולה ליקרה: D, B, E, C, A. הנקודות: <bdi dir="ltr">(0, 1600)</bdi>, <bdi dir="ltr">(400, 1600)</bdi>, <bdi dir="ltr">(600, 1550)</bdi>, <bdi dir="ltr">(1100, 950)</bdi>, <bdi dir="ltr">(1400, 500)</bdi>, <bdi dir="ltr">(1500, 0)</bdi>.</p>
+    <div class="who">העיקרון</div>
+    <p>העקומה נבנתה לפי עקרון <strong>היתרון היחסי</strong>: כדי להגדיל את ייצור הירקות, מעבירים בכל פעם את החלקה שבה העלות האלטרנטיבית השולית של טון ירקות היא הנמוכה ביותר מבין החלקות שנותרו. כיוון שהעלות עולה מחלקה לחלקה (0, ¼, 1.2, 1½, 5), העקומה קמורה לראשית. הסדר נקבע לפי יתרון יחסי ולא לפי יתרון מוחלט: חלקה E מגדלת הכי הרבה משני הגידולים, ובכל זאת היא שלישית.</p>
+  </div>
+  <h3>טעויות שעולות נקודות</h3>
+  <ul class="mist">
+    <li><b>לסדר לפי מי שמגדלת הכי הרבה ירקות</b> (E קודם). זה יתרון מוחלט. את הסדר קובע היתרון היחסי, כלומר המחיר.</li>
+    <li><b>לחלק הפוך</b> (ירקות ÷ חיטה). כך מקבלים את המחיר של חיטה, לא של ירקות. מה שמוותרים עליו תמיד למעלה.</li>
+    <li><b>לשכוח את חלקה D</b> או לחשוב שאי אפשר לחלק 0. ‏0 ÷ 400 = 0, וזו החלקה הראשונה.</li>
+    <li><b>לחבר מספרים בלי לסדר קודם.</b> קודם מחשבים מחירים, אחר כך מסדרים, ורק אז בונים נקודות.</li>
+    <li><b>לחבר את הנקודות בקו מעוגל.</b> מחברים בסרגל: קו ישר בין כל שתי נקודות, כי בתוך כל חלקה המחיר קבוע.</li>
+  </ul>
+</section>
+
+<section id="q6prac" class="stack" aria-labelledby="h-q6h">
+  <div class="sec-head"><div class="eyebrow">שאלה 6 · שלב 7 · עכשיו לבד</div><h3 id="h-q6h" style="font-size:1.6rem">שאלה תאומה: קיבוץ עם 4 חלקות</h3></div>
+  <div class="tscroll"><table class="t"><caption>כמה כל חלקה מגדלת בשנה (בטון)</caption>
+    <thead><tr><th scope="col">חלקה</th><th scope="col">K</th><th scope="col">L</th><th scope="col">M</th><th scope="col">N</th></tr></thead>
+    <tbody><tr><th scope="row" class="veg">ירקות</th><td class="n">200</td><td class="n">300</td><td class="n">100</td><td class="n">400</td></tr>
+    <tr><th scope="row" class="wheat">חיטה</th><td class="n">100</td><td class="n">600</td><td class="n">0</td><td class="n">400</td></tr></tbody></table></div>
+  <div class="box" id="prac6">
+    <div class="qrow"><label for="r1">הכל חיטה: כמה טון חיטה?</label><input id="r1" inputmode="decimal" autocomplete="off"><span class="st" id="rs1"></span></div>
+    <div class="qrow"><label for="r2">הכל ירקות: כמה טון ירקות?</label><input id="r2" inputmode="decimal" autocomplete="off"><span class="st" id="rs2"></span></div>
+    <div class="qrow"><label for="r3">מחיר טון ירקות בחלקה K (בטון חיטה)</label><input id="r3" inputmode="decimal" autocomplete="off" placeholder="למשל 0.5"><span class="st" id="rs3"></span></div>
+    <div class="qrow"><label for="r4">איזו חלקה עוברת ראשונה? (אות באנגלית)</label><input id="r4" autocomplete="off" maxlength="1"><span class="st" id="rs4"></span></div>
+    <div class="qrow"><label for="r5">איזו חלקה עוברת אחרונה?</label><input id="r5" autocomplete="off" maxlength="1"><span class="st" id="rs5"></span></div>
+    <div class="qrow"><label for="r6">אחרי שתי חלקות: כמה טון ירקות (X)?</label><input id="r6" inputmode="decimal" autocomplete="off"><span class="st" id="rs6"></span></div>
+    <div class="qrow"><label for="r7">אחרי שתי חלקות: כמה טון חיטה (Y)?</label><input id="r7" inputmode="decimal" autocomplete="off"><span class="st" id="rs7"></span></div>
+    <div class="btns"><button class="btn primary" id="check6" type="button">בדיקה</button><button class="btn" id="reset6" type="button">ניקוי</button></div>
+    <p class="readout" id="prac6Read" role="status"></p>
+  </div>
+  <details class="sol"><summary>פתרון השאלה התאומה</summary>
+    <div class="sol-body">
+      <p><strong>קצוות:</strong> הכל חיטה: ‏100 + 600 + 0 + 400 = <strong>1,100</strong>. הכל ירקות: ‏200 + 300 + 100 + 400 = <strong>1,000</strong>.</p>
+      <p><strong>מחירים</strong> (חיטה ÷ ירקות): ‏K = 100 ÷ 200 = <strong>½</strong>, ‏L = 600 ÷ 300 = 2, ‏M = 0 ÷ 100 = 0, ‏N = 400 ÷ 400 = 1.</p>
+      <p><strong>סדר:</strong> M (0), K (½), N (1), L (2). ראשונה <strong>M</strong>, אחרונה <strong>L</strong>.</p>
+      <p><strong>נקודות:</strong> <bdi dir="ltr">(0, 1100)</bdi> → M <bdi dir="ltr">(100, 1100)</bdi> → K <bdi dir="ltr">(300, 1000)</bdi> → N <bdi dir="ltr">(700, 600)</bdi> → L <bdi dir="ltr">(1000, 0)</bdi>. אחרי שתי חלקות: <strong>300</strong> טון ירקות ו־<strong>1,000</strong> טון חיטה.</p>
+      <p class="brief"><span class="lbl">שימו לב</span>גם כאן החלקה עם הכי הרבה ירקות (N, 400) היא לא הראשונה. היא שלישית, כי היא טובה גם בחיטה.</p>
+    </div>
+  </details>
+</section>
+
 </main>
 
-<footer>העמקה לשאלה 5 בתרגיל 1 (עקומת התמורה ועלות אלטרנטיבית). האיורים נוצרו ב־Higgsfield.</footer>
+<footer>העמקה לשאלות 5 ו־6 בתרגיל 1 (עקומת התמורה ועלות אלטרנטיבית). האיורים נוצרו ב־Higgsfield.</footer>
 </div>
 
 <script>
@@ -520,7 +707,65 @@ $('#check').onclick=()=>{let ok=0,filled=0;ANS.forEach(([i,s,a])=>{const v=parse
   $('#pracRead').innerHTML=filled===0?'עוד לא מילאתם תשובות.':ok===ANS.length?'<b>הכל נכון.</b> שימו לב למסקנה: המכונות הפסיקו להיות צוואר בקבוק.':`${ok} מתוך ${filled} נכונות. רמז: בדקו כל זוג קווים מול הקו השלישי, וזכרו שגם הקצוות יכולים להשתנות.`;};
 $('#reset').onclick=()=>{ANS.forEach(([i,s])=>{$(i).value='';$(s).textContent='';$(s).className='st';});$('#pracRead').textContent='';};
 
-function all(){sim();build();areaLab();}
+/* ---------- Q6 lab: kibbutz order ---------- */
+const PL={A:{v:100,w:500},B:{v:200,w:50},C:{v:300,w:450},D:{v:400,w:0},E:{v:500,w:600}};
+const BEST=['D','B','E','C','A'];
+const priceTxt=p=>{const c=PL[p].w/PL[p].v;return c===0.25?'¼':c===1.5?'1½':fmt(c);};
+let kOrder=[],kShowBest=false;
+function pathOf(ord){let x=0,y=1600;const pts=[{x,y}];for(const p of ord){x+=PL[p].v;y-=PL[p].w;pts.push({x,y});}return pts;}
+const bestPts=pathOf(BEST);
+function bestY(V){for(let i=0;i<bestPts.length-1;i++){const a=bestPts[i],b=bestPts[i+1];if(V>=a.x-1e-9&&V<=b.x+1e-9){return a.y+(b.y-a.y)*(V-a.x)/(b.x-a.x);}}return 0;}
+function chart2(svg,W,H,xmax,ymax,xs,ys,xl,yl){
+  svg.innerHTML='';const ink=css('--ink'),muted=css('--muted'),grid=css('--grid');
+  const m={l:58,r:20,t:20,b:46};const pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const X=x=>m.l+x/xmax*pw, Y=y=>m.t+ph-y/ymax*ph;
+  for(let v=0;v<=xmax;v+=xs){el('line',{x1:X(v),y1:Y(0),x2:X(v),y2:Y(ymax),stroke:grid},svg);el('text',{x:X(v),y:Y(0)+20,'font-size':13,fill:muted,'text-anchor':'middle'},svg,v.toLocaleString('en-US'));}
+  for(let v=0;v<=ymax;v+=ys){el('line',{x1:X(0),y1:Y(v),x2:X(xmax),y2:Y(v),stroke:grid},svg);if(v>0)el('text',{x:X(0)-8,y:Y(v)+4,'font-size':13,fill:muted,'text-anchor':'end'},svg,v.toLocaleString('en-US'));}
+  el('line',{x1:X(0),y1:Y(0),x2:X(xmax),y2:Y(0),stroke:ink,'stroke-width':1.5},svg);el('line',{x1:X(0),y1:Y(0),x2:X(0),y2:Y(ymax),stroke:ink,'stroke-width':1.5},svg);
+  el('text',{x:X(xmax),y:Y(0)+40,'font-size':14,'font-weight':600,fill:ink,'text-anchor':'end'},svg,xl);
+  el('text',{x:X(0)+6,y:Y(ymax)+4,'font-size':14,'font-weight':600,fill:ink},svg,yl);
+  return {X,Y};
+}
+function kib(){
+  const svg=$('#kibChart');const c=chart2(svg,540,440,1500,1700,300,400,'ירקות X (טון)','חיטה Y (טון)');
+  const done=kOrder.length===5;const showBest=kShowBest||done;
+  if(showBest){poly(svg,c,bestPts,css('--accent'),5);
+    bestPts.forEach((p,i)=>{el('circle',{cx:c.X(p.x),cy:c.Y(p.y),r:5,fill:css('--surface'),stroke:css('--accent'),'stroke-width':2.5},svg);
+      if(i>0)el('text',{x:c.X(p.x)+8,y:c.Y(p.y)-8,'font-size':14,'font-weight':700,fill:css('--accent')},svg,BEST[i-1]);});}
+  const up=pathOf(kOrder);
+  if(up.length>1)poly(svg,c,up,css('--pen'),3.5,showBest&&kOrder.join('')!==BEST.join('')?'8 6':'');
+  up.forEach((p,i)=>{el('circle',{cx:c.X(p.x),cy:c.Y(p.y),r:i===up.length-1?7:4.5,fill:css('--pen'),stroke:css('--surface'),'stroke-width':2},svg);});
+  $$('#plotBtns .plot').forEach(b=>{const i=kOrder.indexOf(b.dataset.p);b.disabled=i>=0;b.textContent=i>=0?`${b.dataset.p} · ${i+1}`:b.dataset.p;});
+  $('#plotUndo').disabled=kOrder.length===0;
+  let msg;
+  if(kOrder.length===0)msg='התחלה: הכל חיטה, הנקודה <span class="m">(0, 1600)</span>. לחצו על החלקה שאתם רוצים להעביר ראשונה.';
+  else{
+    const p=kOrder[kOrder.length-1],last=up[up.length-1];
+    const remaining=Object.keys(PL).filter(k=>!kOrder.slice(0,-1).includes(k));
+    const cheapest=remaining.reduce((a,b)=>PL[a].w/PL[a].v<=PL[b].w/PL[b].v?a:b);
+    msg=`העברתם את <b>${p}</b>: ‏+${PL[p].v} ירקות, −${PL[p].w} חיטה. כל טון ירקות בה עלה <b>${priceTxt(p)}</b> טון חיטה. הנקודה עכשיו: <span class="m">(${last.x.toLocaleString('en-US')}, ${last.y.toLocaleString('en-US')})</span>.`;
+    msg+=p===cheapest?' <b style="color:var(--good)">✓ זו הייתה הזולה ביותר מבין שנשארו.</b>':` <b style="color:var(--bad)">✗ הייתה זולה יותר: ${cheapest} (מחיר ${priceTxt(cheapest)}).</b>`;
+    const loss=bestY(last.x)-last.y;
+    if(loss>0.5)msg+=` עם אותה כמות ירקות, הסדר הנכון היה נותן <b>${fmt(loss,0)} טון חיטה יותר</b>.`;
+    if(done)msg=kOrder.join('')===BEST.join('')?'<b style="color:var(--good)">מושלם!</b> הסדר D, B, E, C, A הוא בדיוק עקומת התמורה: בכל צעד העברתם את החלקה הזולה ביותר.':`סיימתם בסדר ${kOrder.join(', ')}. הקו הכחול הוא הסדר הנכון (D, B, E, C, A). כל מקום שבו הקו האדום מתחת לכחול = חיטה שהלכה לאיבוד.`;
+  }
+  $('#kibRead').innerHTML=msg;
+  svg.setAttribute('aria-label',`המסלול שלכם: ${kOrder.length?kOrder.join(', '):'עוד לא העברתם חלקות'}. ${showBest?'מוצגת גם עקומת התמורה: D, B, E, C, A.':''}`);
+}
+$$('#plotBtns .plot').forEach(b=>b.onclick=()=>{if(!kOrder.includes(b.dataset.p)){kOrder.push(b.dataset.p);kib();}});
+$('#plotUndo').onclick=()=>{kOrder.pop();kib();};
+$('#plotReset').onclick=()=>{kOrder=[];kShowBest=false;$('#plotBest').setAttribute('aria-pressed','false');kib();};
+$('#plotBest').onclick=()=>{kShowBest=!kShowBest;$('#plotBest').setAttribute('aria-pressed',kShowBest?'true':'false');kib();};
+
+/* ---------- Q6 practice ---------- */
+const ANS6=[['#r1','#rs1',1100],['#r2','#rs2',1000],['#r3','#rs3',0.5],['#r4','#rs4','M'],['#r5','#rs5','L'],['#r6','#rs6',300],['#r7','#rs7',1000]];
+$('#check6').onclick=()=>{let ok=0,filled=0;ANS6.forEach(([i,s,a])=>{const raw=($(i).value||'').trim();const st=$(s);if(!raw){st.textContent='';st.className='st';return;}filled++;
+  const good=typeof a==='string'?raw.toUpperCase()===a:Math.abs(parse(raw.replace(/,/g,''))-a)<0.01;
+  if(good){ok++;st.textContent='✓';st.className='st ok';st.setAttribute('aria-label','נכון');}else{st.textContent='✗';st.className='st no';st.setAttribute('aria-label','לא נכון');}});
+  $('#prac6Read').innerHTML=filled===0?'עוד לא מילאתם תשובות.':ok===ANS6.length?'<b>הכל נכון.</b> שימו לב: N מגדלת הכי הרבה ירקות, ובכל זאת היא שלישית.':`${ok} מתוך ${filled} נכונות. רמז: מחיר = חיטה ÷ ירקות, ומסדרים מהזול ליקר.`;};
+$('#reset6').onclick=()=>{ANS6.forEach(([i,s])=>{$(i).value='';$(s).textContent='';$(s).className='st';});$('#prac6Read').textContent='';};
+
+function all(){sim();build();areaLab();kib();}
 all();
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',all);
 new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
