@@ -201,6 +201,14 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .eq.mixed .mx{white-space:normal}
 .eq.mixed .sg{white-space:nowrap}
 .eq.mixed .sg.op{color:var(--muted)}
+
+.vidsec{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1.5px solid var(--ink);border-radius:16px;padding:16px clamp(12px,3vw,20px);scroll-margin-top:16px}
+.vid-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.vid-head h2{font-size:clamp(1.3rem,3.6vw,1.7rem)}
+.vidframe{margin:0}
+.vidframe video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);background:#000}
+.transcript summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center;color:var(--accent)}
+.transcript p{margin:0 0 8px;font-size:1rem}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -210,9 +218,9 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 <header class="top">
   <div class="eyebrow">מבוא למיקרו כלכלה · שיעור 1 · העמקה לשאלות 5 ו־6</div>
   <h1>צוואר בקבוק ויתרון יחסי</h1>
-  <p class="lead">שתי השאלות האחרונות בתרגיל, עד הסוף. בתחילת כל שאלה יש <strong>פתרון מלא לפי השלבים של המורה</strong>, עם הסבר של כל צעד, ואחריו הסברים, ניסויים ותרגול. <strong>שאלה 5</strong>: מפעל עם שלושה משאבים, ועקומה שנשברת. <strong>שאלה 6</strong>: קיבוץ עם חמש חלקות, ועקומה שנבנית לפי יתרון יחסי. לפני הכל יש מילון שמסביר כל סימן ולמה שמים אותו.</p>
+  <p class="lead">שתי השאלות האחרונות בתרגיל, עד הסוף. לכל שאלה יש <strong>סרטון עם קריינות</strong> שמראה את הפתרון צעד אחר צעד. בתחילת כל שאלה יש <strong>פתרון מלא לפי השלבים של המורה</strong>, עם הסבר של כל צעד, ואחריו הסברים, ניסויים ותרגול. <strong>שאלה 5</strong>: מפעל עם שלושה משאבים, ועקומה שנשברת. <strong>שאלה 6</strong>: קיבוץ עם חמש חלקות, ועקומה שנבנית לפי יתרון יחסי. לפני הכל יש מילון שמסביר כל סימן ולמה שמים אותו.</p>
   <nav class="jump" aria-label="קפיצה לחלקי הדף">
-    <a class="main" href="#symbols">מילון הסימנים</a><span class="sep">שאלה 5:</span><a href="#q5full">פתרון מלא</a><a href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a><span class="sep">שאלה 6:</span><a href="#q6full">פתרון מלא</a><a href="#q6story">הסיפור</a><a href="#q6s2">מחירים</a><a href="#q6lab">ניסוי</a><a href="#q6s4">נקודות</a><a href="#q6exam">ככה כותבים</a><a href="#q6prac">תרגול</a>
+    <a class="main" href="#symbols">מילון הסימנים</a><span class="sep">שאלה 5:</span><a href="#q5video">סרטון</a><a href="#q5full">פתרון מלא</a><a href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a><span class="sep">שאלה 6:</span><a href="#q6video">סרטון</a><a href="#q6full">פתרון מלא</a><a href="#q6story">הסיפור</a><a href="#q6s2">מחירים</a><a href="#q6lab">ניסוי</a><a href="#q6s4">נקודות</a><a href="#q6exam">ככה כותבים</a><a href="#q6prac">תרגול</a>
   </nav>
 </header>
 
@@ -243,6 +251,25 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 </section>
 
 <div class="part-sep" id="q5"><span>שאלה 5</span><h2>צוואר בקבוק: למה העקומה נשברת</h2></div>
+<section class="vidsec" id="q5video" aria-labelledby="h-q5video">
+  <div class="vid-head"><h2 id="h-q5video">צפו קודם: הפתרון של שאלה 5 בסרטון</h2><span class="note"><bdi dir="ltr">2:34</bdi> דקות · קריינות וכתוביות</span></div>
+  <figure class="vidframe"><video controls playsinline preload="metadata" poster="img/q5_poster.webp" aria-label="סרטון: פתרון שאלה 5 צעד אחר צעד, עם קריינות בעברית וכתוביות"><source src="vid/q5_solution.mp4" type="video/mp4"></video></figure>
+  <details class="transcript"><summary>תמליל הסרטון</summary>
+        <p>בסרטון הזה נפתור את שאלה 5, צעד אחר צעד, בדיוק לפי השלבים של המורה.</p>
+        <p>יש מפעל שבונה מכוניות וטרקטורים. כל רכב לוקח משאבים משלוש קופסאות: שעות עבודה, שעות מכונה ושטח.</p>
+        <p>נקרא למכוניות X, ולטרקטורים Y. ברגע שקופסה אחת נגמרת, המפעל עוצר. הקופסה הזאת היא צוואר הבקבוק.</p>
+        <p>שלב ראשון: כותבים אילוץ לכל קופסה. מה שהמכוניות לוקחות, ועוד מה שהטרקטורים לוקחים, קטן או שווה למה שיש.</p>
+        <p>שלב שני: משאירים את Y לבד. מחלקים במספר שכתוב ליד Y, ומעבירים את X לצד השני.</p>
+        <p>שלב שלישי: הקצוות. אם בונים רק טרקטורים, המכונות מספיקות רק ל־8. אם בונים רק מכוניות, העבודה מספיקה רק ל־8. תמיד לוקחים את הקטן מכולם.</p>
+        <p>שלב רביעי: משווים בין כל שני קווים. מכונות ושטח נפגשים בנקודה (2, 7). עבודה ושטח נפגשים בנקודה (7, 2).</p>
+        <p>שלב חמישי: בודקים כל נקודה מול הקופסה השלישית. הנקודה (5 ושליש, 5 ושליש), שבה העבודה והמכונות נפגשות, צריכה יותר שטח ממה שיש. לכן זורקים אותה.</p>
+        <p>שלב שישי: העקומה היא תמיד הקו הנמוך מבין השלושה. יוצאת עקומה שבורה, עם ארבע נקודות: A, B, C ו־D.</p>
+        <p>סעיף 2: כמה מכוניות עולה טרקטור? מחלקים את מה שטרקטור לוקח מצוואר הבקבוק, במה שמכונית לוקחת ממנו. יוצא ½ מכונית, מכונית אחת ושתי מכוניות.</p>
+        <p>ככל שבונים יותר טרקטורים, כך כל טרקטור נוסף עולה יותר מכוניות. לכן העקומה קמורה.</p>
+        <p>סעיף 3: מוסיפים שטח, 100 מטר רבוע במקום 90. רק האמצע של העקומה זז החוצה, לנקודות (4, 6) ו־(6, 4). הקצוות והמחירים לא משתנים.</p>
+        <p>זה כל הסוד: שלוש קופסאות, והקופסה שנגמרת ראשונה היא הבוס. היא קובעת את העקומה.</p>
+  </details>
+</section>
 <!-- FULL SOLUTION Q5, by the teacher's steps -->
 <section id="q5full" class="stack" aria-labelledby="h-q5full">
   <div class="sec-head"><div class="eyebrow">שאלה 5 · הפתרון המלא</div><h2 id="h-q5full">פותרים לפי השלבים של המורה</h2></div>
@@ -576,6 +603,21 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- ===================== QUESTION 6 ===================== -->
 <div class="part-sep" id="q6"><span>שאלה 6</span><h2>יתרון יחסי: איזו חלקה עוברת קודם</h2></div>
+<section class="vidsec" id="q6video" aria-labelledby="h-q6video">
+  <div class="vid-head"><h2 id="h-q6video">צפו קודם: הפתרון של שאלה 6 בסרטון</h2><span class="note"><bdi dir="ltr">1:44</bdi> דקות · קריינות וכתוביות</span></div>
+  <figure class="vidframe"><video controls playsinline preload="metadata" poster="img/q6_poster.webp" aria-label="סרטון: פתרון שאלה 6 צעד אחר צעד, עם קריינות בעברית וכתוביות"><source src="vid/q6_solution.mp4" type="video/mp4"></video></figure>
+  <details class="transcript"><summary>תמליל הסרטון</summary>
+        <p>עכשיו שאלה 6. לקיבוץ יש חמש חלקות, וכל חלקה יכולה לגדל ירקות או חיטה. נבנה את עקומת התמורה שלו.</p>
+        <p>שלב ראשון: לכל חלקה מחשבים כמה עולה טון ירקות. על מה מוותרים, חלקי מה מקבלים. כלומר חיטה, חלקי ירקות.</p>
+        <p>בחלקה A, כל טון ירקות עולה 5 טון חיטה. יקר מאוד. בחלקה D הוא לא עולה כלום, כי היא לא יכולה לגדל חיטה בכלל.</p>
+        <p>שלב שני: מסדרים מהזולה ועד היקרה. D, אחר כך B, E, C, ובסוף A. זה הסדר שבו החלקות עוברות לירקות.</p>
+        <p>שלב שלישי: מתחילים כשהכול חיטה, אלף שש מאות טון. ואז מעבירים לירקות את החלקה הזולה, D, ורושמים נקודה.</p>
+        <p>בכל צעד מוסיפים את הירקות של החלקה הבאה, ומורידים את החיטה שלה. ממשיכים עד שהכול ירקות, אלף וחמש מאות טון.</p>
+        <p>מחברים את הנקודות בסרגל. כל קטע תלול יותר מהקודם, כי כל חלקה נוספת יקרה יותר. לכן העקומה קמורה.</p>
+        <p>ומה כותבים בהסבר? יתרון יחסי: קודם עוברת החלקה שבה מוותרים על הכי מעט חיטה. חלקה E מגדלת הכי הרבה משני הגידולים, ובכל זאת היא שלישית בתור.</p>
+        <p>עכשיו תורכם. נסו לבד את שאלת התרגול שבעמוד, ובדקו את עצמכם. בהצלחה!</p>
+  </details>
+</section>
 <!-- FULL SOLUTION Q6, by the teacher's steps -->
 <section id="q6full" class="stack" aria-labelledby="h-q6full">
   <div class="sec-head"><div class="eyebrow">שאלה 6 · הפתרון המלא</div><h2 id="h-q6full">פותרים לפי השלבים של המורה</h2></div>
