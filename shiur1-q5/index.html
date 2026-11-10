@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>שאלות 5 ו־6 · תרגיל 1</title>
-<meta name="description" content="פתרון מלא לשאלות 5 ו־6 לפי השלבים של המורה, עם מילון סימנים, ניסויים אינטראקטיביים ותרגול.">
+<title>עקומת התמורה · תרגילים 1–2</title>
+<meta name="description" content="פתרון מלא לשאלות 5 ו־6 בתרגיל 1 והסבר לכל תרגיל 2 (צמיחה כלכלית), עם מילון סימנים, ניסויים אינטראקטיביים ותרגול.">
 <meta property="og:image" content="img/factory.webp">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -211,17 +211,35 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .transcript p{margin:0 0 8px;font-size:1rem}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* exercise 2 */
+.part-sep.ex2sep{background:var(--accent)}
+.part-sep.ex2sep h2,.part-sep.ex2sep span{color:var(--surface)}
+.qtext{background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:0 12px 12px 0;padding:12px 16px;font-size:1.05rem}
+.mcq{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:start;font:500 1rem var(--font-body);border:1.5px solid var(--control);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer;min-height:44px}
+.opt:hover{border-color:var(--accent)}
+.opt.ok{border-color:var(--good);background:var(--good-soft);font-weight:700}
+.opt.no{border-color:var(--bad);background:var(--bad-soft)}
+.opt.dim{opacity:.6}
+.fb{margin:0;padding:10px 14px;border-radius:10px;background:var(--paper)}
+.fb:empty{display:none}
+.chart.sm{max-width:560px;margin-inline:auto}
+.qsec .tstep .tnum{font-family:var(--font-display)}
+.dd{margin:0}
+.dd>b:first-child{color:var(--accent)}
 </style>
 
 <div class="wrap" dir="rtl" lang="he">
 
 <header class="top">
-  <div class="eyebrow">מבוא למיקרו כלכלה · שיעור 1 · העמקה לשאלות 5 ו־6</div>
+  <div class="eyebrow">מבוא למיקרו כלכלה · שיעור 1 · העמקה לשאלות 5 ו־6 ותרגיל 2</div>
   <h1>צוואר בקבוק ויתרון יחסי</h1>
-  <p class="brief" style="margin:0"><span class="lbl">חדש</span><a href="notebook.html">דף מחברת</a>: הפתרון המלא של שתי השאלות, בדיוק כמו שכותבים במחברת, כולל PDF להדפסה.</p>
+  <p class="brief" style="margin:0"><span class="lbl">חדש</span><a href="#ex2">תרגיל 2 · צמיחה כלכלית</a>: הסבר לכל 7 השאלות, עם שרטוט, תשובה ומה כותבים במבחן. הוא נמצא בסוף הדף, כי הוא ממשיך את אותו נושא.</p>
+  <p class="brief" style="margin:0"><span class="lbl">גם</span><a href="notebook.html">דף מחברת</a>: הפתרון המלא של שתי השאלות, בדיוק כמו שכותבים במחברת, כולל PDF להדפסה.</p>
   <p class="lead">שתי השאלות האחרונות בתרגיל, עד הסוף. לכל שאלה יש <strong>סרטון עם קריינות</strong> שמראה את הפתרון צעד אחר צעד. בתחילת כל שאלה יש <strong>פתרון מלא לפי השלבים של המורה</strong>, עם הסבר של כל צעד, ואחריו הסברים, ניסויים ותרגול. <strong>שאלה 5</strong>: מפעל עם שלושה משאבים, ועקומה שנשברת. <strong>שאלה 6</strong>: קיבוץ עם חמש חלקות, ועקומה שנבנית לפי יתרון יחסי. לפני הכל יש מילון שמסביר כל סימן ולמה שמים אותו.</p>
   <nav class="jump" aria-label="קפיצה לחלקי הדף">
-    <a class="main" href="notebook.html">📝 דף מחברת</a><a href="#symbols">מילון הסימנים</a><span class="sep">שאלה 5:</span><a href="#q5video">סרטון</a><a href="#q5full">פתרון מלא</a><a href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a><span class="sep">שאלה 6:</span><a href="#q6video">סרטון</a><a href="#q6full">פתרון מלא</a><a href="#q6story">הסיפור</a><a href="#q6s2">מחירים</a><a href="#q6lab">ניסוי</a><a href="#q6s4">נקודות</a><a href="#q6exam">ככה כותבים</a><a href="#q6prac">תרגול</a>
+    <a class="main" href="notebook.html">📝 דף מחברת</a><a href="#symbols">מילון הסימנים</a><span class="sep">שאלה 5:</span><a href="#q5video">סרטון</a><a href="#q5full">פתרון מלא</a><a href="#story">הסיפור</a><a href="#sim">המפעל</a><a href="#build">העקומה</a><a href="#s2">סעיף 2</a><a href="#s3">סעיף 3</a><a href="#beyond">צעדים קדימה</a><a href="#exam">ככה כותבים</a><a href="#practice">תרגול</a><span class="sep">שאלה 6:</span><a href="#q6video">סרטון</a><a href="#q6full">פתרון מלא</a><a href="#q6story">הסיפור</a><a href="#q6s2">מחירים</a><a href="#q6lab">ניסוי</a><a href="#q6s4">נקודות</a><a href="#q6exam">ככה כותבים</a><a href="#q6prac">תרגול</a><span class="sep">תרגיל 2:</span><a href="#ex2intro">הרעיון</a><a href="#ex2q1">שאלה 1</a><a href="#ex2q2">2</a><a href="#ex2q3">3</a><a href="#ex2q4">4</a><a href="#ex2q5">5</a><a href="#ex2q6">6</a><a href="#ex2q7">7</a><a href="#ex2sum">סיכום</a>
   </nav>
 </header>
 
@@ -829,9 +847,205 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
   </details>
 </section>
 
+<!-- ===================== EXERCISE 2 ===================== -->
+<div class="part-sep ex2sep" id="ex2"><span>תרגיל 2</span><h2>צמיחה כלכלית: מה מזיז את עקומת התמורה</h2></div>
+
+<section id="ex2intro" class="stack" aria-labelledby="h-ex2a">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2 · לפני השאלות</div><h3 id="h-ex2a" style="font-size:1.6rem">הרעיון של התרגיל בשתי דקות</h3></div>
+  <p>בתרגיל 1 העקומה עמדה במקום, ושאלנו <strong>איפה על העקומה</strong> נמצאים. בתרגיל 2 שואלים מה קורה כש<strong>העקומה עצמה זזה</strong>. זו "צמיחה כלכלית": המשק יכול לייצר יותר ממה שיכול היה קודם.</p>
+  <p class="brief"><span class="lbl">שני דברים שונים</span><strong>העקומה</strong> = מה המשק <u>יכול</u> לייצר. <strong>הנקודה</strong> = מה המשק <u>בוחר</u> לייצר. כשהעקומה זזה, היכולת משתנה, אבל הבחירה עדיין חופשית.</p>
+
+  <div class="lab">
+    <div class="lab-title"><span class="tag">ניסוי 5</span><h3>מה מזיז את העקומה?</h3></div>
+    <p class="note" style="margin:0">בחרו אירוע וראו מה קורה לעקומה. הקו המקווקו הוא העקומה הישנה.</p>
+    <div class="btns" id="shiftBtns2" role="group" aria-label="אירועים שמזיזים את העקומה">
+      <button class="btn" type="button" data-e="tx" aria-pressed="true">שיפור טכנולוגי ב־X</button>
+      <button class="btn" type="button" data-e="ty" aria-pressed="false">שיפור טכנולוגי ב־Y</button>
+      <button class="btn" type="button" data-e="res" aria-pressed="false">יותר גורמי ייצור</button>
+      <button class="btn" type="button" data-e="rx" aria-pressed="false">נסיגה טכנולוגית ב־X</button>
+      <button class="btn" type="button" data-e="mix" aria-pressed="false">נסיגה ב־X ושיפור ב־Y</button>
+      <button class="btn" type="button" data-e="grant" aria-pressed="false">מענק מחו״ל</button>
+    </div>
+    <svg class="chart" id="shiftChart2" viewBox="0 0 540 420" role="img" aria-label="עקומת התמורה לפני ואחרי האירוע"></svg>
+    <p class="readout" id="shiftRead2" aria-live="polite"></p>
+  </div>
+
+  <h3>5 כללים שפותרים את כל התרגיל</h3>
+  <ol class="steps">
+    <li><strong>שיפור טכנולוגי במוצר אחד</strong> מזיז החוצה רק את הקצה שלו. הקצה של המוצר השני לא זז, כי בו לא השתנה כלום. העקומה "מסתובבת" סביב הקצה שנשאר במקום.</li>
+    <li><strong>משאבים שמתפנים:</strong> אם צריך פחות משאבים כדי לייצר את אותה כמות X, המשאבים שהתפנו יכולים לעבור לייצור Y. לכן שיפור ב־X יכול להגדיל דווקא את Y.</li>
+    <li><strong>העקומה ≠ הנקודה:</strong> שינוי ביכולת לא קובע מה המשק יבחר. "בהכרח" ו"בוודאות" הן מילים חשודות.</li>
+    <li><strong>נקודה בתוך העקומה</strong> = אבטלה או בזבוז. משם אפשר להגדיל את שני המוצרים בלי לוותר על כלום (<a href="#q5">ראו את צוואר הבקבוק בתרגיל 1</a>).</li>
+    <li><strong>מענק מחו״ל</strong> לא משנה את מה שהמשק <u>מייצר</u>, ולכן עקומת התמורה לא זזה. הוא משנה את מה שהמשק יכול <u>לצרוך</u>.</li>
+  </ol>
+</section>
+
+<!-- Q1 -->
+<section id="ex2q1" class="stack qsec" aria-labelledby="h-e2q1">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q1" style="font-size:1.6rem">שאלה 1 · נכון או לא נכון</h3></div>
+  <div class="qtext"><b>סעיף 1:</b> משק מייצר שני מוצרים, X ו־Y. ייצור X עלה בשנה האחרונה, וכמות גורמי הייצור במשק לא השתנתה. מכאן שהעלייה בייצור X חייבת הייתה להיעשות על ידי ויתור כלשהו בייצור Y.</div>
+  <div class="mcq" data-ans="1"><button class="opt" type="button" data-i="0">נכון</button><button class="opt" type="button" data-i="1">לא נכון</button><p class="fb" role="status"></p></div>
+  <div class="tstep"><div class="tnum">?</div><div class="tbody">
+    <p class="dd"><b>איך חושבים:</b> המילה "חייבת" אומרת שאין שום דרך אחרת. אז מחפשים דרך להגדיל את X <u>בלי</u> לוותר על Y. אם מוצאים אחת, הטענה לא נכונה.</p>
+    <ul class="steps" style="list-style:disc">
+      <li><b>דרך 1:</b> המשק היה <u>בתוך</u> העקומה (אבטלה). אפשר להעסיק משאבים מובטלים ולייצר יותר X בלי לגעת ב־Y.</li>
+      <li><b>דרך 2:</b> היה <u>שיפור טכנולוגי</u>. כמות גורמי הייצור לא השתנתה, אבל הם מייצרים יותר. העקומה זזה החוצה.</li>
+    </ul>
+    <svg class="chart sm" id="e2q1" viewBox="0 0 540 400" role="img" aria-label="שתי דרכים להגדיל את X בלי לוותר על Y: יציאה מנקודה פנימית, או שיפור טכנולוגי"></svg>
+    <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><b>לא נכון.</b> ויתור על Y הכרחי רק אם המשק היה על עקומת התמורה (תעסוקה מלאה וייצור יעיל) ולא חל שינוי טכנולוגי. אם המשק היה בנקודה פנימית, כלומר עם אבטלה או חוסר יעילות, אפשר להגדיל את X על ידי העסקת גורמי ייצור מובטלים, בלי לוותר על Y. גם שיפור טכנולוגי יכול להזיז את העקומה החוצה ולאפשר יותר X בלי ויתור על Y, אף שכמות גורמי הייצור לא השתנתה.</p></div>
+  </div></div>
+
+  <div class="qtext" style="margin-top:10px"><b>סעיף 2:</b> משק מייצר מוצרי חקלאות ותעשייה בלבד. השנה חל שיפור טכנולוגי בייצור מוצרי החקלאות. כמות מוצרי החקלאות שיוצרה השנה שווה לזו של שנה שעברה, והמשק מייצר גם השנה על עקומת התמורה. כמות מוצרי התעשייה השנה גדולה יותר מבשנה הקודמת. צייר והסבר.</div>
+  <div class="mcq" data-ans="0"><button class="opt" type="button" data-i="0">נכון</button><button class="opt" type="button" data-i="1">לא נכון</button><p class="fb" role="status"></p></div>
+  <div class="tstep"><div class="tnum">?</div><div class="tbody">
+    <p class="dd"><b>איך חושבים, צעד אחר צעד:</b></p>
+    <ol class="steps">
+      <li>שיפור בחקלאות ← הקצה של החקלאות זז החוצה. הקצה של התעשייה לא זז. העקומה מסתובבת החוצה.</li>
+      <li>מייצרים <u>אותה</u> כמות חקלאות, אבל עם טכנולוגיה טובה יותר. לכן צריך <u>פחות</u> משאבים בחקלאות.</li>
+      <li>המשאבים שהתפנו עוברים לתעשייה. כיוון שהמשק על העקומה, אף משאב לא מובטל.</li>
+      <li>בגרף: באותו X עולים ישר למעלה עד העקומה החדשה. הנקודה החדשה גבוהה יותר, כלומר יותר תעשייה.</li>
+    </ol>
+    <svg class="chart sm" id="e2q2" viewBox="0 0 540 400" role="img" aria-label="שיפור בחקלאות: באותה כמות חקלאות, הנקודה על העקומה החדשה גבוהה יותר"></svg>
+    <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><b>נכון.</b> השיפור הטכנולוגי בחקלאות מזיז את עקומת התמורה החוצה בציר החקלאות, בעוד שנקודת הקצה של התעשייה לא משתנה. כדי לייצר את אותה כמות חקלאות דרושים עכשיו פחות גורמי ייצור. גורמי הייצור שהתפנו עוברים לתעשייה, ומכיוון שהמשק נמצא על העקומה (תעסוקה מלאה), כמות התעשייה גדלה. בגרף: הנקודה עוברת מ־A על העקומה הישנה ל־B על העקומה החדשה, באותה כמות חקלאות וגבוה יותר.</p>
+    <p class="note" style="margin:0">הערה למתקדמים: זה נכון כל עוד מייצרים חקלאות כלשהי. אם כמות החקלאות הייתה 0, אין משאבים לפנות, והתעשייה הייתה נשארת אותו דבר.</p></div>
+  </div></div>
+</section>
+
+<!-- Q2 -->
+<section id="ex2q2" class="stack qsec" aria-labelledby="h-e2q2">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q2" style="font-size:1.6rem">שאלה 2 · שיפור בייצור הצבאי</h3></div>
+  <div class="qtext">שיפורים טכנולוגיים בייצור מוצרים צבאיים:</div>
+  <div class="mcq" data-ans="1">
+    <button class="opt" type="button" data-i="0" data-why="לא בהכרח. השיפור מגדיל את היכולת, אבל המשק בוחר כמה לייצר. הוא יכול להשאיר את הייצור הצבאי כמו שהוא.">א. יביאו בהכרח להגדלת הייצור הצבאי</button>
+    <button class="opt" type="button" data-i="1" data-why="נכון. אם מייצרים אותה כמות צבאית עם פחות משאבים, המשאבים שהתפנו עוברים לייצור האזרחי. כך דווקא הייצור האזרחי גדל.">ב. עשויים להביא להגדלת הייצור האזרחי דווקא</button>
+    <button class="opt" type="button" data-i="2" data-why="לא. שיפור טכנולוגי לא מחייב פיטורים: המשאבים שהתפנו יכולים לעבור לייצור האזרחי.">ג. יביאו בהכרח לירידה בהיקף התעסוקה במשק</button>
+    <button class="opt" type="button" data-i="3" data-why="לא. העקומה (יכולת הייצור) זזה החוצה בכל מקרה, גם אם המשק נמצא כרגע בנקודה פנימית.">ד. ישפיעו על יכולת הייצור רק אם המשק נמצא בתעסוקה מלאה</button>
+    <p class="fb" role="status"></p>
+  </div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><b>תשובה ב.</b> שיפור טכנולוגי בייצור הצבאי מזיז את עקומת התמורה החוצה בציר הצבאי. אם המשק בוחר להמשיך לייצר את אותה כמות צבאית, הוא זקוק לפחות גורמי ייצור בייצור הצבאי. הגורמים שהתפנו מועברים לייצור האזרחי, וכך דווקא הייצור האזרחי גדל.</p></div>
+  <p class="symnote"><b>הקשר לשאלה 1:</b> זה בדיוק אותו היגיון כמו בסעיף 2 של שאלה 1 (חקלאות ותעשייה), רק עם שמות אחרים.</p>
+</section>
+
+<!-- Q3 -->
+<section id="ex2q3" class="stack qsec" aria-labelledby="h-e2q3">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q3" style="font-size:1.6rem">שאלה 3 · שיפור ב־X, ו־Y גדל</h3></div>
+  <div class="qtext">משק מייצר שני מוצרים X ו־Y ונמצא על עקומת התמורה. חל שיפור טכנולוגי בייצור X בלבד, ונמצא שהכמות המיוצרת ממוצר Y גדלה. מכאן ש:</div>
+  <div class="mcq" data-ans="2">
+    <button class="opt" type="button" data-i="0" data-why="לא בוודאות. ב־X עובדים עכשיו פחות משאבים (חלק עברו ל־Y), אבל כל משאב מייצר יותר. התוצאה יכולה להיות יותר, פחות או אותו דבר.">1. הכמות המיוצרת ממוצר X גדלה בוודאות</button>
+    <button class="opt" type="button" data-i="1" data-why="לא בוודאות. זה רק אחד משלושה מקרים אפשריים.">2. הכמות המיוצרת ממוצר X נשארה ללא שינוי בוודאות</button>
+    <button class="opt" type="button" data-i="2" data-why="נכון. כדי ש־Y יגדל, משאבים חייבים לעבור מ־X ל־Y. ב־X נשארו פחות משאבים, אבל כל אחד מייצר יותר. לכן X יכול לגדול, לקטון או להישאר.">3. לא ניתן לקבוע מה קרה לכמות של X</button>
+    <button class="opt" type="button" data-i="3" data-why="אין סתירה. משאבים שהתפנו מ־X יכולים לעבור ל־Y.">4. יש סתירה בנתונים</button>
+    <button class="opt" type="button" data-i="4" data-why="לא. בטכנולוגיה של Y לא השתנה כלום, ולכן כדי לייצר יותר Y חייבים להעביר אליו משאבים. ההקצאה השתנתה.">5. אין שינוי בהקצאת גורמי הייצור בין X ל־Y</button>
+    <p class="fb" role="status"></p>
+  </div>
+  <div class="tstep"><div class="tnum">?</div><div class="tbody">
+    <p class="dd"><b>איך חושבים:</b> השאלה הכי חשובה היא <u>איך</u> Y גדל. הטכנולוגיה של Y לא השתנתה, והמשק היה בתעסוקה מלאה. לכן הדרך היחידה להגדיל את Y היא להעביר אליו משאבים מ־X.</p>
+    <p class="dd">עכשיו ל־X יש <b>פחות משאבים</b> (מוריד את X) אבל <b>טכנולוגיה טובה יותר</b> (מעלה את X). מי מנצח? אי אפשר לדעת. בגרף: על העקומה החדשה, כל נקודה שגבוהה מ־A אפשרית, ימינה, שמאלה או בדיוק מעל.</p>
+    <svg class="chart sm" id="e2q3" viewBox="0 0 540 400" role="img" aria-label="שלוש נקודות אפשריות על העקומה החדשה עם יותר Y: X גדל, נשאר או קטן"></svg>
+  </div></div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><b>תשובה 3.</b> הטכנולוגיה בייצור Y לא השתנתה והמשק בתעסוקה מלאה, ולכן הגידול ב־Y מחייב העברת גורמי ייצור מ־X ל־Y. בייצור X נותרו פחות גורמי ייצור, אך כל גורם מייצר יותר בזכות השיפור. לכן לא ניתן לקבוע אם הכמות של X גדלה, קטנה או לא השתנתה.</p></div>
+</section>
+
+<!-- Q4 -->
+<section id="ex2q4" class="stack qsec" aria-labelledby="h-e2q4">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q4" style="font-size:1.6rem">שאלה 4 · נסיגה ב־X ושיפור ב־Y</h3></div>
+  <div class="qtext">משק מייצר שני מוצרים X ו־Y ונמצא על עקומת התמורה. בייצור X חלה נסיגה טכנולוגית, ובייצור Y חל שיפור טכנולוגי. כתוצאה מכך:</div>
+  <div class="mcq" data-ans="0">
+    <button class="opt" type="button" data-i="0" data-why="נכון. העקומה החדשה חוצה את הישנה. אם A נמצאת בחלק שבו העקומה החדשה מעל הישנה (או בדיוק בנקודת החיתוך), אפשר להמשיך לייצר את אותן כמויות.">1. ייתכן שהמשק ימשיך לייצר את אותן כמויות של X ו־Y</button>
+    <button class="opt" type="button" data-i="1" data-why="לא. הקצה של X זז פנימה והקצה של Y זז החוצה. העקומה השתנתה.">2. לא חל כל שינוי בעקומת התמורה</button>
+    <button class="opt" type="button" data-i="2" data-why="לא בהכרח. המשק יכול לבחור נקודה על העקומה החדשה ולייצר ביעילות.">3. הייצור יהיה בהכרח לא יעיל</button>
+    <button class="opt" type="button" data-i="3" data-why="לא בהכרח. היכולת השתנתה, אבל הבחירה של המשק חופשית.">4. המשק ייצר בהכרח פחות X ויותר Y</button>
+    <button class="opt" type="button" data-i="4" data-why="אפשר לקבוע: הכמות המקסימלית של X יורדת (נסיגה), והכמות המקסימלית של Y עולה (שיפור).">5. לא ניתן לקבוע אם הכמויות המקסימליות של X ושל Y יעלו או ירדו</button>
+    <p class="fb" role="status"></p>
+  </div>
+  <svg class="chart sm" id="e2q4" viewBox="0 0 540 400" role="img" aria-label="העקומה החדשה חוצה את הישנה: הקצה של X זז פנימה והקצה של Y החוצה"></svg>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><b>תשובה 1.</b> הנסיגה ב־X מזיזה פנימה את נקודת הקצה של X, והשיפור ב־Y מזיז החוצה את נקודת הקצה של Y. לכן העקומה החדשה חוצה את הישנה. אם נקודת הייצור המקורית נמצאת בחלק שבו העקומה החדשה מעל הישנה, או בנקודת החיתוך, המשק יכול להמשיך לייצר את אותן כמויות. תשובה 5 שגויה, כי ידוע שהמקסימום של X יורד והמקסימום של Y עולה.</p></div>
+</section>
+
+<!-- Q5 -->
+<section id="ex2q5" class="stack qsec" aria-labelledby="h-e2q5">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q5" style="font-size:1.6rem">שאלה 5 · נקודה A בתוך העקומה</h3></div>
+  <div class="qtext">משק מייצר מזון וביגוד בלבד. בשנת 2020 נמצא המשק בנקודה A (בתוך העקומה, כמו בשרטוט). בשנת 2021 יוכל המשק:</div>
+  <svg class="chart sm" id="e2q5" viewBox="0 0 540 400" role="img" aria-label="נקודה A בתוך עקומת התמורה. האזור שבין A לעקומה הוא תוספת של שני המוצרים"></svg>
+  <div class="mcq" data-ans="2">
+    <button class="opt" type="button" data-i="0" data-why="זה אפשרי, אבל לא רק זה. מנקודה פנימית אפשר להגדיל גם את שניהם.">א. להגדיל רק את ייצור המזון</button>
+    <button class="opt" type="button" data-i="1" data-why="גם זה אפשרי, אבל לא רק זה.">ב. להגדיל רק את ייצור הביגוד</button>
+    <button class="opt" type="button" data-i="2" data-why="נכון. A בתוך העקומה, כלומר יש משאבים מובטלים. אפשר להעסיק אותם ולהגדיל את שני המוצרים בלי לוותר על כלום.">ג. להגדיל גם את ייצור הביגוד וגם את ייצור המזון</button>
+    <button class="opt" type="button" data-i="3" data-why="לא. רק בנקודה על העקומה, בלי שינוי טכנולוגי, אי אפשר להגדיל שום דבר בלי ויתור.">ד. המשק לא יוכל להגדיל את ייצור אף אחד מהמוצרים</button>
+    <p class="fb" role="status"></p>
+  </div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><b>תשובה ג.</b> נקודה A נמצאת בתוך עקומת התמורה, כלומר במשק יש אבטלה או חוסר יעילות. על ידי העסקת גורמי הייצור המובטלים, המשק יכול להגדיל את ייצור שני המוצרים בלי לוותר על אף אחד מהם, עד שיגיע לעקומה (האזור הצבוע בשרטוט).</p></div>
+</section>
+
+<!-- Q6 -->
+<section id="ex2q6" class="stack qsec" aria-labelledby="h-e2q6">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q6" style="font-size:1.6rem">שאלה 6 · עקומה ישרה ומענק מחו״ל</h3></div>
+  <div class="qtext">משק מייצר 2 מוצרים, X ו־Y. משוואת עקומת התמורה שלו: <bdi dir="ltr" class="m">Y = 200 − 4X</bdi>. (א) התוו את עקומת התמורה. (ב) המשק קיבל מענק מחו״ל של 5 יחידות X ו־10 יחידות Y. כיצד תשתנה עקומת אפשרויות הצריכה?</div>
+  <div class="tstep"><div class="tnum">א</div><div class="tbody">
+    <p class="dd"><b>מה עשיתי:</b> מצאתי את שני הקצוות, וחיברתי ביניהם בקו ישר (המשוואה היא של קו ישר).</p>
+    <div class="eq mixed"><span class="hx">רק Y:</span><bdi dir="ltr" class="mx"><span class="sg">X = 0</span> <span class="sg op">→</span> <span class="sg">Y = 200</span> <span class="sg op">→</span> <span class="sg">(0, 200)</span></bdi></div>
+    <div class="eq mixed"><span class="hx">רק X:</span><bdi dir="ltr" class="mx"><span class="sg">Y = 0</span> <span class="sg op">→</span> <span class="sg">0 = 200 − 4X</span> <span class="sg op">→</span> <span class="sg">X = 50</span> <span class="sg op">→</span> <span class="sg">(50, 0)</span></bdi></div>
+    <p class="why"><b>מה זה אומר:</b> השיפוע −4 קבוע, כלומר כל יחידה של X עולה תמיד 4 יחידות Y. העלות האלטרנטיבית קבועה, ולכן הקו ישר. זה כמו רובינזון בתרגיל 1.</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">ב</div><div class="tbody">
+    <p class="dd"><b>מה עשיתי:</b> המענק לא משנה כמה המשק <u>מייצר</u>, ולכן עקומת התמורה נשארת. אבל לכל נקודת ייצור מוסיפים את המענק: עוד 5 X ועוד 10 Y. כל נקודה זזה 5 ימינה ו־10 למעלה.</p>
+    <div class="eq mixed"><span class="hx">קצה עליון:</span><bdi dir="ltr" class="mx"><span class="sg">(0 + 5 , 200 + 10)</span> <span class="sg op">→</span> <span class="sg">(5, 210)</span></bdi></div>
+    <div class="eq mixed"><span class="hx">קצה תחתון:</span><bdi dir="ltr" class="mx"><span class="sg">(50 + 5 , 0 + 10)</span> <span class="sg op">→</span> <span class="sg">(55, 10)</span></bdi></div>
+    <div class="eq mixed"><span class="hx">המשוואה:</span><bdi dir="ltr" class="mx"><span class="sg">Y − 10 = 200 − 4(X − 5)</span> <span class="sg op">→</span> <span class="sg">Y = 230 − 4X</span> <span class="sg">,  5 ≤ X ≤ 55</span></bdi></div>
+    <div class="lab" style="margin:0">
+      <div class="btns" role="group" aria-label="תצוגה"><button class="btn" type="button" id="grantBtn" aria-pressed="true">הצגת המענק</button></div>
+      <svg class="chart sm" id="e2q6" viewBox="0 0 540 360" role="img" aria-label="עקומת התמורה Y = 200 − 4X ועקומת אפשרויות הצריכה אחרי המענק"></svg>
+    </div>
+    <p class="why"><b>למה הטווח <bdi dir="ltr">5 ≤ X ≤ 55</bdi>?</b> גם אם המשק לא מייצר X בכלל, יש לו 5 יחידות X מהמענק. וגם אם הוא מייצר רק X, יש לו 10 יחידות Y מהמענק. לכן הקו החדש לא מגיע לצירים.</p>
+  </div></div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><b>(א)</b> עקומת התמורה היא קו ישר בין <bdi dir="ltr" class="m">(0, 200)</bdi> ל־<bdi dir="ltr" class="m">(50, 0)</bdi>. העלות האלטרנטיבית של X קבועה: 4 יחידות Y. <b>(ב)</b> עקומת התמורה לא משתנה, כי יכולת הייצור לא השתנתה. עקומת אפשרויות הצריכה זזה במקביל: 5 יחידות ימינה ו־10 יחידות למעלה. משוואתה <bdi dir="ltr" class="m">Y = 230 − 4X</bdi>, בין <bdi dir="ltr" class="m">(5, 210)</bdi> ל־<bdi dir="ltr" class="m">(55, 10)</bdi>.</p></div>
+</section>
+
+<!-- Q7 -->
+<section id="ex2q7" class="stack qsec" aria-labelledby="h-e2q7">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q7" style="font-size:1.6rem">שאלה 7 (רשות) · שיפור של 10% ב־X</h3></div>
+  <div class="qtext">חל שיפור טכנולוגי, כך שבכל הרכב תשומות אפשר עכשיו לייצר 10% יותר X. (א) המשק ממשיך לייצר אותה כמות X. מה קרה להקצאת גורמי הייצור, לעלות האלטרנטיבית הכוללת של X ולעלות האלטרנטיבית הממוצעת של X? (ב) אותן שאלות, אם המשק ממשיך לייצר אותה כמות Y.</div>
+  <p class="symnote"><b>תזכורת מתרגיל 1:</b> <b>עלות אלטרנטיבית כוללת</b> של X = כמה Y ויתרנו בסך הכל כדי לייצר את ה־X שיש לנו. כלומר <bdi dir="ltr" class="m">Ymax − Y</bdi>. <b>עלות ממוצעת</b> = הכוללת חלקי כמות ה־X.</p>
+  <div class="tstep"><div class="tnum">א</div><div class="tbody">
+    <p class="dd"><b>אותה כמות X:</b> עם טכנולוגיה טובה יותר צריך פחות משאבים כדי לייצר אותו X. המשאבים שהתפנו עוברים ל־Y, ולכן Y גדל.</p>
+    <ul class="steps" style="list-style:disc">
+      <li><b>הקצאה:</b> פחות גורמי ייצור ב־X, יותר ב־Y.</li>
+      <li><b>עלות כוללת:</b> <bdi dir="ltr" class="m">Ymax − Y</bdi>. ‏Ymax לא השתנה (השיפור רק ב־X), ו־Y גדל. לכן העלות הכוללת <b>ירדה</b>.</li>
+      <li><b>עלות ממוצעת:</b> כוללת ÷ X. הכוללת ירדה ו־X לא השתנה, ולכן גם הממוצעת <b>ירדה</b>.</li>
+    </ul>
+  </div></div>
+  <div class="tstep"><div class="tnum">ב</div><div class="tbody">
+    <p class="dd"><b>אותה כמות Y:</b> הטכנולוגיה של Y לא השתנתה, ולכן כדי לייצר אותו Y צריך בדיוק את אותם משאבים. לכן גם ב־X נשארו אותם משאבים, והם מייצרים 10% יותר X.</p>
+    <ul class="steps" style="list-style:disc">
+      <li><b>הקצאה:</b> לא השתנתה.</li>
+      <li><b>עלות כוללת:</b> <bdi dir="ltr" class="m">Ymax − Y</bdi>. גם Ymax וגם Y לא השתנו, ולכן העלות הכוללת <b>לא השתנתה</b>.</li>
+      <li><b>עלות ממוצעת:</b> אותה עלות כוללת מתחלקת על 10% יותר X, ולכן הממוצעת <b>ירדה</b>, ל־<bdi dir="ltr" class="m">1 ÷ 1.1 ≈ 91%</bdi> ממה שהייתה.</li>
+    </ul>
+  </div></div>
+  <div class="tscroll"><table class="t"><caption>סיכום שאלה 7</caption>
+    <thead><tr><th scope="col"></th><th scope="col">הקצאת גורמי ייצור</th><th scope="col">עלות כוללת של X</th><th scope="col">עלות ממוצעת של X</th></tr></thead>
+    <tbody><tr><th scope="row">(א) אותה כמות X</th><td>עוברים מ־X ל־Y</td><td>יורדת</td><td>יורדת</td></tr>
+    <tr><th scope="row">(ב) אותה כמות Y</th><td>לא משתנה</td><td>לא משתנה</td><td>יורדת (לכ־91%)</td></tr></tbody></table></div>
+</section>
+
+<section id="ex2sum" class="stack" aria-labelledby="h-ex2s">
+  <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-ex2s" style="font-size:1.6rem">סיכום התשובות</h3></div>
+  <div class="tscroll"><table class="t"><thead><tr><th scope="col">שאלה</th><th scope="col">תשובה</th><th scope="col">הרעיון במשפט</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">1.1</th><td><b>לא נכון</b></td><td>אפשר בלי ויתור: מנקודה פנימית או בעזרת שיפור טכנולוגי</td></tr>
+    <tr><th scope="row">1.2</th><td><b>נכון</b></td><td>אותה חקלאות עם פחות משאבים, והעודף עובר לתעשייה</td></tr>
+    <tr><th scope="row">2</th><td><b>ב</b></td><td>משאבים שמתפנים מהצבאי עוברים לאזרחי</td></tr>
+    <tr><th scope="row">3</th><td><b>3</b></td><td>פחות משאבים ב־X אבל כל אחד מייצר יותר: אי אפשר לדעת</td></tr>
+    <tr><th scope="row">4</th><td><b>1</b></td><td>העקומות נחתכות, ו־A יכולה להישאר אפשרית</td></tr>
+    <tr><th scope="row">5</th><td><b>ג</b></td><td>נקודה פנימית: אפשר להגדיל את שניהם</td></tr>
+    <tr><th scope="row">6</th><td><bdi dir="ltr" class="m">Y = 230 − 4X</bdi></td><td>המענק מזיז את הצריכה (5 ימינה, 10 למעלה), לא את הייצור</td></tr>
+    <tr><th scope="row">7</th><td>ראו טבלה</td><td>א: הכוללת והממוצעת יורדות. ב: הכוללת קבועה, הממוצעת יורדת</td></tr>
+  </tbody></table></div>
+</section>
+
 </main>
 
-<footer>העמקה לשאלות 5 ו־6 בתרגיל 1 (עקומת התמורה ועלות אלטרנטיבית). האיורים נוצרו ב־Higgsfield.</footer>
+<footer>העמקה לשאלות 5 ו־6 בתרגיל 1 ולתרגיל 2 (עקומת התמורה, עלות אלטרנטיבית וצמיחה כלכלית). האיורים נוצרו ב־Higgsfield.</footer>
 </div>
 
 <script>
@@ -1048,7 +1262,138 @@ function solCharts(){
      el('text',{x:c.X(p.x)+(i===5?-8:8),y:c.Y(p.y)+(i===0?18:-10),'font-size':13,'font-weight':700,fill:css('--ink'),'text-anchor':i===5?'end':'start'},svg,`(${p.x},${p.y})`);});}
 }
 
-function all(){sim();build();areaLab();kib();solCharts();}
+/* ---------- Exercise 2: economic growth ---------- */
+function schem(svg,W,H,xl,yl,max){
+  max=max||110;svg.innerHTML='';const ink=css('--ink');
+  const m={l:40,r:20,t:24,b:40};const pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const X=x=>m.l+x/max*pw, Y=y=>m.t+ph-y/max*ph;
+  el('line',{x1:X(0),y1:Y(0),x2:X(max),y2:Y(0),stroke:ink,'stroke-width':1.8},svg);
+  el('line',{x1:X(0),y1:Y(0),x2:X(0),y2:Y(max),stroke:ink,'stroke-width':1.8},svg);
+  el('text',{x:X(max),y:Y(0)+28,'font-size':15,'font-weight':600,fill:ink,direction:'rtl','text-anchor':'start'},svg,xl);
+  el('text',{x:X(0)+8,y:Y(max)+6,'font-size':15,'font-weight':600,fill:ink,direction:'rtl','text-anchor':'end'},svg,yl);
+  el('text',{x:X(0)-8,y:Y(0)+18,'font-size':13,fill:css('--muted'),'text-anchor':'end'},svg,'0');
+  return {X,Y};
+}
+const arc=(a,b,n=48)=>{const p=[];for(let i=0;i<=n;i++){const t=i/n*Math.PI/2;p.push({x:a*Math.sin(t),y:b*Math.cos(t)});}return p;};
+const yOn=(a,b,x)=>b*Math.sqrt(Math.max(0,1-(x/a)**2));
+const xOn=(a,b,y)=>a*Math.sqrt(Math.max(0,1-(y/b)**2));
+function arrowDefs(svg,id,color){const d=el('defs',{},svg);const mk=el('marker',{id,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},d);el('path',{d:'M0,0 L10,5 L0,10 z',fill:color},mk);}
+function arrow(svg,c,p,q,color,id,w){el('line',{x1:c.X(p.x),y1:c.Y(p.y),x2:c.X(q.x),y2:c.Y(q.y),stroke:color,'stroke-width':w||2.5,'marker-end':`url(#${id})`},svg);}
+const FLIP={start:'end',end:'start',middle:'middle'};
+function lbl(svg,c,p,t,color,dx,dy,anchor){el('text',{x:c.X(p.x)+(dx||0),y:c.Y(p.y)+(dy||0),'font-size':14,'font-weight':700,fill:color||css('--ink'),direction:'rtl','text-anchor':FLIP[anchor||'start']},svg,t);}
+function guide(svg,c,p){const g=css('--control');el('line',{x1:c.X(p.x),y1:c.Y(p.y),x2:c.X(p.x),y2:c.Y(0),stroke:g,'stroke-dasharray':'4 4'},svg);el('line',{x1:c.X(p.x),y1:c.Y(p.y),x2:c.X(0),y2:c.Y(p.y),stroke:g,'stroke-dasharray':'4 4'},svg);}
+
+const SHIFT={
+  tx:{n:[90,60],t:'<b>שיפור טכנולוגי ב־X:</b> רק הקצה של X זז החוצה. אם מייצרים רק Y, השיפור ב־X לא עוזר, ולכן הקצה של Y נשאר במקום. העקומה "מסתובבת" החוצה.'},
+  ty:{n:[60,90],t:'<b>שיפור טכנולוגי ב־Y:</b> רק הקצה של Y זז למעלה. הקצה של X נשאר במקום.'},
+  res:{n:[80,80],t:'<b>יותר גורמי ייצור</b> (יותר עובדים, מכונות, קרקע): אפשר לייצר יותר משני המוצרים. כל העקומה זזה החוצה.'},
+  rx:{n:[38,60],t:'<b>נסיגה טכנולוגית ב־X</b> (למשל מחלה שפוגעת ביבול): הקצה של X זז פנימה. הקצה של Y לא זז.'},
+  mix:{n:[40,85],t:'<b>נסיגה ב־X ושיפור ב־Y:</b> הקצה של X זז פנימה והקצה של Y למעלה. העקומה החדשה <u>חוצה</u> את הישנה. זו שאלה 4.'},
+  grant:{n:null,t:'<b>מענק מחו״ל:</b> עקומת התמורה (מה שמייצרים) לא זזה. מה שזז הוא <b>מה שאפשר לצרוך</b>: לכל נקודת ייצור מוסיפים את המענק. זו שאלה 6.'}
+};
+let shiftE='tx';
+function shift2(){
+  const svg=$('#shiftChart2');if(!svg)return;const c=schem(svg,540,420,'מוצר X','מוצר Y');
+  const acc=css('--accent'),pen=css('--pen'),mut=css('--muted');
+  const e=SHIFT[shiftE];
+  if(e.n){
+    poly(svg,c,arc(60,60),mut,2.5,'7 5');
+    poly(svg,c,arc(e.n[0],e.n[1]),acc,4.5);
+    arrowDefs(svg,'ash',pen);
+    if(e.n[0]!==60)arrow(svg,c,{x:60,y:3},{x:e.n[0]+(e.n[0]>60?-1.5:1.5),y:3},pen,'ash');
+    if(e.n[1]!==60)arrow(svg,c,{x:3,y:60},{x:3,y:e.n[1]+(e.n[1]>60?-1.5:1.5)},pen,'ash');
+    lbl(svg,c,arc(60,60)[40],'ישנה',mut,10,0);
+    const lp=arc(e.n[0],e.n[1])[14];lbl(svg,c,lp,'חדשה',acc,8,-10);
+  }else{
+    poly(svg,c,arc(60,60),acc,4.5);
+    poly(svg,c,arc(60,60).map(p=>({x:p.x+12,y:p.y+12})),pen,3.5,'8 5');
+    arrowDefs(svg,'ash',pen);
+    const p=arc(60,60)[24];arrow(svg,c,p,{x:p.x+11,y:p.y+11},pen,'ash');
+    lbl(svg,c,arc(60,60)[36],'ייצור (לא זז)',acc,-10,22,'end');
+    lbl(svg,c,{x:arc(60,60)[14].x+12,y:arc(60,60)[14].y+12},'צריכה',pen,8,-6);
+  }
+  $('#shiftRead2').innerHTML=e.t;
+  svg.setAttribute('aria-label',e.t.replace(/<[^>]+>/g,''));
+}
+$$('#shiftBtns2 .btn').forEach(b=>b.onclick=()=>{shiftE=b.dataset.e;$$('#shiftBtns2 .btn').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));shift2();});
+
+function e2charts(){
+  const acc=css('--accent'),pen=css('--pen'),mut=css('--muted'),good=css('--good'),sun=css('--sun');
+  {/* Q1.1 */const svg=$('#e2q1');const c=schem(svg,540,400,'X','Y');
+    poly(svg,c,arc(60,60),acc,4);poly(svg,c,arc(85,60),good,3,'8 5');
+    arrowDefs(svg,'a1',pen);arrowDefs(svg,'a1g',good);
+    const A={x:20,y:22};dot(svg,c,A,pen,'A',-18,-8);
+    arrow(svg,c,A,{x:xOn(60,60,22)-1.5,y:22},pen,'a1');lbl(svg,c,{x:24,y:22},'דרך 1: מאבטלה לעקומה',pen,0,24);
+    const y2=42,C={x:xOn(60,60,y2),y:y2};dot(svg,c,C,acc);
+    arrow(svg,c,C,{x:xOn(85,60,y2)-1.5,y:y2},good,'a1g');lbl(svg,c,{x:xOn(85,60,y2),y:y2},'דרך 2: שיפור טכנולוגי',good,8,-8);
+    lbl(svg,c,{x:6,y:62},'Y לא ירד בשתי הדרכים',mut,0,-8);}
+  {/* Q1.2 */const svg=$('#e2q2');const c=schem(svg,540,400,'חקלאות','תעשייה');
+    poly(svg,c,arc(60,60),mut,2.5,'7 5');poly(svg,c,arc(100,60),acc,4);
+    const A={x:45,y:yOn(60,60,45)},B={x:45,y:yOn(100,60,45)};
+    el('line',{x1:c.X(45),y1:c.Y(B.y),x2:c.X(45),y2:c.Y(0),stroke:css('--control'),'stroke-dasharray':'4 4'},svg);
+    arrowDefs(svg,'a2',pen);arrow(svg,c,A,{x:45,y:B.y-1.8},pen,'a2',3);
+    dot(svg,c,A,mut,'',0,0);lbl(svg,c,A,'A',mut,-10,18,'end');dot(svg,c,B,acc,'B',10,-8);
+    lbl(svg,c,{x:45,y:0},'אותה חקלאות',mut,0,-8,'middle');
+    lbl(svg,c,{x:45,y:(A.y+B.y)/2},'יותר תעשייה',pen,-12,5,'end');
+    lbl(svg,c,arc(100,60)[34],'אחרי השיפור',acc,8,-4);}
+  {/* Q3 */const svg=$('#e2q3');const c=schem(svg,540,400,'X','Y');
+    poly(svg,c,arc(60,60),mut,2.5,'7 5');poly(svg,c,arc(100,60),acc,4);
+    const A={x:40,y:yOn(60,60,40)};guide(svg,c,A);
+    const band=[{x:0,y:A.y}].concat(arc(100,60,64).filter(p=>p.y>=A.y),[{x:xOn(100,60,A.y),y:A.y}]);
+    el('polygon',{points:band.map(p=>c.X(p.x)+','+c.Y(p.y)).join(' '),fill:css('--accent-soft'),stroke:'none'},svg);
+    poly(svg,c,arc(60,60),mut,2.5,'7 5');poly(svg,c,arc(100,60),acc,4);
+    dot(svg,c,A,mut,'A',-22,18);
+    [[60,good,'X גדל'],[40,sun,'X זהה'],[24,pen,'X קטן']].forEach(([x,col,t],i)=>{const p={x,y:yOn(100,60,x)};dot(svg,c,p,col);lbl(svg,c,p,t,col,i===2?-8:8,-10,i===2?'end':'start');});
+    lbl(svg,c,{x:96,y:A.y},'מכאן ומעלה: יותר Y',acc,0,-6,'end');}
+  {/* Q4 */const svg=$('#e2q4');const c=schem(svg,540,400,'X','Y');
+    poly(svg,c,arc(60,60),mut,2.5,'7 5');poly(svg,c,arc(40,85),acc,4);
+    /* intersection: x^2/3600+y^2/3600=1 and x^2/1600+y^2/7225=1 */
+    const a1=1/3600,b1=1/3600,a2=1/1600,b2=1/7225;const y2=(1-a2/a1)/(b2-a2*b1/a1);const x2=(1-b1*y2)/a1;const I={x:Math.sqrt(x2),y:Math.sqrt(y2)};
+    dot(svg,c,I,sun,'',0,0);lbl(svg,c,I,'חיתוך',sun,12,20);
+    const A={x:18,y:yOn(60,60,18)};dot(svg,c,A,good,'',0,0);lbl(svg,c,A,'A',good,-10,5,'end');lbl(svg,c,A,'עדיין אפשרית ✓',good,-8,-26);
+    const Bp={x:52,y:yOn(60,60,52)};dot(svg,c,Bp,pen);lbl(svg,c,Bp,'כאן כבר לא ✗',pen,8,-10);
+    arrowDefs(svg,'a4',pen);arrow(svg,c,{x:60,y:3},{x:41.5,y:3},pen,'a4');arrow(svg,c,{x:3,y:60},{x:3,y:83.5},pen,'a4');}
+  {/* Q5 */const svg=$('#e2q5');const c=schem(svg,540,400,'מזון','ביגוד');
+    const A={x:30,y:30};const pts=[A,{x:30,y:yOn(80,80,30)}];
+    arc(80,80,64).forEach(p=>{if(p.x>=30&&p.y>=30)pts.push(p);});pts.push({x:xOn(80,80,30),y:30});
+    el('polygon',{points:pts.map(p=>c.X(p.x)+','+c.Y(p.y)).join(' '),fill:css('--good-soft'),stroke:'none'},svg);
+    poly(svg,c,arc(80,80),acc,4);
+    arrowDefs(svg,'a5',good);
+    arrow(svg,c,A,{x:55,y:30},good,'a5');arrow(svg,c,A,{x:30,y:55},good,'a5');arrow(svg,c,A,{x:50,y:50},good,'a5',3.5);
+    dot(svg,c,A,pen,'A',-20,18);
+    lbl(svg,c,{x:50,y:50},'ג: גם וגם',good,16,6);lbl(svg,c,{x:55,y:30},'א',good,6,5);lbl(svg,c,{x:30,y:55},'ב',good,-6,-6,'end');}
+  e2q6();
+}
+let showGrant=true;
+function e2q6(){
+  const svg=$('#e2q6');if(!svg)return;const c=chart2(svg,540,360,70,240,10,40,'X','Y');
+  const acc=css('--accent'),pen=css('--pen');
+  const T=(x,y,t,col,anchor,size,w)=>el('text',{x,y,'font-size':size||14,'font-weight':w||700,fill:col,'text-anchor':anchor||'start'},svg,t);
+  el('line',{x1:c.X(0),y1:c.Y(200),x2:c.X(50),y2:c.Y(0),stroke:acc,'stroke-width':4.5,'stroke-linecap':'round'},svg);
+  dot(svg,c,{x:0,y:200},acc);T(c.X(0)+8,c.Y(200)+62,'(0, 200)',acc);
+  dot(svg,c,{x:50,y:0},acc);T(c.X(50),c.Y(0)+38,'(50, 0)',acc,'middle');
+  el('text',{x:c.X(3),y:c.Y(46),'font-size':14,'font-weight':700,fill:acc,direction:'rtl','text-anchor':'end'},svg,'עקומת התמורה:');
+  T(c.X(3),c.Y(46)+18,'Y = 200 − 4X',acc);
+  if(showGrant){
+    el('line',{x1:c.X(5),y1:c.Y(210),x2:c.X(55),y2:c.Y(10),stroke:pen,'stroke-width':3.5,'stroke-dasharray':'9 5','stroke-linecap':'round'},svg);
+    dot(svg,c,{x:5,y:210},pen);T(c.X(5)+10,c.Y(210)-6,'(5, 210)',pen);
+    dot(svg,c,{x:55,y:10},pen);T(c.X(55)+10,c.Y(10)+4,'(55, 10)',pen);
+    arrowDefs(svg,'a6',pen);arrow(svg,c,{x:25,y:100},{x:29.4,y:108.8},pen,'a6');
+    el('text',{x:c.X(33),y:c.Y(150),'font-size':14,'font-weight':700,fill:pen,direction:'rtl','text-anchor':'end'},svg,'אפשרויות צריכה:');
+    T(c.X(33),c.Y(150)+18,'Y = 230 − 4X',pen);
+    T(c.X(33),c.Y(150)+36,'(+5 X , +10 Y)',css('--muted'),'start',13,500);
+  }
+}
+$('#grantBtn').onclick=()=>{showGrant=!showGrant;$('#grantBtn').setAttribute('aria-pressed',showGrant?'true':'false');e2q6();};
+
+$$('.mcq').forEach(q=>{const ans=+q.dataset.ans;const fb=q.querySelector('.fb');
+  q.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;const ok=i===ans;
+    b.classList.remove('ok','no');b.classList.add(ok?'ok':'no');b.setAttribute('aria-pressed','true');
+    if(ok)q.querySelectorAll('.opt').forEach(o=>{if(o!==b&&o.classList.contains('no'))o.classList.add('dim');});
+    const why=b.dataset.why;
+    fb.innerHTML=(ok?'<b style="color:var(--good)">✓ נכון.</b> ':'<b style="color:var(--bad)">✗ לא.</b> ')+(why||(ok?'ההסבר המלא כאן למטה.':'נסו שוב, או קראו את ההסבר למטה.'));});});
+
+function all(){sim();build();areaLab();kib();solCharts();shift2();e2charts();}
 all();
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',all);
 new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
