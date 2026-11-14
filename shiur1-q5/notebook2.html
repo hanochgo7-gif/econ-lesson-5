@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>דף מחברת · תרגיל 2</title>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gveret+Levin&family=Caveat:wght@500;700&family=IBM+Plex+Sans+Hebrew:wght@400;600&display=swap">
+<style>
+/* Layout: a stack of notebook sheets (grid paper, handwriting, highlighter) exactly as the answer is written by hand. A thin top bar explains how to use it. */
+:root{
+  --desk:#e9edf3; --sheet:#fdfdfb; --grid:rgba(110,130,165,.20); --ink:#1d2b4f; --pen-red:#c0392b; --pen-green:#1e7b4a;
+  --hl-purple:rgba(176,132,255,.38); --hl-green:rgba(110,214,110,.42); --hl-yellow:rgba(255,214,64,.5);
+  --ui:#141a2c; --ui-muted:#566079; --ui-accent:#2340d0;
+  --hand:'Gveret Levin','IBM Plex Sans Hebrew',sans-serif;
+  --math:'Caveat','Gveret Levin',cursive;
+  --ui-font:'IBM Plex Sans Hebrew','Segoe UI',Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--desk:#10141f;--ui:#e7eaf3;--ui-muted:#9ba3ba;--ui-accent:#8299ff;color-scheme:dark}}
+:root[data-theme="dark"]{--desk:#10141f;--ui:#e7eaf3;--ui-muted:#9ba3ba;--ui-accent:#8299ff;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--desk);color:var(--ui);font-family:var(--ui-font);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 60px}
+.wrap{width:100%;max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+.intro{padding-top:36px;display:flex;flex-direction:column;gap:8px}
+.intro h1{font-family:var(--hand);font-weight:400;font-size:clamp(2rem,6vw,2.8rem);margin:0;line-height:1.15}
+.intro p{margin:0;color:var(--ui-muted);font-size:1.02rem;line-height:1.7;max-width:40em}
+.intro .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.intro .links a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ui-muted);color:var(--ui);text-decoration:none;font-weight:600;font-size:.95rem}
+.intro .links a.main{background:var(--ui-accent);border-color:var(--ui-accent);color:#fff}
+
+/* the sheet */
+.sheet{position:relative;background-color:var(--sheet);color:var(--ink);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:26px 26px;
+  border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 10px 30px rgba(20,30,60,.12);padding:34px clamp(18px,5vw,54px) 40px clamp(18px,5vw,54px);font-family:var(--hand);font-size:23px;line-height:52px;color-scheme:light}
+.sheet .pg{position:absolute;bottom:10px;left:18px;font-family:var(--math);font-size:20px;color:#8a95ad}
+.sheet .date{position:absolute;top:12px;left:18px;font-family:var(--math);font-size:20px;color:#8a95ad}
+.sheet h2{font-family:var(--hand);font-weight:400;font-size:38px;margin:0;line-height:52px}
+.sheet h3{font-family:var(--hand);font-weight:400;font-size:28px;margin:0;line-height:52px}
+.ln{min-height:52px;display:block}
+.ln .m,.ln .ok,.ln .no,.ln .hl{margin-inline:3px}
+.sg{white-space:nowrap}
+.m{white-space:nowrap}
+.m:has(.sg){white-space:normal}
+.ln.ind{padding-inline-start:30px}
+.ln.ind2{padding-inline-start:60px}
+.m{font-family:var(--math);font-size:26px;font-weight:500;direction:ltr;unicode-bidi:isolate}
+.m.big{font-size:30px}
+.hl{background:linear-gradient(transparent 22%,var(--hl-purple) 22%,var(--hl-purple) 88%,transparent 88%);padding:0 6px;border-radius:3px}
+.hl.g{background:linear-gradient(transparent 22%,var(--hl-green) 22%,var(--hl-green) 88%,transparent 88%)}
+.hl.y{background:linear-gradient(transparent 22%,var(--hl-yellow) 22%,var(--hl-yellow) 88%,transparent 88%)}
+.u{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.ok{color:var(--pen-green);font-family:var(--math);font-weight:700;font-size:28px}
+.no{color:var(--pen-red);font-family:var(--math);font-weight:700;font-size:28px}
+.red{color:var(--pen-red)}
+.strike{text-decoration:line-through;text-decoration-color:var(--pen-red);text-decoration-thickness:2px}
+.ans{border:2.5px solid var(--ink);border-radius:10px 14px 9px 12px;padding:4px 16px;margin:8px 0;transform:rotate(-.25deg)}
+.ans .lbl{font-size:26px}
+.margin{position:absolute;left:14px;width:160px;transform:rotate(-4deg) translateY(6px);color:var(--pen-red);font-size:21px;line-height:1.25;text-align:center;font-family:var(--hand);pointer-events:none}
+@media (min-width:761px){.sheet{padding-left:170px}}
+.margin{width:140px}
+.margin::before{content:"";display:block}
+@media (max-width:760px){.margin{position:static;transform:none;max-width:none;text-align:right;margin:0 0 6px;display:block;inset:auto}}
+/* hand table */
+table.ht{border-collapse:collapse;margin:8px 0 10px;font-family:var(--hand);font-size:22px}
+.ht th,.ht td{border:2px solid var(--ink);padding:0 12px;line-height:44px;text-align:center}
+.ht th{font-weight:400}
+.ht td.m,.ht th.m{font-family:var(--math);font-size:25px}
+.tsc{overflow-x:auto;max-width:100%}
+svg.sk{display:block;width:100%;max-width:520px;height:auto;margin:6px auto 10px;direction:ltr}
+svg.sk text{font-family:var(--math);fill:var(--ink)}
+@media (max-width:560px){.sheet{font-size:19px;line-height:44px;background-size:23px 23px}.ln{min-height:46px}.m{font-size:21px;white-space:normal}.sheet h2{font-size:32px}.ht{font-size:19px}.ht td.m,.ht th.m{font-size:21px;white-space:normal}}
+@media print{
+  body{background:#fff;padding:0}
+  .intro{display:none}
+  .wrap{max-width:none;gap:0}
+  .sheet{box-shadow:none;border-radius:0;break-after:page;page-break-after:always;font-size:16.5px;line-height:35px;background-size:17.5px 17.5px;padding:22px 26px 22px 128px;min-height:297mm}
+  .sheet .ln{min-height:35px}
+  .sheet h2{font-size:28px;line-height:40px}
+  .sheet h3{font-size:21px;line-height:35px}
+  .sheet .m{font-size:19.5px}
+  .sheet .ok,.sheet .no{font-size:20px}
+  .ht{font-size:16px}.ht th,.ht td{line-height:30px;padding:0 9px}.ht td.m,.ht th.m{font-size:18px}
+  svg.sk{max-width:360px;margin:2px auto 4px}
+  .margin{width:105px;left:10px;font-size:15px}
+  .ans{padding:2px 12px;margin:4px 0}
+  .ans .lbl{font-size:19px}
+  @page{size:A4;margin:0}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="he">
+<header class="intro">
+  <h1>תרגיל 2 במחברת</h1>
+  <p>כל 7 השאלות של תרגיל 2 (צמיחה כלכלית), בדיוק כמו שכותבים במחברת או בבחינה. הכתב השחור הוא מה שכותבים. ההערות באדום בשוליים הן תזכורות בשבילכם, ולא כותבים אותן.</p>
+  <div class="links"><a class="main" href="notebook2.pdf">הורדה כ־PDF להדפסה</a><a href="./#ex2">חזרה להסבר של תרגיל 2</a><a href="notebook.html">דף המחברת של תרגיל 1</a></div>
+</header>
+
+<!-- ======================= page 1: Q1 ======================= -->
+<article class="sheet" aria-label="דף 1: שאלה 1">
+  <span class="date">תרגיל 2</span>
+  <h2><span class="hl">תרגיל 2 · צמיחה כלכלית</span></h2>
+  <div class="ln"><h3><span class="hl">שאלה 1</span></h3></div>
+
+  <div class="ln"><span class="u">סעיף 1:</span>&nbsp; <span class="no">לא נכון</span></div>
+  <div class="margin">"חייבת" =<br>מספיקה דוגמה<br>אחת נגדית!</div>
+  <div class="ln ind">ויתור על <span class="m">Y</span> הכרחי רק אם המשק על עקומת התמורה ואין שינוי טכנולוגי.</div>
+  <div class="ln ind">דרך 1: המשק בנקודה <span class="u">פנימית</span> (אבטלה / חוסר יעילות) → מעסיקים מובטלים → <span class="m">X↑</span> בלי <span class="m">Y↓</span></div>
+  <div class="ln ind">דרך 2: <span class="u">שיפור טכנולוגי</span> → אותם גורמי ייצור מייצרים יותר → העקומה זזה החוצה → <span class="m">X↑</span> בלי <span class="m">Y↓</span></div>
+  <svg class="sk" id="n1a" viewBox="0 0 520 330" role="img" aria-label="שרטוט: נקודה פנימית A וחץ לעקומה, ועקומה מקווקוות שזזה החוצה"></svg>
+
+  <div class="ln" style="margin-top:6px"><span class="u">סעיף 2:</span>&nbsp; <span class="ok">נכון</span></div>
+  <div class="margin">שיפור בחקלאות<br>→ זז רק הקצה<br>של החקלאות</div>
+  <div class="ln ind">שיפור בחקלאות → העקומה מסתובבת החוצה על ציר החקלאות. הקצה של התעשייה לא זז.</div>
+  <div class="ln ind">אותה כמות חקלאות + טכנולוגיה טובה יותר → דרושים <span class="u">פחות</span> גורמי ייצור בחקלאות</div>
+  <div class="ln ind">גורמי הייצור שהתפנו → עוברים לתעשייה (תעסוקה מלאה) → <span class="hl g">תעשייה↑</span></div>
+  <svg class="sk" id="n1b" viewBox="0 0 520 330" role="img" aria-label="שרטוט: העקומה מסתובבת על ציר החקלאות, הנקודה עולה מ־A ל־B באותה כמות חקלאות"></svg>
+  <div class="ans">
+    <div class="ln"><span class="lbl u">תשובה:</span></div>
+    <div class="ln">נכון. השיפור בחקלאות מזיז את העקומה החוצה בציר החקלאות. כדי לייצר אותה כמות חקלאות דרושים פחות גורמי ייצור, והם עוברים לתעשייה. המשק על העקומה, ולכן התעשייה גדלה: מ־<span class="m">A</span> ל־<span class="m">B</span>.</div>
+  </div>
+  <span class="pg">1</span>
+</article>
+
+<!-- ======================= page 2: Q2-Q4 ======================= -->
+<article class="sheet" aria-label="דף 2: שאלות 2, 3 ו־4">
+  <div class="ln"><h3><span class="hl">שאלה 2</span> &nbsp;תשובה: <span class="hl y">ב׳</span></h3></div>
+  <div class="margin">"בהכרח" =<br>מילה חשודה!</div>
+  <div class="ln ind">שיפור בייצור הצבאי → אותה כמות צבאית עם פחות גורמי ייצור → הגורמים שהתפנו עוברים לייצור האזרחי → <span class="hl g">אזרחי↑</span></div>
+  <div class="ln ind"><span class="strike">א׳</span> לא בהכרח: היכולת גדלה, אבל המשק בוחר כמה לייצר.</div>
+  <div class="ln ind"><span class="strike">ג׳</span> לא בהכרח: הגורמים שהתפנו יכולים לעבור לאזרחי, בלי פיטורים.</div>
+  <div class="ln ind"><span class="strike">ד׳</span> לא: העקומה זזה החוצה גם אם המשק כרגע בנקודה פנימית.</div>
+
+  <div class="ln" style="margin-top:8px"><h3><span class="hl">שאלה 3</span> &nbsp;תשובה: <span class="hl y">3</span></h3></div>
+  <div class="margin">שואלים:<br>איך Y גדל?</div>
+  <div class="ln ind">בטכנולוגיה של <span class="m">Y</span> אין שינוי + תעסוקה מלאה → כדי ש־<span class="m">Y↑</span> חייבים להעביר גורמי ייצור מ־<span class="m">X</span> ל־<span class="m">Y</span></div>
+  <div class="ln ind">ב־<span class="m">X</span>: פחות גורמי ייצור <span class="m">(↓)</span> אבל כל אחד מייצר יותר <span class="m">(↑)</span> → <span class="u">לא ניתן לקבוע</span> מה קרה ל־<span class="m">X</span></div>
+  <svg class="sk" id="n3" viewBox="0 0 520 300" role="img" aria-label="שרטוט: על העקומה החדשה, מעל A, X יכול לגדול, להישאר או לקטון"></svg>
+  <div class="ln ind"><span class="strike">5</span> לא: הקצאת גורמי הייצור <span class="u">השתנתה</span> (עברו ל־<span class="m">Y</span>). &nbsp;<span class="strike">4</span> אין סתירה.</div>
+
+  <div class="ln" style="margin-top:8px"><h3><span class="hl">שאלה 4</span> &nbsp;תשובה: <span class="hl y">1</span></h3></div>
+  <div class="margin">נסיגה = פנימה<br>שיפור = החוצה</div>
+  <div class="ln ind">נסיגה ב־<span class="m">X</span> → הקצה של <span class="m">X</span> זז פנימה. שיפור ב־<span class="m">Y</span> → הקצה של <span class="m">Y</span> זז החוצה → <span class="u">העקומות נחתכות</span></div>
+  <div class="ln ind">אם <span class="m">A</span> בחלק שבו העקומה החדשה מעל הישנה (או בחיתוך) → אפשר להמשיך לייצר אותן כמויות</div>
+  <svg class="sk" id="n4" viewBox="0 0 520 300" role="img" aria-label="שרטוט: עקומה חדשה שחוצה את הישנה, A עדיין אפשרית"></svg>
+  <div class="ln ind"><span class="strike">5</span> לא נכון: ידוע ש־<span class="m">Xmax↓</span> ו־<span class="m">Ymax↑</span>.</div>
+  <span class="pg">2</span>
+</article>
+
+<!-- ======================= page 3: Q5-Q6 ======================= -->
+<article class="sheet" aria-label="דף 3: שאלות 5 ו־6">
+  <div class="ln"><h3><span class="hl">שאלה 5</span> &nbsp;תשובה: <span class="hl y">ג׳</span></h3></div>
+  <div class="margin">נקודה פנימית<br>= אבטלה</div>
+  <div class="ln ind"><span class="m">A</span> בתוך עקומת התמורה → יש אבטלה / חוסר יעילות → מעסיקים את הגורמים המובטלים → אפשר להגדיל <span class="u">גם</span> מזון <span class="u">וגם</span> ביגוד, בלי לוותר על כלום</div>
+  <svg class="sk" id="n5" viewBox="0 0 520 300" role="img" aria-label="שרטוט: נקודה A בתוך העקומה, חצים ימינה, למעלה ובאלכסון"></svg>
+
+  <div class="ln" style="margin-top:6px"><h3><span class="hl">שאלה 6</span></h3></div>
+  <div class="ln"><span class="u">סעיף א: התוויית העקומה</span> &nbsp;<span class="m">Y = 200 − 4X</span></div>
+  <div class="margin">קו ישר =<br>עלות קבועה</div>
+  <div class="ln ind">רק <span class="m">Y</span>: <span class="m"><span class="sg">X = 0</span> <span class="sg">→</span> <span class="sg">Y = 200</span></span> → <span class="hl y"><span class="m">(0, 200)</span></span></div>
+  <div class="ln ind">רק <span class="m">X</span>: <span class="m"><span class="sg">Y = 0</span> <span class="sg">→</span> <span class="sg">0 = 200 − 4X</span> <span class="sg">→</span> <span class="sg">X = 50</span></span> → <span class="hl y"><span class="m">(50, 0)</span></span></div>
+  <div class="ln ind">שיפוע <span class="m">−4</span> → עלות אלטרנטיבית של <span class="m">X</span> קבועה: <span class="m">4Y</span> → קו ישר</div>
+  <div class="ln"><span class="u">סעיף ב: מענק של <span class="m">5X</span> ו־<span class="m">10Y</span></span></div>
+  <div class="margin">מענק ≠ ייצור!<br>הייצור לא זז</div>
+  <div class="ln ind">עקומת התמורה <span class="u">לא</span> משתנה (יכולת הייצור לא השתנתה)</div>
+  <div class="ln ind">צריכה = ייצור + מענק: <span class="m">Xc = X + 5 , Yc = Y + 10</span></div>
+  <div class="ln ind">קצוות: <span class="m"><span class="sg">(0+5 , 200+10) = (5, 210)</span> ; <span class="sg">(50+5 , 0+10) = (55, 10)</span></span></div>
+  <div class="ln ind">משוואה: <span class="m"><span class="sg">Yc − 10 = 200 − 4(Xc − 5)</span> <span class="sg">→</span> <span class="sg">Yc = 230 − 4Xc</span> <span class="sg">, 5 ≤ Xc ≤ 55</span></span></div>
+  <svg class="sk" id="n6" viewBox="0 0 520 330" role="img" aria-label="שרטוט: עקומת התמורה Y = 200 − 4X ועקומת אפשרויות הצריכה המקבילה"></svg>
+  <div class="ans">
+    <div class="ln"><span class="lbl u">תשובה:</span></div>
+    <div class="ln">עקומת התמורה לא זזה. עקומת אפשרויות הצריכה זזה במקביל, 5 ימינה ו־10 למעלה: <bdi dir="ltr" class="m">Yc = 230 − 4Xc</bdi>, בין <bdi dir="ltr" class="m">(5, 210)</bdi> ל־<bdi dir="ltr" class="m">(55, 10)</bdi>.</div>
+  </div>
+  <span class="pg">3</span>
+</article>
+
+<!-- ======================= page 4: Q7 ======================= -->
+<article class="sheet" aria-label="דף 4: שאלה 7">
+  <div class="ln"><h3><span class="hl">שאלה 7 (רשות)</span></h3></div>
+  <div class="ln">תזכורת: עלות אלטרנטיבית כוללת של <span class="m">X</span> = <span class="m">Ymax − Y</span> &nbsp;;&nbsp; ממוצעת = <span class="m">(Ymax − Y) ÷ X</span></div>
+  <div class="margin">שיפור רק ב־X<br>→ Ymax לא זז</div>
+  <div class="ln">השיפור רק ב־<span class="m">X</span> → <span class="m">Ymax</span> לא משתנה</div>
+
+  <div class="ln" style="margin-top:4px"><span class="u">סעיף א: אותה כמות X</span></div>
+  <div class="margin">תמיד שואלים:<br>איפה גורמי<br>הייצור?</div>
+  <div class="ln ind">הקצאה: אותו <span class="m">X</span> עם טכנולוגיה טובה יותר → פחות גורמי ייצור ב־<span class="m">X</span> → עוברים ל־<span class="m">Y</span> → <span class="m">Y↑</span></div>
+  <div class="ln ind">כוללת: <span class="m">Ymax − Y</span> → <span class="m">Ymax</span> קבוע , <span class="m">Y↑</span> → <span class="hl">יורדת</span></div>
+  <div class="ln ind">ממוצעת: <span class="m">(Ymax − Y) ÷ X</span> → מונה↓ , מכנה קבוע → <span class="hl">יורדת</span></div>
+
+  <div class="ln" style="margin-top:4px"><span class="u">סעיף ב: אותה כמות Y</span></div>
+  <div class="ln ind">הקצאה: ב־<span class="m">Y</span> אין שינוי → אותם גורמי ייצור ב־<span class="m">Y</span> → <span class="hl g">ההקצאה לא משתנה</span> , <span class="m">X</span> גדל ב־10%</div>
+  <div class="ln ind">כוללת: <span class="m">Ymax</span> קבוע , <span class="m">Y</span> קבוע → <span class="hl g">לא משתנה</span></div>
+  <div class="ln ind">ממוצעת: מונה קבוע , מכנה <span class="m">×1.1</span> → <span class="hl">יורדת</span> (פי <span class="m">1 ÷ 1.1 ≈ 0.91</span>)</div>
+  <div class="margin">בשרטוט ההזזה<br>מוגזמת, כדי<br>שיהיה ברור</div>
+  <svg class="sk" id="n7" viewBox="0 0 520 300" role="img" aria-label="שרטוט: העקומה מסתובבת על ציר X. בסעיף א הנקודה עולה למעלה, בסעיף ב הנקודה זזה ימינה"></svg>
+
+  <div class="ln">בדיקה עם מספרים (המאפייה, <span class="m">Ymax = 200</span>):</div>
+  <div class="margin">לא חובה<br>במבחן, רק<br>לבדיקה</div>
+  <div class="tsc"><table class="ht"><thead><tr><th></th><th class="m">X</th><th class="m">Y</th><th>כוללת</th><th>ממוצעת</th></tr></thead>
+  <tbody><tr><th>לפני</th><td class="m">55</td><td class="m">90</td><td class="m">110</td><td class="m">2</td></tr>
+  <tr><th>סעיף א</th><td class="m">55</td><td class="m">100</td><td class="m">100 ↓</td><td class="m">1.82 ↓</td></tr>
+  <tr><th>סעיף ב</th><td class="m">60.5</td><td class="m">90</td><td class="m">110 =</td><td class="m">1.82 ↓</td></tr></tbody></table></div>
+  <div class="ans">
+    <div class="ln"><span class="lbl u">תשובה:</span></div>
+    <div class="ln">א. גורמי ייצור עוברים מ־<span class="m">X</span> ל־<span class="m">Y</span>. העלות הכוללת יורדת (<span class="m">Y</span> עלה ו־<span class="m">Ymax</span> קבוע) וגם הממוצעת יורדת.</div>
+    <div class="ln">ב. ההקצאה לא משתנה. העלות הכוללת לא משתנה, והממוצעת יורדת כי היא מתחלקת על 10% יותר <span class="m">X</span>.</div>
+  </div>
+  <span class="pg">4</span>
+</article>
+
+</div>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+let seed=11;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646;};
+function el(t,a,p,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;p.appendChild(e);return e;}
+const INK='#1d2b4f',RED='#c0392b',GREEN='#1e7b4a',GREY='#8a95ad',BLUE='#2340d0';
+function hline(svg,x1,y1,x2,y2,o){o=o||{};const col=o.c||INK,w=o.w||2.2,dash=o.dash||'';
+  for(let k=0;k<(o.passes||2);k++){const j=()=>(rnd()-.5)*(o.j||2.2);const mx=(x1+x2)/2+j()*1.5,my=(y1+y2)/2+j()*1.5;
+    el('path',{d:`M${x1+j()} ${y1+j()} Q${mx} ${my} ${x2+j()} ${y2+j()}`,fill:'none',stroke:col,'stroke-width':k?w*.7:w,'stroke-linecap':'round','stroke-dasharray':dash,opacity:k?.55:1},svg);}}
+function hpoly(svg,pts,o){o=o||{};const col=o.c||INK,w=o.w||3.4;
+  for(let k=0;k<(o.passes||2);k++){const j=()=>(rnd()-.5)*(o.j||1.6);
+    el('path',{d:'M'+pts.map(p=>(p[0]+j())+' '+(p[1]+j())).join(' L'),fill:'none',stroke:col,'stroke-width':k?w*.6:w,'stroke-linecap':'round','stroke-linejoin':'round','stroke-dasharray':o.dash||'',opacity:k?.5:1},svg);}}
+function hdot(svg,x,y,c){el('circle',{cx:x+(rnd()-.5),cy:y+(rnd()-.5),r:5.5,fill:c||INK},svg);}
+function txt(svg,x,y,s,o){o=o||{};el('text',{x,y,'font-size':o.size||22,'text-anchor':o.a||'start',fill:o.c||INK,'font-weight':o.bw||500},svg,s);}
+function htext(svg,x,y,s,o){o=o||{};el('text',{x,y,'font-size':o.size||20,'text-anchor':o.a||'start',fill:o.c||INK,direction:'rtl','font-family':"'Gveret Levin',sans-serif"},svg,s);}
+function arrow(svg,x1,y1,x2,y2,c){hline(svg,x1,y1,x2,y2,{c,w:2.4});const a=Math.atan2(y2-y1,x2-x1),L=11;
+  hline(svg,x2,y2,x2-L*Math.cos(a-0.45),y2-L*Math.sin(a-0.45),{c,w:2.2,passes:1});hline(svg,x2,y2,x2-L*Math.cos(a+0.45),y2-L*Math.sin(a+0.45),{c,w:2.2,passes:1});}
+// schematic frame: data units 0..100
+function frame(svg,W,H,xl,yl){const X=v=>60+v*(W-120)/100,Y=v=>H-40-v*(H-70)/100;
+  hline(svg,X(0),Y(0),X(100)+12,Y(0),{w:2.6});hline(svg,X(0),Y(0),X(0),Y(100)-10,{w:2.6});
+  hline(svg,X(100)+12,Y(0),X(100)+2,Y(0)-6,{w:2,passes:1});hline(svg,X(100)+12,Y(0),X(100)+2,Y(0)+6,{w:2,passes:1});
+  hline(svg,X(0),Y(100)-10,X(0)-6,Y(100),{w:2,passes:1});hline(svg,X(0),Y(100)-10,X(0)+6,Y(100),{w:2,passes:1});
+  htext(svg,X(100)-30,Y(0)+32,xl,{a:'end',size:21});htext(svg,X(0)+8,Y(100)-14,yl,{a:'end',size:21});
+  return {X,Y};}
+const arc=(a,b,n=40)=>{const p=[];for(let i=0;i<=n;i++){const t=i/n*Math.PI/2;p.push([a*Math.sin(t),b*Math.cos(t)]);}return p;};
+const yOn=(a,b,x)=>b*Math.sqrt(Math.max(0,1-(x/a)**2)), xOn=(a,b,y)=>a*Math.sqrt(Math.max(0,1-(y/b)**2));
+const P=(c,pts)=>pts.map(([x,y])=>[c.X(x),c.Y(y)]);
+
+{const s=document.getElementById('n1a'),c=frame(s,520,330,'X','Y');
+  hpoly(s,P(c,arc(62,70)));hpoly(s,P(c,arc(86,70)),{c:GREEN,dash:'8 6',passes:1,w:2.6});
+  hdot(s,c.X(22),c.Y(26),RED);txt(s,c.X(22)-18,c.Y(26)-8,'A',{c:RED,bw:700});
+  arrow(s,c.X(24),c.Y(26),c.X(xOn(62,70,26))-3,c.Y(26),RED);txt(s,c.X(24),c.Y(26)+26,'(1)',{c:RED,size:20});
+  const y2=46;hdot(s,c.X(xOn(62,70,y2)),c.Y(y2));arrow(s,c.X(xOn(62,70,y2))+3,c.Y(y2),c.X(xOn(86,70,y2))-3,c.Y(y2),GREEN);
+  txt(s,c.X(xOn(86,70,y2))+8,c.Y(y2)-6,'(2)',{c:GREEN,size:20});}
+{const s=document.getElementById('n1b'),c=frame(s,520,330,'חקלאות','תעשייה');
+  hpoly(s,P(c,arc(55,70)),{c:GREY,dash:'7 6',passes:1,w:2.6});hpoly(s,P(c,arc(95,70)));
+  const x=38,a=yOn(55,70,x),b=yOn(95,70,x);hline(s,c.X(x),c.Y(b),c.X(x),c.Y(0),{c:GREY,dash:'4 5',passes:1,w:1.6});
+  hdot(s,c.X(x),c.Y(a),GREY);hdot(s,c.X(x),c.Y(b),RED);arrow(s,c.X(x),c.Y(a)-6,c.X(x),c.Y(b)+8,RED);
+  txt(s,c.X(x)-16,c.Y(a)+20,'A',{bw:700,c:GREY});txt(s,c.X(x)+10,c.Y(b)-10,'B',{bw:700,c:RED});
+  arrow(s,c.X(55),c.Y(0)-10,c.X(93),c.Y(0)-10,GREEN);htext(s,c.X(x)+40,c.Y(0)+26,'אותה חקלאות',{size:17,c:GREY,a:'start'});}
+{const s=document.getElementById('n3'),c=frame(s,520,300,'X','Y');
+  hpoly(s,P(c,arc(55,70)),{c:GREY,dash:'7 6',passes:1,w:2.6});hpoly(s,P(c,arc(95,70)));
+  const A=[38,yOn(55,70,38)];hline(s,c.X(0),c.Y(A[1]),c.X(xOn(95,70,A[1])),c.Y(A[1]),{c:GREY,dash:'4 5',passes:1,w:1.6});
+  hline(s,c.X(A[0]),c.Y(A[1]),c.X(A[0]),c.Y(0),{c:GREY,dash:'4 5',passes:1,w:1.6});
+  hdot(s,c.X(A[0]),c.Y(A[1]),GREY);txt(s,c.X(A[0])+8,c.Y(A[1])+22,'A',{bw:700,c:GREY});
+  [[55,GREEN,'X↑'],[38,BLUE,'X='],[22,RED,'X↓']].forEach(([x,col,l],i)=>{const y=yOn(95,70,x);hdot(s,c.X(x),c.Y(y),col);txt(s,c.X(x)+(i===2?-8:8),c.Y(y)-10,l,{c:col,bw:700,a:i===2?'end':'start'});});}
+{const s=document.getElementById('n4'),c=frame(s,520,300,'X','Y');
+  hpoly(s,P(c,arc(70,62)),{c:GREY,dash:'7 6',passes:1,w:2.6});hpoly(s,P(c,arc(45,92)));
+  const A=[20,yOn(70,62,20)];hdot(s,c.X(A[0]),c.Y(A[1]),GREEN);txt(s,c.X(A[0])-8,c.Y(A[1])+24,'A ✓',{c:GREEN,bw:700,a:'end'});
+  arrow(s,c.X(70),c.Y(0)-10,c.X(47),c.Y(0)-10,RED);arrow(s,c.X(0)+10,c.Y(62),c.X(0)+10,c.Y(90),GREEN);
+  htext(s,c.X(72),c.Y(16),'ישנה',{c:GREY,size:18,a:'end'});htext(s,c.X(30),c.Y(80),'חדשה',{size:18,a:'end'});}
+{const s=document.getElementById('n5'),c=frame(s,520,300,'מזון','ביגוד');
+  hpoly(s,P(c,arc(85,85)));const A=[30,30];hdot(s,c.X(30),c.Y(30),RED);txt(s,c.X(30)-12,c.Y(30)+24,'A',{c:RED,bw:700,a:'end'});
+  arrow(s,c.X(32),c.Y(30),c.X(58),c.Y(30),GREEN);arrow(s,c.X(30),c.Y(32),c.X(30),c.Y(58),GREEN);arrow(s,c.X(32),c.Y(32),c.X(52),c.Y(52),GREEN);
+  htext(s,c.X(53),c.Y(41),'ג׳: גם וגם',{c:GREEN,a:'end',size:17});}
+{const s=document.getElementById('n6');const X=v=>60+v*7.2,Y=v=>290-v*1.15;
+  hline(s,X(0),Y(0),X(60),Y(0),{w:2.6});hline(s,X(0),Y(0),X(0),Y(235),{w:2.6});
+  txt(s,X(60)+6,Y(0)+6,'X',{size:22});txt(s,X(0)-4,Y(235)-8,'Y',{size:22,a:'middle'});
+  [10,20,30,40].forEach(v=>{hline(s,X(v),Y(0)-5,X(v),Y(0)+5,{passes:1,w:1.5});txt(s,X(v),Y(0)+24,String(v),{size:17,a:'middle'});});
+  [50,100,150,200].forEach(v=>{hline(s,X(0)-5,Y(v),X(0)+5,Y(v),{passes:1,w:1.5});txt(s,X(0)-8,Y(v)+6,String(v),{size:17,a:'end'});});
+  hline(s,X(0),Y(200),X(50),Y(0),{w:3.4});hdot(s,X(0),Y(200));hdot(s,X(50),Y(0));
+  hline(s,X(5),Y(210),X(55),Y(10),{c:RED,w:2.8,dash:'9 6'});hdot(s,X(5),Y(210),RED);hdot(s,X(55),Y(10),RED);
+  txt(s,X(5)+10,Y(210)-4,'(5,210)',{c:RED,size:19});txt(s,X(55)+8,Y(10)-6,'(55,10)',{c:RED,size:19});
+  txt(s,X(0)-8,Y(200)-14,'(0,200)',{size:18,a:'end'});txt(s,X(50),Y(0)+24,'(50,0)',{size:18,a:'middle'});
+  arrow(s,X(22),Y(112),X(26.5),Y(121),RED);
+  htext(s,X(28),Y(150),'צריכה',{c:RED,size:19,a:'end'});htext(s,X(16),Y(60),'ייצור',{size:19,a:'end'});}
+{const s=document.getElementById('n7'),c=frame(s,520,300,'X','Y');
+  hpoly(s,P(c,arc(60,75)),{c:GREY,dash:'7 6',passes:1,w:2.6});hpoly(s,P(c,arc(85,75)));
+  const A=[40,yOn(60,75,40)];hdot(s,c.X(A[0]),c.Y(A[1]),GREY);txt(s,c.X(A[0])-10,c.Y(A[1])+22,'A',{bw:700,c:GREY,a:'end'});
+  const a=[40,yOn(85,75,40)],b=[xOn(85,75,A[1]),A[1]];
+  hdot(s,c.X(a[0]),c.Y(a[1]),RED);arrow(s,c.X(A[0]),c.Y(A[1])-6,c.X(a[0]),c.Y(a[1])+7,RED);htext(s,c.X(a[0])-12,c.Y(a[1])+4,'א',{c:RED,a:'start',size:22});
+  hdot(s,c.X(b[0]),c.Y(b[1]),GREEN);arrow(s,c.X(A[0])+6,c.Y(A[1]),c.X(b[0])-7,c.Y(b[1]),GREEN);htext(s,c.X(b[0])+26,c.Y(b[1])+6,'ב',{c:GREEN,a:'start',size:22});}
+})();
+</script>
+
+</body>
+</html>
