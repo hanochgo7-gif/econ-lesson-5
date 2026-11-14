@@ -227,6 +227,40 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .chart.sm{max-width:560px;margin-inline:auto}
 .qsec .tstep .tnum{font-family:var(--font-display)}
 .dd{margin:0}
+.bk-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:620px){.bk-facts,.bk-defs{grid-template-columns:1fr}}
+.bk-fact{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.bk-fact p{margin:0}
+.bk-fact.cake{border-inline-start:4px solid var(--c-floor)}
+.bk-fact.bread{border-inline-start:4px solid var(--c-labor)}
+.bk-ico{font-size:1.8rem;line-height:1.1}
+.bk-calc{margin:0;font-weight:700;background:var(--accent-soft);border-radius:8px;padding:6px 10px;color:var(--accent)}
+.bk-defs .box{gap:8px}
+.bk-legend,.bk-barkey{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;color:var(--muted)}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-inline-end:6px;box-sizing:border-box}
+.sw.cake{background:var(--c-floor-soft);border:2px solid var(--c-floor)}
+.sw.bread{background:var(--c-labor-soft);border:2px solid var(--c-labor)}
+.sw.moved{background:var(--c-labor-soft);border:2.5px solid var(--pen)}
+.sw.lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 3px,var(--pen) 3px 5px);border:2px solid var(--pen)}
+.bk-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;max-width:440px;width:100%;margin-inline:auto}
+.bk-grid .w{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:clamp(.72rem,2.7vw,1.05rem);border:2px solid;position:relative;transition:background-color .4s,border-color .4s,box-shadow .4s}
+.bk-grid .w.cake{background:var(--c-floor-soft);border-color:var(--c-floor)}
+.bk-grid .w.bread{background:var(--c-labor-soft);border-color:var(--c-labor)}
+.bk-grid .w.moved{border-color:var(--pen);box-shadow:0 0 0 2.5px var(--pen)}
+.bk-grid .w.boost::after{content:'✨';position:absolute;top:-6px;inset-inline-start:-5px;font-size:.62em}
+.bk-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:520px){.bk-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bk-st{background:var(--paper);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.bk-st.hi{background:var(--accent-soft)}
+.bk-st .k{font-size:.82rem;color:var(--muted);font-weight:600;line-height:1.3}
+.bk-st .v{font:600 1.35rem var(--font-mono);direction:ltr;unicode-bidi:isolate;text-align:right}
+.bk-st .d{font-size:.82rem;font-weight:700;color:var(--accent);min-height:1.2em}
+.bk-barwrap{display:flex;flex-direction:column;gap:6px}
+.bk-barlbl{font-weight:700;font-size:.95rem}
+.bk-bar{display:flex;height:36px;border-radius:10px;overflow:hidden;border:1.5px solid var(--line)}
+.bk-bar>div{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;transition:flex-basis .5s;flex-grow:0;flex-shrink:0}
+.bk-bar .have{background:var(--c-labor-soft);color:var(--c-labor)}
+.bk-bar .lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 9px,var(--surface) 9px 14px);color:var(--pen);border-inline-start:2px solid var(--pen)}
 .dd>b:first-child{color:var(--accent)}
 </style>
 
@@ -1004,28 +1038,112 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 <!-- Q7 -->
 <section id="ex2q7" class="stack qsec" aria-labelledby="h-e2q7">
   <div class="sec-head"><div class="eyebrow">תרגיל 2</div><h3 id="h-e2q7" style="font-size:1.6rem">שאלה 7 (רשות) · שיפור של 10% ב־X</h3></div>
-  <div class="qtext">חל שיפור טכנולוגי, כך שבכל הרכב תשומות אפשר עכשיו לייצר 10% יותר X. (א) המשק ממשיך לייצר אותה כמות X. מה קרה להקצאת גורמי הייצור, לעלות האלטרנטיבית הכוללת של X ולעלות האלטרנטיבית הממוצעת של X? (ב) אותן שאלות, אם המשק ממשיך לייצר אותה כמות Y.</div>
-  <p class="symnote"><b>תזכורת מתרגיל 1:</b> <b>עלות אלטרנטיבית כוללת</b> של X = כמה Y ויתרנו בסך הכל כדי לייצר את ה־X שיש לנו. כלומר <bdi dir="ltr" class="m">Ymax − Y</bdi>. <b>עלות ממוצעת</b> = הכוללת חלקי כמות ה־X.</p>
+  <div class="qtext"><b>א.</b> במשק שמייצר X ו־Y חל שיפור טכנולוגי, כך שבכל הרכב תשומות אפשר עכשיו לייצר 10% יותר X. המשק ממשיך לייצר אותה כמות X כמו לפני השיפור. מה קרה להקצאת גורמי הייצור, לסך ההוצאה האלטרנטיבית לייצור X, ולהוצאה האלטרנטיבית הממוצעת לייצור X (בהשוואה למצב שלפני השיפור)?<br><b>ב.</b> אחרי השיפור המשק בוחר להמשיך לייצר אותה כמות Y. ענו מחדש על השאלות של סעיף א.</div>
+  <p class="brief"><span class="lbl">איך נלמד את זה</span>קודם סיפור על מאפייה, בלי אף מילה של כלכלה. רק בסוף נתרגם את הסיפור לשפה של המבחן. אם מבינים את המאפייה, מבינים את השאלה.</p>
+
+  <figure class="pic"><img src="img/bakery.webp" alt="מאפייה קטנה: בצד אחד אופים מכינים עוגות, בצד השני אופים מכינים לחם, ובאמצע תנור עוגות חדש ונוצץ" loading="lazy"><figcaption>מאפייה אחת, שני מוצרים: עוגות ולחם. ובאמצע: תנור עוגות חדש.</figcaption></figure>
+
+  <h3>שלב 1 · מכירים את המאפייה</h3>
+  <div class="bk-facts">
+    <div class="bk-fact"><span class="bk-ico" aria-hidden="true">👩‍🍳</span><p>במאפייה עובדים <b>100 אופים</b>. כל אופה מכין כל יום רק דבר אחד: עוגות <u>או</u> לחם.</p></div>
+    <div class="bk-fact cake"><span class="bk-ico" aria-hidden="true">🎂</span><p><b>עוגות</b> הן המוצר <b>X</b>. אופה שעובד על עוגות מכין <b>עוגה אחת</b> ביום.</p></div>
+    <div class="bk-fact bread"><span class="bk-ico" aria-hidden="true">🍞</span><p><b>לחם</b> הוא המוצר <b>Y</b>. אופה שעובד על לחם מכין <b>2 לחמים</b> ביום.</p></div>
+    <div class="bk-fact"><span class="bk-ico" aria-hidden="true">🏆</span><p>אם כל 100 האופים יכינו רק לחם, יהיו <b>200 לחמים</b>. זה הכי הרבה לחם שאפשר. בכלכלה קוראים לזה <bdi dir="ltr" class="m">Ymax = 200</bdi>.</p></div>
+  </div>
+
+  <h3>שלב 2 · מה זה "עלות אלטרנטיבית" במאפייה</h3>
+  <p>הרעיון הכי חשוב: <b>כל אופה שמכין עוגות הוא אופה שלא מכין לחם.</b> לכן כל עוגה "עולה" לנו לחם. לא בכסף, אלא בלחם שוויתרנו עליו. זו עלות אלטרנטיבית: <u>על מה ויתרנו</u> כדי לקבל משהו.</p>
+  <div class="two bk-defs">
+    <div class="box"><div class="eyebrow">מושג 1</div><h3 style="font-size:1.15rem">עלות כוללת</h3><p style="margin:0">כמה לחם הפסדנו <b>בגלל כל העוגות ביחד</b>.</p><p class="bk-calc">200 פחות הלחם שיש לנו בפועל</p><p class="note" style="margin:0">כמו בחנות: יכולתי לקבל 200, קיבלתי רק 90, אז הפסדתי 110.</p></div>
+    <div class="box"><div class="eyebrow">מושג 2</div><h3 style="font-size:1.15rem">עלות ממוצעת</h3><p style="margin:0">כמה לחם הפסדנו <b>על כל עוגה אחת</b>, בממוצע.</p><p class="bk-calc">העלות הכוללת ÷ מספר העוגות</p><p class="note" style="margin:0">כמו לחלק חשבון במסעדה: הסכום הכולל חלקי מספר האנשים.</p></div>
+  </div>
+
+  <h3>שלב 3 · לפני התנור החדש</h3>
+  <ul class="steps" style="list-style:disc">
+    <li><b>55 אופים</b> מכינים עוגות, ויוצאות <b>55 עוגות</b>.</li>
+    <li><b>45 אופים</b> מכינים לחם: <bdi dir="ltr" class="m">45 × 2 = 90</bdi> לחמים.</li>
+    <li><b>עלות כוללת:</b> יכולנו לקבל 200 לחמים וקיבלנו 90. <bdi dir="ltr" class="m">200 − 90 = 110</bdi>. הפסדנו <b>110 לחמים</b> בגלל העוגות.</li>
+    <li><b>עלות ממוצעת:</b> <bdi dir="ltr" class="m">110 ÷ 55 = 2</bdi>. כל עוגה "עלתה" לנו <b>2 לחמים</b>. זה הגיוני: אופה אחד מכין עוגה אחת או 2 לחמים.</li>
+  </ul>
+
+  <h3>שלב 4 · מגיע תנור עוגות חדש</h3>
+  <p>עם התנור החדש כל אופה מכין <b>10% יותר עוגות</b>: <b>1.1 עוגות</b> ביום במקום 1. קל יותר לחשוב על זה ככה: <b>כל 10 אופים מכינים עכשיו 11 עוגות במקום 10.</b></p>
+  <p class="symnote"><b>חשוב:</b> התנור החדש הוא <u>רק לעוגות</u>. בלחם לא השתנה כלום, ואופה לחם עדיין מכין 2 לחמים. לכן אם כולם יכינו לחם, עדיין יהיו 200 לחמים. <bdi dir="ltr" class="m">Ymax</bdi> נשאר 200.</p>
+  <p>עכשיו המאפייה צריכה להחליט. בסעיף א היא אומרת: "נמשיך להכין 55 עוגות". בסעיף ב היא אומרת: "נמשיך להכין 90 לחמים". בואו נראה מה קורה בכל מקרה.</p>
+
+  <div class="lab">
+    <div class="lab-title"><span class="tag">ניסוי 6</span><h3>המאפייה בשלושה מצבים</h3></div>
+    <p class="note" style="margin:0">כל משבצת היא אופה אחד. לחצו על מצב וראו מי עובד על מה, כמה מכינים, וכמה לחם הפסדנו.</p>
+    <div class="btns" id="bkBtns" role="group" aria-label="מצבי המאפייה">
+      <button class="btn" type="button" data-s="0" aria-pressed="true">לפני התנור</button>
+      <button class="btn" type="button" data-s="1" aria-pressed="false">סעיף א: אותן עוגות</button>
+      <button class="btn" type="button" data-s="2" aria-pressed="false">סעיף ב: אותו לחם</button>
+    </div>
+    <div class="bk-legend"><span><i class="sw cake"></i>אופה עוגות</span><span><i class="sw bread"></i>אופה לחם</span><span><i class="sw moved"></i>עבר עכשיו מעוגות ללחם</span></div>
+    <div class="bk-grid" id="bkGrid" role="img" aria-label="100 אופים"></div>
+    <div class="bk-stats" id="bkStats"></div>
+    <div class="bk-barwrap">
+      <div class="bk-barlbl">200 הלחמים שהיינו יכולים לקבל:</div>
+      <div class="bk-bar" id="bkBar"><div class="have"></div><div class="lost"></div></div>
+      <div class="bk-barkey"><span><i class="sw bread"></i>לחם שיש לנו</span><span><i class="sw lost"></i>לחם שהפסדנו בגלל העוגות (עלות כוללת)</span></div>
+    </div>
+    <p class="readout" id="bkRead" aria-live="polite"></p>
+  </div>
+
   <div class="tstep"><div class="tnum">א</div><div class="tbody">
-    <p class="dd"><b>אותה כמות X:</b> עם טכנולוגיה טובה יותר צריך פחות משאבים כדי לייצר אותו X. המשאבים שהתפנו עוברים ל־Y, ולכן Y גדל.</p>
-    <ul class="steps" style="list-style:disc">
-      <li><b>הקצאה:</b> פחות גורמי ייצור ב־X, יותר ב־Y.</li>
-      <li><b>עלות כוללת:</b> <bdi dir="ltr" class="m">Ymax − Y</bdi>. ‏Ymax לא השתנה (השיפור רק ב־X), ו־Y גדל. לכן העלות הכוללת <b>ירדה</b>.</li>
-      <li><b>עלות ממוצעת:</b> כוללת ÷ X. הכוללת ירדה ו־X לא השתנה, ולכן גם הממוצעת <b>ירדה</b>.</li>
-    </ul>
+    <h3>סעיף א · ממשיכים להכין 55 עוגות</h3>
+    <ol class="steps">
+      <li><b>כמה אופים צריך בשביל 55 עוגות?</b> כל 10 אופים מכינים עכשיו 11 עוגות, אז 50 אופים מכינים 55 עוגות (<bdi dir="ltr" class="m">55 ÷ 1.1 = 50</bdi>). צריך רק <b>50 אופים</b> במקום 55.</li>
+      <li><b>מה עושים 5 האופים שהתפנו?</b> הם לא הולכים הביתה. הם עוברים ללחם. עכשיו 50 אופים מכינים לחם: <bdi dir="ltr" class="m">50 × 2 = 100</bdi> לחמים.</li>
+      <li><b>עלות כוללת:</b> <bdi dir="ltr" class="m">200 − 100 = 100</bdi>. קודם הפסדנו 110 לחמים, עכשיו רק 100. <b>ירדה.</b></li>
+      <li><b>עלות ממוצעת:</b> <bdi dir="ltr" class="m">100 ÷ 55 ≈ 1.82</bdi>. קודם כל עוגה עלתה 2 לחמים, עכשיו פחות. <b>ירדה.</b></li>
+    </ol>
+    <p class="why"><b>במשפט אחד:</b> קיבלנו את אותן עוגות, אבל "שילמנו" עליהן פחות לחם, כי היה צריך פחות אופים כדי להכין אותן.</p>
   </div></div>
+
   <div class="tstep"><div class="tnum">ב</div><div class="tbody">
-    <p class="dd"><b>אותה כמות Y:</b> הטכנולוגיה של Y לא השתנתה, ולכן כדי לייצר אותו Y צריך בדיוק את אותם משאבים. לכן גם ב־X נשארו אותם משאבים, והם מייצרים 10% יותר X.</p>
-    <ul class="steps" style="list-style:disc">
-      <li><b>הקצאה:</b> לא השתנתה.</li>
-      <li><b>עלות כוללת:</b> <bdi dir="ltr" class="m">Ymax − Y</bdi>. גם Ymax וגם Y לא השתנו, ולכן העלות הכוללת <b>לא השתנתה</b>.</li>
-      <li><b>עלות ממוצעת:</b> אותה עלות כוללת מתחלקת על 10% יותר X, ולכן הממוצעת <b>ירדה</b>, ל־<bdi dir="ltr" class="m">1 ÷ 1.1 ≈ 91%</bdi> ממה שהייתה.</li>
-    </ul>
+    <h3>סעיף ב · ממשיכים להכין 90 לחמים</h3>
+    <ol class="steps">
+      <li><b>כמה אופים צריך בשביל 90 לחמים?</b> בלחם לא השתנה כלום, אז כמו קודם: <b>45 אופים</b>.</li>
+      <li><b>כמה אופים נשארו לעוגות?</b> <bdi dir="ltr" class="m">100 − 45 = 55</bdi>, בדיוק כמו קודם. <b>אף אופה לא זז.</b></li>
+      <li><b>כמה עוגות יוצאות?</b> אותם 55 אופים, אבל עם התנור החדש: <bdi dir="ltr" class="m">55 × 1.1 = 60.5</bdi> עוגות. יותר עוגות!</li>
+      <li><b>עלות כוללת:</b> <bdi dir="ltr" class="m">200 − 90 = 110</bdi>, בדיוק כמו קודם. <b>לא השתנתה.</b></li>
+      <li><b>עלות ממוצעת:</b> <bdi dir="ltr" class="m">110 ÷ 60.5 ≈ 1.82</bdi>. אותם 110 לחמים מתחלקים עכשיו על יותר עוגות. <b>ירדה.</b></li>
+    </ol>
+    <p class="why"><b>במשפט אחד:</b> ויתרנו על אותה כמות לחם בדיוק, אבל קיבלנו תמורתה יותר עוגות, ולכן כל עוגה "עלתה" פחות.</p>
   </div></div>
-  <div class="tscroll"><table class="t"><caption>סיכום שאלה 7</caption>
-    <thead><tr><th scope="col"></th><th scope="col">הקצאת גורמי ייצור</th><th scope="col">עלות כוללת של X</th><th scope="col">עלות ממוצעת של X</th></tr></thead>
-    <tbody><tr><th scope="row">(א) אותה כמות X</th><td>עוברים מ־X ל־Y</td><td>יורדת</td><td>יורדת</td></tr>
-    <tr><th scope="row">(ב) אותה כמות Y</th><td>לא משתנה</td><td>לא משתנה</td><td>יורדת (לכ־91%)</td></tr></tbody></table></div>
+
+  <div class="tscroll"><table class="t"><caption>הכל בטבלה אחת</caption>
+    <thead><tr><th scope="col"></th><th scope="col">לפני התנור</th><th scope="col">סעיף א: אותן עוגות</th><th scope="col">סעיף ב: אותו לחם</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">אופי עוגות / אופי לחם</th><td>55 / 45</td><td>50 / 50 <b>(5 עברו ללחם)</b></td><td>55 / 45 <b>(אין שינוי)</b></td></tr>
+      <tr><th scope="row">עוגות (X)</th><td>55</td><td>55</td><td>60.5</td></tr>
+      <tr><th scope="row">לחמים (Y)</th><td>90</td><td>100</td><td>90</td></tr>
+      <tr class="hi"><th scope="row">עלות כוללת (לחם שהפסדנו)</th><td>110</td><td>100 <b>↓ ירדה</b></td><td>110 <b>= לא השתנתה</b></td></tr>
+      <tr class="hi"><th scope="row">עלות ממוצעת (לחם לכל עוגה)</th><td>2</td><td>1.82 <b>↓ ירדה</b></td><td>1.82 <b>↓ ירדה</b></td></tr>
+    </tbody></table></div>
+
+  <h3>הטריק לזכור</h3>
+  <ol class="steps">
+    <li><b>תמיד שואלים קודם: איפה האופים?</b> כלומר, לאן הולכים גורמי הייצור.</li>
+    <li><b>סעיף א:</b> העוגות לא השתנו, אז האופים שהתפנו עוברים ללחם. יש יותר לחם, ולכן העלות הכוללת יורדת.</li>
+    <li><b>סעיף ב:</b> הלחם לא השתנה, אז אף אופה לא זז. העלות הכוללת זהה, אבל היא מתחלקת על יותר עוגות.</li>
+    <li><b>הממוצע יורד בשני המקרים</b>, כי בזכות התנור כל עוגה דורשת פחות עבודה. במילים אחרות, X נעשה "זול" יותר.</li>
+  </ol>
+
+  <h3>מהמאפייה לשפה של המבחן</h3>
+  <div class="tscroll"><table class="t"><thead><tr><th scope="col">במאפייה אמרנו</th><th scope="col">במבחן כותבים</th></tr></thead><tbody>
+    <tr><td>אופים</td><td>גורמי ייצור</td></tr>
+    <tr><td>לאן הולכים האופים</td><td>הקצאת גורמי הייצור</td></tr>
+    <tr><td>תנור חדש לעוגות</td><td>שיפור טכנולוגי בייצור X</td></tr>
+    <tr><td>לחם שהפסדנו בגלל העוגות</td><td>עלות (הוצאה) אלטרנטיבית כוללת של X, כלומר <bdi dir="ltr" class="m">Ymax − Y</bdi></td></tr>
+    <tr><td>לחם לכל עוגה</td><td>עלות אלטרנטיבית ממוצעת של X, כלומר <bdi dir="ltr" class="m">(Ymax − Y) ÷ X</bdi></td></tr>
+  </tbody></table></div>
+
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div>
+    <p><b>א.</b> המשק ממשיך לייצר אותה כמות X, אך בזכות השיפור הטכנולוגי דרושים לכך פחות גורמי ייצור. גורמי הייצור שהתפנו מועברים לייצור Y, ולכן כמות Y עולה. ההוצאה האלטרנטיבית הכוללת של X, שהיא <bdi dir="ltr" class="m">Ymax − Y</bdi>, יורדת, כי Ymax לא השתנה (השיפור הוא רק ב־X) ו־Y עלה. ההוצאה האלטרנטיבית הממוצעת, שהיא ההוצאה הכוללת חלקי X, יורדת גם היא, כי ההוצאה הכוללת ירדה ו־X לא השתנה.</p>
+    <p><b>ב.</b> המשק ממשיך לייצר אותה כמות Y. בייצור Y לא חל שינוי טכנולוגי, ולכן נדרשים לו אותם גורמי ייצור, וההקצאה לא משתנה. בייצור X נשארים אותם גורמי ייצור, והם מייצרים עכשיו 10% יותר X. ההוצאה האלטרנטיבית הכוללת לא משתנה, כי Ymax ו־Y לא השתנו. ההוצאה האלטרנטיבית הממוצעת יורדת, כי אותה הוצאה כוללת מתחלקת על כמות X גדולה ב־10%.</p>
+  </div>
 </section>
 
 <section id="ex2sum" class="stack" aria-labelledby="h-ex2s">
@@ -1039,7 +1157,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
     <tr><th scope="row">4</th><td><b>1</b></td><td>העקומות נחתכות, ו־A יכולה להישאר אפשרית</td></tr>
     <tr><th scope="row">5</th><td><b>ג</b></td><td>נקודה פנימית: אפשר להגדיל את שניהם</td></tr>
     <tr><th scope="row">6</th><td><bdi dir="ltr" class="m">Y = 230 − 4X</bdi></td><td>המענק מזיז את הצריכה (5 ימינה, 10 למעלה), לא את הייצור</td></tr>
-    <tr><th scope="row">7</th><td>ראו טבלה</td><td>א: הכוללת והממוצעת יורדות. ב: הכוללת קבועה, הממוצעת יורדת</td></tr>
+    <tr><th scope="row">7</th><td>ראו המאפייה</td><td>א: אופים עוברים ללחם, הכוללת והממוצעת יורדות. ב: אף אופה לא זז, הכוללת קבועה, הממוצעת יורדת</td></tr>
   </tbody></table></div>
 </section>
 
@@ -1392,6 +1510,31 @@ $$('.mcq').forEach(q=>{const ans=+q.dataset.ans;const fb=q.querySelector('.fb');
     if(ok)q.querySelectorAll('.opt').forEach(o=>{if(o!==b&&o.classList.contains('no'))o.classList.add('dim');});
     const why=b.dataset.why;
     fb.innerHTML=(ok?'<b style="color:var(--good)">✓ נכון.</b> ':'<b style="color:var(--bad)">✗ לא.</b> ')+(why||(ok?'ההסבר המלא כאן למטה.':'נסו שוב, או קראו את ההסבר למטה.'));});});
+
+/* ---------- Q7 bakery ---------- */
+const BK=[{c:55,y:90,x:55,mv:0,boost:false},{c:50,y:100,x:55,mv:5,boost:true},{c:55,y:90,x:60.5,mv:0,boost:true}];
+const BKT=[
+ '<b>לפני התנור:</b> 55 אופים מכינים 55 עוגות, ו־45 אופים מכינים 90 לחמים. היינו יכולים לקבל 200 לחמים וקיבלנו 90, אז הפסדנו <b>110 לחמים</b> בגלל העוגות (הקטע האדום בפס). על כל עוגה: <span class="m">110 ÷ 55 = 2</span> לחמים.',
+ '<b>סעיף א:</b> רוצים שוב 55 עוגות. עם התנור החדש מספיקים לזה 50 אופים. <b>5 האופים עם המסגרת האדומה עברו ללחם</b>, ולכן יש עכשיו 100 לחמים. הפסדנו רק <b>100 לחמים</b> (הקטע האדום בפס התקצר), וכל עוגה עלתה <span class="m">100 ÷ 55 ≈ 1.82</span> לחמים. שתי העלויות ירדו.',
+ '<b>סעיף ב:</b> רוצים שוב 90 לחמים, אז 45 אופים נשארים בלחם. <b>אף אופה לא זז.</b> אבל 55 אופי העוגות עובדים עם התנור החדש ומכינים 60.5 עוגות. הפסדנו בדיוק כמו קודם, <b>110 לחמים</b> (הפס לא השתנה), אבל הם מתחלקים על יותר עוגות: <span class="m">110 ÷ 60.5 ≈ 1.82</span> לחמים לכל עוגה. הכוללת לא השתנתה, הממוצעת ירדה.'];
+let bkS=0;
+function bake(){
+  const g=$('#bkGrid');if(!g)return;const s=BK[bkS],b0=BK[0];
+  if(!g.children.length){for(let i=0;i<100;i++){const d=document.createElement('span');d.className='w';d.setAttribute('aria-hidden','true');g.appendChild(d);}}
+  [...g.children].forEach((d,i)=>{const cake=i<s.c,moved=!cake&&i<s.c+s.mv&&s.mv>0;
+    d.className='w '+(cake?'cake':'bread')+(moved?' moved':'')+(cake&&s.boost?' boost':'');d.textContent=cake?'🎂':'🍞';});
+  g.setAttribute('aria-label',`${s.c} אופים מכינים עוגות ו־${100-s.c} אופים מכינים לחם${s.mv?`. ${s.mv} מהם עברו עכשיו מעוגות ללחם`:''}`);
+  const tc=200-s.y,ta=tc/s.x,tc0=200-b0.y,ta0=tc0/b0.x;
+  const rows=[['אופי עוגות',s.c,b0.c],['אופי לחם',100-s.c,100-b0.c],['עוגות (X)',s.x,b0.x],['לחמים (Y)',s.y,b0.y],['עלות כוללת<br>(לחם שהפסדנו)',tc,tc0,1],['עלות ממוצעת<br>(לחם לכל עוגה)',ta,ta0,1]];
+  $('#bkStats').innerHTML=rows.map(([k,v,v0,hi])=>{let d='';if(bkS>0){d=Math.abs(v-v0)<1e-9?'= כמו קודם':v>v0?'↑ יותר מקודם':'↓ פחות מקודם';}
+    return `<div class="bk-st${hi?' hi':''}"><span class="k">${k}</span><span class="v">${fmt(v,2)}</span><span class="d">${d}</span></div>`;}).join('');
+  const bar=$('#bkBar');bar.querySelector('.have').style.flexBasis=(s.y/2)+'%';bar.querySelector('.lost').style.flexBasis=(tc/2)+'%';
+  bar.querySelector('.have').textContent='יש: '+s.y;bar.querySelector('.lost').textContent='הפסדנו: '+tc;
+  bar.setAttribute('aria-label',`מתוך 200 לחמים: יש ${s.y}, הפסדנו ${tc}`);bar.setAttribute('role','img');
+  $('#bkRead').innerHTML=BKT[bkS];
+}
+$$('#bkBtns .btn').forEach(b=>b.onclick=()=>{bkS=+b.dataset.s;$$('#bkBtns .btn').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));bake();});
+bake();
 
 function all(){sim();build();areaLab();kib();solCharts();shift2();e2charts();}
 all();
