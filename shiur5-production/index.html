@@ -266,403 +266,732 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 /* production-function lesson */
 .mainflow{display:flex;flex-direction:column;gap:60px}
 .mainflow>*{min-width:0}
+main>section{scroll-margin-top:56px}
+.top{scroll-margin-top:0}
 .pic img{object-fit:cover}
 .pic.wide img{aspect-ratio:16/9}
+
+/* sticky progress (slim) + safe-area band */
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:31;pointer-events:none}
+.prog{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;height:36px;margin-bottom:-96px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--paper);border-bottom:1px solid var(--line);font-size:.85rem;color:var(--muted);font-weight:600;visibility:hidden;opacity:0;transition:opacity .2s}
+.prog.on{visibility:visible;opacity:1}
+.prog span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.prog a{color:var(--accent);text-decoration:none;white-space:nowrap;min-height:36px;display:inline-flex;align-items:center;padding-inline:6px}
+.prog i{position:absolute;inset-inline-start:0;bottom:-1px;height:3px;background:var(--accent);width:0;border-radius:2px;transition:width .25s}
+
+/* numbered nav + fast track + back-to-top */
+.jump a{gap:6px}
+.jump .pn{font-family:var(--font-mono);font-weight:600;color:var(--accent);margin-inline-end:2px}
+@media (max-width:560px){.jump{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.jump a{padding:0 10px;font-size:.92rem;line-height:1.25}}
+.fast{background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:0 12px 12px 0;padding:12px 16px;display:flex;flex-direction:column;gap:6px;font-size:1rem}
+.fast>b{color:var(--accent)}
+.fastlist{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 14px}
+.fastlist a{display:inline-flex;align-items:center;min-height:36px;font-weight:600}
+.totop{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;font-size:.92rem;font-weight:600;text-decoration:none}
+.totop:hover{text-decoration:underline}
+
+/* neutral cards (green/sun/red are reserved for the three MP zones) */
 .flow3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
-.f3{border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;text-align:center;border:2px solid}
-.f3 .k{font-size:.82rem;font-weight:700;opacity:.85}
+.f3{border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;text-align:center;border:1.5px solid var(--line);background:var(--surface)}
+.f3 .k{font-size:.82rem;font-weight:700;color:var(--muted)}
 .f3 b{font-size:1.1rem}
 .f3 span{font-size:.92rem}
-.f3.in{background:var(--sun-soft);border-color:var(--sun)}
-.f3.mid{background:var(--accent-soft);border-color:var(--accent)}
-.f3.out{background:var(--good-soft);border-color:var(--good)}
+.f3.mid{background:var(--accent-soft);border:2px solid var(--accent)}
 @media (max-width:560px){.flow3{grid-template-columns:1fr}}
 .fac3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .fac{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
-.fac .s{font:600 2rem var(--font-mono);line-height:1}
+.fac .s{font:600 2rem var(--font-mono);line-height:1;color:var(--accent)}
 .fac span{font-size:.92rem;color:var(--muted)}
-.fac.l .s{color:var(--sun)} .fac.k .s{color:var(--good)} .fac.n .s{color:var(--accent)}
 @media (max-width:560px){.fac3{grid-template-columns:1fr}}
 .eq{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;text-align:center}
 .eq.big .m{font-size:1.5rem;font-weight:600;color:var(--accent);white-space:normal}
 .defbox{background:var(--ink);color:var(--paper);border-radius:14px;padding:16px 20px;font-size:1.1rem;line-height:1.7}
-.defbox b{color:inherit;text-decoration:underline;text-decoration-color:var(--sun);text-decoration-thickness:3px;text-underline-offset:5px}
-.stage3,.rule3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.stg,.r{border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;border:2px solid}
-.stg p{margin:0;font-size:.98rem}
-.stg .n{font-size:.82rem;font-weight:700;opacity:.85}
-.stg.up,.r.up{background:var(--good-soft);border-color:var(--good)}
-.stg.mid,.r.same{background:var(--sun-soft);border-color:var(--sun)}
-.stg.down,.r.down{background:var(--bad-soft);border-color:var(--bad)}
-.stg b,.r b{font-size:1.1rem}
-.r .m{font-size:1.15rem;font-weight:600}
+.defbox b,.defbox strong{color:inherit;text-decoration:underline;text-decoration-color:var(--sun);text-decoration-thickness:3px;text-underline-offset:5px}
+.tbody p{margin:0}
+.box p{margin:0}
+
+/* MP zones (only place for green / sun / red) */
+.stage3,.rule3,.ph3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stg,.r,.ph{border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;border:2px solid}
+.stg p,.ph p{margin:0;font-size:.98rem}
+.stg .n,.ph .n{font-size:.85rem;font-weight:700}
+.stg.up{background:var(--good-soft);border-color:var(--good)} .stg.up .n{color:var(--good)}
+.stg.mid{background:var(--sun-soft);border-color:var(--sun)} .stg.mid .n{color:var(--sun)}
+.stg.down{background:var(--bad-soft);border-color:var(--bad)} .stg.down .n{color:var(--bad)}
+.stg b,.r b,.ph b{font-size:1.1rem}
+.r{background:var(--surface);border-color:var(--line);border-width:1.5px}
+.r.same{background:var(--accent-soft);border-color:var(--accent);border-width:2px}
+.r .m{font-size:1.15rem;font-weight:600;color:var(--accent)}
 .r span{font-size:.95rem}
-@media (max-width:620px){.stage3,.rule3{grid-template-columns:1fr}}
+.ph{background:var(--surface);border-color:var(--line);border-width:1.5px}
+.ph .n{color:var(--muted);font-family:var(--font-mono)}
+.ph.best{background:var(--accent-soft);border-color:var(--accent);border-width:2.5px}
+.ph.best .n{color:var(--accent)}
+.ph .tagline{font-weight:700;color:var(--accent);font-size:.95rem}
+@media (max-width:620px){.stage3,.rule3,.ph3{grid-template-columns:1fr}}
 .t tr.s1 td{background:var(--good-soft)} .t tr.s2 td{background:var(--sun-soft)} .t tr.s3 td{background:var(--bad-soft)}
-.t tr.cur td{outline:2px solid var(--accent);outline-offset:-2px}
+.t tr.cur td{box-shadow:inset 0 3px 0 var(--accent),inset 0 -3px 0 var(--accent);font-weight:700}
 .bike-n{font-weight:700;align-self:center}
-.chart-t{font-size:.9rem;font-weight:700;color:var(--muted);margin-bottom:4px}
+.chart-t{font-size:.95rem;font-weight:700;color:var(--muted);margin-bottom:4px}
+.charts2{display:flex;flex-direction:column;gap:18px}
+.lg{display:inline-block;width:28px;height:0;vertical-align:middle;margin-inline-end:6px}
+.lg-mp{border-top:4px solid var(--accent)}
+.lg-ap{border-top:3px dashed var(--ink)}
+.lg-tp{border-top:4px solid var(--c-mach)}
+.legend{margin-top:6px}
+.marks{margin:0;padding-inline-start:1.5em;display:flex;flex-direction:column;gap:6px;font-size:1rem}
+.marks li::marker{font-family:var(--font-mono);font-weight:700;color:var(--muted)}
+.sub{border-top:1px dashed var(--line);padding-top:18px;scroll-margin-top:56px}
+
+/* grades lab */
 .rng{display:flex;flex-direction:column;gap:6px}
 .rng input{width:100%;accent-color:var(--accent);min-height:44px}
 .grade-out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .grade-out .c{background:var(--paper);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column}
-.grade-out .c .k{font-size:.82rem;color:var(--muted);font-weight:600}
+.grade-out .c .k{font-size:.82rem;color:var(--muted);font-weight:600;line-height:1.35}
 .grade-out .c .v{font:600 1.4rem var(--font-mono);direction:ltr;unicode-bidi:isolate;text-align:right}
-.grade-out .msg{grid-column:1/-1;font-weight:700;padding:8px 12px;border-radius:10px}
-.grade-out .msg.up{background:var(--good-soft);color:var(--good)} .grade-out .msg.down{background:var(--bad-soft);color:var(--bad)} .grade-out .msg.eq{background:var(--sun-soft);color:var(--sun)}
+.gmsg{font-weight:700;padding:8px 12px;border-radius:10px;margin:0}
+.gmsg:empty{display:none}
+.gmsg.up{background:var(--good-soft);color:var(--good)} .gmsg.down{background:var(--bad-soft);color:var(--bad)} .gmsg.same{background:var(--sun-soft);color:var(--sun)}
+
+/* fields lab */
 .fld{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.fcol{border:2px solid;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center}
-.fcol.a{border-color:var(--good);background:var(--good-soft)} .fcol.b{border-color:var(--sun);background:var(--sun-soft)}
+.fcol{border:1.5px solid var(--control);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;background:var(--paper)}
 .fcol .cnt{font:600 1.8rem var(--font-mono);min-width:1.6em;text-align:center;align-self:center}
 .fcol .q{font-size:.95rem;font-weight:600}
-.mprank{display:flex;flex-direction:column;gap:6px}
-.mpr{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:8px;align-items:center;font-size:.92rem}
-.mpr .bar{height:24px;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font:600 .85rem var(--font-mono);color:#fff}
-.mpr.on .bar{background:var(--good)} .mpr.off .bar{background:var(--control)}
-.traps li::marker{color:var(--bad)}
-.sumt th[scope=row]{white-space:nowrap}
-@media (max-width:520px){p .m,li .m{white-space:normal}}
 .fcol .btns{flex-wrap:nowrap;justify-content:center}
+.fcol .btn{min-width:48px;font-size:1.2rem;padding:4px 10px}
+.fldlog:empty{display:none}
+.fldlog li{font-size:1rem}
+.mprank{display:flex;flex-direction:column;gap:6px}
+.mpr{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:8px;align-items:center;font-size:.92rem;line-height:1.3}
+.mpr .bar{height:26px;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;font:600 .9rem var(--font-mono);color:var(--surface);overflow:visible;position:static}
+.mpr.on .bar{background:var(--accent)}
+.mpr.on>span{font-weight:700}
+.mpr.off .bar{background:var(--grid);color:var(--ink);border:1px solid var(--control)}
+
+.btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.btn[aria-disabled="true"]:hover{border-color:var(--control)}
+.btn.primary[aria-disabled="true"]:hover{border-color:var(--accent)}
+.tscroll:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.traps li::marker{color:var(--bad)}
+.sumt th[scope=row]{white-space:normal;min-width:7em}
+.readout .m,p .m,li .m,summary .m{white-space:nowrap}
+
+/* disclosure widgets: block summaries with a visible +/− marker */
+details.sol>summary,.transcript summary,details.chk>summary,details.deep>summary,details.ref>summary{display:block;list-style:none;position:relative;padding-block:12px;padding-inline:44px 16px;cursor:pointer;min-height:44px;font-weight:700}
+details>summary::-webkit-details-marker{display:none}
+details.sol>summary::before,.transcript summary::before,details.chk>summary::before,details.deep>summary::before,details.ref>summary::before{content:"+";position:absolute;inset-inline-start:14px;top:10px;font:700 1.25rem var(--font-mono)}
+details[open]>summary::before{content:"−"}
+summary .hint{font-weight:500;color:var(--muted);font-size:.9rem}
+details.chk,details.deep,details.ref{border:1.5px dashed var(--accent);border-radius:12px;background:var(--surface)}
+details.chk>summary,details.deep>summary,details.ref>summary{color:var(--accent)}
+details.chk>summary{font-weight:600;color:var(--ink)}
+details.chk>summary::before{color:var(--accent)}
+.ref-body{padding:0 14px 14px}
+.exgrp{font-size:1.2rem;color:var(--accent);margin-top:10px}
+
+/* summary table → cards on phones */
+@media (max-width:560px){
+  .sumt thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .sumt,.sumt tbody,.sumt tr,.sumt th,.sumt td{display:block;width:100%}
+  .sumt tr{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:8px 12px;margin-bottom:10px}
+  .sumt th,.sumt td{border:0;padding:3px 0}
+  .sumt th[scope=row]{font-size:1.05rem;color:var(--accent)}
+  .sumt td::before{content:attr(data-l) ": ";font-weight:700;color:var(--muted);font-size:.9rem}
+}
+.zone{font-weight:700}
+.zone.z1{color:var(--good)} .zone.z2{color:var(--sun)} .zone.z3{color:var(--bad)}
+.okmsg{font-weight:700;color:var(--accent)}
+.rng input{margin:0}
+summary bdi,.t th bdi{white-space:nowrap}
 </style>
 
 <div class="wrap" dir="rtl" lang="he">
 
-<header class="top">
+<nav class="prog" id="prog" aria-label="התקדמות בשיעור"><span id="progTxt">חלק 1 מתוך 15</span><a href="#top">↑ לתפריט</a><i id="progBar" aria-hidden="true"></i></nav>
+
+<header class="top" id="top">
   <div class="eyebrow">מבוא למיקרו־כלכלה · שיעור 5</div>
   <h1>פונקציית הייצור</h1>
-  <p class="lead">איך מפעל הופך עובדים ומכונות למוצרים, ומה קורה כשמוסיפים עוד עובד ועוד עובד. הכל מוסבר מאפס, עם סיפורים, ניסויים, שאלות מבחן פתורות ורשימת מלכודות. לא צריך לדעת כלום מראש.</p>
+  <p class="lead">איך מפעל הופך עובדים ומכונות למוצרים? ומה קורה כשמוסיפים עוד עובד, ועוד עובד? הכול מוסבר מאפס, עם דוגמאות, ניסויים, שאלות מבחן פתורות ורשימת מלכודות. לא צריך לדעת כלום מראש.</p>
+  <div class="fast">
+    <b>מסלול מהיר</b>
+    <p>אין זמן לכול? קראו לפחות את החלקים האלה, לפי הסדר. את השאר אפשר לקרוא אחר כך.</p>
+    <ul class="fastlist"><li><a href="#def">4 · ההגדרה</a></li><li><a href="#apmp">6 · ממוצעת ושולית</a></li><li><a href="#law">8 · החוק</a></li><li><a href="#bikes">9 · מפעל האופנועים</a></li><li><a href="#link">10 · שולית מול ממוצעת</a></li><li><a href="#stages">12 · שלבי הייצור</a></li><li><a href="#exam">13 · שאלות מבחן</a></li><li><a href="#sum">15 · דף סיכום</a></li></ul>
+  </div>
+  <style>.vidframe video::cue{background:rgba(20,26,44,.82);color:#fff;font-size:1.05em;line-height:1.5}</style>
   <section class="vidsec" id="video" aria-labelledby="h-video">
-    <div class="vid-head"><h2 id="h-video">צפו קודם: כל השיעור בסרטון</h2><span class="note"><bdi dir="ltr">2:31</bdi> דקות · קריינות וכתוביות</span></div>
-    <figure class="vidframe"><video controls playsinline preload="metadata" poster="img/p5_poster.webp" aria-label="סרטון: פונקציית הייצור מאפס, עם קריינות בעברית וכתוביות"><source src="vid/p5_intro.mp4" type="video/mp4"></video></figure>
+    <div class="vid-head"><h2 id="h-video">צפו קודם: כל השיעור בסרטון</h2><span class="note"><bdi dir="ltr">2:37</bdi> דקות · קריינות וכתוביות בעברית</span></div>
+    <figure class="vidframe"><video controls playsinline preload="metadata" poster="img/p5_poster.webp" aria-label="סרטון: פונקציית הייצור מאפס, עם קריינות בעברית וכתוביות"><source src="vid/p5_intro.mp4" type="video/mp4"><track kind="captions" srclang="he" label="עברית" src="vid/p5_intro.he.vtt" default></video></figure>
+    <p class="note" style="margin:0">הכתוביות פועלות כברירת מחדל. אפשר לכבות אותן בכפתור הכתוביות (CC) בנגן.</p>
     <details class="transcript"><summary>תמליל הסרטון</summary>
       <p>בסרטון הזה נלמד את פונקציית הייצור: איך מפעל הופך עובדים ומכונות למוצרים.</p>
       <p>תחשבו על מטבח. מכניסים מצרכים, עושים לפי מתכון, ויוצאת עוגה. פונקציית הייצור היא המתכון של המפעל.</p>
-      <p>היא אומרת כמה הכי הרבה מוצרים אפשר לייצר מכמות מסוימת של עובדים ומכונות, בטכנולוגיה של היום.</p>
+      <p>פונקציית הייצור אומרת כמה הכי הרבה מוצרים אפשר לייצר מכמות מסוימת של עובדים ומכונות, בטכנולוגיה של היום.</p>
       <p>מושג ראשון: תפוקה ממוצעת, AP. כמה מייצר עובד אחד בממוצע. מחלקים את כל המוצרים במספר העובדים.</p>
       <p>מושג שני: תפוקה שולית, MP. כמה הוסיף העובד האחרון שהצטרף. בכמה עלתה התפוקה כשהוא הגיע.</p>
       <p>ועכשיו הלב של השיעור. בפרדס בגודל קבוע, מוסיפים עוד ועוד קוטפים.</p>
       <p>בהתחלה כל קוטף מוסיף יותר מהקודם. אחר כך כל קוטף מוסיף פחות. ובסוף, יותר מדי קוטפים מפריעים זה לזה, והתפוקה יורדת.</p>
       <p>זה חוק התפוקה השולית הפוחתת. הוא קורה כי משהו נשאר קבוע: הפרדס לא גדל.</p>
-      <p>במפעל האופניים: העובד הראשון מוסיף 4 יחידות, השני 8, השלישי 12. אחר כך 8, 3, ובסוף מינוס 5.</p>
+      <p>במפעל האופנועים: העובד הראשון מוסיף 4 אופנועים, השני 8, השלישי 12. אחר כך 8, 3, ובסוף מינוס 5.</p>
       <p>שימו לב: כשהתוספת יורדת, התפוקה הכוללת עדיין עולה. היא יורדת רק כשהתוספת שלילית.</p>
       <p>השולית והממוצעת עובדות כמו ממוצע ציונים. ציון חדש מעל הממוצע מעלה אותו, וציון מתחת לממוצע מוריד אותו.</p>
       <p>לכן קו התפוקה השולית חוצה את קו הממוצעת, בדיוק בשיא של הממוצעת.</p>
-      <p>טווח קצר: חלק מגורמי הייצור קבועים. טווח ארוך: אפשר לשנות הכל. זה תלוי במפעל, לא בלוח השנה.</p>
+      <p>טווח קצר: תקופה שבה חלק מגורמי הייצור קבועים. טווח ארוך: תקופה שבה אפשר לשנות הכול. וזה תלוי במפעל, לא בלוח השנה.</p>
       <p>ואיך מחלקים עובדים בין שני שדות? כל עובד הולך לשדה שבו הוא מוסיף הכי הרבה.</p>
-      <p>שלושה עובדים לשדה א׳, ואחד לשדה ב׳. סך הכל 46 יחידות. זה הכי הרבה שאפשר.</p>
+      <p>שלושה עובדים לשדה א׳, ואחד לשדה ב׳. סך הכול 46 יחידות. זה הכי הרבה שאפשר.</p>
       <p>באתר תמצאו ניסויים, שאלות מבחן פתורות, ורשימה של מלכודות. בהצלחה!</p>
     </details>
   </section>
-  <nav class="jump" aria-label="קפיצה לחלקי השיעור">
-    <a class="main" href="#video">▶ סרטון</a><a href="#idea">מתחילים</a><a href="#words">מילון</a><a href="#factors">גורמי ייצור</a><a href="#def">ההגדרה</a><a href="#apmp">ממוצעת ושולית</a><a href="#law">החוק</a><a href="#run">טווח קצר וארוך</a><a href="#bikes">מפעל האופניים</a><a href="#link">שולית מול ממוצעת</a><a href="#fields">שני שדות</a><a href="#exam">שאלות מבחן</a><a href="#traps">מלכודות</a><a href="#sum">דף סיכום</a>
+  <nav class="jump" id="menu" aria-label="קפיצה לחלקי השיעור">
+    <a class="main" href="#video"><span aria-hidden="true">▶</span> סרטון</a><a href="#idea"><span class="pn">1</span>מתחילים</a><a href="#words"><span class="pn">2</span>מילון</a><a href="#factors"><span class="pn">3</span>גורמי ייצור</a><a href="#def"><span class="pn">4</span>ההגדרה</a><a href="#bakery5"><span class="pn">5</span>מאפייה</a><a href="#apmp"><span class="pn">6</span>ממוצעת ושולית</a><a href="#run"><span class="pn">7</span>טווח קצר וארוך</a><a href="#law"><span class="pn">8</span>החוק</a><a href="#bikes"><span class="pn">9</span>מפעל האופנועים</a><a href="#link"><span class="pn">10</span>שולית מול ממוצעת</a><a href="#fields"><span class="pn">11</span>שני שדות</a><a href="#stages"><span class="pn">12</span>שלבי הייצור</a><a href="#exam"><span class="pn">13</span>שאלות מבחן</a><a href="#traps"><span class="pn">14</span>מלכודות</a><a href="#sum"><span class="pn">15</span>דף סיכום</a>
   </nav>
 </header>
 
 <main class="mainflow">
 
-<!-- ===== THE IDEA ===== -->
+<!-- ===== 1 THE IDEA ===== -->
 <section id="idea" class="stack" aria-labelledby="h-idea">
   <div class="sec-head"><div class="eyebrow">חלק 1 · הרעיון בדקה</div><h2 id="h-idea">מפעל הוא בעצם מתכון</h2></div>
-  <figure class="pic wide"><img src="img/machine.webp" alt="מכונה גדולה: מצד אחד נכנסים עובדים, מכונות ואדמה, ומהצד השני יוצאים מוצרים ארוזים" loading="lazy"><figcaption>נכנסים: עובדים, מכונות, אדמה. יוצאים: מוצרים. באמצע: "המתכון".</figcaption></figure>
-  <p>תחשבו על מטבח. מכניסים <b>מצרכים</b> (קמח, ביצים, תנור, אופה), עושים לפי <b>מתכון</b>, ויוצאת <b>עוגה</b>. כל מפעל עובד בדיוק ככה:</p>
+  <figure class="pic wide"><img src="img/machine.webp" alt="מכונה גדולה: מצד אחד נכנסים עובדים, מכונות וקרקע, ומהצד השני יוצאים מוצרים ארוזים" loading="lazy"><figcaption>נכנסים: עובדים, מכונות, קרקע. יוצאים: מוצרים. באמצע: "המתכון".</figcaption></figure>
+  <p>תחשבו על מטבח. מכניסים מה שצריך: מצרכים (קמח, ביצים), כלים (תנור) ואנשים (אופה). עושים לפי <strong>מתכון</strong>, ויוצאת עוגה. כל מפעל עובד בדיוק ככה:</p>
   <div class="flow3">
-    <div class="f3 in"><div class="k">נכנס</div><b>תשומות</b><span>עובדים, מכונות, חומרים</span></div>
+    <div class="f3 in"><div class="k">נכנס</div><b>גורמי ייצור</b><span>עובדים, מכונות, חומרים</span></div>
     <div class="f3 mid"><div class="k">המתכון</div><b>פונקציית הייצור</b><span><bdi dir="ltr" class="m">q = f(K, L)</bdi></span></div>
     <div class="f3 out"><div class="k">יוצא</div><b>תפוקה</b><span>כמה מוצרים יצאו</span></div>
   </div>
-  <p class="brief"><span class="lbl">במשפט אחד</span>פונקציית הייצור היא "המתכון" של המפעל: היא אומרת <u>כמה הכי הרבה</u> מוצרים יוצאים מכמות מסוימת של עובדים ומכונות.</p>
-  <p>השיעור כולו עונה על שאלה אחת פשוטה: <b>מה קורה כשמוסיפים עוד עובד?</b> התשובה המפתיעה: בהתחלה כל עובד חדש מוסיף <u>הרבה</u>, אבל מנקודה מסוימת כל עובד חדש מוסיף <u>פחות</u>. בסוף עובד נוסף אפילו <u>מזיק</u>. זה "חוק התפוקה השולית הפוחתת", והוא הלב של השיעור.</p>
+  <p class="brief"><span class="lbl">במשפט אחד</span>פונקציית הייצור היא "המתכון" של המפעל. היא אומרת כמה <strong>הכי הרבה</strong> מוצרים אפשר לייצר מכמות מסוימת של עובדים ומכונות.</p>
+  <p>השיעור כולו עונה על שאלה אחת: <strong>מה קורה כשמוסיפים עוד עובד?</strong> בהתחלה כל עובד חדש מוסיף יותר מהקודם. מנקודה מסוימת כל עובד חדש מוסיף פחות מהקודם. ואם ממשיכים להוסיף, עובד נוסף יכול אפילו להזיק. זה "חוק התפוקה השולית הפוחתת", והוא הלב של השיעור.</p>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== WORDS ===== -->
+<!-- ===== 2 WORDS ===== -->
 <section id="words" class="stack" aria-labelledby="h-words">
-  <div class="sec-head"><div class="eyebrow">חלק 2 · לפני שמתחילים</div><h2 id="h-words">מילון: כל סימן ומה הוא אומר</h2></div>
-  <p>בשיעור יש הרבה אותיות. כל אות היא <b>קיצור של מילה באנגלית</b>. אם תזכרו את המילה, תזכרו את האות.</p>
+  <div class="sec-head"><div class="eyebrow">חלק 2 · לפני שמתחילים</div><h2 id="h-words">מילון: הסימנים שצריך עכשיו</h2></div>
+  <p>בשיעור יש הרבה אותיות. כמעט כל אות היא קיצור של מילה, בדרך כלל באנגלית. אם תזכרו את המילה, תזכרו את האות. כאן חמשת הסימנים החשובים. את כל השאר תמצאו בדף העזר שמתחת.</p>
   <div class="syms">
-    <article class="sym"><div class="s">q</div><div><b>quantity</b> = כמות</div><div>כמה מוצרים יצאו. התפוקה. (גם "תפוקה כוללת", או TP.)</div></article>
-    <article class="sym"><div class="s">L</div><div><b>Labor</b> = עבודה</div><div>כמה עובדים, או כמה שעות עבודה.</div></article>
-    <article class="sym"><div class="s">K</div><div><b>Kapital</b> = הון</div><div>מכונות, רובוטים, מבנים. דברים שבנו כדי לייצר איתם.</div></article>
-    <article class="sym"><div class="s">N</div><div><b>Nature</b> = טבע</div><div>אדמה, מים, מחצבים. מה שקיים בטבע.</div></article>
-    <article class="sym"><div class="s">A</div><div>רמת הטכנולוגיה</div><div>הידע של המשק: שיטות עבודה, ארגון, המצאות. ככל ש־A גדול יותר, יוצא יותר מאותם משאבים.</div></article>
-    <article class="sym"><div class="s">f ‏, ‏F</div><div><b>function</b> = פונקציה</div><div>"המתכון". כלל שמקבל כמויות של עובדים ומכונות, ומחזיר כמה מוצרים יוצאים.</div></article>
-    <article class="sym"><div class="s">AP</div><div><b>Average Product</b> = תפוקה ממוצעת</div><div>כמה מייצר <u>עובד אחד בממוצע</u>. <bdi dir="ltr" class="m">AP = q ÷ L</bdi></div></article>
-    <article class="sym"><div class="s">MP</div><div><b>Marginal Product</b> = תפוקה שולית</div><div>כמה מוסיף <u>העובד האחרון</u> שהצטרף. <bdi dir="ltr" class="m">MP = Δq ÷ ΔL</bdi></div></article>
-    <article class="sym"><div class="s">Δ</div><div>"דלתא" = שינוי</div><div><bdi dir="ltr" class="m">Δq</bdi> = בכמה השתנתה התפוקה. <bdi dir="ltr" class="m">ΔL</bdi> = בכמה השתנה מספר העובדים. תמיד: "אחרי פחות לפני".</div></article>
-    <article class="sym"><div class="s">∂</div><div>"נגזרת חלקית"</div><div>אותו רעיון כמו Δ, אבל מדגיש: <u>רק L משתנה</u>, וכל השאר (K) נשאר קבוע.</div></article>
-    <article class="sym"><div class="s">ת״ש</div><div>תפוקה שולית</div><div>אותו דבר כמו MP, בעברית.</div></article>
-    <article class="sym"><div class="s">גו״י</div><div>גורמי ייצור</div><div>כל מה שנכנס לייצור: עבודה, הון, טבע.</div></article>
+    <article class="sym"><div class="s">q</div><div><b lang="en">quantity</b> = כמות</div><div>כמה מוצרים יצאו. קוראים לזה גם "התפוקה הכוללת", ובקיצור <bdi dir="ltr" class="m">TP</bdi> (<span lang="en">Total Product</span>).</div></article>
+    <article class="sym"><div class="s">L</div><div><b lang="en">Labor</b> = עבודה</div><div>כמה עובדים, או כמה שעות עבודה.</div></article>
+    <article class="sym"><div class="s">K</div><div><b lang="de">Kapital</b> = הון</div><div>מכונות, מבנים, כלים. המילה היא בגרמנית. משתמשים ב־K כי האות C תפוסה.</div></article>
+    <article class="sym"><div class="s">AP</div><div><b lang="en">Average Product</b> = התפוקה הממוצעת</div><div>כמה מייצר עובד אחד בממוצע. <bdi dir="ltr" class="m">AP = q ÷ L</bdi></div></article>
+    <article class="sym"><div class="s">MP</div><div><b lang="en">Marginal Product</b> = התפוקה השולית</div><div>כמה הוסיף העובד האחרון שהצטרף. <bdi dir="ltr" class="m">MP = Δq ÷ ΔL</bdi></div></article>
   </div>
-  <p class="symnote"><b>"שולי" = "האחרון שנוסף".</b> בכלכלה המילה "שולי" חוזרת כל הזמן. תמיד היא אומרת: מה קורה כשמוסיפים עוד יחידה <u>אחת</u>.</p>
+  <p class="symnote"><b>"שולי" = "האחרון שנוסף".</b> בכלכלה המילה "שולי" חוזרת כל הזמן. תמיד היא אומרת: מה קורה כשמוסיפים עוד יחידה אחת.</p>
+  <details class="ref"><summary>דף עזר: כל הסימנים</summary><div class="ref-body syms">
+    <article class="sym"><div class="s">N</div><div><b lang="en">Nature</b> = טבע</div><div>קרקע, מים, מחצבים. מה שקיים בטבע.</div></article>
+    <article class="sym"><div class="s">A</div><div>רמת הטכנולוגיה</div><div>הידע של המשק: שיטות עבודה, ארגון, המצאות. ככל ש־A גדול יותר, יוצא יותר מאותם משאבים.</div></article>
+    <article class="sym"><div class="s"><bdi dir="ltr">f, F</bdi></div><div><b lang="en">function</b> = פונקציה</div><div>"המתכון". כלל שמקבל כמויות של עובדים ומכונות, ומחזיר כמה מוצרים יוצאים. <bdi dir="ltr" class="m">f</bdi> למפעל אחד, <bdi dir="ltr" class="m">F</bdi> למשק כולו.</div></article>
+    <article class="sym"><div class="s">Δ</div><div>"דלתא" = שינוי</div><div><bdi dir="ltr" class="m">Δq</bdi> = בכמה השתנתה התפוקה. <bdi dir="ltr" class="m">ΔL</bdi> = בכמה השתנה מספר העובדים. תמיד מחשבים: הערך אחרי השינוי, פחות הערך לפני השינוי.</div></article>
+    <article class="sym"><div class="s"><bdi dir="ltr">MP<sub>L</sub>, MP<sub>K</sub></bdi></div><div>תפוקה שולית של גורם מסוים</div><div><bdi dir="ltr" class="m">MP<sub>L</sub></bdi> = התפוקה השולית של העבודה. <bdi dir="ltr" class="m">MP<sub>K</sub></bdi> = התפוקה השולית של ההון.</div></article>
+    <article class="sym"><div class="s">∂</div><div>"נגזרת חלקית"</div><div>הנגזרת לפי משתנה אחד, כשכל השאר נשאר קבוע. <bdi dir="ltr" class="m">∂q/∂L</bdi> = בכמה q משתנה כש־L גדל מעט, ו־K קבוע.</div></article>
+    <article class="sym"><div class="s" lang="la">ceteris paribus</div><div>בלטינית: "כל השאר קבוע"</div><div>משנים דבר אחד בלבד, ולא נוגעים בשום דבר אחר.</div></article>
+    <article class="sym"><div class="s">פירמה</div><div>עסק שמייצר</div><div>כך קוראים בכלכלה למפעל או לעסק. בקורס מניחים שהמטרה שלה היא מקסימום רווח.</div></article>
+    <article class="sym"><div class="s">ת״ש</div><div>תפוקה שולית</div><div>קיצור שתראו בשקפים. בדף הזה כותבים "התפוקה השולית (MP)".</div></article>
+    <article class="sym"><div class="s">גו״י</div><div>גורמי ייצור</div><div>קיצור שתראו בשקפים: כל מה שנכנס לייצור (עבודה, הון, טבע).</div></article>
+  </div></details>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== FACTORS ===== -->
+<!-- ===== 3 FACTORS ===== -->
 <section id="factors" class="stack" aria-labelledby="h-fac">
   <div class="sec-head"><div class="eyebrow">חלק 3</div><h2 id="h-fac">גורמי הייצור: מה נכנס למפעל</h2></div>
-  <p>כל דבר שעוזר לייצר נקרא <b>גורם ייצור</b>. יש שלושה סוגים:</p>
+  <p>כל דבר שעוזר לייצר נקרא <strong>גורם ייצור</strong>. יש שלושה סוגים:</p>
   <div class="fac3">
-    <div class="fac l"><div class="s">L</div><b>עבודה</b><span>עובדים, שעות עבודה</span></div>
-    <div class="fac k"><div class="s">K</div><b>הון</b><span>מכונות, רובוטים, מפעלים</span></div>
-    <div class="fac n"><div class="s">N</div><b>משאבי טבע</b><span>קרקע, מים, מחצבים</span></div>
+    <div class="fac"><div class="s">L</div><b>עבודה</b><span>עובדים, שעות עבודה.</span></div>
+    <div class="fac"><div class="s">K</div><b>הון</b><span>מכונות, מבנים, כלים. הון יצרני הוא לא כסף. אלה דברים שנבנו כדי לייצר. כסף בבנק הוא לא גורם ייצור.</span></div>
+    <div class="fac"><div class="s">N</div><b>משאבי טבע</b><span>קרקע, מים, מחצבים.</span></div>
   </div>
   <h3>פונקציית הייצור של מדינה שלמה</h3>
   <div class="eq big"><bdi dir="ltr" class="m">Y = A · F(L, K, N)</bdi></div>
   <ul class="steps" style="list-style:disc">
     <li><bdi dir="ltr" class="m">Y</bdi> = כמה המדינה כולה מייצרת.</li>
-    <li><bdi dir="ltr" class="m">F(L, K, N)</bdi> = "המתכון": לוקח כמה עובדים, כמה הון וכמה טבע יש, ומחזיר כמות מוצרים.</li>
-    <li><bdi dir="ltr" class="m">A</bdi> = הטכנולוגיה, והיא <b>כופלת</b> את הכל. אם A גדל, אותם עובדים ואותן מכונות מייצרים יותר. כמו מתכון משופר: אותם מצרכים, עוגה גדולה יותר.</li>
+    <li><bdi dir="ltr" class="m">F(L, K, N)</bdi> = "המתכון". הוא לוקח כמה עובדים, כמה הון וכמה טבע יש, ומחזיר כמות מוצרים.</li>
+    <li><bdi dir="ltr" class="m">A</bdi> = הטכנולוגיה, והיא <strong>כופלת</strong> את הכול. אם A גדל, אותם עובדים ואותן מכונות מייצרים יותר. כמו מתכון משופר: אותם מצרכים, עוגה גדולה יותר.</li>
+    <li>כש־A גדל, גם התפוקה הממוצעת (AP) וגם התפוקה השולית (MP) גדלות. כל עובד נהיה פרודוקטיבי יותר.</li>
   </ul>
   <h3>ופונקציית הייצור של מפעל אחד</h3>
   <div class="eq big"><bdi dir="ltr" class="m">q = f(K, L)</bdi></div>
-  <p>אותו רעיון, בקטן. אות קטנה (<bdi dir="ltr" class="m">q</bdi>, <bdi dir="ltr" class="m">f</bdi>) = מפעל אחד. אות גדולה (<bdi dir="ltr" class="m">Y</bdi>, <bdi dir="ltr" class="m">F</bdi>) = כל המשק. מטרת המפעל היא <b>מקסימום רווח</b>, והצעד הראשון בדרך לשם הוא לדעת: אם אקנה כך וכך עובדים ומכונות, כמה מוצרים אקבל?</p>
+  <p>אותו רעיון, בקטן. אות קטנה (<bdi dir="ltr" class="m">q</bdi>, <bdi dir="ltr" class="m">f</bdi>) = מפעל אחד. אות גדולה (<bdi dir="ltr" class="m">Y</bdi>, <bdi dir="ltr" class="m">F</bdi>) = כל המשק.</p>
+  <h3>פירמה, ומה המטרה שלה</h3>
+  <p>בכלכלה קוראים לעסק שמייצר <strong>פירמה</strong>. המטרה המקובלת של פירמה היא מקסימום רווח. יש גם מטרות אחרות: השגת כוח, צמיחה, הגדלת נתח השוק. בקורס נניח שהמטרה היא מקסימום רווח.</p>
+  <p>הצעד הראשון בדרך לרווח הוא לדעת: אם אעסיק כך וכך עובדים ואקנה כך וכך מכונות, כמה מוצרים אקבל? על זה עונה פונקציית הייצור.</p>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== DEFINITION ===== -->
+<!-- ===== 4 DEFINITION ===== -->
 <section id="def" class="stack" aria-labelledby="h-def">
   <div class="sec-head"><div class="eyebrow">חלק 4 · ההגדרה שצריך לדעת בעל פה</div><h2 id="h-def">מה זו פונקציית ייצור</h2></div>
-  <div class="defbox"><b>פונקציית ייצור</b> היא ביטוי מתמטי שמתאר את הקשר בין כמויות גורמי הייצור לבין <u>כמות התפוקה המקסימלית</u> שאפשר לייצר בעזרתם, <u>בהינתן רמת הטכנולוגיה הקיימת</u>.</div>
-  <p>בהגדרה יש <b>שלוש מילות מפתח</b>, ובמבחן שואלים בדיוק עליהן:</p>
-  <div class="tstep"><div class="tnum">1</div><div class="tbody"><h3>"מקסימלית"</h3><p style="margin:0">הפונקציה מראה כמה <u>הכי הרבה</u> אפשר לייצר. אם המפעל מבזבז, הוא מייצר פחות, אבל זה לא מה שהפונקציה מראה.</p></div></div>
-  <div class="tstep"><div class="tnum">2</div><div class="tbody"><h3>"בהינתן הטכנולוגיה"</h3><p style="margin:0">הפונקציה נכונה לטכנולוגיה של היום. שיפור טכנולוגי משנה את <u>הפונקציה עצמה</u>: מאותם עובדים ומכונות יוצא יותר.</p></div></div>
-  <div class="tstep"><div class="tnum">3</div><div class="tbody"><h3>"רק הקצאות יעילות"</h3><p style="margin:0">אין בזבוז. הפונקציה כוללת רק שילובים שבהם כל עובד וכל מכונה מנוצלים בצורה הכי טובה.</p></div></div>
-  <p class="symnote"><b>קשר לשיעור 1:</b> זה בדיוק כמו עקומת התמורה. שם, נקודה על העקומה = הכי הרבה שאפשר, ונקודה בפנים = בזבוז. גם פונקציית הייצור מתארת רק את "הקצה", את המקסימום.</p>
+  <div class="defbox"><strong>פונקציית ייצור</strong> היא ביטוי מתמטי שמתאר את הקשר בין כמויות גורמי הייצור לבין כמות התפוקה המקסימלית שאפשר לייצר בעזרתם, בלי בזבוז, בהינתן רמת הטכנולוגיה הקיימת.</div>
+  <p>בהגדרה יש <strong>שלוש מילות מפתח</strong>, ובמבחן שואלים בדיוק עליהן:</p>
+  <div class="tstep"><div class="tnum">1</div><div class="tbody"><h3>"מקסימלית"</h3><p>הפונקציה מראה כמה <strong>הכי הרבה</strong> אפשר לייצר. אם המפעל מבזבז, הוא מייצר פחות. אבל זה לא מה שהפונקציה מראה.</p></div></div>
+  <div class="tstep"><div class="tnum">2</div><div class="tbody"><h3>"בהינתן הטכנולוגיה"</h3><p>הפונקציה נכונה לטכנולוגיה של היום. שיפור טכנולוגי משנה את <strong>הפונקציה עצמה</strong>: מאותם עובדים ומכונות יוצא יותר.</p><p>בגרף: כל עקומת התפוקה זזה למעלה. זו תזוזה של העקומה, לא תנועה לאורכה.</p></div></div>
+  <div class="tstep"><div class="tnum">3</div><div class="tbody"><h3>"בלי בזבוז" (רק שילובים יעילים)</h3><p>אי אפשר לייצר את אותה כמות עם פחות עובדים או פחות מכונות. אם אפשר, השילוב הזה לא "נכנס" לפונקציה.</p></div></div>
+  <p class="symnote"><b>קשר לשיעור 1:</b> זה בדיוק כמו עקומת התמורה. שם, נקודה על העקומה היא הכי הרבה שאפשר, ונקודה בפנים היא בזבוז. גם פונקציית הייצור מתארת רק את "הקצה", את המקסימום.</p>
+  <p><strong>שימו לב:</strong> הפונקציה אומרת כמה אפשר לייצר, לא כמה כדאי לייצר. את זה נלמד בשיעורים הבאים.</p>
+  <details class="chk"><summary>בדקו את עצמכם: פירמה ייצרה 100 יחידות. עם אותם עובדים ומכונות היא הייתה יכולה לייצר 120. מה הערך של פונקציית הייצור?<span class="hint"> · לחצו לתשובה</span></summary><div class="sol-body">
+    <p><strong>120.</strong> הפונקציה מראה את המקסימום. ייצור של 100 הוא בזבוז, ולכן הוא לא על הפונקציה.</p>
+  </div></details>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== BAKERY q=2L ===== -->
+<!-- ===== 5 BAKERY q=2L ===== -->
 <section id="bakery5" class="stack" aria-labelledby="h-bk">
   <div class="sec-head"><div class="eyebrow">חלק 5 · הדוגמה הכי פשוטה</div><h2 id="h-bk">מאפייה: כל שעה = 2 עוגות</h2></div>
-  <p>במאפייה יש גורם ייצור אחד בלבד: <b>שעות עבודה</b> (L). בכל שעה מכינים 2 עוגות. אז המתכון הוא:</p>
+  <p>במאפייה יש גורם ייצור אחד בלבד: <strong>שעות עבודה</strong> (L). בכל שעה מכינים 2 עוגות. אז המתכון הוא:</p>
   <div class="eq big"><bdi dir="ltr" class="m">q = 2L</bdi></div>
   <div class="two">
-    <div class="tscroll"><table class="t"><thead><tr><th scope="col">שעות (L)</th><th scope="col">עוגות (q)</th><th scope="col">כמה הוסיפה השעה האחרונה</th></tr></thead>
-    <tbody><tr><td class="n">1</td><td class="n">2</td><td class="n">2</td></tr><tr><td class="n">2</td><td class="n">4</td><td class="n">2</td></tr><tr><td class="n">3</td><td class="n">6</td><td class="n">2</td></tr><tr><td class="n">4</td><td class="n">8</td><td class="n">2</td></tr><tr><td class="n">5</td><td class="n">10</td><td class="n">2</td></tr></tbody></table></div>
+    <div class="tscroll"><table class="t"><caption>מאפייה: שעות עבודה ועוגות</caption><thead><tr><th scope="col">שעות (L)</th><th scope="col">עוגות (q)</th><th scope="col">ממוצע לשעה (AP)</th><th scope="col">כמה הוסיפה השעה האחרונה (MP)</th></tr></thead>
+    <tbody><tr><td class="n">1</td><td class="n">2</td><td class="n">2</td><td class="n">2</td></tr><tr><td class="n">2</td><td class="n">4</td><td class="n">2</td><td class="n">2</td></tr><tr><td class="n">3</td><td class="n">6</td><td class="n">2</td><td class="n">2</td></tr><tr><td class="n">4</td><td class="n">8</td><td class="n">2</td><td class="n">2</td></tr><tr><td class="n">5</td><td class="n">10</td><td class="n">2</td><td class="n">2</td></tr></tbody></table></div>
     <svg class="chart" id="bkChart" viewBox="0 0 360 260" role="img" aria-label="קו ישר: q = 2L. כל שעה מוסיפה 2 עוגות"></svg>
   </div>
-  <p>כל שעה נוספת מוסיפה <b>תמיד</b> 2 עוגות. לכן הגרף הוא <b>קו ישר</b>, וקוראים לזה פונקציה <b>לינארית</b>. בעוד רגע נראה שבמציאות זה כמעט אף פעם לא ככה.</p>
+  <p>כל שעה נוספת מוסיפה <strong>תמיד</strong> 2 עוגות. לכן הגרף הוא קו ישר, וקוראים לזה פונקציה לינארית. גם הממוצע לשעה הוא תמיד 2.</p>
+  <p>למה התוספת לא יורדת? במאפייה יש רק גורם ייצור אחד, ואין שום דבר קבוע. לכן אין סיבה שהתוספת תרד. בעוד רגע נראה שבמציאות זה כמעט אף פעם לא ככה.</p>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== AP & MP ===== -->
+<!-- ===== 6 AP & MP ===== -->
 <section id="apmp" class="stack" aria-labelledby="h-apmp">
-  <div class="sec-head"><div class="eyebrow">חלק 6 · שני המושגים הכי חשובים</div><h2 id="h-apmp">תפוקה ממוצעת ותפוקה שולית</h2></div>
+  <div class="sec-head"><div class="eyebrow">חלק 6 · שני המושגים הכי חשובים</div><h2 id="h-apmp">התפוקה הממוצעת והתפוקה השולית</h2></div>
   <div class="two">
-    <div class="box"><div class="eyebrow">AP · תפוקה ממוצעת</div><h3>כמה מייצר עובד בממוצע</h3><div class="eq"><bdi dir="ltr" class="m">AP = q ÷ L</bdi></div><p style="margin:0">כל המוצרים, חלקי מספר העובדים.</p><p class="note" style="margin:0">מאפייה: 6 עוגות ב־3 שעות → <bdi dir="ltr" class="m">6 ÷ 3 = 2</bdi></p></div>
-    <div class="box"><div class="eyebrow">MP · תפוקה שולית</div><h3>כמה הוסיף העובד האחרון</h3><div class="eq"><bdi dir="ltr" class="m">MP = Δq ÷ ΔL</bdi></div><p style="margin:0">בכמה עלתה התפוקה, חלקי בכמה עלו העובדים.</p><p class="note" style="margin:0">מאפייה: שעה רביעית: מ־6 ל־8 עוגות → <bdi dir="ltr" class="m">(8 − 6) ÷ 1 = 2</bdi></p></div>
+    <div class="box"><div class="eyebrow">AP · התפוקה הממוצעת</div><h3>כמה מייצר עובד בממוצע</h3><div class="eq"><bdi dir="ltr" class="m">AP = q ÷ L</bdi></div><p>כל המוצרים, חלקי מספר העובדים.</p><p class="note">מאפייה: 6 עוגות ב־3 שעות עבודה, כלומר 2 עוגות לשעה. <bdi dir="ltr" class="m">6 ÷ 3 = 2</bdi></p></div>
+    <div class="box"><div class="eyebrow">MP · התפוקה השולית</div><h3>כמה הוסיף העובד האחרון</h3><div class="eq"><bdi dir="ltr" class="m">MP = Δq ÷ ΔL</bdi></div><p>בכמה גדלה התפוקה, חלקי בכמה גדל מספר העובדים.</p><p class="note">מאפייה, השעה הרביעית: מ־6 עוגות ל־8 עוגות. <bdi dir="ltr" class="m">(8 − 6) ÷ 1 = 2</bdi></p></div>
   </div>
-  <p class="brief"><span class="lbl">דימוי שעוזר</span><b>AP</b> הוא כמו <b>ממוצע הציונים</b> שלכם. <b>MP</b> הוא כמו <b>הציון במבחן האחרון</b>. כל ציון חדש משנה את הממוצע, ובחלק 10 נראה בדיוק איך.</p>
+  <p><bdi dir="ltr" class="m">Δ</bdi> ("דלתא") פירושה שינוי. תמיד מחשבים: הערך אחרי השינוי, פחות הערך לפני השינוי.</p>
+  <p class="brief"><span class="lbl">דימוי שעוזר</span>AP היא כמו <strong>ממוצע הציונים</strong> שלכם. MP היא כמו הציון במבחן האחרון. כל ציון חדש משנה את הממוצע. בחלק 10 נראה בדיוק איך.</p>
+  <p class="note">לעובד הראשון תמיד <bdi dir="ltr" class="m">MP = AP</bdi>, כי <bdi dir="ltr" class="m">q ÷ 1 = q − 0</bdi>. זו לא נקודת שיא של AP.</p>
   <h3>איך מחשבים MP כשמוסיפים יותר מעובד אחד?</h3>
-  <p>מחלקים. אם מ־2 עובדים ל־4 עובדים התפוקה עלתה מ־12 ל־32: <bdi dir="ltr" class="m">MP = (32 − 12) ÷ (4 − 2) = 20 ÷ 2 = 10</bdi>. כל עובד חדש הוסיף בממוצע 10.</p>
-  <h3>ומה עם ∂? (כשיש גם מכונות)</h3>
-  <p>כשהתפוקה תלויה גם בעובדים וגם במכונות, <bdi dir="ltr" class="m">q = f(K, L)</bdi>, התפוקה השולית של L נמדדת <b>כשהמכונות נשארות קבועות</b>. מוסיפים רק עובד, ולא נוגעים במכונות. הסימן <bdi dir="ltr" class="m">∂q / ∂L</bdi> ("נגזרת חלקית") אומר בדיוק את זה: רק L זז. בלטינית: <i>ceteris paribus</i>, "כל השאר קבוע".</p>
+  <p>מחלקים. אם מ־2 עובדים ל־4 עובדים התפוקה גדלה מ־12 ל־32:</p>
+  <div class="eq"><bdi dir="ltr" class="m">MP = (32 − 12) ÷ (4 − 2) = 20 ÷ 2 = 10</bdi></div>
+  <p>כל עובד חדש הוסיף בממוצע 10. <span class="note">(אלה המספרים של מפעל האופנועים שנראה בחלק 9. ‏10 הוא הממוצע של 12 ו־8, התוספות של העובד השלישי והרביעי.)</span></p>
+  <h3>כשיש גם מכונות: <bdi dir="ltr" class="m">MP<sub>L</sub></bdi> ו־<bdi dir="ltr" class="m">MP<sub>K</sub></bdi></h3>
+  <p>כשהתפוקה תלויה גם בעובדים וגם במכונות, <bdi dir="ltr" class="m">q = f(K, L)</bdi>, יש שתי תפוקות שוליות. <bdi dir="ltr" class="m">MP<sub>L</sub></bdi> היא התפוקה השולית של העבודה: כמה מוסיף עוד עובד. <bdi dir="ltr" class="m">MP<sub>K</sub></bdi> היא התפוקה השולית של ההון: כמה מוסיפה עוד מכונה.</p>
+  <p>כשמודדים את <bdi dir="ltr" class="m">MP<sub>L</sub></bdi>, המכונות <strong>נשארות קבועות</strong>. מוסיפים רק עובד, ולא נוגעים במכונות.</p>
   <p class="symnote"><b>למה זה חשוב?</b> אם מוסיפים גם עובד וגם מכונה, אי אפשר לדעת מי מהם הוסיף את התפוקה. כדי למדוד את התרומה של העובד, חייבים להשאיר את כל השאר קבוע.</p>
+  <details class="deep"><summary>להעמקה: הסימן ∂ (מופיע בשאלות עם נוסחה)</summary><div class="sol-body">
+    <p><bdi dir="ltr" class="m">∂q/∂L</bdi> היא הנגזרת של q לפי L, כש־K נשאר קבוע. היא מודדת בכמה q משתנה כש־L גדל בכמות קטנה מאוד.</p>
+    <p><bdi dir="ltr" class="m">Δq/ΔL</bdi> (שינוי של עובד שלם) הוא קירוב שלה. לכן בשקף כתוב <bdi dir="ltr" class="m">MP ≈ Δq/ΔL</bdi>.</p>
+    <p>כשנתונה נוסחה, גוזרים לפי L, ומתייחסים ל־K כמו למספר קבוע. דוגמה פתורה: שאלה 16 במבחן.</p>
+    <p>בלטינית קוראים להנחה "כל השאר קבוע" <i lang="la">ceteris paribus</i>.</p>
+  </div></details>
+  <details class="chk"><summary>בדקו את עצמכם: 3 עובדים ייצרו 15 יחידות. עובד רביעי הצטרף, ועכשיו יש 18. מה AP? מה MP של העובד הרביעי?<span class="hint"> · לחצו לתשובה</span></summary><div class="sol-body">
+    <p><bdi dir="ltr" class="m">AP = 18 ÷ 4 = 4.5</bdi></p>
+    <p><bdi dir="ltr" class="m">MP = 18 − 15 = 3</bdi></p>
+    <p class="note">טעות נפוצה: לחלק 18 ב־4 גם עבור MP. ‏MP היא רק התוספת של העובד הרביעי.</p>
+  </div></details>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== LAW ===== -->
-<section id="law" class="stack" aria-labelledby="h-law">
-  <div class="sec-head"><div class="eyebrow">חלק 7 · הלב של השיעור</div><h2 id="h-law">חוק התפוקה השולית הפוחתת</h2></div>
-  <div class="defbox">כשמגדילים <u>רק גורם ייצור אחד</u>, והשאר נשארים קבועים, מנקודה מסוימת <u>התפוקה השולית שלו יורדת</u>.</div>
-  <figure class="pic wide"><img src="img/orchard.webp" alt="אותו פרדס לימונים בשלושה מצבים: 2 קוטפים עם סלים מלאים, 6 קוטפים עם סלים חצי מלאים, ו־12 קוטפים שנתקעים זה בזה" loading="lazy"><figcaption>קוראים מימין לשמאל: אותו פרדס, אותם עצים. רק מספר הקוטפים גדל.</figcaption></figure>
-  <p>נחשוב על <b>קטיף בפרדס בגודל קבוע</b>. מוסיפים עוד ועוד קוטפים. מה קורה?</p>
-  <div class="stage3">
-    <div class="stg up"><div class="n">שלב 1</div><b>ת״ש עולה</b><p>הקוטפים הראשונים מתחלקים בעבודה: אחד על הסולם, אחד מוריד סלים. כל אחד מוסיף <u>יותר</u> מהקודם.</p></div>
-    <div class="stg mid"><div class="n">שלב 2</div><b>ת״ש פוחתת</b><p>הפרדס לא גדל. כל קוטף נוסף מוצא פחות לימונים. הוא עדיין מוסיף, אבל <u>פחות</u> מהקודם.</p></div>
-    <div class="stg down"><div class="n">שלב 3</div><b>ת״ש שלילית</b><p>יותר מדי אנשים. הם נתקעים, מפריעים, מפילים סולמות. עוד קוטף <u>מוריד</u> את סך התפוקה.</p></div>
-  </div>
-  <p class="brief"><span class="lbl">למה זה קורה?</span>כי משהו <b>נשאר קבוע</b>: הפרדס. ככל שיש יותר עובדים על אותו פרדס, לכל עובד יש פחות עצים. אם היו מגדילים גם את הפרדס, החוק לא היה חל.</p>
-  <p class="symnote"><b>שימו לב לניסוח:</b> החוק לא אומר שהתפוקה <u>הכוללת</u> יורדת. הוא אומר שה<u>תוספת</u> יורדת. בשלב 2 התפוקה הכוללת עדיין עולה, רק לאט יותר. זו המלכודת מספר 1 במבחן.</p>
-</section>
-
-<!-- ===== SHORT/LONG RUN ===== -->
+<!-- ===== 7 SHORT/LONG RUN ===== -->
 <section id="run" class="stack" aria-labelledby="h-run">
-  <div class="sec-head"><div class="eyebrow">חלק 8</div><h2 id="h-run">טווח קצר וטווח ארוך</h2></div>
+  <div class="sec-head"><div class="eyebrow">חלק 7</div><h2 id="h-run">טווח קצר וטווח ארוך</h2></div>
   <div class="two">
-    <div class="box"><div class="eyebrow">Short Run</div><h3>טווח קצר</h3><p style="margin:0">תקופה שבה המפעל יכול לשנות <u>רק חלק</u> מגורמי הייצור. השאר קבועים.</p><p class="note" style="margin:0"><b>גורם משתנה:</b> אפשר לשנות אותו בטווח הקצר. למשל מספר העובדים.</p></div>
-    <div class="box"><div class="eyebrow">Long Run</div><h3>טווח ארוך</h3><p style="margin:0">תקופה ארוכה מספיק כדי לשנות <u>את כל</u> גורמי הייצור.</p><p class="note" style="margin:0"><b>גורם קבוע:</b> אפשר לשנות אותו רק בטווח הארוך. למשל מבנה המפעל.</p></div>
+    <div class="box"><div class="eyebrow" lang="en">Short Run</div><h3>טווח קצר</h3><p>תקופה שבה המפעל יכול לשנות רק <strong>חלק</strong> מגורמי הייצור. השאר קבועים.</p><p class="note"><b>גורם משתנה:</b> אפשר לשנות אותו בטווח הקצר. למשל מספר העובדים.</p><p class="note"><b>גורם קבוע:</b> גורם שאי אפשר לשנות בטווח הקצר. למשל מבנה המפעל.</p></div>
+    <div class="box"><div class="eyebrow" lang="en">Long Run</div><h3>טווח ארוך</h3><p>תקופה ארוכה מספיק כדי לשנות <strong>את כל</strong> גורמי הייצור.</p><p class="note">בטווח הארוך אין גורמים קבועים בכלל.</p></div>
   </div>
   <figure class="pic wide"><img src="img/timeline.webp" alt="ציר זמן: עובדים מתחלפים כל יום, מכונות כל שנתיים, מבנה המפעל כל 20 שנה" loading="lazy"><figcaption>עובדים: כל יום. מכונות: כל שנתיים. מבנה המפעל: כל 20 שנה.</figcaption></figure>
-  <p><b>הנקודה החשובה:</b> "טווח קצר" הוא <u>לא</u> מספר קבוע של חודשים. הוא תלוי במפעל. במפעל מהתמונה, החלק שהכי קשה לשנות הוא המבנה, שמשתנה רק כל 20 שנה. לכן:</p>
+  <p><strong>הנקודה החשובה:</strong> טווח קצר אינו פרק זמן קבוע. הוא תלוי במפעל. במפעל מהתמונה, החלק שהכי קשה לשנות הוא המבנה, שמשתנה רק כל 20 שנה. לכן:</p>
   <ul class="steps" style="list-style:disc">
-    <li>כל תקופה <b>קצרה מ־20 שנה</b> = טווח קצר (המבנה קבוע).</li>
-    <li><b>20 שנה ומעלה</b> = טווח ארוך (אפשר לשנות הכל).</li>
+    <li>כל תקופה <strong>קצרה מ־20 שנה</strong> היא טווח קצר (המבנה קבוע).</li>
+    <li><strong>20 שנה ומעלה</strong> הן טווח ארוך (אפשר לשנות הכול).</li>
   </ul>
+  <p><strong>למה זה שונה בין פירמות?</strong> כי זה תלוי בהתחייבויות של הפירמה: חוזה שכירות למבנה, או כמה זמן לוקח להכשיר עובד חדש. פירמה עם חוזה שכירות ל־5 שנים לא יכולה לשנות את המבנה לפני שהחוזה נגמר.</p>
   <div class="lab">
     <div class="lab-title"><span class="tag">בדיקה</span><h3>טווח קצר או ארוך?</h3></div>
-    <p class="note" style="margin:0">באותו מפעל (עובדים: כל יום, מכונות: כל שנתיים, מבנה: כל 20 שנה). בחרו תקופה:</p>
+    <p class="note">זה אותו מפעל מהתמונה: עובדים מתחלפים כל יום, מכונות כל שנתיים, והמבנה כל 20 שנה. בחרו תקופה, ובדקו אם היא טווח קצר או ארוך.</p>
     <div class="btns" id="runBtns" role="group" aria-label="תקופות">
-      <button class="btn" type="button" data-y="0.1">חודש</button><button class="btn" type="button" data-y="3">3 שנים</button><button class="btn" type="button" data-y="15">15 שנה</button><button class="btn" type="button" data-y="25">25 שנה</button>
+      <button class="btn" type="button" data-y="0.1" aria-pressed="false">חודש</button><button class="btn" type="button" data-y="3" aria-pressed="false">3 שנים</button><button class="btn" type="button" data-y="15" aria-pressed="false">15 שנה</button><button class="btn" type="button" data-y="25" aria-pressed="false">25 שנה</button>
     </div>
     <p class="readout" id="runRead" aria-live="polite">לחצו על תקופה.</p>
   </div>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== BIKES ===== -->
+<!-- ===== 8 LAW ===== -->
+<section id="law" class="stack" aria-labelledby="h-law">
+  <div class="sec-head"><div class="eyebrow">חלק 8 · הלב של השיעור</div><h2 id="h-law">חוק התפוקה השולית הפוחתת</h2></div>
+  <p>ראינו שבטווח הקצר יש גורם קבוע. עכשיו נראה מה הגורם הקבוע עושה לתפוקה השולית.</p>
+  <div class="defbox">כשמגדילים <strong>רק גורם ייצור אחד</strong>, והשאר נשארים קבועים, מנקודה מסוימת התפוקה השולית שלו יורדת.</div>
+  <figure class="pic wide"><img src="img/orchard.webp" alt="אותו פרדס לימונים בשלושה מצבים: 2 קוטפים עם סלים מלאים, 6 קוטפים עם סלים חצי מלאים, ו־12 קוטפים שנתקעים זה בזה" loading="lazy"><figcaption>קוראים מימין לשמאל: אותו פרדס, אותם עצים. רק מספר הקוטפים גדל.</figcaption></figure>
+  <p>נחשוב על <strong>קטיף בפרדס בגודל קבוע</strong>. מוסיפים עוד ועוד קוטפים. מה קורה?</p>
+  <div class="stage3">
+    <div class="stg up"><div class="n">אזור א׳</div><b>התפוקה השולית עולה</b><p>הקוטפים הראשונים מחלקים ביניהם את העבודה ומתמחים: אחד על הסולם, אחד מוריד סלים. כל אחד עושה מה שהוא הכי טוב בו. לכן כל קוטף חדש מוסיף יותר מהקודם.</p></div>
+    <div class="stg mid"><div class="n">אזור ב׳</div><b>התפוקה השולית פוחתת, אבל חיובית</b><p>הפרדס לא גדל. כל קוטף נוסף מוצא פחות לימונים. הוא עדיין מוסיף, אבל פחות מהקודם. כך עד שלא נשאר מה לקטוף (<bdi dir="ltr" class="m">MP = 0</bdi>).</p></div>
+    <div class="stg down"><div class="n">אזור ג׳</div><b>התפוקה השולית שלילית</b><p>יותר מדי אנשים. הם נתקעים, מפריעים, מפילים סולמות. עוד קוטף מוריד את סך התפוקה.</p></div>
+  </div>
+  <p class="note">שימו לב: בשקפים קוראים לשלושת המצבים האלה "שלבים". בספרים רבים "שלבי הייצור" מוגדרים אחרת, לפי AP. את שתי השיטות תראו בחלק 12, "שלבי הייצור".</p>
+  <p class="brief"><span class="lbl">למה זה קורה?</span>כי משהו <strong>נשאר קבוע</strong>: הפרדס. ככל שיש יותר עובדים על אותו פרדס, לכל עובד יש פחות עצים.</p>
+  <p>ואם מגדילים גם את הפרדס? זה כבר לא המצב שהחוק מדבר עליו. החוק עוסק רק במצב שבו גורם אחד גדל והשאר קבועים. מה קורה כשמגדילים הכול יחד? זו שאלה אחרת, "תשואה לגודל", ונלמד אותה בהמשך.</p>
+  <div class="symnote"><b>חשוב: כל העובדים זהים.</b> העובד החמישי לא פחות טוב מהראשון. הוא מוסיף פחות כי הוא מגיע למקום שכבר מלא: פחות כלים ופחות מקום לכל אחד. אם הוא היה מגיע ראשון, הוא היה מוסיף כמו הראשון.</div>
+  <p class="brief"><span class="lbl">דימוי נוסף</span>דמיינו מטבח עם כיריים אחת. הטבח השני עוזר מאוד: אחד חותך, אחד מבשל. הטבח החמישי עומד בתור לכיריים. הבעיה היא לא הטבח, אלא שיש רק כיריים אחת.</p>
+  <p class="symnote"><b>שימו לב לניסוח:</b> החוק לא אומר שהתפוקה הכוללת יורדת. הוא אומר שה<strong>תוספת</strong> יורדת. באזור ב׳ התפוקה הכוללת עדיין עולה, רק לאט יותר. זו המלכודת מספר 1 במבחן.</p>
+  <details class="chk"><summary>בדקו את עצמכם: נכון או לא? "אם התפוקה השולית יורדת, סימן שהעובדים החדשים פחות מוכשרים."<span class="hint"> · לחצו לתשובה</span></summary><div class="sol-body">
+    <p><strong>לא נכון.</strong> כל העובדים זהים. ‏MP יורדת בגלל הגורם הקבוע: לכל עובד חדש יש פחות כלים ופחות מקום.</p>
+  </div></details>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
+</section>
+
+<!-- ===== 9 MOTORCYCLES ===== -->
 <section id="bikes" class="stack" aria-labelledby="h-bikes">
-  <div class="sec-head"><div class="eyebrow">חלק 9 · הדוגמה המספרית</div><h2 id="h-bikes">מפעל אופניים: מוסיפים עובד אחרי עובד</h2></div>
-  <figure class="pic wide"><img src="img/bikes.webp" alt="סדנת אופניים עם שולחן הרכבה אחד: בהתחלה העובדים עובדים יחד, ובסוף שניים מחכים בלי עבודה" loading="lazy"><figcaption>שולחן אחד, סט כלים אחד. מה קורה כשמוסיפים עוד עובדים?</figcaption></figure>
-  <p>במפעל יש מכונות קבועות (זה <b>טווח קצר</b>). אפשר לשנות רק את מספר העובדים. הנה מה שקורה:</p>
-  <div class="tscroll"><table class="t" id="bikeTable"><thead><tr><th scope="col">עובדים (L)</th><th scope="col">אופניים (q)</th><th scope="col"><bdi dir="ltr">AP = q ÷ L</bdi></th><th scope="col"><bdi dir="ltr">MP = Δq ÷ ΔL</bdi></th><th scope="col">שלב</th></tr></thead>
+  <div class="sec-head"><div class="eyebrow">חלק 9 · הדוגמה המספרית</div><h2 id="h-bikes">מפעל אופנועים: מוסיפים עובד אחרי עובד</h2></div>
+  <figure class="pic wide"><img src="img/bikes.webp" alt="סדנת ייצור עם שולחן הרכבה אחד: בהתחלה העובדים עובדים יחד, ובסוף שניים מחכים בלי עבודה" loading="lazy"><figcaption>סדנת ייצור עם שולחן אחד וסט כלים אחד. מה קורה כשמוסיפים עוד עובדים?</figcaption></figure>
+  <p>במפעל האופנועים יש מכונות קבועות (זה <strong>טווח קצר</strong>). אפשר לשנות רק את מספר העובדים. הנה מה שקורה:</p>
+  <div class="tscroll"><table class="t" id="bikeTable"><caption>מפעל האופנועים <span class="note">(בטלפון: גללו הצידה כדי לראות את החישובים)</span></caption><thead><tr><th scope="col">עובדים (L)</th><th scope="col">אופנועים (q)</th><th scope="col">מה קורה ל־MP</th><th scope="col"><bdi dir="ltr">AP = q ÷ L</bdi></th><th scope="col"><bdi dir="ltr">MP = Δq ÷ ΔL</bdi></th></tr></thead>
   <tbody>
-    <tr><td class="n">0</td><td class="n">0</td><td class="n">–</td><td class="n">–</td><td></td></tr>
-    <tr class="s1"><td class="n">1</td><td class="n">4</td><td class="n">4 ÷ 1 = 4</td><td class="n">4 − 0 = 4</td><td>ת״ש עולה</td></tr>
-    <tr class="s1"><td class="n">2</td><td class="n">12</td><td class="n">12 ÷ 2 = 6</td><td class="n">12 − 4 = 8</td><td>ת״ש עולה</td></tr>
-    <tr class="s1"><td class="n">3</td><td class="n">24</td><td class="n">24 ÷ 3 = 8</td><td class="n">24 − 12 = 12</td><td>ת״ש עולה</td></tr>
-    <tr class="s2"><td class="n">4</td><td class="n">32</td><td class="n">32 ÷ 4 = 8</td><td class="n">32 − 24 = 8</td><td>ת״ש פוחתת</td></tr>
-    <tr class="s2"><td class="n">5</td><td class="n">35</td><td class="n">35 ÷ 5 = 7</td><td class="n">35 − 32 = 3</td><td>ת״ש פוחתת</td></tr>
-    <tr class="s3"><td class="n">6</td><td class="n">30</td><td class="n">30 ÷ 6 = 5</td><td class="n">30 − 35 = −5</td><td>ת״ש שלילית</td></tr>
+    <tr><td class="n">0</td><td class="n">0</td><td></td><td class="n">–</td><td class="n">–</td></tr>
+    <tr class="s1"><td class="n">1</td><td class="n">4</td><td>עולה</td><td class="n">4 ÷ 1 = 4</td><td class="n">4 − 0 = 4</td></tr>
+    <tr class="s1"><td class="n">2</td><td class="n">12</td><td>עולה</td><td class="n">12 ÷ 2 = 6</td><td class="n">12 − 4 = 8</td></tr>
+    <tr class="s1"><td class="n">3</td><td class="n">24</td><td>עולה</td><td class="n">24 ÷ 3 = 8</td><td class="n">24 − 12 = 12</td></tr>
+    <tr class="s2"><td class="n">4</td><td class="n">32</td><td>פוחתת, חיובית</td><td class="n">32 ÷ 4 = 8</td><td class="n">32 − 24 = 8</td></tr>
+    <tr class="s2"><td class="n">5</td><td class="n">35</td><td>פוחתת, חיובית</td><td class="n">35 ÷ 5 = 7</td><td class="n">35 − 32 = 3</td></tr>
+    <tr class="s3"><td class="n">6</td><td class="n">30</td><td>שלילית</td><td class="n">30 ÷ 6 = 5</td><td class="n">30 − 35 = −5</td></tr>
   </tbody></table></div>
   <div class="lab">
     <div class="lab-title"><span class="tag">ניסוי 1</span><h3>הוסיפו עובד, וראו מה קורה</h3></div>
-    <div class="btns"><button class="btn" type="button" id="bikeMinus" aria-label="פחות עובד">− עובד</button><button class="btn primary" type="button" id="bikePlus" aria-label="עוד עובד">+ עוד עובד</button><span class="bike-n" id="bikeN" aria-live="polite"></span></div>
-    <div class="lab-grid">
-      <div><div class="chart-t">התפוקה הכוללת (q)</div><svg class="chart" id="tpChart" viewBox="0 0 360 280" role="img" aria-label="גרף התפוקה הכוללת"></svg></div>
-      <div><div class="chart-t">שולית (ירוק) מול ממוצעת (כתום)</div><svg class="chart" id="apmpChart" viewBox="0 0 360 280" role="img" aria-label="גרף התפוקה השולית והממוצעת"></svg></div>
+    <p class="note">לחצו על "+ עוד עובד" ועקבו אחרי הגרפים והטבלה.</p>
+    <div class="btns"><button class="btn" type="button" id="bikeMinus">− פחות עובד</button><button class="btn primary" type="button" id="bikePlus">+ עוד עובד</button><span class="bike-n" id="bikeN"></span></div>
+    <p class="readout" id="bikeRead" aria-live="polite" aria-atomic="true"></p>
+    <div class="charts2">
+      <div><div class="chart-t">התפוקה הכוללת (TP): כמה אופנועים יוצאים</div><svg class="chart" id="tpChart" viewBox="0 0 360 250" role="img" aria-label="גרף התפוקה הכוללת"></svg></div>
+      <div><div class="chart-t">התפוקה השולית MP (קו מלא) מול התפוקה הממוצעת AP (קו מקווקו)</div><svg class="chart" id="apmpChart" viewBox="0 0 360 270" role="img" aria-label="גרף התפוקה השולית והממוצעת"></svg>
+        <div class="legend"><span><i class="lg lg-mp"></i>MP: התפוקה השולית (קו מלא, עיגולים)</span><span><i class="lg lg-ap"></i>AP: התפוקה הממוצעת (קו מקווקו, ריבועים)</span></div></div>
     </div>
-    <p class="readout" id="bikeRead" aria-live="polite"></p>
+    <ol class="marks">
+      <li><b>קו 1 (L = 3): MP בשיא.</b> העובד השלישי מוסיף הכי הרבה (12). לכן הקטע של TP מ־2 עובדים ל־3 הוא הכי תלול.</li>
+      <li><b>קו 2 (L = 4): AP בשיא (8).</b> כאן קו ה־MP פוגש את קו ה־AP. ‏AP שווה 8 גם ב־3 עובדים: בטבלה השיא הוא "מישור" קטן בין 3 ל־4.</li>
+      <li><b>קו 3 (L = 5): TP בשיא (35).</b> העובד החמישי הוא האחרון שהתפוקה השולית שלו לא שלילית.</li>
+    </ol>
+    <p class="brief"><span class="lbl">סדר השיאים</span>כשיש לשלושתם שיא, הסדר תמיד אותו סדר: קודם MP, אחר כך AP, ובסוף TP.</p>
   </div>
   <h3>מה רואים בגרף של התפוקה הכוללת?</h3>
   <ul class="steps" style="list-style:disc">
-    <li><b>עובדים 1–3:</b> הקו עולה <u>בקצב הולך וגדל</u> (נהיה תלול יותר). זה שלב 1.</li>
-    <li><b>עובדים 4–5:</b> הקו עדיין עולה, אבל <u>מתמתן</u> (נהיה שטוח יותר). זה שלב 2.</li>
-    <li><b>עובד 6:</b> הקו <u>יורד</u>. זה שלב 3.</li>
+    <li><strong>עובדים 1 עד 3:</strong> הקו עולה בקצב הולך וגדל (נהיה תלול יותר). זה אזור א׳.</li>
+    <li><strong>עובדים 4 עד 5:</strong> הקו עדיין עולה, אבל מתמתן (נהיה שטוח יותר). זה אזור ב׳.</li>
+    <li><strong>עובד 6:</strong> הקו יורד. זה אזור ג׳.</li>
   </ul>
-  <p class="brief"><span class="lbl">כלל זהב</span>התפוקה הכוללת <b>מקסימלית</b> כשהתפוקה השולית מגיעה ל־<b>0</b>. כל עוד ת״ש חיובית, עוד עובד מוסיף. ברגע שהיא שלילית, עוד עובד מזיק. כאן: 5 עובדים, 35 אופניים.</p>
+  <div class="brief"><span class="lbl">כלל זהב</span>התפוקה הכוללת מקסימלית כשהתפוקה השולית מגיעה ל־0. בנוסחה: פותרים <bdi dir="ltr" class="m">MP = 0</bdi>.</div>
+  <p>בטבלה MP כמעט אף פעם לא יוצאת בדיוק 0. לכן מחפשים את העובד האחרון שהתפוקה השולית שלו עדיין לא שלילית. כאן זה העובד החמישי (<bdi dir="ltr" class="m">MP = 3</bdi>), כי לשישי <bdi dir="ltr" class="m">MP = −5</bdi>. לכן השיא: 5 עובדים, 35 אופנועים.</p>
+  <p class="note">דמיינו טיפוס על גבעה. כל עוד הצעד הבא עולה (MP חיובית), ממשיכים. בפסגה הצעד הבא שטוח (<bdi dir="ltr" class="m">MP = 0</bdi>). צעד נוסף מוריד (MP שלילית).</p>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== LINK MP-AP ===== -->
+<!-- ===== 10 LINK MP-AP ===== -->
 <section id="link" class="stack" aria-labelledby="h-link">
   <div class="sec-head"><div class="eyebrow">חלק 10 · הקשר שתמיד שואלים עליו</div><h2 id="h-link">השולית "מושכת" אחריה את הממוצעת</h2></div>
-  <p>זוכרים? <b>AP</b> = ממוצע הציונים, <b>MP</b> = הציון במבחן החדש. נסו בעצמכם:</p>
+  <p>זוכרים? AP היא ממוצע הציונים, ו־MP היא הציון במבחן החדש. נסו בעצמכם:</p>
   <div class="lab">
     <div class="lab-title"><span class="tag">ניסוי 2</span><h3>ממוצע הציונים</h3></div>
-    <p class="note" style="margin:0">עשיתם 3 מבחנים, והממוצע שלכם 80. מה הציון במבחן הרביעי?</p>
-    <label class="rng"><span>הציון החדש: <b id="gradeV">80</b></span><input type="range" dir="ltr" id="grade" min="50" max="100" step="5" value="95" aria-label="הציון במבחן החדש"></label>
-    <div class="grade-out" id="gradeOut" aria-live="polite"></div>
+    <p class="note">עשיתם 3 מבחנים, והממוצע שלכם 80. הזיזו את הסרגל ובחרו ציון למבחן הרביעי. מה קורה לממוצע?</p>
+    <label class="rng"><span>הציון החדש: <b id="gradeV">95</b></span><input type="range" dir="ltr" id="grade" min="50" max="100" step="5" value="95"></label>
+    <div class="grade-out" id="gradeOut"></div>
+    <p class="gmsg" id="gradeMsg" aria-live="polite"></p>
   </div>
   <div class="rule3">
-    <div class="r up"><bdi dir="ltr" class="m">MP &gt; AP</bdi><b>הממוצעת עולה</b><span>ציון חדש <u>מעל</u> הממוצע מעלה אותו.</span></div>
-    <div class="r same"><bdi dir="ltr" class="m">MP = AP</bdi><b>הממוצעת במקסימום</b><span>ציון <u>שווה</u> לממוצע לא משנה אותו.</span></div>
-    <div class="r down"><bdi dir="ltr" class="m">MP &lt; AP</bdi><b>הממוצעת יורדת</b><span>ציון <u>מתחת</u> לממוצע מוריד אותו.</span></div>
+    <div class="r up"><bdi dir="ltr" class="m">MP &gt; AP</bdi><b>AP עולה</b><span>ציון חדש מעל הממוצע מעלה אותו.</span></div>
+    <div class="r same"><bdi dir="ltr" class="m">MP = AP</bdi><b>AP לא זזה</b><span>ציון שווה לממוצע לא משנה אותו. בגרף עם שיא: זו נקודת השיא של AP.</span></div>
+    <div class="r down"><bdi dir="ltr" class="m">MP &lt; AP</bdi><b>AP יורדת</b><span>ציון חדש מתחת לממוצע מוריד אותו.</span></div>
   </div>
-  <h3>בדיקה בטבלת האופניים</h3>
+  <h3>בדיקה בטבלת מפעל האופנועים</h3>
   <ul class="steps" style="list-style:disc">
-    <li>עובד 2: <bdi dir="ltr" class="m">MP = 8 &gt; AP = 4</bdi> (הממוצע הקודם) → AP עלה ל־6. ✓</li>
-    <li>עובד 4: <bdi dir="ltr" class="m">MP = 8 = AP = 8</bdi> → AP נשאר 8. זה <b>המקסימום</b> של AP. ✓</li>
-    <li>עובד 5: <bdi dir="ltr" class="m">MP = 3 &lt; AP = 8</bdi> → AP ירד ל־7. ✓ <u>שימו לב:</u> MP עדיין חיובי, ובכל זאת הממוצע יורד!</li>
+    <li>עובד 2: <bdi dir="ltr" class="m">MP = 8</bdi>, וה־AP הקודמת <bdi dir="ltr" class="m">AP = 4</bdi>. ‏8 גדול מ־4, ולכן AP עלתה ל־6. ✓</li>
+    <li>עובד 4: <bdi dir="ltr" class="m">MP = 8</bdi>, וה־AP הקודמת גם 8. לכן AP לא זזה ונשארת 8. ‏AP שווה 8 גם ב־3 וגם ב־4 עובדים: בטבלה (מספרים שלמים) השיא הוא "מישור" קטן, ובאמצעו <bdi dir="ltr" class="m">MP = AP</bdi>. ✓</li>
+    <li>עובד 5: <bdi dir="ltr" class="m">MP = 3</bdi>, וה־AP הקודמת 8. ‏3 קטן מ־8, ולכן AP ירדה ל־7. ✓ <strong>שימו לב:</strong> MP עדיין חיובית, ובכל זאת AP יורדת!</li>
   </ul>
-  <p class="symnote"><b>בגרף:</b> קו ה־MP חוצה את קו ה־AP בדיוק <u>בנקודת השיא של AP</u>. משמאל לחיתוך MP מעל AP, ומימין MP מתחת ל־AP. זה נכון בכל פונקציית ייצור. גם בדוגמה השנייה מהמצגת (מפעל עם 10 עובדים): ‏MP מעל AP עד בערך עובד 8, שם AP מגיע לשיא (בערך 204), ומעובד 9 ‏MP מתחת ל־AP והממוצעת יורדת.</p>
+  <p class="brief"><span class="lbl">דימוי: נסיעה</span>חשבו על נסיעה. q הוא המרחק, L הוא הזמן. AP היא המהירות הממוצעת מתחילת הנסיעה. MP היא מה שמראה מד המהירות עכשיו.</p>
+  <p>אם אתם נוסעים עכשיו מהר יותר מהממוצע, הממוצע עולה. אם לאט יותר, הוא יורד. הממוצע בשיא בדיוק ברגע שמד המהירות שווה לממוצע.</p>
+  <p><strong>למה דווקא בשיא?</strong> בשיא של AP, הממוצע לא עולה ולא יורד. אם העובד השולי היה מעל הממוצע, הממוצע היה עוד עולה. אם מתחת, הממוצע כבר היה יורד. לכן בשיא העובד השולי חייב להיות בדיוק "ממוצע": <bdi dir="ltr" class="m">MP = AP</bdi>.</p>
+  <div class="symnote"><p><b>בגרף:</b> אם ל־AP יש שיא, קו ה־MP חוצה את קו ה־AP בדיוק בשיא הזה, מלמעלה למטה.</p><p>לפני השיא (פחות עובדים) MP מעל AP. אחרי השיא MP מתחת ל־AP.</p><p>אם AP רק יורדת (כמו בשאלה 14 במבחן) או קבועה (כמו במאפייה), אין חיתוך כזה.</p></div>
+  <details class="chk"><summary>בדקו את עצמכם: <bdi dir="ltr" class="m">AP = 9</bdi>. העובד הבא מוסיף <bdi dir="ltr" class="m">MP = 6</bdi>. מה קורה ל־AP? ומה קורה לתפוקה הכוללת?<span class="hint"> · לחצו לתשובה</span></summary><div class="sol-body">
+    <p>AP <strong>יורדת</strong>, כי 6 קטן מ־9. התפוקה הכוללת עדיין עולה (ב־6), כי MP חיובית.</p>
+  </div></details>
+
+  <div class="sub stack" id="geo">
+    <h3>איך רואים AP ו־MP בגרף התפוקה</h3>
+    <ul class="steps" style="list-style:disc">
+      <li><strong>AP בגרף:</strong> מותחים קו ישר מהראשית <bdi dir="ltr" class="m">(0, 0)</bdi> אל הנקודה על העקומה. השיפוע שלו הוא <bdi dir="ltr" class="m">q ÷ L</bdi>, כלומר AP.</li>
+      <li><strong>MP בגרף:</strong> השיפוע של העקומה עצמה בנקודה. בטבלה זה השיפוע של הקטע מהנקודה הקודמת.</li>
+      <li><strong>AP בשיא:</strong> הקו מהראשית הכי תלול. שם שני השיפועים שווים, ולכן <bdi dir="ltr" class="m">MP = AP</bdi>.</li>
+      <li><strong>נקודת הפיתול:</strong> המקום שבו העקומה מפסיקה להיעשות תלולה יותר ומתחילה להתמתן. שם MP בשיא.</li>
+    </ul>
+    <div class="lab">
+      <div class="lab-title"><span class="tag">ניסוי 3</span><h3>שיפועים על עקומת מפעל האופנועים</h3></div>
+      <p class="note">הזיזו את הסרגל ובחרו מספר עובדים. השוו בין הקו המקווקו (מהראשית) לקטע העבה והכחול (מהנקודה הקודמת).</p>
+      <label class="rng"><span>מספר העובדים (L): <b id="geoV">3</b></span><input type="range" dir="ltr" id="geoL" min="1" max="6" step="1" value="3"></label>
+      <p class="readout" id="geoRead" aria-live="polite" aria-atomic="true"></p>
+      <svg class="chart" id="geoChart" viewBox="0 0 360 280" role="img" aria-label="עקומת התפוקה של מפעל האופנועים, עם קו מהראשית וקטע אחרון"></svg>
+      <div class="legend"><span><i class="lg lg-tp"></i>TP: עקומת התפוקה</span><span><i class="lg lg-ap"></i>קו מהראשית: השיפוע הוא AP</span><span><i class="lg lg-mp"></i>הקטע האחרון: השיפוע הוא MP</span></div>
+    </div>
+  </div>
+
+  <div class="sub stack" id="ten">
+    <h3>דוגמה שנייה: מפעל עם 10 עובדים</h3>
+    <p>בשקפים יש עוד דוגמה: מפעל עם עד 10 עובדים. לא צריך לזכור את המספרים. צריך לזכור את הצורה:</p>
+    <div class="ph3">
+      <div class="ph"><div class="n">עובדים 1 עד 6</div><p>MP עולה, והיא מעל AP. לכן AP עולה.</p></div>
+      <div class="ph"><div class="n">עובדים 7 עד 8</div><p>MP כבר יורדת, אבל עדיין מעל AP או שווה לה. לכן AP עדיין עולה, ומגיעה לשיא (בערך 204).</p></div>
+      <div class="ph"><div class="n">עובדים 9 עד 10</div><p>MP מתחת ל־AP, ולכן AP יורדת.</p></div>
+    </div>
+    <p class="brief"><span class="lbl">המסקנה</span>MP מגיעה לשיא לפני AP. כש־MP מתחילה לרדת, AP יכולה עדיין לעלות.</p>
+    <p>בדוגמה הזו MP אף פעם לא שלילית. לכן התפוקה הכוללת עולה כל הזמן, עד העובד העשירי.</p>
+  </div>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== FIELDS ===== -->
+<!-- ===== 11 FIELDS ===== -->
 <section id="fields" class="stack" aria-labelledby="h-fields">
   <div class="sec-head"><div class="eyebrow">חלק 11 · יישום</div><h2 id="h-fields">איך מחלקים 4 עובדים בין שני שדות</h2></div>
-  <figure class="pic wide"><img src="img/fields.webp" alt="חקלאי מחליט לאן לשלוח ארבעה עובדים: שלושה לשדה הירוק והגדול ואחד לשדה החולי" loading="lazy"><figcaption>שני שדות (קבועים), 4 עובדים (משתנים). לאן לשלוח כל אחד?</figcaption></figure>
+  <figure class="pic wide"><img src="img/fields.webp" alt="חקלאי מחליט לאן לשלוח ארבעה עובדים: שדה ירוק וגדול ושדה חולי" loading="lazy"><figcaption>שני שדות (קבועים), 4 עובדים (משתנים). לאן לשלוח כל אחד?</figcaption></figure>
   <div class="two">
     <div class="tscroll"><table class="t"><caption>שדה א׳</caption><thead><tr><th scope="col">L</th><th scope="col">q</th><th scope="col">MP</th></tr></thead><tbody><tr><td class="n">1</td><td class="n">13</td><td class="n"><b>13</b></td></tr><tr><td class="n">2</td><td class="n">25</td><td class="n"><b>12</b></td></tr><tr><td class="n">3</td><td class="n">35</td><td class="n"><b>10</b></td></tr><tr><td class="n">4</td><td class="n">43</td><td class="n"><b>8</b></td></tr></tbody></table></div>
     <div class="tscroll"><table class="t"><caption>שדה ב׳</caption><thead><tr><th scope="col">L</th><th scope="col">q</th><th scope="col">MP</th></tr></thead><tbody><tr><td class="n">1</td><td class="n">11</td><td class="n"><b>11</b></td></tr><tr><td class="n">2</td><td class="n">20</td><td class="n"><b>9</b></td></tr><tr><td class="n">3</td><td class="n">27</td><td class="n"><b>7</b></td></tr><tr><td class="n">4</td><td class="n">31</td><td class="n"><b>4</b></td></tr></tbody></table></div>
   </div>
   <div class="lab">
-    <div class="lab-title"><span class="tag">ניסוי 3</span><h3>נסו לבד: מי מקבל כמה עובדים?</h3></div>
+    <div class="lab-title"><span class="tag">ניסוי 4</span><h3>נסו לבד: מי מקבל כמה עובדים?</h3></div>
+    <p class="note">יש 4 עובדים. חלקו אותם בין השדות בעזרת הכפתורים + ו־−. המטרה: כמה שיותר תפוקה.</p>
     <div class="fld">
-      <div class="fcol a"><b>שדה א׳</b><div class="btns"><button class="btn" type="button" data-f="a" data-d="-1" aria-label="פחות עובד לשדה א">−</button><span class="cnt" id="cntA">0</span><button class="btn" type="button" data-f="a" data-d="1" aria-label="עוד עובד לשדה א">+</button></div><span class="q" id="qA"></span></div>
-      <div class="fcol b"><b>שדה ב׳</b><div class="btns"><button class="btn" type="button" data-f="b" data-d="-1" aria-label="פחות עובד לשדה ב">−</button><span class="cnt" id="cntB">0</span><button class="btn" type="button" data-f="b" data-d="1" aria-label="עוד עובד לשדה ב">+</button></div><span class="q" id="qB"></span></div>
+      <div class="fcol a"><b>שדה א׳</b><div class="btns"><button class="btn" type="button" data-f="a" data-d="-1" aria-label="פחות עובד לשדה א׳">−</button><span class="cnt" id="cntA">0</span><button class="btn" type="button" data-f="a" data-d="1" aria-label="עוד עובד לשדה א׳">+</button></div><span class="q" id="qA"></span></div>
+      <div class="fcol b"><b>שדה ב׳</b><div class="btns"><button class="btn" type="button" data-f="b" data-d="-1" aria-label="פחות עובד לשדה ב׳">−</button><span class="cnt" id="cntB">0</span><button class="btn" type="button" data-f="b" data-d="1" aria-label="עוד עובד לשדה ב׳">+</button></div><span class="q" id="qB"></span></div>
     </div>
     <p class="readout" id="fldRead" aria-live="polite"></p>
-    <div class="btns"><button class="btn" type="button" id="fldGreedy">הראו לי את הדרך הנכונה, עובד אחרי עובד</button><button class="btn" type="button" id="fldReset">התחלה מחדש</button></div>
+    <p class="note">רוצים לראות את הדרך הנכונה? לחצו על "השלב הבא". בכל לחיצה נשבץ עובד אחד, ונסביר למה.</p>
+    <div class="btns"><button class="btn primary" type="button" id="fldStep">השלב הבא</button><button class="btn" type="button" id="fldReset">התחלה מחדש</button></div>
+    <ol class="steps fldlog" id="fldLog"></ol>
   </div>
   <h3>הכלל: כל עובד הולך לאן שהוא מוסיף הכי הרבה</h3>
   <p>מסדרים את כל התפוקות השוליות מהגבוהה לנמוכה, ולוקחים את 4 הראשונות:</p>
   <div class="mprank" id="mpRank"></div>
   <ol class="steps">
-    <li><b>עובד 1:</b> שדה א׳ מוסיף 13, שדה ב׳ מוסיף 11 → <b>שדה א׳</b> (13).</li>
-    <li><b>עובד 2:</b> עובד שני בשדה א׳ מוסיף 12, ראשון בשדה ב׳ מוסיף 11 → <b>שדה א׳</b> (12).</li>
-    <li><b>עובד 3:</b> שלישי בשדה א׳ מוסיף 10, ראשון בשדה ב׳ מוסיף 11 → <b>שדה ב׳</b> (11).</li>
-    <li><b>עובד 4:</b> שלישי בשדה א׳ מוסיף 10, שני בשדה ב׳ מוסיף 9 → <b>שדה א׳</b> (10).</li>
+    <li><strong>עובד 1:</strong> בשדה א׳ הוא מוסיף 13, בשדה ב׳ 11. לכן הוא הולך לשדה א׳.</li>
+    <li><strong>עובד 2:</strong> עובד שני בשדה א׳ מוסיף 12, ראשון בשדה ב׳ מוסיף 11. לכן שדה א׳.</li>
+    <li><strong>עובד 3:</strong> שלישי בשדה א׳ מוסיף 10, ראשון בשדה ב׳ מוסיף 11. לכן שדה ב׳.</li>
+    <li><strong>עובד 4:</strong> שלישי בשדה א׳ מוסיף 10, שני בשדה ב׳ מוסיף 9. לכן שדה א׳.</li>
   </ol>
   <div class="eq big"><bdi dir="ltr" class="m">q = 35 + 11 = 46</bdi></div>
   <p class="brief"><span class="lbl">למה לא כולם לשדה הטוב?</span>4 עובדים בשדה א׳ נותנים רק 43. העובד הרביעי שם מוסיף 8, אבל בשדה ב׳ עובד ראשון מוסיף 11. בגלל חוק התפוקה השולית הפוחתת, מתישהו כדאי לעבור לשדה השני.</p>
+  <h3>למה מותר לבחור כל פעם את הטוב ביותר?</h3>
+  <p>כי בכל שדה התוספות רק יורדות. בשדה א׳: <bdi dir="ltr" class="m">13, 12, 10, 8</bdi>. אין "הפתעה טובה" שמחכה מאחורי עובד חלש.</p>
+  <p><strong>מבחן ההחלפה.</strong> בודקים אם החלפה אחת משפרת:</p>
+  <ul class="steps" style="list-style:disc">
+    <li>מעבירים את העובד משדה ב׳ לשדה א׳: מאבדים 11, ומרוויחים 8 (העובד הרביעי בשדה א׳). הפסד.</li>
+    <li>מעבירים את העובד השלישי משדה א׳ לשדה ב׳: מאבדים 10, ומרוויחים 9 (העובד השני בשדה ב׳). הפסד.</li>
+  </ul>
+  <p>אף החלפה לא עוזרת, ולכן 46 הוא המקסימום.</p>
+  <p><strong>תיקו.</strong> אם בשני השדות העובד הבא מוסיף אותו דבר, אפשר לשלוח אותו לכל אחד מהם. שתי התשובות נכונות (שאלה 12 במבחן).</p>
+  <p><strong>מתי השיטה נכשלת?</strong> כשבשדה מסוים התפוקה השולית עולה בהתחלה. אז עובד ראשון "חלש" מסתיר עובד שני חזק, והבחירה עובד אחרי עובד מפספסת אותו (שאלה 13 במבחן).</p>
+  <p class="note">כשאפשר לחלק עובדים לחלקים קטנים (למשל שעות עבודה), הכלל נהיה: התפוקה השולית בשדה א׳ שווה לתפוקה השולית בשדה ב׳.</p>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== EXAM ===== -->
+<!-- ===== 12 STAGES ===== -->
+<section id="stages" class="stack" aria-labelledby="h-stages">
+  <div class="sec-head"><div class="eyebrow">חלק 12 · שלבי הייצור</div><h2 id="h-stages">שלבי הייצור: איפה פירמה רציונלית עובדת</h2></div>
+  <p>בחלק 8 ראינו שלושה אזורים לפי MP: עולה, פוחתת, שלילית. בשקפים קוראים להם "שלבים". בספרים רבים יש חלוקה אחרת, לפי AP, וקוראים לה "שלבי הייצור". כדאי להכיר את שתיהן. הנה החלוקה לפי AP:</p>
+  <div class="ph3">
+    <div class="ph"><div class="n">שלב I</div><b>מ־0 עד השיא של AP</b><p>כאן MP מעל AP, ולכן AP עולה.</p></div>
+    <div class="ph best"><div class="n">שלב II</div><b>מהשיא של AP עד השיא של TP</b><p>כאן MP יורדת אבל חיובית, ו־AP יורדת.</p><p class="tagline">כאן עובדת פירמה רציונלית</p></div>
+    <div class="ph"><div class="n">שלב III</div><b>אחרי השיא של TP</b><p>כאן MP שלילית, ולכן TP יורדת.</p></div>
+  </div>
+  <p class="brief"><span class="lbl">הכלל</span>פירמה רציונלית עובדת בשלב II.</p>
+  <ul class="steps" style="list-style:disc">
+    <li><strong>למה לא שלב III?</strong> עובד נוסף מוריד את התפוקה, וגם עולה כסף.</li>
+    <li><strong>למה לא לעצור בשלב I?</strong> כל עובד נוסף מעלה את התפוקה לעובד (AP). לכן כדאי להמשיך להוסיף.</li>
+    <li><strong>איפה בדיוק בשלב II?</strong> זה תלוי במחירים ובשכר. את זה נלמד בשיעורים הבאים.</li>
+  </ul>
+  <p><strong>במפעל האופנועים:</strong> שלב I עד 4 עובדים (השיא של AP ב־3 עד 4). שלב II בין 4 ל־5 עובדים. שלב III ב־6 עובדים.</p>
+  <div class="tscroll"><table class="t" id="stageTable"><caption>אזורים לפי MP מול שלבים לפי AP, במפעל האופנועים</caption><thead><tr><th scope="col">עובדים (L)</th><th scope="col">MP</th><th scope="col">AP</th><th scope="col">אזור לפי MP</th><th scope="col">שלב לפי AP</th></tr></thead><tbody>
+    <tr><td class="n">1</td><td class="n">4</td><td class="n">4</td><td>א׳ (עולה)</td><td>I</td></tr>
+    <tr><td class="n">2</td><td class="n">8</td><td class="n">6</td><td>א׳ (עולה)</td><td>I</td></tr>
+    <tr><td class="n">3</td><td class="n">12</td><td class="n">8</td><td>א׳ (עולה)</td><td>I</td></tr>
+    <tr><td class="n">4</td><td class="n">8</td><td class="n">8</td><td>ב׳ (פוחתת)</td><td>הגבול בין I ל־II</td></tr>
+    <tr><td class="n">5</td><td class="n">3</td><td class="n">7</td><td>ב׳ (פוחתת)</td><td>II</td></tr>
+    <tr><td class="n">6</td><td class="n">−5</td><td class="n">5</td><td>ג׳ (שלילית)</td><td>III</td></tr>
+  </tbody></table></div>
+  <p class="symnote"><b>שימו לב:</b> האזורים והשלבים לא מתחילים באותו מקום. אזור ב׳ מתחיל אחרי השיא של MP (אחרי 3 עובדים). שלב II מתחיל בשיא של AP (ב־4 עובדים). אזור ג׳ ושלב III זהים: שם MP שלילית.</p>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
+</section>
+
+<!-- ===== 13 EXAM ===== -->
 <section id="exam" class="stack" aria-labelledby="h-exam">
-  <div class="sec-head"><div class="eyebrow">חלק 12 · כמו במבחן</div><h2 id="h-exam">שאלות מבחן פתורות</h2></div>
+  <div class="sec-head"><div class="eyebrow">חלק 13 · כמו במבחן</div><h2 id="h-exam">שאלות מבחן פתורות</h2></div>
   <p>נסו לענות לבד, ורק אז פתחו את הפתרון. השאלות בנויות כמו במבחן קשה: עם מלכודות.</p>
 
-  <details class="sol"><summary>שאלה 1 · חישוב: ‏AP ו־MP של העובד החמישי במפעל האופניים</summary><div class="sol-body">
+  <h3 class="exgrp">חישוב</h3>
+  <details class="sol"><summary>שאלה 1 · ‏AP ו־MP של העובד החמישי במפעל האופנועים<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
     <p><bdi dir="ltr" class="m">AP = q ÷ L = 35 ÷ 5 = 7</bdi></p>
     <p><bdi dir="ltr" class="m">MP = (35 − 32) ÷ (5 − 4) = 3</bdi></p>
-    <p class="note" style="margin:0">טעות נפוצה: לחלק 35 ב־5 גם עבור MP. ‏MP הוא רק <u>התוספת</u> של העובד החמישי.</p>
+    <p class="note">טעות נפוצה: לחלק 35 ב־5 גם עבור MP. ‏MP היא רק התוספת של העובד החמישי.</p>
   </div></details>
 
-  <details class="sol"><summary>שאלה 2 · נכון או לא: "כשהתפוקה השולית יורדת, התפוקה הכוללת יורדת"</summary><div class="sol-body">
-    <p><b>לא נכון.</b> במפעל האופניים, בין עובד 3 לעובד 5 ‏MP יורד (12 → 8 → 3), אבל התפוקה הכוללת <u>עולה</u> (24 → 32 → 35). התפוקה הכוללת יורדת רק כש־MP <b>שלילי</b>.</p>
-  </div></details>
-
-  <details class="sol"><summary>שאלה 3 · נכון או לא: "כשהתפוקה הממוצעת יורדת, התפוקה השולית בהכרח שלילית"</summary><div class="sol-body">
-    <p><b>לא נכון.</b> AP יורד כש־<bdi dir="ltr" class="m">MP &lt; AP</bdi>, גם אם MP חיובי. עובד 5: ‏<bdi dir="ltr" class="m">MP = 3 &gt; 0</bdi>, אבל <bdi dir="ltr" class="m">3 &lt; 8</bdi>, ולכן AP ירד מ־8 ל־7.</p>
-  </div></details>
-
-  <details class="sol"><summary>שאלה 4 · נכון או לא: "חוק התפוקה השולית הפוחתת חל גם כשמגדילים את כל גורמי הייצור יחד"</summary><div class="sol-body">
-    <p><b>לא נכון.</b> החוק מדבר על מצב שבו <u>רק גורם אחד</u> גדל ו<u>השאר קבועים</u> (טווח קצר). הסיבה לחוק היא בדיוק הגורם הקבוע: יותר עובדים על אותו פרדס. אם מגדילים הכל יחד, זו כבר שאלה אחרת (טווח ארוך).</p>
-  </div></details>
-
-  <details class="sol"><summary>שאלה 5 · הקצאה: יש 5 עובדים לשני השדות. כמה לכל שדה, ומה התפוקה?</summary><div class="sol-body">
-    <p>מסדרים את ה־MP מהגבוה לנמוך: ‏13 (א), 12 (א), 11 (ב), 10 (א), <b>9 (ב)</b>, 8 (א), 7 (ב), 4 (ב).</p>
-    <p>חמשת הראשונים: 3 בשדה א׳, 2 בשדה ב׳ → <bdi dir="ltr" class="m">q = 35 + 20 = 55</bdi></p>
-    <p class="note" style="margin:0">בדיקה: ‏4+1 נותן <bdi dir="ltr" class="m">43 + 11 = 54</bdi>, ‏2+3 נותן <bdi dir="ltr" class="m">25 + 27 = 52</bdi>. שניהם פחות מ־55. ✓</p>
-  </div></details>
-
-  <details class="sol"><summary>שאלה 6 · מפעל: עובדים מגייסים תוך שבוע, מכונות תוך שנה, מבנה תוך 10 שנים. תקופה של 3 שנים היא טווח קצר או ארוך?</summary><div class="sol-body">
-    <p><b>טווח קצר.</b> ב־3 שנים אפשר לשנות עובדים ומכונות, אבל <u>לא</u> את המבנה. כל עוד יש לפחות גורם אחד קבוע, זה טווח קצר. הטווח הארוך במפעל הזה: 10 שנים ומעלה.</p>
-  </div></details>
-
-  <details class="sol"><summary>שאלה 7 · הפוך: נתונה התפוקה הממוצעת. ‏L = 1, 2, 3, 4 ו־AP = 10, 12, 11, 9. מצאו q ו־MP</summary><div class="sol-body">
-    <p><b>הטריק:</b> אם <bdi dir="ltr" class="m">AP = q ÷ L</bdi>, אז <bdi dir="ltr" class="m">q = AP × L</bdi>.</p>
-    <div class="tscroll"><table class="t"><thead><tr><th scope="col">L</th><th scope="col">AP</th><th scope="col"><bdi dir="ltr">q = AP × L</bdi></th><th scope="col">MP</th></tr></thead><tbody>
+  <details class="sol"><summary>שאלה 2 · הפוך: נתונה התפוקה הממוצעת. ‏<bdi dir="ltr">L = 1, 2, 3, 4</bdi> ו־<bdi dir="ltr">AP = 10, 12, 11, 9</bdi>. מצאו q ו־MP<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>הטריק:</strong> אם <bdi dir="ltr" class="m">AP = q ÷ L</bdi>, אז <bdi dir="ltr" class="m">q = AP × L</bdi>.</p>
+    <div class="tscroll"><table class="t"><caption>הפתרון</caption><thead><tr><th scope="col">L</th><th scope="col">AP</th><th scope="col"><bdi dir="ltr">q = AP × L</bdi></th><th scope="col">MP</th></tr></thead><tbody>
       <tr><td class="n">1</td><td class="n">10</td><td class="n">10</td><td class="n">10</td></tr>
       <tr><td class="n">2</td><td class="n">12</td><td class="n">24</td><td class="n">14</td></tr>
       <tr><td class="n">3</td><td class="n">11</td><td class="n">33</td><td class="n">9</td></tr>
       <tr><td class="n">4</td><td class="n">9</td><td class="n">36</td><td class="n">3</td></tr></tbody></table></div>
-    <p>בדיקה עם הכלל: עובד 2: ‏<bdi dir="ltr" class="m">MP = 14 &gt; 10</bdi> → AP עלה ✓. עובד 3: ‏<bdi dir="ltr" class="m">MP = 9 &lt; 12</bdi> → AP ירד ✓.</p>
+    <p>בדיקה עם הכלל: עובד 2: ‏<bdi dir="ltr" class="m">MP = 14</bdi>, גדולה מה־AP הקודמת (10), ולכן AP עלתה. ✓ עובד 3: ‏<bdi dir="ltr" class="m">MP = 9</bdi>, קטנה מה־AP הקודמת (12), ולכן AP ירדה. ✓</p>
   </div></details>
 
-  <details class="sol"><summary>שאלה 8 · מתקדם: ‏<bdi dir="ltr">q = 10L − L²</bdi> (ההון קבוע). מתי התפוקה מקסימלית?</summary><div class="sol-body">
+  <details class="sol"><summary>שאלה 3 · נתונות התפוקות השוליות של 6 עובדים: <bdi dir="ltr">6, 10, 8, 5, 0, −3</bdi>. מצאו TP ו־AP. איפה AP בשיא? איפה TP בשיא? כמה עובדים תעסיק פירמה רציונלית?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>הטריק:</strong> TP היא סכום כל ה־MP עד אותו עובד.</p>
+    <div class="tscroll"><table class="t"><caption>הפתרון</caption><thead><tr><th scope="col">L</th><th scope="col">MP</th><th scope="col">TP</th><th scope="col"><bdi dir="ltr">AP = TP ÷ L</bdi></th></tr></thead><tbody>
+      <tr><td class="n">1</td><td class="n">6</td><td class="n">6</td><td class="n">6</td></tr>
+      <tr><td class="n">2</td><td class="n">10</td><td class="n">16</td><td class="n">8</td></tr>
+      <tr><td class="n">3</td><td class="n">8</td><td class="n">24</td><td class="n">8</td></tr>
+      <tr><td class="n">4</td><td class="n">5</td><td class="n">29</td><td class="n">7.25</td></tr>
+      <tr><td class="n">5</td><td class="n">0</td><td class="n">29</td><td class="n">5.8</td></tr>
+      <tr><td class="n">6</td><td class="n">−3</td><td class="n">26</td><td class="n">≈ 4.33</td></tr></tbody></table></div>
+    <p><strong>AP בשיא:</strong> 8, ב־2 וב־3 עובדים. העובד השלישי מוסיף 8, בדיוק כמו ה־AP הקודמת (8), ולכן AP לא זזה.</p>
+    <p><strong>TP בשיא:</strong> 29, ב־4 וב־5 עובדים. לעובד החמישי <bdi dir="ltr" class="m">MP = 0</bdi>.</p>
+    <p><strong>פירמה רציונלית:</strong> עובדת בשלב II, מהשיא של AP (3 עובדים) עד השיא של TP. היא לא תעסיק עובד חמישי: הוא מוסיף 0 ועולה כסף. לכן לכל היותר 4 עובדים.</p>
+  </div></details>
+
+  <h3 class="exgrp">נכון או לא</h3>
+  <details class="sol"><summary>שאלה 4 · "כשהתפוקה השולית יורדת, התפוקה הכוללת יורדת"<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>לא נכון.</strong> במפעל האופנועים, בין עובד 3 לעובד 5, ‏MP יורדת (<bdi dir="ltr" class="m">12 → 8 → 3</bdi>). אבל התפוקה הכוללת עולה (<bdi dir="ltr" class="m">24 → 32 → 35</bdi>). התפוקה הכוללת יורדת רק כש־MP שלילית.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 5 · "כשהתפוקה הממוצעת יורדת, התפוקה השולית בהכרח שלילית"<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>לא נכון.</strong> AP יורדת כש־MP קטנה מ־AP, גם אם MP חיובית. עובד 5: <bdi dir="ltr" class="m">MP = 3</bdi>, כלומר חיובית. אבל 3 קטן מ־8, ולכן AP ירדה מ־8 ל־7.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 6 · "חוק התפוקה השולית הפוחתת חל גם כשמגדילים את כל גורמי הייצור יחד"<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>לא נכון.</strong> החוק מדבר על מצב שבו רק גורם אחד גדל, והשאר קבועים (טווח קצר). הסיבה לחוק היא בדיוק הגורם הקבוע: יותר עובדים על אותו פרדס.</p>
+    <p>כשמגדילים הכול יחד, זה כבר לא המצב שהחוק מדבר עליו. זו שאלה אחרת, "תשואה לגודל", ונלמד אותה בהמשך.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 7 · "בפונקציה <bdi dir="ltr">q = 2L</bdi> התפוקה הממוצעת שווה לתפוקה השולית"<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>נכון.</strong> <bdi dir="ltr" class="m">AP = 2L ÷ L = 2</bdi>, וגם <bdi dir="ltr" class="m">MP = 2</bdi>, בכל נקודה. כש־MP קבועה ושווה ל־AP, הממוצע לא זז.</p>
+    <p>בפונקציה הזו אין תפוקה שולית פוחתת, ול־AP אין שיא.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 8 · "הוספנו עובד אחד ומכונה אחת, והתפוקה גדלה ב־20. לכן התפוקה השולית של העבודה היא 20"<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>לא נכון.</strong> את <bdi dir="ltr" class="m">MP<sub>L</sub></bdi> מודדים כשרק L משתנה, וכל השאר קבוע (<i lang="la">ceteris paribus</i>).</p>
+    <p>כאן גם K השתנה. לכן אי אפשר לדעת כמה מתוך ה־20 הוסיף העובד, וכמה הוסיפה המכונה.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 9 · "כשהתפוקה השולית יורדת, גם התפוקה הממוצעת בהכרח יורדת"<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>לא נכון.</strong> דוגמה: <bdi dir="ltr" class="m">q = 6L² − L³</bdi>. כאן <bdi dir="ltr" class="m">MP = 12L − 3L²</bdi> ו־<bdi dir="ltr" class="m">AP = 6L − L²</bdi>.</p>
+    <p>כש־L עולה מ־2 ל־3, ‏MP יורדת מ־12 ל־9. אבל AP עולה מ־8 ל־9.</p>
+    <p>הסיבה: MP עדיין מעל AP. ‏AP יורדת רק כש־MP מתחת ל־AP. (גם במפעל האופנועים: בעובד 4 ‏MP ירדה מ־12 ל־8, ו־AP לא ירדה.)</p>
+  </div></details>
+
+  <h3 class="exgrp">גרפים</h3>
+  <details class="sol"><summary>שאלה 10 · במפעל האופנועים מותחים קו מהראשית לכל נקודה על עקומת התפוקה. איפה הקו הכי תלול? ואיפה העקומה עצמה הכי תלולה?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>הקו מהראשית:</strong> השיפוע שלו הוא <bdi dir="ltr" class="m">q ÷ L</bdi>, כלומר AP: <bdi dir="ltr" class="m">4, 6, 8, 8, 7, 5</bdi>. הוא הכי תלול ב־3 וב־4 עובדים. שם AP בשיא.</p>
+    <p><strong>העקומה עצמה:</strong> השיפוע של כל קטע הוא MP: <bdi dir="ltr" class="m">4, 8, 12, 8, 3, −5</bdi>. הקטע הכי תלול הוא מ־2 עובדים ל־3. שם MP בשיא. זו נקודת הפיתול: אחריה העקומה מתמתנת.</p>
+    <p>שוב רואים את הסדר: קודם MP בשיא, ואחר כך AP.</p>
+  </div></details>
+
+  <h3 class="exgrp">הקצאה</h3>
+  <details class="sol"><summary>שאלה 11 · יש 5 עובדים לשני השדות מחלק 11. כמה לכל שדה, ומה התפוקה?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p>מסדרים את ה־MP מהגבוהה לנמוכה: 13 (א׳), 12 (א׳), 11 (ב׳), 10 (א׳), <strong>9 (ב׳)</strong>, 8 (א׳), 7 (ב׳), 4 (ב׳).</p>
+    <p>חמשת הראשונים: 3 בשדה א׳ ו־2 בשדה ב׳. <bdi dir="ltr" class="m">q = 35 + 20 = 55</bdi></p>
+    <p class="note">בדיקה: 4 בשדה א׳ ו־1 בשדה ב׳ נותן <bdi dir="ltr" class="m">43 + 11 = 54</bdi>. ‏2 בשדה א׳ ו־3 בשדה ב׳ נותן <bdi dir="ltr" class="m">25 + 27 = 52</bdi>. שניהם פחות מ־55. ✓</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 12 · תיקו. שדה א׳: <bdi dir="ltr">q = 10, 18, 24, 28</bdi>. שדה ב׳: <bdi dir="ltr">q = 9, 15, 20, 23</bdi>. איך מחלקים 4 עובדים? ואיך 5?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p>התפוקות השוליות. שדה א׳: <bdi dir="ltr" class="m">10, 8, 6, 4</bdi>. שדה ב׳: <bdi dir="ltr" class="m">9, 6, 5, 3</bdi>.</p>
+    <p>מהגבוהה לנמוכה: 10 (א׳), 9 (ב׳), 8 (א׳), ואז תיקו: 6 (א׳) ו־6 (ב׳).</p>
+    <p><strong>4 עובדים:</strong> העובד הרביעי יכול ללכת לכל שדה. 3 בשדה א׳ ו־1 בשדה ב׳: <bdi dir="ltr" class="m">24 + 9 = 33</bdi>. ‏2 ו־2: <bdi dir="ltr" class="m">18 + 15 = 33</bdi>. שתי התשובות נכונות.</p>
+    <p class="note">בדיקה: 4 ו־0 נותן 28. ‏1 ו־3 נותן 30. ‏0 ו־4 נותן 23. כולם פחות מ־33.</p>
+    <p><strong>5 עובדים:</strong> לוקחים את שני ה־6. 3 בשדה א׳ ו־2 בשדה ב׳: <bdi dir="ltr" class="m">24 + 15 = 39</bdi>.</p>
+    <p class="note">בדיקה: 4 ו־1 נותן 37. ‏2 ו־3 נותן 38. ‏1 ו־4 נותן 33. כולם פחות מ־39.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 13 · מתי הבחירה עובד אחרי עובד נכשלת? שדה א׳: <bdi dir="ltr">q = 5, 20, 30</bdi>. שדה ב׳: <bdi dir="ltr">q = 8, 14, 18</bdi>. יש 2 עובדים<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>בחירה עובד אחרי עובד:</strong> עובד 1: בשדה א׳ מוסיף 5, בשדה ב׳ מוסיף 8. הולך לשדה ב׳. עובד 2: בשדה א׳ מוסיף 5, בשדה ב׳ מוסיף 6. שוב הולך לשדה ב׳. סך הכול 14.</p>
+    <p><strong>אבל</strong> 2 עובדים בשדה א׳ נותנים 20! כל האפשרויות: 0 בשדה א׳ ו־2 בשדה ב׳ נותן 14. ‏1 ו־1 נותן <bdi dir="ltr" class="m">5 + 8 = 13</bdi>. ‏2 בשדה א׳ ו־0 בשדה ב׳ נותן 20. המקסימום: 20.</p>
+    <p><strong>למה השיטה נכשלה?</strong> כי בשדה א׳ התפוקה השולית עולה בהתחלה (5, ואחר כך 15). השיטה עובדת רק כשהתפוקה השולית בכל שדה יורדת.</p>
+  </div></details>
+
+  <h3 class="exgrp">נוסחאות</h3>
+  <details class="sol"><summary>שאלה 14 · ‏<bdi dir="ltr">q = 10L − L²</bdi> (ההון קבוע). מתי התפוקה מקסימלית?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
     <p>התפוקה השולית היא הנגזרת: <bdi dir="ltr" class="m">MP = dq / dL = 10 − 2L</bdi></p>
-    <p>התפוקה מקסימלית כש־<bdi dir="ltr" class="m">MP = 0</bdi>: ‏<bdi dir="ltr" class="m">10 − 2L = 0 → L = 5</bdi>, ואז <bdi dir="ltr" class="m">q = 50 − 25 = 25</bdi>.</p>
-    <p>וגם: <bdi dir="ltr" class="m">AP = q ÷ L = 10 − L</bdi>. לכל <bdi dir="ltr" class="m">L &gt; 0</bdi> מתקיים <bdi dir="ltr" class="m">10 − 2L &lt; 10 − L</bdi>, כלומר MP מתחת ל־AP, ולכן AP יורד כל הזמן.</p>
+    <p>התפוקה מקסימלית כש־<bdi dir="ltr" class="m">MP = 0</bdi>: ‏<bdi dir="ltr" class="m">10 − 2L = 0</bdi>, כלומר <bdi dir="ltr" class="m">L = 5</bdi>. אז <bdi dir="ltr" class="m">q = 50 − 25 = 25</bdi>.</p>
+    <p>וגם: <bdi dir="ltr" class="m">AP = q ÷ L = 10 − L</bdi>. לכל <bdi dir="ltr" class="m">L &gt; 0</bdi> מתקיים <bdi dir="ltr" class="m">10 − 2L &lt; 10 − L</bdi>. כלומר MP מתחת ל־AP, ולכן AP יורדת כל הזמן. ל־AP אין שיא, ו־MP לא חוצה אותה.</p>
+    <p><strong>ואם מחשבים כמו בטבלה?</strong> <bdi dir="ltr" class="m">q(5) − q(4) = 25 − 24 = 1</bdi>, אבל הנגזרת ב־5 היא 0. ההבדל: הטבלה מודדת עובד שלם, והנגזרת מודדת שינוי קטן מאוד. כשנתונה נוסחה, משתמשים בנגזרת.</p>
   </div></details>
 
-  <details class="sol"><summary>שאלה 9 · נכון או לא: "בפונקציה <bdi dir="ltr">q = 2L</bdi> התפוקה הממוצעת שווה לתפוקה השולית"</summary><div class="sol-body">
-    <p><b>נכון.</b> <bdi dir="ltr" class="m">AP = 2L ÷ L = 2</bdi> ו־<bdi dir="ltr" class="m">MP = 2</bdi> בכל נקודה. כש־MP קבוע ושווה ל־AP, הממוצע לא זז. בפונקציה הזו אין תפוקה שולית פוחתת.</p>
+  <details class="sol"><summary>שאלה 15 · ‏<bdi dir="ltr">q = 6L² − L³</bdi>. מצאו MP ו־AP, את השיאים של MP, ‏AP ו־TP, ואת שלבי הייצור<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><bdi dir="ltr" class="m">MP = dq/dL = 12L − 3L²</bdi>. ‏<bdi dir="ltr" class="m">AP = q ÷ L = 6L − L²</bdi>.</p>
+    <p><strong>שיא MP:</strong> גוזרים את MP: <bdi dir="ltr" class="m">12 − 6L = 0</bdi>, כלומר <bdi dir="ltr" class="m">L = 2</bdi>. אז <bdi dir="ltr" class="m">MP = 24 − 12 = 12</bdi>. זו נקודת הפיתול של TP.</p>
+    <p><strong>שיא AP:</strong> <bdi dir="ltr" class="m">6 − 2L = 0</bdi>, כלומר <bdi dir="ltr" class="m">L = 3</bdi>. אז <bdi dir="ltr" class="m">AP = 18 − 9 = 9</bdi>. בדיקה: <bdi dir="ltr" class="m">MP(3) = 36 − 27 = 9</bdi>. בשיא של AP באמת <bdi dir="ltr" class="m">MP = AP</bdi>. ✓</p>
+    <p><strong>שיא TP:</strong> פותרים <bdi dir="ltr" class="m">MP = 0</bdi>: ‏<bdi dir="ltr" class="m">3L(4 − L) = 0</bdi>, כלומר <bdi dir="ltr" class="m">L = 4</bdi>. אז <bdi dir="ltr" class="m">q = 96 − 64 = 32</bdi>.</p>
+    <p><strong>שלבי הייצור:</strong> שלב I מ־0 עד 3 עובדים. שלב II מ־3 עד 4. שלב III אחרי 4.</p>
+    <p><strong>סדר השיאים:</strong> MP (ב־2), אחר כך AP (ב־3), ובסוף TP (ב־4).</p>
+    <p class="note">מלכודת: כמו בטבלה, העובד השלישי מוסיף <bdi dir="ltr" class="m">q(3) − q(2) = 27 − 16 = 11</bdi>. אבל הנגזרת ב־3 היא 9. כשנתונה נוסחה, משתמשים בנגזרת.</p>
   </div></details>
+
+  <details class="sol"><summary>שאלה 16 · ‏<bdi dir="ltr">q = 2KL − L²</bdi>. מצאו את <bdi dir="ltr">MP<sub>L</sub></bdi>. כמה הם q, ‏AP ו־MP כש־<bdi dir="ltr">K = 5, L = 3</bdi>? ומה קורה ל־MP כש־K עולה ל־6?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p>גוזרים לפי L, ו־K נשאר קבוע (כמו מספר): <bdi dir="ltr" class="m">MP<sub>L</sub> = ∂q/∂L = 2K − 2L</bdi>.</p>
+    <p><bdi dir="ltr" class="m">K = 5, L = 3</bdi>: ‏<bdi dir="ltr" class="m">q = 30 − 9 = 21</bdi>. ‏<bdi dir="ltr" class="m">AP = 21 ÷ 3 = 7</bdi>. ‏<bdi dir="ltr" class="m">MP = 10 − 6 = 4</bdi>. ‏MP קטנה מ־AP, ולכן AP יורדת.</p>
+    <p><bdi dir="ltr" class="m">K = 6, L = 3</bdi>: ‏<bdi dir="ltr" class="m">MP = 12 − 6 = 6</bdi>, ו־<bdi dir="ltr" class="m">q = 36 − 9 = 27</bdi>. יותר מכונות, ולכן כל עובד מוסיף יותר.</p>
+    <p class="note">וכש־<bdi dir="ltr" class="m">K = 5</bdi>: ‏<bdi dir="ltr" class="m">q = 10L − L²</bdi>. זו בדיוק הפונקציה משאלה 14, והשיא שלה ב־5 עובדים.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 17 · ‏<bdi dir="ltr">q = A · 2L</bdi>. הטכנולוגיה משתפרת: A עולה מ־1 ל־1.5. מה קורה ל־q, ‏AP ו־MP כש־<bdi dir="ltr">L = 4</bdi>?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>לפני:</strong> <bdi dir="ltr" class="m">q = 1 · 2 · 4 = 8</bdi>. ‏<bdi dir="ltr" class="m">AP = 8 ÷ 4 = 2</bdi>. ‏<bdi dir="ltr" class="m">MP = 2</bdi>.</p>
+    <p><strong>אחרי:</strong> <bdi dir="ltr" class="m">q = 1.5 · 2 · 4 = 12</bdi>. ‏<bdi dir="ltr" class="m">AP = 12 ÷ 4 = 3</bdi>. ‏<bdi dir="ltr" class="m">MP = 3</bdi>.</p>
+    <p>אותם 4 עובדים מייצרים יותר, וגם AP וגם MP גדלו. כל העקומה זזה למעלה. זו תזוזה של העקומה, לא תנועה לאורכה.</p>
+  </div></details>
+
+  <h3 class="exgrp">מושגים</h3>
+  <details class="sol"><summary>שאלה 18 · מפעל: עובדים מגייסים תוך שבוע, מכונות תוך שנה, מבנה תוך 10 שנים. תקופה של 3 שנים היא טווח קצר או ארוך?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>טווח קצר.</strong> ב־3 שנים אפשר לשנות עובדים ומכונות, אבל לא את המבנה. כל עוד יש לפחות גורם אחד קבוע, זה טווח קצר. הטווח הארוך במפעל הזה: 10 שנים ומעלה.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 19 · האם פירמה רציונלית תעסיק 6 עובדים במפעל האופנועים?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>לא.</strong> העובד השישי נמצא בשלב III. התפוקה השולית שלו <bdi dir="ltr" class="m">−5</bdi>, והתפוקה יורדת מ־35 ל־30. הוא מוריד את התפוקה וגם עולה שכר. עדיף 5 עובדים.</p>
+  </div></details>
+
+  <details class="sol"><summary>שאלה 20 · שאלה פתוחה: הגדירו פונקציית ייצור<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
+    <p><strong>תשובה לדוגמה:</strong> פונקציית ייצור היא ביטוי מתמטי שמתאר את הקשר בין כמויות גורמי הייצור לבין כמות התפוקה המקסימלית שאפשר לייצר בעזרתם, בלי בזבוז, בהינתן רמת הטכנולוגיה הקיימת.</p>
+    <p>שלוש מילות המפתח שהבודק מחפש: "מקסימלית", "בלי בזבוז" (רק שילובים יעילים) ו"בהינתן הטכנולוגיה".</p>
+    <p class="note">אפשר להוסיף את הנוסחה: <bdi dir="ltr" class="m">q = f(K, L)</bdi>.</p>
+  </div></details>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== TRAPS ===== -->
+<!-- ===== 14 TRAPS ===== -->
 <section id="traps" class="stack" aria-labelledby="h-traps">
-  <div class="sec-head"><div class="eyebrow">חלק 13</div><h2 id="h-traps">7 מלכודות שהמבחן אוהב</h2></div>
+  <div class="sec-head"><div class="eyebrow">חלק 14</div><h2 id="h-traps">11 מלכודות שהמבחן אוהב</h2></div>
   <ol class="steps traps">
-    <li><b>ת״ש פוחתת ≠ תפוקה כוללת יורדת.</b> הכוללת יורדת רק כש־MP שלילי.</li>
-    <li><b>AP יורד ≠ MP שלילי.</b> מספיק ש־MP קטן מ־AP.</li>
-    <li><b>החוק מחייב גורם קבוע.</b> בלי גורם קבוע, אין "חוק התפוקה השולית הפוחתת".</li>
-    <li><b>MP חותך את AP בשיא של AP</b>, לא בשיא של MP. ‏MP מגיע לשיא <u>לפני</u>.</li>
-    <li><b>התפוקה הכוללת מקסימלית כש־MP = 0</b>, לא כש־AP מקסימלי.</li>
-    <li><b>טווח קצר הוא לא זמן קבוע.</b> הוא תלוי בגורם שהכי קשה לשנות במפעל הזה.</li>
-    <li><b>בהקצאה בין שדות משווים MP, לא AP ולא q.</b> כל עובד הולך לאן שהוא <u>מוסיף</u> הכי הרבה.</li>
+    <li><strong>MP פוחתת לא אומר שהתפוקה הכוללת יורדת.</strong> הכוללת יורדת רק כש־MP שלילית.</li>
+    <li><strong>AP יורדת לא אומר ש־MP שלילית.</strong> מספיק ש־MP קטנה מ־AP.</li>
+    <li><strong>MP יורדת לא אומר ש־AP יורדת.</strong> כל עוד MP מעל AP, ‏AP עולה (שאלה 9).</li>
+    <li><strong>החוק מחייב גורם קבוע.</strong> בלי גורם קבוע, אין "חוק התפוקה השולית הפוחתת".</li>
+    <li><strong>כל העובדים זהים.</strong> MP יורדת בגלל הגורם הקבוע, ולא כי העובדים החדשים גרועים.</li>
+    <li><strong>MP חוצה את AP בשיא של AP, לא בשיא של MP.</strong> ‏MP מגיעה לשיא לפני. וזה רק אם ל־AP יש שיא: כש־AP רק יורדת (שאלה 14) או קבועה (מאפייה), אין חיתוך כזה.</li>
+    <li><strong>לעובד הראשון <bdi dir="ltr" class="m">MP = AP</bdi>, אבל זה לא שיא של AP.</strong> זה תמיד ככה, כי <bdi dir="ltr" class="m">q ÷ 1 = q − 0</bdi>.</li>
+    <li><strong>התפוקה הכוללת מקסימלית כש־<bdi dir="ltr" class="m">MP = 0</bdi>, לא כש־AP מקסימלית.</strong> בטבלה: העובד האחרון שהתפוקה השולית שלו לא שלילית.</li>
+    <li><strong>נוסחה: גוזרים. טבלה: מחסירים.</strong> ב־<bdi dir="ltr" class="m">q = 6L² − L³</bdi> ההפרש לעובד השלישי הוא <bdi dir="ltr" class="m">27 − 16 = 11</bdi>, אבל הנגזרת ב־3 היא 9.</li>
+    <li><strong>טווח קצר אינו פרק זמן קבוע.</strong> הוא תלוי בגורם שהכי קשה לשנות במפעל הזה.</li>
+    <li><strong>בהקצאה בין שדות משווים MP, לא AP ולא q.</strong> כל עובד הולך לאן שהוא מוסיף הכי הרבה.</li>
   </ol>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
-<!-- ===== SUMMARY ===== -->
+<!-- ===== 15 SUMMARY ===== -->
 <section id="sum" class="stack" aria-labelledby="h-sum">
-  <div class="sec-head"><div class="eyebrow">חלק 14 · לפני המבחן</div><h2 id="h-sum">דף סיכום בעמוד אחד</h2></div>
-  <div class="tscroll"><table class="t sumt"><thead><tr><th scope="col">מושג</th><th scope="col">נוסחה</th><th scope="col">במילים פשוטות</th></tr></thead><tbody>
-    <tr><th scope="row">פונקציית ייצור</th><td><bdi dir="ltr" class="m">q = f(K, L)</bdi></td><td>הכי הרבה שאפשר לייצר מכמות נתונה של גו״י, בטכנולוגיה הקיימת</td></tr>
-    <tr><th scope="row">ברמת המשק</th><td><bdi dir="ltr" class="m">Y = A · F(L, K, N)</bdi></td><td>A = טכנולוגיה, כופלת את הכל</td></tr>
-    <tr><th scope="row">תפוקה ממוצעת</th><td><bdi dir="ltr" class="m">AP = q ÷ L</bdi></td><td>כמה מייצר עובד בממוצע</td></tr>
-    <tr><th scope="row">תפוקה שולית</th><td><bdi dir="ltr" class="m">MP = Δq ÷ ΔL</bdi></td><td>כמה הוסיף העובד האחרון (השאר קבוע)</td></tr>
-    <tr><th scope="row">חוק הת״ש הפוחתת</th><td>גורם אחד גדל, השאר קבועים</td><td>מנקודה מסוימת, כל עובד מוסיף פחות</td></tr>
-    <tr><th scope="row">MP מול AP</th><td><bdi dir="ltr" class="m">MP &gt; AP ⇒ AP↑</bdi> ; <bdi dir="ltr" class="m">MP &lt; AP ⇒ AP↓</bdi></td><td>הציון החדש מושך את הממוצע. נפגשים בשיא של AP</td></tr>
-    <tr><th scope="row">שיא התפוקה הכוללת</th><td><bdi dir="ltr" class="m">MP = 0</bdi></td><td>עוד עובד כבר לא מוסיף</td></tr>
-    <tr><th scope="row">טווח קצר / ארוך</th><td>חלק קבוע / הכל משתנה</td><td>תלוי במפעל, לא בלוח השנה</td></tr>
-    <tr><th scope="row">הקצאה בין שדות</th><td>מסדרים MP מהגבוה לנמוך</td><td>כל עובד הולך לאן שהוא מוסיף הכי הרבה</td></tr>
+  <div class="sec-head"><div class="eyebrow">חלק 15 · לפני המבחן</div><h2 id="h-sum">דף סיכום בעמוד אחד</h2></div>
+  <div class="tscroll"><table class="t sumt"><caption>כל השיעור בטבלה אחת</caption><thead><tr><th scope="col">מושג</th><th scope="col">נוסחה</th><th scope="col">במילים פשוטות</th></tr></thead><tbody>
+    <tr><th scope="row">פונקציית ייצור</th><td data-l="נוסחה"><bdi dir="ltr" class="m">q = f(K, L)</bdi></td><td data-l="במילים פשוטות">הכי הרבה שאפשר לייצר מכמות נתונה של גורמי ייצור, בלי בזבוז, בטכנולוגיה הקיימת</td></tr>
+    <tr><th scope="row">ברמת המשק</th><td data-l="נוסחה"><bdi dir="ltr" class="m">Y = A · F(L, K, N)</bdi></td><td data-l="במילים פשוטות">A היא הטכנולוגיה, והיא כופלת את הכול</td></tr>
+    <tr><th scope="row">התפוקה הממוצעת</th><td data-l="נוסחה"><bdi dir="ltr" class="m">AP = q ÷ L</bdi></td><td data-l="במילים פשוטות">כמה מייצר עובד בממוצע</td></tr>
+    <tr><th scope="row">התפוקה השולית</th><td data-l="נוסחה"><bdi dir="ltr" class="m">MP = Δq ÷ ΔL</bdi></td><td data-l="במילים פשוטות">כמה הוסיף העובד האחרון (השאר קבוע). כשנתונה נוסחה: נגזרת</td></tr>
+    <tr><th scope="row">חוק התפוקה השולית הפוחתת</th><td data-l="נוסחה">גורם אחד גדל, השאר קבועים</td><td data-l="במילים פשוטות">מנקודה מסוימת, כל עובד מוסיף פחות. כל העובדים זהים</td></tr>
+    <tr><th scope="row">MP מול AP</th><td data-l="נוסחה"><bdi dir="ltr" class="m">MP &gt; AP ⇒ AP↑</bdi><br><bdi dir="ltr" class="m">MP &lt; AP ⇒ AP↓</bdi></td><td data-l="במילים פשוטות">הציון החדש מושך את הממוצע. נפגשים בשיא של AP (אם יש שיא)</td></tr>
+    <tr><th scope="row">שיא התפוקה הכוללת</th><td data-l="נוסחה"><bdi dir="ltr" class="m">MP = 0</bdi></td><td data-l="במילים פשוטות">עוד עובד כבר לא מוסיף. בטבלה: העובד האחרון שהתפוקה השולית שלו לא שלילית</td></tr>
+    <tr><th scope="row">סדר השיאים</th><td data-l="נוסחה"><bdi dir="ltr" class="m">MP → AP → TP</bdi></td><td data-l="במילים פשוטות">MP מגיעה לשיא ראשונה, אחר כך AP, ובסוף TP</td></tr>
+    <tr><th scope="row">בגרף התפוקה</th><td data-l="נוסחה">שיפועים</td><td data-l="במילים פשוטות">AP = שיפוע הקו מהראשית. MP = שיפוע העקומה. נקודת הפיתול = השיא של MP</td></tr>
+    <tr><th scope="row">שלבי הייצור</th><td data-l="נוסחה">I, II, III (לפי AP)</td><td data-l="במילים פשוטות">פירמה רציונלית עובדת בשלב II: מהשיא של AP עד השיא של TP</td></tr>
+    <tr><th scope="row">טווח קצר / ארוך</th><td data-l="נוסחה">חלק קבוע / הכול משתנה</td><td data-l="במילים פשוטות">תלוי במפעל, לא בלוח השנה</td></tr>
+    <tr><th scope="row">הקצאה בין שדות</th><td data-l="נוסחה">מסדרים MP מהגבוהה לנמוכה</td><td data-l="במילים פשוטות">כל עובד הולך לאן שהוא מוסיף הכי הרבה</td></tr>
   </tbody></table></div>
-  <p class="brief"><span class="lbl">בשיעור הבא</span>איך המפעל מחליט <b>כמה</b> לייצר.</p>
+  <p class="brief"><span class="lbl">בשיעור הבא</span>איך המפעל מחליט <strong>כמה</strong> לייצר.</p>
+  <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
 </main>
@@ -675,85 +1004,167 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const NS='http://www.w3.org/2000/svg';
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt=v=>v<0?'−'+(-v):String(v);
+const bd=t=>`<bdi dir="ltr" class="m">${t}</bdi>`;
+const wk=n=>n===1?'עובד אחד':n+' עובדים';
 function el(t,a,p,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;if(p)p.appendChild(e);return e;}
-function frame(svg,W,H,x0,x1,y0,y1,xs,ys,xl,yl){
-  svg.innerHTML='';const ink=css('--ink'),mut=css('--muted'),grid=css('--grid');
-  const m={l:44,r:14,t:16,b:40};const pw=W-m.l-m.r,ph=H-m.t-m.b;
-  const X=x=>m.l+(x-x0)/(x1-x0)*pw, Y=y=>m.t+ph-(y-y0)/(y1-y0)*ph;
-  for(const v of xs){el('line',{x1:X(v),y1:Y(y0),x2:X(v),y2:Y(y1),stroke:grid},svg);el('text',{x:X(v),y:Y(y0)+18,'font-size':12,fill:mut,'text-anchor':'middle'},svg,String(v));}
-  for(const v of ys){el('line',{x1:X(x0),y1:Y(v),x2:X(x1),y2:Y(v),stroke:v===0?ink:grid,'stroke-width':v===0?1.5:1},svg);el('text',{x:X(x0)-6,y:Y(v)+4,'font-size':12,fill:mut,'text-anchor':'end'},svg,String(v));}
-  el('line',{x1:X(x0),y1:Y(y0),x2:X(x0),y2:Y(y1),stroke:ink,'stroke-width':1.5},svg);
-  if(y0===0)el('line',{x1:X(x0),y1:Y(0),x2:X(x1),y2:Y(0),stroke:ink,'stroke-width':1.5},svg);
-  el('text',{x:X(x1),y:Y(y0)+34,'font-size':12,'font-weight':600,fill:ink,'text-anchor':'start',direction:'rtl'},svg,xl);
-  el('text',{x:X(x0)+6,y:Y(y1)+10,'font-size':12,'font-weight':600,fill:ink,direction:'rtl','text-anchor':'end'},svg,yl);
-  return {X,Y};
+const off=b=>b.getAttribute('aria-disabled')==='true';
+const setOff=(b,d)=>b.setAttribute('aria-disabled',d?'true':'false');
+
+/* chart frame: the viewBox follows the rendered width, so font sizes are real pixels (15px on phones) */
+function frame(svg,H,o){
+  const W=Math.max(240,Math.round(svg.getBoundingClientRect().width)||360);
+  const fs=W<560?15:13;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const ink=css('--ink'),mut=css('--muted'),grid=css('--grid');
+  const m=Object.assign({l:Math.round(fs*2.2+10),r:18,t:fs+16,b:fs*2+22},o.m||{});
+  const pw=W-m.l-m.r,ph=H-m.t-m.b;
+  const X=x=>m.l+(x-o.x0)/(o.x1-o.x0)*pw, Y=y=>m.t+ph-(y-o.y0)/(o.y1-o.y0)*ph;
+  for(const v of o.xs){el('line',{x1:X(v),y1:Y(o.y0),x2:X(v),y2:Y(o.y1),stroke:grid},svg);el('text',{x:X(v),y:Y(o.y0)+fs+5,'font-size':fs,fill:mut,'text-anchor':'middle'},svg,fmt(v));}
+  for(const v of o.ys){el('line',{x1:X(o.x0),y1:Y(v),x2:X(o.x1),y2:Y(v),stroke:v===0?ink:grid,'stroke-width':v===0?1.5:1},svg);el('text',{x:X(o.x0)-6,y:Y(v)+fs*0.35,'font-size':fs,fill:mut,'text-anchor':'end'},svg,fmt(v));}
+  el('line',{x1:X(o.x0),y1:Y(o.y0),x2:X(o.x0),y2:Y(o.y1),stroke:ink,'stroke-width':1.5},svg);
+  if(o.y0===0)el('line',{x1:X(o.x0),y1:Y(0),x2:X(o.x1),y2:Y(0),stroke:ink,'stroke-width':1.5},svg);
+  el('text',{x:X(o.x1),y:H-6,'font-size':fs,'font-weight':600,fill:ink,'text-anchor':'start',direction:'rtl'},svg,o.xl);
+  el('text',{x:X(o.x0)-m.l+4,y:fs+2,'font-size':fs,'font-weight':600,fill:ink,'text-anchor':'end',direction:'rtl'},svg,o.yl);
+  return {X,Y,W,H,m,fs,svg};
 }
-const line=(svg,c,pts,col,w,dash)=>el('polyline',{points:pts.map(p=>c.X(p[0])+','+c.Y(p[1])).join(' '),fill:'none',stroke:col,'stroke-width':w||3,'stroke-linejoin':'round','stroke-dasharray':dash||''},svg);
-const dot=(svg,c,p,col,r,fill)=>el('circle',{cx:c.X(p[0]),cy:c.Y(p[1]),r:r||5,fill:fill||css('--surface'),stroke:col,'stroke-width':2.5},svg);
-const lab=(svg,c,p,t,col,dx,dy,a)=>el('text',{x:c.X(p[0])+(dx||0),y:c.Y(p[1])+(dy||0),'font-size':12,'font-weight':700,fill:col,'text-anchor':a||'middle'},svg,t);
+const line=(c,pts,col,w,dash)=>el('polyline',{points:pts.map(p=>c.X(p[0])+','+c.Y(p[1])).join(' '),fill:'none',stroke:col,'stroke-width':w||3,'stroke-linejoin':'round','stroke-linecap':'round','stroke-dasharray':dash||''},c.svg);
+const dot=(c,p,col,r,fill)=>el('circle',{cx:c.X(p[0]),cy:c.Y(p[1]),r:r||5,fill:fill||css('--surface'),stroke:col,'stroke-width':2.5},c.svg);
+const sq=(c,p,col,s)=>{s=s||9;return el('rect',{x:c.X(p[0])-s/2,y:c.Y(p[1])-s/2,width:s,height:s,fill:css('--surface'),stroke:col,'stroke-width':2.5},c.svg);};
+const lab=(c,p,t,col,dx,dy,a)=>el('text',{x:c.X(p[0])+(dx||0),y:c.Y(p[1])+(dy||0),'font-size':c.fs,'font-weight':700,fill:col,'text-anchor':a||'middle'},c.svg,t);
 
 /* bakery q=2L */
-function bakery(){const s=$('#bkChart');if(!s)return;const c=frame(s,360,260,0,5,0,12,[0,1,2,3,4,5],[0,2,4,6,8,10,12],'שעות (L)','עוגות (q)');
-  const acc=css('--good');const P=[0,1,2,3,4,5].map(l=>[l,2*l]);line(s,c,P,acc,3.5);P.forEach(p=>{dot(s,c,p,acc,4.5);if(p[0])lab(s,c,p,String(p[1]),css('--ink'),0,-10);});}
+function bakery(){const s=$('#bkChart');if(!s)return;
+  const c=frame(s,260,{x0:0,x1:5.4,y0:0,y1:12,xs:[0,1,2,3,4,5],ys:[0,2,4,6,8,10,12],xl:'שעות (L)',yl:'עוגות (q)'});
+  const col=css('--c-mach');const P=[0,1,2,3,4,5].map(l=>[l,2*l]);line(c,P,col,3.5);P.forEach(p=>{dot(c,p,col,4.5);if(p[0])lab(c,p,String(p[1]),css('--ink'),-4,-10,'end');});}
 
 /* short / long run */
-const RUN={0.1:'<b>טווח קצר.</b> בחודש אפשר לשנות רק את מספר העובדים. המכונות והמבנה קבועים.',3:'<b>טווח קצר.</b> ב־3 שנים אפשר להחליף עובדים ומכונות, אבל <u>לא</u> את המבנה. נשאר גורם קבוע, אז זה עדיין טווח קצר.',15:'<b>טווח קצר.</b> גם 15 שנה זה פחות מ־20. המבנה עדיין קבוע. זו המלכודת: תקופה "ארוכה" בעיניים שלנו יכולה להיות טווח קצר.',25:'<b>טווח ארוך.</b> ב־25 שנה אפשר לשנות הכל, גם את המבנה. אין יותר גורם קבוע.'};
+const RUN={0.1:'<strong>טווח קצר.</strong> בחודש אפשר לשנות רק את מספר העובדים. המכונות והמבנה קבועים.',3:'<strong>טווח קצר.</strong> ב־3 שנים אפשר להחליף עובדים ומכונות, אבל לא את המבנה. נשאר גורם קבוע, ולכן זה עדיין טווח קצר.',15:'<strong>טווח קצר.</strong> גם 15 שנה זה פחות מ־20. המבנה עדיין קבוע. זו המלכודת: תקופה "ארוכה" בעיניים שלנו יכולה להיות טווח קצר.',25:'<strong>טווח ארוך.</strong> ב־25 שנה אפשר לשנות הכול, גם את המבנה. אין יותר גורם קבוע.'};
 $$('#runBtns .btn').forEach(b=>b.onclick=()=>{$$('#runBtns .btn').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));$('#runRead').innerHTML=RUN[b.dataset.y];});
 
-/* bikes */
+/* motorcycles */
 const Q=[0,4,12,24,32,35,30];let L=1;
 const AP=l=>l?Q[l]/l:null, MP=l=>l?Q[l]-Q[l-1]:null;
+const ZONE=l=>l<=3?['z1','אזור א׳: התפוקה השולית עולה.']:l<=5?['z2','אזור ב׳: התפוקה השולית פוחתת, אבל חיובית.']:['z3','אזור ג׳: התפוקה השולית שלילית.'];
+function peakMarks(c,y0,y1){const mut=css('--muted'),ink=css('--ink'),sur=css('--surface');
+  [[3,'1'],[4,'2'],[5,'3']].forEach(([x,n])=>{const cy=c.Y(y1)+12;el('line',{x1:c.X(x),x2:c.X(x),y1:c.Y(y0),y2:cy+12,stroke:mut,'stroke-width':1.5,'stroke-dasharray':'4 4'},c.svg);
+    el('circle',{cx:c.X(x),cy,r:12,fill:sur,stroke:mut,'stroke-width':1.5},c.svg);el('text',{x:c.X(x),y:cy+c.fs*0.35,'font-size':c.fs,'font-weight':700,fill:ink,'text-anchor':'middle'},c.svg,n);});}
 function bikes(){
   const tp=$('#tpChart'),am=$('#apmpChart');if(!tp)return;
-  const ink=css('--ink'),acc=css('--accent'),good=css('--good'),sun=css('--sun'),bad=css('--bad'),mut=css('--muted');
-  let c=frame(tp,360,280,0,6,0,40,[0,1,2,3,4,5,6],[0,10,20,30,40],'עובדים (L)','אופניים (q)');
-  line(tp,c,Q.map((q,l)=>[l,q]),css('--line'),2.5,'5 4');
-  line(tp,c,Q.slice(0,L+1).map((q,l)=>[l,q]),acc,4);
-  Q.slice(0,L+1).forEach((q,l)=>{dot(tp,c,[l,q],acc,4.5);});lab(tp,c,[L,Q[L]],String(Q[L]),ink,0,-10);
-  c=frame(am,360,280,0.5,6.5,-6,14,[1,2,3,4,5,6],[-6,-4,-2,0,2,4,6,8,10,12,14],'עובדים (L)','אופניים');
-  const ls=[1,2,3,4,5,6].filter(l=>l<=L);
-  line(am,c,[1,2,3,4,5,6].map(l=>[l,AP(l)]),css('--line'),2,'5 4');line(am,c,[1,2,3,4,5,6].map(l=>[l,MP(l)]),css('--line'),2,'5 4');
-  if(ls.length){line(am,c,ls.map(l=>[l,AP(l)]),sun,3.5);line(am,c,ls.map(l=>[l,MP(l)]),good,3.5);
-    ls.forEach(l=>{dot(am,c,[l,AP(l)],sun,4);dot(am,c,[l,MP(l)],good,4);});
-    lab(am,c,[L,MP(L)],'MP '+MP(L),good,0,MP(L)<AP(L)?16:-10);lab(am,c,[L,AP(L)],'AP '+AP(L),sun,0,MP(L)<AP(L)?-10:16);}
-  $('#bikeN').textContent=L+' עובדים';
-  $$('#bikeTable tbody tr').forEach((r,i)=>r.classList.toggle('cur',i===L));
-  const mp=MP(L),ap=AP(L),prev=L>1?AP(L-1):null;
-  let stage=L<=3?'<b style="color:var(--good)">שלב 1: ת״ש עולה.</b>':L<=5?'<b style="color:var(--sun)">שלב 2: ת״ש פוחתת.</b>':'<b style="color:var(--bad)">שלב 3: ת״ש שלילית.</b>';
-  let msg=`עובד מספר ${L} הוסיף <b>${mp}</b> אופניים (MP). עכשיו יש ${Q[L]} אופניים, כלומר <b>${ap}</b> לכל עובד בממוצע (AP). ${L>1?stage:''}`;
-  if(L>1){msg+=mp>prev?` ‏MP (${mp}) גדול מהממוצע הקודם (${prev}), ולכן הממוצע <b>עלה</b>.`:mp===prev?` ‏MP (${mp}) שווה לממוצע (${prev}), ולכן הממוצע <b>לא זז</b>. זה השיא של AP.`:` ‏MP (${mp}) קטן מהממוצע הקודם (${prev}), ולכן הממוצע <b>ירד</b>.`;}
-  if(L===4||L===5)msg+=' שימו לב: התוספת קטנה, אבל התפוקה הכוללת עדיין <b>עולה</b>.';
-  if(L===6)msg+=' עכשיו גם התפוקה הכוללת <b>יורדת</b> (35 → 30). השיא היה ב־5 עובדים.';
+  const ink=css('--ink'),acc=css('--accent'),teal=css('--c-mach'),ghost=css('--control');
+  const M={r:58};
+  let c=frame(tp,250,{x0:0,x1:6.3,y0:0,y1:46,xs:[0,1,2,3,4,5,6],ys:[0,10,20,30,40],xl:'עובדים (L)',yl:'אופנועים (q)',m:M});
+  peakMarks(c,0,46);
+  line(c,Q.map((q,l)=>[l,q]),ghost,1.5,'2 5');
+  line(c,Q.slice(0,L+1).map((q,l)=>[l,q]),teal,4);
+  Q.slice(0,L+1).forEach((q,l)=>dot(c,[l,q],teal,4.5));
+  lab(c,[L,Q[L]],String(Q[L]),ink,L>=5?14:-8,L>=5?c.fs+8:-10,L>=5?'start':'end');
+  c=frame(am,270,{x0:0,x1:6.3,y0:-6,y1:17,xs:[0,1,2,3,4,5,6],ys:[-6,-3,0,3,6,9,12,15],xl:'עובדים (L)',yl:'אופנועים לעובד',m:M});
+  peakMarks(c,-6,17);
+  const all=[1,2,3,4,5,6],ls=all.filter(l=>l<=L);
+  line(c,all.map(l=>[l,AP(l)]),ghost,1.5,'2 5');line(c,all.map(l=>[l,MP(l)]),ghost,1.5,'2 5');
+  line(c,ls.map(l=>[l,AP(l)]),ink,3,'8 5');line(c,ls.map(l=>[l,MP(l)]),acc,3.5);
+  ls.forEach(l=>{sq(c,[l,AP(l)],ink);dot(c,[l,MP(l)],acc,4.5);});
+  const mp=MP(L),ap=AP(L);let dm=0,da=0;const gap=c.Y(ap)-c.Y(mp);
+  if(Math.abs(gap)<c.fs+4){const sh=(c.fs+4-Math.abs(gap))/2+1;if(mp>=ap){dm=-sh;da=sh;}else{dm=sh;da=-sh;}}
+  lab(c,[L,mp],'MP '+fmt(mp),acc,12,dm+c.fs*0.35,'start');lab(c,[L,ap],'AP '+ap,ink,12,da+c.fs*0.35,'start');
+  $('#bikeN').textContent=wk(L);
+  $$('#bikeTable tbody tr').forEach((r,i)=>{r.classList.toggle('cur',i===L);if(i===L)r.setAttribute('aria-current','true');else r.removeAttribute('aria-current');});
+  const prev=L>1?AP(L-1):null;const z=ZONE(L);const zone=`<span class="zone ${z[0]}">${z[1]}</span>`;
+  let msg;
+  if(L===1)msg=`עובד אחד מייצר 4 אופנועים. לעובד הראשון ${bd('MP = 4')} וגם ${bd('AP = 4')}. זה תמיד ככה לעובד הראשון, וזה לא שיא. ${zone}`;
+  else{
+    const verb=mp>=0?`הוסיף <strong>${mp}</strong> אופנועים`:`הוריד <strong>${-mp}</strong> אופנועים`;
+    msg=`עובד מספר ${L} ${verb} (${bd('MP = '+fmt(mp))}). עכשיו יש ${Q[L]} אופנועים, כלומר ${ap} לכל עובד בממוצע (${bd('AP = '+ap)}). ${zone}`;
+    msg+=mp>prev?` התפוקה השולית (${bd(fmt(mp))}) גדולה מה־AP הקודמת (${prev}), ולכן AP <strong>עלתה</strong>.`:mp===prev?` התפוקה השולית (${mp}) שווה ל־AP הקודמת (${prev}), ולכן AP <strong>לא זזה</strong>. זה השיא של AP.`:` התפוקה השולית (${bd(fmt(mp))}) קטנה מה־AP הקודמת (${prev}), ולכן AP <strong>ירדה</strong>.`;
+    if(L===4||L===5)msg+=' שימו לב: התוספת קטנה, אבל התפוקה הכוללת עדיין עולה.';
+    if(L===6)msg+=' עכשיו גם התפוקה הכוללת יורדת, מ־35 ל־30. השיא היה ב־5 עובדים.';
+  }
   $('#bikeRead').innerHTML=msg;
-  $('#bikeMinus').disabled=L<=1;$('#bikePlus').disabled=L>=6;
+  tp.setAttribute('aria-label','גרף התפוקה הכוללת. עד עכשיו: '+Q.slice(1,L+1).map((q,i)=>`עובד ${i+1}: ${q} אופנועים`).join(', ')+'. קווים מקווקווים: 1 שיא MP ב־3 עובדים, 2 שיא AP ב־4, 3 שיא TP ב־5.');
+  am.setAttribute('aria-label',`גרף MP ו־AP. ${wk(L)}: תפוקה שולית ${fmt(mp)}, תפוקה ממוצעת ${ap}.`);
+  setOff($('#bikeMinus'),L<=1);setOff($('#bikePlus'),L>=6);
 }
-$('#bikePlus').onclick=()=>{if(L<6){L++;bikes();}};$('#bikeMinus').onclick=()=>{if(L>1){L--;bikes();}};
+$('#bikePlus').onclick=e=>{if(off(e.currentTarget))return;if(L<6){L++;bikes();}};
+$('#bikeMinus').onclick=e=>{if(off(e.currentTarget))return;if(L>1){L--;bikes();}};
+
+/* slopes on the curve: ray from the origin (AP) and last segment (MP) */
+function geo(){const s=$('#geoChart');if(!s)return;
+  const l=+$('#geoL').value;$('#geoV').textContent=l;
+  const ink=css('--ink'),acc=css('--accent'),teal=css('--c-mach');
+  const c=frame(s,280,{x0:0,x1:6.3,y0:0,y1:44,xs:[0,1,2,3,4,5,6],ys:[0,10,20,30,40],xl:'עובדים (L)',yl:'אופנועים (q)',m:{r:24}});
+  line(c,Q.map((q,i)=>[i,q]),teal,3);Q.forEach((q,i)=>dot(c,[i,q],teal,3.5));
+  const q=Q[l],q0=Q[l-1],ap=q/l,mp=q-q0;
+  line(c,[[0,0],[l,q]],ink,2.5,'8 5');
+  const e=0.45;line(c,[[l-1-e,q0-mp*e],[l+e,q+mp*e]],acc,1.5);
+  line(c,[[l-1,q0],[l,q]],acc,6);
+  dot(c,[l,q],ink,6,acc);
+  /* labels placed on the side away from the curve */
+  const t=0.5*l,ry=ap*t,cy=Q[Math.floor(t)]+(Q[Math.ceil(t)]-Q[Math.floor(t)])*(t-Math.floor(t));
+  const up=ry>=cy;lab(c,[t,ry],'AP',ink,up?-10:12,up?-10:c.fs+4,up?'end':'start');
+  const mx=l-0.5,my=(q+q0)/2;lab(c,[mx,my],'MP',acc,mp>=0?12:10,mp>=0?c.fs:-10,'start');
+  let t1=`${wk(l)}: ${q} אופנועים. <strong>הקו מהראשית</strong> (מקווקו): השיפוע הוא ${bd(`${q} ÷ ${l} = ${ap}`)}. זו AP. <strong>הקטע האחרון</strong> (מ־${l-1} עובדים ל־${l}): השיפוע הוא ${bd(`${q} − ${q0} = ${fmt(mp)}`)}. זו MP. `;
+  if(l===1)t1+='לעובד הראשון הקו מהראשית והקטע האחרון הם אותו קו. לכן MP = AP. זה לא שיא.';
+  else if(l===3)t1+='הקטע תלול יותר מהקו מהראשית: MP מעל AP, ולכן AP עלתה עד כאן. הקטע מ־2 ל־3 הוא הכי תלול בכל העקומה: זו נקודת הפיתול, ושם MP בשיא. גם AP כבר בשיא (8): העובד הבא מוסיף בדיוק 8, ולכן AP נשארת 8 גם ב־4 עובדים.';
+  else if(mp>ap)t1+='הקטע תלול יותר מהקו מהראשית: MP מעל AP, ולכן AP עלתה עד כאן.';
+  else if(mp===ap)t1+='הקטע והקו מהראשית תלולים בדיוק באותה מידה: MP = AP. זה השיא של AP. הקו מהראשית הכי תלול כאן (וגם ב־3 עובדים).';
+  else if(mp>=0)t1+='הקטע פחות תלול מהקו מהראשית: MP מתחת ל־AP, ולכן AP ירדה.';
+  else t1+='הקטע יורד: MP שלילית, ולכן גם TP ירדה. הקו מהראשית פחות תלול מקודם: AP ירדה.';
+  $('#geoRead').innerHTML=t1;
+  s.setAttribute('aria-label',`עקומת התפוקה של מפעל האופנועים. ${wk(l)}: שיפוע הקו מהראשית ${ap} (זו AP), שיפוע הקטע האחרון ${fmt(mp)} (זו MP).`);
+}
+$('#geoL').addEventListener('input',geo);
 
 /* grades */
 function grade(){const g=+$('#grade').value;$('#gradeV').textContent=g;const avg=(240+g)/4;const r=Math.round(avg*100)/100;
-  const cls=g>80?'up':g<80?'down':'eq';const txt=g>80?'הציון החדש מעל הממוצע → הממוצע עלה. כמו MP > AP.':g<80?'הציון החדש מתחת לממוצע → הממוצע ירד. כמו MP < AP. שימו לב: הציון עצמו לא שלילי, ובכל זאת הממוצע יורד!':'הציון החדש שווה לממוצע → הממוצע לא זז. כמו MP = AP.';
-  $('#gradeOut').innerHTML=`<div class="c"><span class="k">ממוצע קודם (AP)</span><span class="v">80</span></div><div class="c"><span class="k">ציון חדש (MP)</span><span class="v">${g}</span></div><div class="c"><span class="k">ממוצע חדש</span><span class="v">${r}</span></div><div class="msg ${cls}">${txt}</div>`;}
+  const cls=g>80?'up':g<80?'down':'same';
+  const txt=g>80?`הציון החדש מעל הממוצע, ולכן הממוצע עלה. כמו ${bd('MP &gt; AP')}.`:g<80?`הציון החדש מתחת לממוצע, ולכן הממוצע ירד. כמו ${bd('MP &lt; AP')}. שימו לב: הציון עצמו לא שלילי, ובכל זאת הממוצע יורד!`:`הציון החדש שווה לממוצע, ולכן הממוצע לא זז. כמו ${bd('MP = AP')}.`;
+  $('#gradeOut').innerHTML=`<div class="c"><span class="k">ממוצע קודם (AP)</span><span class="v">80</span></div><div class="c"><span class="k">ציון חדש (MP)</span><span class="v">${g}</span></div><div class="c"><span class="k">ממוצע חדש</span><span class="v">${r}</span></div>`;
+  const gm=$('#gradeMsg');gm.className='gmsg '+cls;gm.innerHTML=txt;}
 $('#grade').addEventListener('input',grade);
 
 /* fields */
-const FA=[0,13,25,35,43],FB=[0,11,20,27,31];let na=0,nb=0,timer=null;
+const FA=[0,13,25,35,43],FB=[0,11,20,27,31];let na=0,nb=0,gk=0;
 const MPS=[];for(let i=1;i<=4;i++){MPS.push({f:'א',i,v:FA[i]-FA[i-1]});MPS.push({f:'ב',i,v:FB[i]-FB[i-1]});}MPS.sort((a,b)=>b.v-a.v);
 const ORD=['ראשון','שני','שלישי','רביעי'];
-$('#mpRank').innerHTML=MPS.map((m,k)=>`<div class="mpr ${k<4?'on':'off'}"><span>שדה ${m.f}׳ · עובד ${ORD[m.i-1]}</span><div class="bar" style="width:${m.v/13*100}%">${m.v}</div></div>`).join('');
+$('#mpRank').innerHTML=MPS.map((m,k)=>`<div class="mpr ${k<4?'on':'off'}"><span>${k<4?'✓ נבחר · ':''}שדה ${m.f}׳ · עובד ${ORD[m.i-1]}</span><div class="bar" style="width:${Math.round(m.v/13*100)}%">${m.v}</div></div>`).join('');
+const fw=n=>n===0?'אין עובדים':wk(n);
 function fields(){const left=4-na-nb;$('#cntA').textContent=na;$('#cntB').textContent=nb;$('#qA').textContent='תפוקה: '+FA[na];$('#qB').textContent='תפוקה: '+FB[nb];
-  const tot=FA[na]+FB[nb];let msg=`סך הכל: <b>${tot}</b>. נשארו ${left} עובדים לחלק.`;
-  if(left===0)msg=tot===46?`סך הכל: <b>46</b>. <b style="color:var(--good)">מצוין, זה המקסימום!</b> 3 בשדה א׳ ו־1 בשדה ב׳.`:`סך הכל: <b>${tot}</b>. אפשר להגיע ל־46. רמז: בדקו כמה מוסיף כל עובד (MP) בכל שדה.`;
+  const tot=FA[na]+FB[nb];const where=`בשדה א׳: ${fw(na)}. בשדה ב׳: ${fw(nb)}.`;
+  let msg=`${where} סך הכול: <strong>${tot}</strong>. `+(left===1?'נשאר עובד אחד לחלק.':`נשארו ${left} עובדים לחלק.`);
+  if(left===0)msg=tot===46?`${where} סך הכול: <strong>46</strong>. <span class="okmsg">מצוין, זה המקסימום!</span>`:`${where} סך הכול: <strong>${tot}</strong>. אפשר להגיע ל־46. רמז: בדקו כמה מוסיף כל עובד (MP) בכל שדה.`;
   $('#fldRead').innerHTML=msg;
-  $$('.fld .btn').forEach(b=>{const d=+b.dataset.d,f=b.dataset.f;const n=f==='a'?na:nb;b.disabled=d>0?left<=0:n<=0;});}
-$$('.fld .btn').forEach(b=>b.onclick=()=>{clearInterval(timer);const d=+b.dataset.d;if(b.dataset.f==='a')na=Math.max(0,na+d);else nb=Math.max(0,nb+d);fields();});
-$('#fldReset').onclick=()=>{clearInterval(timer);na=nb=0;fields();};
-$('#fldGreedy').onclick=()=>{clearInterval(timer);na=nb=0;fields();let k=0;
-  const step=()=>{if(k>=4){clearInterval(timer);return;}const ma=FA[na+1]-FA[na],mb=FB[nb+1]-FB[nb];if(ma>=mb)na++;else nb++;k++;fields();
-    $('#fldRead').innerHTML+=` <span class="note">(עובד ${k}: בשדה א׳ היה מוסיף ${ma}, בשדה ב׳ ${mb} → ${ma>=mb?'שדה א׳':'שדה ב׳'})</span>`;};
-  step();timer=setInterval(step,1400);};
+  $$('.fld .btn').forEach(b=>{const d=+b.dataset.d,n=b.dataset.f==='a'?na:nb;setOff(b,d>0?left<=0:n<=0);});
+  $('#fldStep').textContent=gk>=4?'שוב מההתחלה':gk===0?'השלב הבא: העובד הראשון':'השלב הבא';}
+function clearLog(){gk=0;$('#fldLog').innerHTML='';}
+$$('.fld .btn').forEach(b=>b.onclick=()=>{if(off(b))return;clearLog();const d=+b.dataset.d;if(b.dataset.f==='a')na=Math.max(0,na+d);else nb=Math.max(0,nb+d);fields();});
+$('#fldReset').onclick=()=>{na=nb=0;clearLog();fields();};
+$('#fldStep').onclick=()=>{if(gk===0||gk>=4){na=nb=0;clearLog();}
+  const ma=FA[na+1]-FA[na],mb=FB[nb+1]-FB[nb],toA=ma>=mb;if(toA)na++;else nb++;gk++;
+  const li=document.createElement('li');li.textContent=`עובד ${gk}: בשדה א׳ הוא היה מוסיף ${ma}, ובשדה ב׳ ${mb}. לכן הוא הולך ל${toA?'שדה א׳':'שדה ב׳'}.`;$('#fldLog').appendChild(li);
+  fields();};
 
-function all(){bakery();bikes();}
+/* wide tables: make them a focusable, labelled scroll region only when they really scroll */
+function tscroll(){$$('.tscroll').forEach(d=>{const t=d.querySelector('caption');const sc=d.scrollWidth>d.clientWidth+2;
+  if(sc){d.tabIndex=0;d.setAttribute('role','region');d.setAttribute('aria-label',(t?t.textContent.replace(/\(.*\)/,'').trim():'טבלה')+' (אפשר לגלול הצידה)');}
+  else{d.removeAttribute('tabindex');d.removeAttribute('role');d.removeAttribute('aria-label');}});}
+
+/* slim progress: "חלק N מתוך M" */
+const secs=$$('main > section'),prog=$('#prog');
+if(prog&&'IntersectionObserver' in window){
+  const M=secs.length;let cur=-1;
+  const show=i=>{if(i===cur)return;cur=i;if(i<0){prog.classList.remove('on');return;}
+    const h=secs[i].querySelector('h2');$('#progTxt').textContent=`חלק ${i+1} מתוך ${M} · ${h?h.textContent:''}`;$('#progBar').style.width=((i+1)/M*100)+'%';prog.classList.add('on');};
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{const i=secs.indexOf(e.target);
+    if(e.target.id==='top'){if(e.isIntersecting)show(-1);return;}
+    if(e.isIntersecting)show(i);else if(i===0&&e.boundingClientRect.top>0)show(-1);});},{rootMargin:'-35% 0px -64% 0px'});
+  secs.forEach(s=>io.observe(s));const hd=$('#top');if(hd)io.observe(hd);
+}
+
+function all(){bakery();bikes();geo();tscroll();}
 all();grade();fields();
+let rw=window.innerWidth,rt;
+window.addEventListener('resize',()=>{if(window.innerWidth===rw)return;rw=window.innerWidth;clearTimeout(rt);rt=setTimeout(all,120);});
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',all);
 new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 })();
