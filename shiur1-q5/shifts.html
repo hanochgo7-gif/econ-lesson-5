@@ -282,7 +282,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .cell .mini{width:100%;max-width:120px;height:auto;display:block;direction:ltr}
 .cell .n{font:700 .85rem var(--font-mono);color:var(--muted)}
 .cell .nm{font-size:.85rem;font-weight:700;line-height:1.3}
-@media (max-width:420px){.mx{grid-template-columns:3.6em repeat(3,minmax(0,1fr));gap:4px}.cell .nm{font-size:.74rem}.mh b{font-size:.8rem}}
+@media (max-width:420px){.mx{grid-template-columns:3.4em repeat(3,minmax(0,1fr));gap:4px}.cell a{padding:6px 3px 8px}.cell .nm{font-size:.8125rem;line-height:1.25}.mh b{font-size:.8125rem}}
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:700px){.cards{grid-template-columns:1fr}}
 .case{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px;min-width:0}
@@ -291,7 +291,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .case-head .num{font:700 1rem var(--font-mono);background:var(--ink);color:var(--paper);border-radius:8px;min-width:2.2em;padding:2px 6px;text-align:center;flex-shrink:0}
 .case-head h3{font-size:1.2rem}
 .case-head .sub{color:var(--muted);font-size:.95rem}
-.pic-svg{width:100%;max-width:320px;height:auto;display:block;margin-inline:auto;direction:ltr;background:var(--paper);border-radius:12px}
+.pic-svg{width:100%;max-width:340px;height:auto;display:block;margin-inline:auto;direction:ltr;background:var(--paper);border-radius:12px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{border-radius:999px;padding:2px 10px;font-size:.88rem;font-weight:700;border:1.5px solid}
 .chip .k{font-weight:600;opacity:.8}
@@ -302,72 +302,150 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .case ul{margin:2px 0 0;padding-inline-start:1.2em}
 .exam-s{border:1.5px dashed var(--pen);background:var(--pen-soft);border-radius:10px;padding:8px 12px;font-size:.98rem}
 .exam-s .lbl{display:block;font-size:.8rem;font-weight:700;color:var(--pen)}
+
+.mrow{display:contents}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cell .nm{overflow-wrap:anywhere}
+.cell a:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-color:var(--accent)}
+.pic-svg text{font-family:var(--font-body)}
+.pic-svg text.tn{font-family:var(--font-mono)}
+.case-head .note2{font-size:.88rem;font-style:normal}
+.story{background:var(--paper);border:1px solid var(--line);border-inline-start:4px solid var(--control);border-radius:10px;padding:8px 12px;font-size:1rem;line-height:1.65}
+.story .lbl{display:block;font-size:.8rem;font-weight:700;color:var(--muted)}
+.case .cost .gen{display:block;color:var(--muted);font-size:.94rem;margin-top:2px}
+.case .cost .gen .k{font-weight:700}
+.chip{line-height:1.5}
+.gloss{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.gloss>summary{cursor:pointer;padding:10px 14px;font-weight:700;min-height:44px;display:flex;align-items:center}
+.gloss dl{margin:0;padding:0 14px 14px;display:grid;grid-template-columns:minmax(7.5em,auto) 1fr;gap:8px 14px;font-size:1rem;line-height:1.6}
+.gloss dt{font-weight:700}
+.gloss dd{margin:0}
+@media (max-width:560px){.gloss dl{grid-template-columns:1fr;gap:2px}.gloss dd{margin-bottom:8px}}
+.island{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.island-txt{display:flex;flex-direction:column;gap:8px}
+@media (max-width:640px){.island{grid-template-columns:1fr}}
+.qc{border:1.5px solid var(--good);border-radius:12px;background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.qc-k{font-size:.85rem;font-weight:700;color:var(--good)}
+.qc details>summary{cursor:pointer;font-weight:700;color:var(--accent);min-height:44px;display:flex;align-items:center}
+.qc details p{background:var(--good-soft);border-radius:8px;padding:8px 12px}
 </style>
 <div class="wrap" dir="rtl" lang="he">
 <header class="top" id="top">
   <div class="eyebrow">מבוא למיקרו־כלכלה · עקומת התמורה · דף עזר</div>
   <h1>כל התזוזות של עקומת התמורה</h1>
-  <p class="lead">כל מה שיכול לקרות לעקומת התמורה, עם שם לכל מצב ושרטוט לידו. שיפור טכנולוגי, נסיגה טכנולוגית, שיפור באחד ונסיגה בשני, ומה <strong>לא</strong> מזיז את העקומה בכלל.</p>
+  <p class="lead">כל מה שיכול לקרות לעקומת התמורה. לכל מצב יש שם, דוגמה פשוטה ושרטוט. שיפור טכנולוגי, נסיגה טכנולוגית, שיפור באחד ונסיגה בשני, ומה <strong>לא</strong> מזיז את העקומה בכלל.</p>
   <div class="howto">
     <b>איך קוראים כל שרטוט:</b>
-    <span><i class="sw old"></i>העקומה הישנה (מקווקו)</span>
-    <span><i class="sw new"></i>העקומה החדשה</span>
-    <span><i class="sw arr"></i>חץ = לאן זז הקצה</span>
-    <span>הציר האופקי = מוצר <bdi dir="ltr" class="m">X</bdi>, האנכי = מוצר <bdi dir="ltr" class="m">Y</bdi></span>
+    <span><i class="sw old"></i>העקומה הישנה (קו מקווקו)</span>
+    <span><i class="sw new"></i>העקומה החדשה (קו רציף)</span>
+    <span><i class="sw arr"></i>חץ: לאן זזה נקודת הקצה</span>
+    <span>הציר האופקי: דגים (<bdi dir="ltr" class="m">X</bdi>). הציר האנכי: קוקוסים (<bdi dir="ltr" class="m">Y</bdi>).</span>
   </div>
+  <details class="gloss">
+    <summary>מילון קצר: המושגים של הדף</summary>
+    <dl>
+      <dt>עקומת התמורה</dt><dd>כל השילובים של שני מוצרים שהמשק יכול לייצר, כשכולם עובדים ומשתמשים בטכנולוגיה הקיימת. באי: כמה דגים וכמה קוקוסים אפשר להשיג יחד.</dd>
+      <dt>נקודת הקצה של <bdi dir="ltr" class="m">X</bdi></dt><dd>הכי הרבה <bdi dir="ltr" class="m">X</bdi> שאפשר לייצר, אם מייצרים רק <bdi dir="ltr" class="m">X</bdi>. כאן העקומה פוגשת את הציר האופקי. באי היום: 100 דגים. כך גם נקודת הקצה של <bdi dir="ltr" class="m">Y</bdi>: באי, 100 קוקוסים.</dd>
+      <dt>סיבוב</dt><dd>נקודת קצה אחת זזה, והשנייה נשארת במקום. העקומה "מסתובבת" סביב נקודת הקצה שלא זזה.</dd>
+      <dt>תזוזה החוצה</dt><dd>העקומה מתרחקת מראשית הצירים. אפשר לייצר יותר.</dd>
+      <dt>תזוזה פנימה</dt><dd>העקומה מתקרבת לראשית הצירים. אפשר לייצר פחות.</dd>
+      <dt>עלות אלטרנטיבית</dt><dd>על כמה <bdi dir="ltr" class="m">Y</bdi> מוותרים כדי לייצר עוד יחידה אחת של <bdi dir="ltr" class="m">X</bdi>. באי: כמה קוקוסים עולה דג אחד. בממוצע מחשבים כך: נקודת הקצה של <bdi dir="ltr" class="m">Y</bdi> חלקי נקודת הקצה של <bdi dir="ltr" class="m">X</bdi>. היום: <bdi dir="ltr" class="m">100 ÷ 100 = 1</bdi>, כלומר דג אחד עולה בממוצע קוקוס אחד.</dd>
+      <dt>טכנולוגיה</dt><dd>הידע והשיטות שבהם מייצרים. רשת דייגים טובה יותר היא שיפור טכנולוגי בדיג בלבד.</dd>
+      <dt>גורמי ייצור</dt><dd>מה שמשתמשים בו כדי לייצר: עובדים, מכונות, קרקע, חומרי גלם. באי: בעיקר התושבים והזמן שלהם.</dd>
+      <dt>קמורה וקעורה</dt><dd>קמורה = בולטת החוצה (המונח של המרצה). קעורה = שקועה פנימה. בחלק מהספרים המילים הפוכות, אז במבחן כותבים כמו המרצה.</dd>
+    </dl>
+  </details>
   <nav class="jump" aria-label="קפיצה לחלקים">
-    <a class="main" href="#rule">הכלל</a><a href="#matrix">מפת 9 המצבים</a><a href="#grow">החוצה</a><a href="#shrink">פנימה</a><a href="#mixed">שיפור באחד, נסיגה בשני</a><a href="#same">העקומה לא זזה</a><a href="#shapes">צורות העקומה</a><a href="#exam">ככה עונים במבחן</a>
+    <a class="main" href="#island">האי</a><a href="#rule">הכלל</a><a href="#matrix">מפת 9 המצבים</a><a href="#grow">החוצה</a><a href="#shrink">פנימה</a><a href="#mixed">שיפור באחד, נסיגה בשני</a><a href="#same">העקומה לא זזה</a><a href="#shapes">צורות העקומה</a><a href="#exam">ככה עונים במבחן</a>
   </nav>
 </header>
 
 <main class="mainflow">
 
+<section id="island" class="stack" aria-labelledby="h-island">
+  <div class="sec-head"><div class="eyebrow">הדוגמה של כל הדף</div><h2 id="h-island">אי קטן, שני מוצרים</h2></div>
+  <div class="island">
+    <div class="island-txt">
+      <p>אי קטן שמייצר רק שני דברים: דגים (<bdi dir="ltr" class="m">X</bdi>) וקוקוסים (<bdi dir="ltr" class="m">Y</bdi>).</p>
+      <p>היום, אם כל התושבים דגים, הם תופסים עד <strong>100 דגים</strong>. אם כולם קוטפים, הם מורידים עד <strong>100 קוקוסים</strong>.</p>
+      <p>כל נקודה נכתבת כך: (דגים, קוקוסים). למשל <bdi dir="ltr" class="m">(60, 80)</bdi> הם 60 דגים ו־80 קוקוסים.</p>
+      <p class="note">בכל כרטיס בדף נספר מה קרה לאי, ונראה את המספרים החדשים בשרטוט.</p>
+    </div>
+    <svg class="pic-svg" id="baseSvg" role="img"></svg>
+  </div>
+</section>
+
 <section id="rule" class="stack" aria-labelledby="h-rule">
   <div class="sec-head"><div class="eyebrow">לפני הכול</div><h2 id="h-rule">הכלל שפותר כל שאלה</h2></div>
   <p>כדי לדעת מה קרה לעקומה, שואלים <strong>שתי שאלות בלבד</strong>:</p>
   <div class="two">
-    <div class="q2 x"><div class="k">שאלה 1</div><b>מה קרה לקצה של X?</b><span>הכי הרבה X שאפשר לייצר (אם מייצרים רק X). שיפור ב־X מזיז אותו החוצה. נסיגה ב־X מזיזה אותו פנימה.</span></div>
-    <div class="q2 y"><div class="k">שאלה 2</div><b>מה קרה לקצה של Y?</b><span>הכי הרבה Y שאפשר לייצר (אם מייצרים רק Y). שיפור ב־Y מזיז אותו החוצה. נסיגה ב־Y מזיזה אותו פנימה.</span></div>
+    <div class="q2 x"><div class="k">שאלה 1</div><b>מה קרה לנקודת הקצה של <bdi dir="ltr" class="m">X</bdi>?</b><span>זה הכי הרבה <bdi dir="ltr" class="m">X</bdi> שאפשר לייצר (אם מייצרים רק <bdi dir="ltr" class="m">X</bdi>). באי: כמה דגים אפשר לדוג. שיפור ב־<bdi dir="ltr" class="m">X</bdi> מזיז אותה החוצה. נסיגה ב־<bdi dir="ltr" class="m">X</bdi> מזיזה אותה פנימה.</span></div>
+    <div class="q2 y"><div class="k">שאלה 2</div><b>מה קרה לנקודת הקצה של <bdi dir="ltr" class="m">Y</bdi>?</b><span>זה הכי הרבה <bdi dir="ltr" class="m">Y</bdi> שאפשר לייצר (אם מייצרים רק <bdi dir="ltr" class="m">Y</bdi>). באי: כמה קוקוסים אפשר לקטוף. שיפור ב־<bdi dir="ltr" class="m">Y</bdi> מזיז אותה החוצה. נסיגה ב־<bdi dir="ltr" class="m">Y</bdi> מזיזה אותה פנימה.</span></div>
   </div>
-  <p class="brief"><span class="lbl">למה?</span>שיפור טכנולוגי בייצור X עוזר רק כשמייצרים X. אם מייצרים רק Y, השיפור ב־X לא משנה כלום. לכן הקצה של Y נשאר במקום, והעקומה <strong>מסתובבת</strong> סביבו.</p>
-  <p>לכל קצה יש 3 אפשרויות (זז החוצה, נשאר, זז פנימה). 3 × 3 = <strong>9 מצבים</strong>. הנה כולם:</p>
+  <p class="brief"><span class="lbl">למה?</span>רשת דייגים חדשה עוזרת רק כשדגים. אם כל התושבים קוטפים קוקוסים, הרשת לא משנה כלום. לכן נקודת הקצה של <bdi dir="ltr" class="m">Y</bdi> נשארת 100 קוקוסים, והעקומה <strong>מסתובבת</strong> סביבה.</p>
+  <p>לכל נקודת קצה יש 3 אפשרויות: זזה החוצה, לא זזה, או זזה פנימה. <bdi dir="ltr" class="m">3 × 3 = 9</bdi>, ולכן יש <strong>9 מצבים</strong>. הנה כולם:</p>
 </section>
 
 <section id="matrix" class="stack" aria-labelledby="h-matrix">
   <div class="sec-head"><div class="eyebrow">המפה</div><h2 id="h-matrix">9 המצבים במבט אחד</h2></div>
-  <p class="note" style="margin:0">שורה = מה קרה לקצה של Y. עמודה = מה קרה לקצה של X. לחצו על מצב כדי לקפוץ להסבר המלא שלו.</p>
-  <div class="mx-wrap"><div class="mx" id="mx" role="table" aria-label="טבלת 9 המצבים"></div></div>
+  <p class="note" style="margin:0">כל עמודה מראה מה קרה לנקודת הקצה של <bdi dir="ltr" class="m">X</bdi> (דגים). כל שורה מראה מה קרה לנקודת הקצה של <bdi dir="ltr" class="m">Y</bdi> (קוקוסים). לחצו על מצב, או הגיעו אליו במקש Tab, כדי לקפוץ להסבר המלא שלו.</p>
+  <div class="mx-wrap"><div class="mx" id="mx" role="table" aria-label="טבלת 9 המצבים: עמודות לפי נקודת הקצה של X, שורות לפי נקודת הקצה של Y"></div></div>
 </section>
 
 <section id="grow" class="stack" aria-labelledby="h-grow">
   <div class="sec-head"><div class="eyebrow">חלק א׳</div><h2 id="h-grow">העקומה זזה החוצה: צמיחה</h2></div>
   <p>המשק יכול לייצר <strong>יותר</strong> ממה שיכול היה קודם. הסיבות: שיפור טכנולוגי, או יותר גורמי ייצור (עובדים, מכונות, קרקע).</p>
   <div class="cards" data-group="grow"></div>
+  <div class="qc">
+    <div class="qc-k">בדקו את עצמכם</div>
+    <p>באי המציאו סולם שעוזר לטפס על עצי קוקוס. מה קורה לנקודת הקצה של הדגים? ואיזה מצב זה?</p>
+    <details><summary>הראו את התשובה</summary><p><strong>מצב 3.</strong> נקודת הקצה של הדגים לא זזה, כי הסולם לא עוזר לדוג. רק נקודת הקצה של הקוקוסים זזה החוצה. העקומה מסתובבת החוצה סביב נקודת הקצה של <bdi dir="ltr" class="m">X</bdi>.</p></details>
+  </div>
 </section>
 
 <section id="shrink" class="stack" aria-labelledby="h-shrink">
   <div class="sec-head"><div class="eyebrow">חלק ב׳</div><h2 id="h-shrink">העקומה זזה פנימה: התכווצות</h2></div>
   <p>המשק יכול לייצר <strong>פחות</strong>. הסיבות: נסיגה טכנולוגית (מחלה, אסון, שכחת ידע), או פחות גורמי ייצור (מלחמה, הגירה החוצה, הרס מפעלים).</p>
   <div class="cards" data-group="shrink"></div>
+  <div class="qc">
+    <div class="qc-k">בדקו את עצמכם</div>
+    <p>סערה שברה את כל סירות הדיג, ואין עץ מתאים לבנות חדשות. עצי הקוקוס לא נפגעו. איזה מצב זה?</p>
+    <details><summary>הראו את התשובה</summary><p><strong>מצב 5.</strong> רק נקודת הקצה של הדגים זזה פנימה. נקודת הקצה של הקוקוסים לא זזה, כי הקטיף לא צריך סירות.</p></details>
+  </div>
 </section>
 
 <section id="mixed" class="stack" aria-labelledby="h-mixed">
   <div class="sec-head"><div class="eyebrow">חלק ג׳</div><h2 id="h-mixed">שיפור במוצר אחד ונסיגה בשני</h2></div>
-  <p>כאן קצה אחד זז החוצה והשני פנימה. התוצאה המיוחדת: <strong>העקומה החדשה חוצה את הישנה</strong>. בצד אחד של החיתוך המשק יכול יותר, ובצד השני פחות.</p>
+  <p>כאן נקודת קצה אחת זזה החוצה, והשנייה זזה פנימה. התוצאה המיוחדת: <strong>העקומה החדשה חוצה את הישנה</strong>. בצד אחד של החיתוך המשק יכול יותר, ובצד השני פחות.</p>
   <div class="cards" data-group="mixed"></div>
-  <p class="symnote"><b>שאלה שאוהבים לשאול:</b> האם המשק יכול להמשיך לייצר את אותן כמויות? <strong>ייתכן.</strong> אם הנקודה המקורית נמצאת בחלק שבו העקומה החדשה מעל הישנה, או בדיוק בנקודת החיתוך, כן. אחרת לא.</p>
+  <p class="symnote"><b>שאלה שאוהבים לשאול:</b> האם המשק יכול להמשיך לייצר את אותן כמויות? <strong>ייתכן.</strong> אם הנקודה המקורית נמצאת בחלק שבו העקומה החדשה מעל הישנה, או בדיוק בנקודת החיתוך, כן. אחרת לא. באי של מצב 7: הנקודה <bdi dir="ltr" class="m">(96, 28)</bdi>, הרבה דגים ומעט קוקוסים, עדיין אפשרית. הנקודה <bdi dir="ltr" class="m">(28, 96)</bdi> כבר לא.</p>
+  <div class="qc">
+    <div class="qc-k">בדקו את עצמכם</div>
+    <p>בשנה אחת המציאו חכה חדשה, ובאותה שנה סערה הרסה חצי מעצי הקוקוס. איזה מצב זה?</p>
+    <details><summary>הראו את התשובה</summary><p><strong>מצב 7.</strong> החכה מזיזה החוצה את נקודת הקצה של הדגים. הסערה מזיזה פנימה את נקודת הקצה של הקוקוסים. העקומה החדשה חוצה את הישנה.</p></details>
+  </div>
 </section>
 
 <section id="same" class="stack" aria-labelledby="h-same">
   <div class="sec-head"><div class="eyebrow">חלק ד׳ · מלכודות</div><h2 id="h-same">מצבים שבהם העקומה לא זזה</h2></div>
   <p>בשאלות האלה משהו כן משתנה, אבל <strong>לא היכולת לייצר</strong>. לכן עקומת התמורה נשארת במקום. מה שזז הוא הנקודה, או עקומה אחרת.</p>
   <div class="cards" data-group="same"></div>
+  <div class="qc">
+    <div class="qc-k">בדקו את עצמכם</div>
+    <p>אונייה הביאה לאי 20 דגים במתנה. האם עקומת התמורה זזה החוצה?</p>
+    <details><summary>הראו את התשובה</summary><p><strong>לא.</strong> המתנה לא משנה את היכולת לייצר. עקומת התמורה נשארת עד 100 דגים ועד 100 קוקוסים. רק עקומת אפשרויות הצריכה זזה, 20 ימינה (מצב ד3).</p></details>
+  </div>
 </section>
 
 <section id="shapes" class="stack" aria-labelledby="h-shapes">
   <div class="sec-head"><div class="eyebrow">חלק ה׳ · בונוס</div><h2 id="h-shapes">צורות של העקומה עצמה</h2></div>
-  <p>לא תזוזה, אלא <strong>הצורה</strong>. הצורה אומרת מה קורה לעלות האלטרנטיבית כשמייצרים עוד ועוד X.</p>
+  <p>לא תזוזה, אלא <strong>הצורה</strong>. הצורה אומרת מה קורה לעלות האלטרנטיבית כשמייצרים עוד ועוד <bdi dir="ltr" class="m">X</bdi>. בכל הצורות כאן האי מגיע עד 100 דגים ועד 100 קוקוסים.</p>
   <div class="cards" data-group="shapes"></div>
+  <div class="qc">
+    <div class="qc-k">בדקו את עצמכם</div>
+    <p>באי, 10 הדגים הראשונים עולים 2 קוקוסים. 10 הדגים האחרונים עולים 40 קוקוסים. העלות עולה בהדרגה. איזו צורה יש לעקומה?</p>
+    <details><summary>הראו את התשובה</summary><p><strong>קמורה, בולטת החוצה (ה2).</strong> העלות האלטרנטיבית של דג עולה ככל שדגים יותר.</p></details>
+  </div>
 </section>
 
 <section id="exam" class="stack" aria-labelledby="h-exam">
@@ -375,157 +453,249 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
   <ol class="steps">
     <li><strong>מזהים את האירוע.</strong> שיפור או נסיגה? בייצור של איזה מוצר? או שזה בכלל לא שינוי ביכולת (אבטלה, העדפות, מענק)?</li>
     <li><strong>אם זה לא שינוי ביכולת:</strong> העקומה לא זזה. זזה רק הנקודה (או עקומת הצריכה, במענק).</li>
-    <li><strong>אם זה שינוי ביכולת:</strong> בודקים כל קצה בנפרד. משפרים את X? הקצה של X החוצה. נסיגה ב־Y? הקצה של Y פנימה.</li>
-    <li><strong>מוצאים את המצב במפה</strong> ומשרטטים: העקומה הישנה מקווקו, החדשה רציפה, וחצים על הצירים.</li>
-    <li><strong>כותבים במילים:</strong> מה זז, לאן, ולמה. למשל: "השיפור בייצור X מזיז החוצה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה, כי השיפור לא משפיע על ייצור Y. העקומה מסתובבת החוצה סביב הקצה של Y."</li>
+    <li><strong>אם זה שינוי ביכולת:</strong> בודקים כל נקודת קצה בנפרד. שיפור ב־<bdi dir="ltr" class="m">X</bdi>? נקודת הקצה של <bdi dir="ltr" class="m">X</bdi> זזה החוצה. נסיגה ב־<bdi dir="ltr" class="m">Y</bdi>? נקודת הקצה של <bdi dir="ltr" class="m">Y</bdi> זזה פנימה.</li>
+    <li><strong>מוצאים את המצב במפה</strong> ומשרטטים: העקומה הישנה בקו מקווקו, החדשה בקו רציף, וחצים על הצירים.</li>
+    <li><strong>כותבים במילים:</strong> מה זז, לאן, ולמה. למשל: "השיפור בייצור <bdi dir="ltr" class="m">X</bdi> מזיז החוצה את נקודת הקצה של <bdi dir="ltr" class="m">X</bdi>. נקודת הקצה של <bdi dir="ltr" class="m">Y</bdi> לא משתנה, כי השיפור לא משפיע על ייצור <bdi dir="ltr" class="m">Y</bdi>. העקומה מסתובבת החוצה סביב נקודת הקצה של <bdi dir="ltr" class="m">Y</bdi>."</li>
     <li><strong>מילים חשודות:</strong> "בהכרח", "בוודאות". העקומה אומרת מה <strong>אפשר</strong>. מה המשק <strong>בוחר</strong> לייצר, זו שאלה אחרת.</li>
   </ol>
-  <p class="brief"><span class="lbl">הקשר לתרגיל 2</span>שאלות 1, 2, 3 ו־4 בתרגיל הן מצבים מהדף הזה: שיפור בחקלאות (מצב 2), שיפור בייצור הצבאי (מצב 2 או 3), שיפור ב־X ו־Y גדל (מצב 2), נסיגה ב־X ושיפור ב־Y (מצב 8). <a href="./#ex2">חזרה להסבר של תרגיל 2</a>.</p>
+  <p class="brief"><span class="lbl">הקשר לתרגיל 2</span>שאלות 1, 2, 3 ו־4 בתרגיל הן מצבים מהדף הזה: שיפור בחקלאות (מצב 2), שיפור בייצור הצבאי (מצב 2 או 3), שיפור ב־<bdi dir="ltr" class="m">X</bdi> ו־<bdi dir="ltr" class="m">Y</bdi> גדל (מצב 2), נסיגה ב־<bdi dir="ltr" class="m">X</bdi> ושיפור ב־<bdi dir="ltr" class="m">Y</bdi> (מצב 8). <a href="./#ex2">חזרה להסבר של תרגיל 2</a>.</p>
 </section>
 
 </main>
-<footer>דף עזר לעקומת התמורה: 9 מצבי תזוזה, 4 מצבים שבהם העקומה לא זזה, ו־4 צורות. כל השרטוטים סכמטיים (בלי מספרים).</footer>
+<footer>דף עזר לעקומת התמורה: 9 מצבי תזוזה, 4 מצבים שבהם העקומה לא זזה, ו־4 צורות. כל הדוגמאות מאותו אי (דגים וקוקוסים), והשרטוטים בקנה מידה של המספרים.</footer>
 </div>
 <script>
 (function(){
 const NS='http://www.w3.org/2000/svg';
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 function el(t,a,p,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;if(p)p.appendChild(e);return e;}
-const B=60; // base extent of the old curve (0..100 units)
-const arc=(a,b,n=40)=>{const p=[];for(let i=0;i<=n;i++){const t=i/n*Math.PI/2;p.push([a*Math.sin(t),b*Math.cos(t)]);}return p;};
-const yOn=(a,b,x)=>b*Math.sqrt(Math.max(0,1-(x/a)**2));
+/* Latin letters, points and small math inside Hebrew go into an LTR bdi. ⟦…⟧ marks a raw LTR run. */
+const BD=s=>`<bdi dir="ltr" class="m">${s}</bdi>`;
+const RE=/([A-C]′? = \(\d+, \d+\))|(\(\d+, \d+\))|(\d+(?:\.\d+)? ÷ \d+(?:\.\d+)?)|(\d+\/\d+)|(\b[XYABC]\b)/g;
+const L=s=>String(s).split(/⟦(.*?)⟧/).map((p,i)=>i%2?BD(p):p.replace(RE,m=>BD(m))).join('');
+const plain=s=>String(s).replace(/[⟦⟧]/g,'');
 
-/* one schematic chart; W×H in px, data units 0..100 */
-function frame(svg,W,H,small){
-  svg.innerHTML='';const ink=css('--ink');const m=small?{l:16,r:10,t:10,b:16}:{l:28,r:16,t:16,b:30};
-  const X=v=>m.l+v/100*(W-m.l-m.r),Y=v=>H-m.b-v/100*(H-m.t-m.b);
-  el('line',{x1:X(0),y1:Y(0),x2:X(100),y2:Y(0),stroke:ink,'stroke-width':small?1.5:2},svg);
-  el('line',{x1:X(0),y1:Y(0),x2:X(0),y2:Y(100),stroke:ink,'stroke-width':small?1.5:2},svg);
-  if(!small){el('text',{x:X(100),y:Y(0)+22,'font-size':15,'font-weight':700,fill:ink,'text-anchor':'end'},svg,'X');
-    el('text',{x:X(0)+8,y:Y(100)+6,'font-size':15,'font-weight':700,fill:ink},svg,'Y');}
-  return {X,Y};
+const ellipse=(a,b,n=48)=>{const p=[];for(let i=0;i<=n;i++){const t=i/n*Math.PI/2;p.push([a*Math.sin(t),b*Math.cos(t)]);}return p;};
+const FS=14; // svg font size in viewBox units; the big charts render at ~1.05–1.1× on a phone
+
+/* one chart. Data units are the island's real numbers (0..D). */
+function frame(svg,W,H,small,D){
+  svg.innerHTML='';const ink=css('--ink');
+  const m=small?{l:8,r:6,t:6,b:8}:{l:42,r:12,t:30,b:50};
+  const X=v=>m.l+v/D*(W-m.l-m.r),Y=v=>H-m.b-v/D*(H-m.t-m.b);
+  el('line',{x1:X(0),y1:Y(0),x2:X(D),y2:Y(0),stroke:ink,'stroke-width':small?1.5:2},svg);
+  el('line',{x1:X(0),y1:Y(0),x2:X(0),y2:Y(D),stroke:ink,'stroke-width':small?1.5:2},svg);
+  if(!small){
+    heb(svg,X(D)-34,H-8,'דגים (X)',ink,700);
+    heb(svg,X(0)+20,16,'קוקוסים (Y)',ink,700);
+  }
+  return {X,Y,D};
 }
+function heb(svg,x,y,t,fill,w){return el('text',{x,y,'font-size':FS,'font-weight':w||400,fill,direction:'rtl','text-anchor':'middle'},svg,t);}
+function num(svg,x,y,t,fill,anchor,w){return el('text',{x,y,'font-size':FS,'font-weight':w||600,fill,direction:'ltr','text-anchor':anchor||'middle',class:'tn'},svg,t);}
+function xTick(svg,c,v,col,w){el('line',{x1:c.X(v),y1:c.Y(0),x2:c.X(v),y2:c.Y(0)+5,stroke:col,'stroke-width':2},svg);num(svg,c.X(v),c.Y(0)+20,String(v),col,'middle',w);}
+function yTick(svg,c,v,col,w){el('line',{x1:c.X(0)-5,y1:c.Y(v),x2:c.X(0),y2:c.Y(v),stroke:col,'stroke-width':2},svg);num(svg,c.X(0)-8,c.Y(v)+5,String(v),col,'end',w);}
 const path=(svg,c,pts,col,w,dash)=>el('polyline',{points:pts.map(p=>c.X(p[0])+','+c.Y(p[1])).join(' '),fill:'none',stroke:col,'stroke-width':w,'stroke-linejoin':'round','stroke-linecap':'round','stroke-dasharray':dash||''},svg);
 let mk=0;
 function arrow(svg,c,p,q,col,w){const id='ah'+(mk++);const d=el('defs',{},svg);const m=el('marker',{id,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'},d);el('path',{d:'M0,0 L10,5 L0,10 z',fill:col},m);
   el('line',{x1:c.X(p[0]),y1:c.Y(p[1]),x2:c.X(q[0]),y2:c.Y(q[1]),stroke:col,'stroke-width':w||2.5,'marker-end':`url(#${id})`},svg);}
-function dot(svg,c,p,col,label,dx,dy,small){el('circle',{cx:c.X(p[0]),cy:c.Y(p[1]),r:small?3.5:6,fill:css('--surface'),stroke:col,'stroke-width':small?2:3},svg);
-  if(label&&!small)el('text',{x:c.X(p[0])+(dx??8),y:c.Y(p[1])+(dy??-8),'font-size':15,'font-weight':700,fill:col},svg,label);}
+function dot(svg,c,p,col){el('circle',{cx:c.X(p[0]),cy:c.Y(p[1]),r:5.5,fill:css('--surface'),stroke:col,'stroke-width':3},svg);}
+/* point label: lbl text placed at pixel offset (dx,dy) from the point; anchor start/end */
+function plab(svg,c,p,t,col,dx,dy,anchor){num(svg,c.X(p[0])+dx,c.Y(p[1])+dy,t,col,anchor||'start',700);}
+const ticks=(svg,c,o,n)=>{const mut=css('--muted'),acc=css('--accent'),ink=css('--ink');
+  if(o[0]===n[0])xTick(svg,c,o[0],ink);else{xTick(svg,c,o[0],mut,500);xTick(svg,c,n[0],acc,700);}
+  if(o[1]===n[1])yTick(svg,c,o[1],ink);else{yTick(svg,c,o[1],mut,500);yTick(svg,c,n[1],acc,700);}};
 function shift(svg,c,o,n,small){
   const mut=css('--control'),acc=css('--accent'),pen=css('--pen');
-  path(svg,c,arc(o[0],o[1]),mut,small?1.8:2.6,small?'4 3':'7 5');
-  path(svg,c,arc(n[0],n[1]),acc,small?2.6:4);
-  const g=small?1:1.5;
-  if(n[0]!==o[0])arrow(svg,c,[o[0],small?4:3],[n[0]+(n[0]>o[0]?-g*2:g*2),small?4:3],pen,small?1.8:2.6);
-  if(n[1]!==o[1])arrow(svg,c,[small?4:3,o[1]],[small?4:3,n[1]+(n[1]>o[1]?-g*2:g*2)],pen,small?1.8:2.6);
+  path(svg,c,ellipse(o[0],o[1]),mut,small?1.8:2.6,small?'4 3':'7 5');
+  path(svg,c,ellipse(n[0],n[1]),acc,small?2.6:4);
+  const g=c.D*(small?.012:.02),off=c.D*(small?.045:.035);
+  if(n[0]!==o[0])arrow(svg,c,[o[0],off],[n[0]+(n[0]>o[0]?-g:g),off],pen,small?1.8:2.6);
+  if(n[1]!==o[1])arrow(svg,c,[off,o[1]],[off,n[1]+(n[1]>o[1]?-g:g)],pen,small?1.8:2.6);
+  if(!small)ticks(svg,c,o,n);
 }
-/* ---------- the cases ---------- */
-const UP='החוצה',DN='פנימה',EQ='לא זז';
+
+/* ---------- the cases (island numbers: X = דגים, Y = קוקוסים, today 100 / 100) ---------- */
+const O=[100,100];
 const C=[
- {id:1,g:'grow',name:'התרחבות כללית',sub:'צמיחה בשני המוצרים',x:UP,y:UP,o:[B,B],n:[80,80],
-  why:['יותר גורמי ייצור: עלייה בכוח העבודה, עלייה, יותר מכונות או קרקע','שיפור טכנולוגי בשני המוצרים (למשל חשמל, אינטרנט)'],
-  oc:'לא משתנה אם שני הקצוות גדלים באותו שיעור. אחרת, ראו מצב 1ב.',exam:'גידול בגורמי הייצור מאפשר לייצר יותר משני המוצרים. שתי נקודות הקצה זזות החוצה, וכל העקומה מתרחבת.'},
- {id:'1ב',g:'grow',name:'צמיחה לא מאוזנת',sub:'שניהם החוצה, אבל אחד יותר',x:UP+' (הרבה)',y:UP+' (מעט)',o:[B,B],n:[88,70],
-  why:['שיפור בשני המוצרים, אבל חזק יותר ב־X','גידול בגורם ייצור שמתאים יותר ל־X (למשל עוד קרקע חקלאית, כש־X = חקלאות)'],
-  oc:'של X יורדת (X נעשה "זול" יותר), כי הקצה של X זז יותר.',exam:'שתי נקודות הקצה זזות החוצה, אך נקודת הקצה של X זזה יותר. העקומה מתרחבת ונעשית שטוחה יותר.'},
- {id:2,g:'grow',name:'סיבוב החוצה על ציר X',sub:'שיפור טכנולוגי רק בייצור X',x:UP,y:EQ,o:[B,B],n:[88,B],
+ {id:1,g:'grow',name:'התרחבות כללית',sub:'צמיחה בשני המוצרים',o:O,n:[150,150],
+  story:'מספר העובדים באי גדל בחצי. עכשיו אפשר לדוג עד 150 דגים, או לקטוף עד 150 קוקוסים.',
+  cost:'שתי נקודות הקצה גדלו באותו שיעור. לכן דג אחד עדיין עולה בממוצע קוקוס אחד (150 ÷ 150).',
+  why:['יותר גורמי ייצור: יותר עובדים, יותר מכונות או יותר קרקע','שיפור טכנולוגי בשני המוצרים (למשל חשמל, אינטרנט)'],
+  oc:'לא משתנה, אם שתי נקודות הקצה גדלות באותו שיעור. אחרת, ראו מצב 1ב.',exam:'גידול בגורמי הייצור מאפשר לייצר יותר משני המוצרים. שתי נקודות הקצה זזות החוצה, וכל העקומה מתרחבת.'},
+ {id:'1ב',g:'grow',name:'צמיחה לא מאוזנת',sub:'שתי נקודות הקצה החוצה, אבל אחת יותר',o:O,n:[150,120],
+  story:'הגיעו לאי עובדים חדשים, ורובם דייגים מנוסים. עכשיו אפשר לדוג עד 150 דגים, אבל לקטוף רק עד 120 קוקוסים.',
+  cost:'דג אחד עולה עכשיו פחות קוקוסים: בממוצע 0.8 קוקוס במקום 1 (120 ÷ 150).',
+  why:['שיפור בשני המוצרים, אבל חזק יותר ב־X','גידול בגורם ייצור שמתאים יותר ל־X (למשל עוד קרקע חקלאית, כש־X הוא חקלאות)'],
+  oc:'העלות האלטרנטיבית של X יורדת, כי נקודת הקצה של X זזה יותר.',exam:'שתי נקודות הקצה זזות החוצה, אך נקודת הקצה של X זזה יותר. העקומה מתרחבת ונעשית שטוחה יותר.'},
+ {id:2,g:'grow',name:'סיבוב החוצה על ציר X',sub:'שיפור טכנולוגי רק בייצור X',o:O,n:[150,100],
+  story:'רשת דייגים חדשה. עכשיו אפשר לדוג עד 150 דגים. הקוקוסים לא השתנו: עדיין עד 100.',
+  cost:'דג אחד עולה עכשיו פחות קוקוסים: בממוצע 2/3 קוקוס במקום 1 (100 ÷ 150).',
   why:['המצאה שמשפרת רק את ייצור X (זן חיטה חדש, מכונה חדשה למפעל X)','הכשרה של עובדים שמתאימה רק לענף של X'],
-  oc:'של X יורדת: העקומה שטוחה יותר, וכל X עולה פחות Y.',exam:'השיפור בייצור X מזיז החוצה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה, כי השיפור לא משפיע על ייצור Y. העקומה מסתובבת החוצה סביב נקודת הקצה של Y.'},
- {id:3,g:'grow',name:'סיבוב החוצה על ציר Y',sub:'שיפור טכנולוגי רק בייצור Y',x:EQ,y:UP,o:[B,B],n:[B,88],
+  oc:'העלות האלטרנטיבית של X יורדת. העקומה שטוחה יותר.',exam:'השיפור בייצור X מזיז החוצה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה, כי השיפור לא משפיע על ייצור Y. העקומה מסתובבת החוצה סביב נקודת הקצה של Y.'},
+ {id:3,g:'grow',name:'סיבוב החוצה על ציר Y',sub:'שיפור טכנולוגי רק בייצור Y',o:O,n:[100,150],
+  story:'המציאו סולם חדש לטיפוס על עצים. עכשיו אפשר לקטוף עד 150 קוקוסים. הדגים לא השתנו: עדיין עד 100.',
+  cost:'דג אחד עולה עכשיו יותר קוקוסים: בממוצע 1.5 במקום 1 (150 ÷ 100). כל שעה של דיג באה על חשבון יותר קוקוסים.',
   why:['המצאה שמשפרת רק את ייצור Y','השקעה במכונות שמתאימות רק לענף של Y'],
-  oc:'של X עולה: העקומה תלולה יותר, וכל X עולה יותר Y (כי Y "זול" יותר).',exam:'השיפור בייצור Y מזיז החוצה את נקודת הקצה של Y. נקודת הקצה של X לא משתנה. העקומה מסתובבת החוצה סביב נקודת הקצה של X.'},
- {id:4,g:'shrink',name:'התכווצות כללית',sub:'פחות יכולת בשני המוצרים',x:DN,y:DN,o:[B,B],n:[40,40],
+  oc:'העלות האלטרנטיבית של X עולה. העקומה תלולה יותר.',exam:'השיפור בייצור Y מזיז החוצה את נקודת הקצה של Y. נקודת הקצה של X לא משתנה. העקומה מסתובבת החוצה סביב נקודת הקצה של X.'},
+ {id:4,g:'shrink',name:'התכווצות כללית',sub:'פחות יכולת בשני המוצרים',o:O,n:[60,60],
+  story:'חלק מהתושבים עזבו את האי. נשארו פחות ידיים עובדות: דגים עד 60, קוקוסים עד 60.',
+  cost:'שתי נקודות הקצה קטנו באותו שיעור. לכן דג אחד עדיין עולה בממוצע קוקוס אחד (60 ÷ 60).',
   why:['מלחמה או אסון טבע שהורסים מפעלים','ירידה בכוח העבודה: הגירה החוצה, מגפה','נסיגה טכנולוגית בשני המוצרים'],
-  oc:'לא משתנה אם שני הקצוות קטנים באותו שיעור.',exam:'הירידה בכמות גורמי הייצור מקטינה את היכולת לייצר את שני המוצרים. שתי נקודות הקצה זזות פנימה.'},
- {id:5,g:'shrink',name:'סיבוב פנימה על ציר X',sub:'נסיגה טכנולוגית רק בייצור X',x:DN,y:EQ,o:[B,B],n:[38,B],
-  why:['מחלה שפוגעת ביבול (כש־X = חקלאות)','מכונה של ענף X שהתקלקלה ואין לה תחליף'],
-  oc:'של X עולה: כל X עולה עכשיו יותר Y.',exam:'הנסיגה בייצור X מזיזה פנימה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה. העקומה מסתובבת פנימה סביב נקודת הקצה של Y.'},
- {id:6,g:'shrink',name:'סיבוב פנימה על ציר Y',sub:'נסיגה טכנולוגית רק בייצור Y',x:EQ,y:DN,o:[B,B],n:[B,38],
+  oc:'לא משתנה, אם שתי נקודות הקצה קטנות באותו שיעור.',exam:'הירידה בכמות גורמי הייצור מקטינה את היכולת לייצר את שני המוצרים. שתי נקודות הקצה זזות פנימה.'},
+ {id:5,g:'shrink',name:'סיבוב פנימה על ציר X',sub:'נסיגה טכנולוגית רק בייצור X',o:O,n:[60,100],
+  story:'הרשת היחידה באי נקרעה, ואף אחד לא יודע לקשור רשת חדשה. עכשיו אפשר לדוג רק עד 60 דגים. הקוקוסים לא השתנו: עדיין עד 100.',
+  cost:'דג אחד עולה עכשיו יותר קוקוסים: בממוצע בערך 1.7 במקום 1 (100 ÷ 60).',
+  why:['מחלה שפוגעת ביבול (כש־X הוא חקלאות)','מכונה של ענף X שהתקלקלה ואין לה תחליף'],
+  oc:'העלות האלטרנטיבית של X עולה. העקומה תלולה יותר.',exam:'הנסיגה בייצור X מזיזה פנימה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה. העקומה מסתובבת פנימה סביב נקודת הקצה של Y.'},
+ {id:6,g:'shrink',name:'סיבוב פנימה על ציר Y',sub:'נסיגה טכנולוגית רק בייצור Y',o:O,n:[100,60],
+  story:'מחלה פגעה בעצי הקוקוס. עכשיו אפשר לקטוף רק עד 60 קוקוסים. הדגים לא השתנו: עדיין עד 100.',
+  cost:'דג אחד עולה עכשיו פחות קוקוסים: בממוצע 0.6 במקום 1 (60 ÷ 100). שעה של דיג מוותרת על פחות קוקוסים, כי ממילא קוטפים פחות.',
   why:['פגיעה בטכנולוגיה של ענף Y בלבד','איסור על שימוש בחומר גלם שרק Y צריך'],
-  oc:'של X יורדת: Y "יקר" יותר, ולכן כל X עולה פחות Y.',exam:'הנסיגה בייצור Y מזיזה פנימה את נקודת הקצה של Y. נקודת הקצה של X לא משתנה. העקומה מסתובבת פנימה סביב נקודת הקצה של X.'},
- {id:7,g:'mixed',name:'חיתוך: X החוצה, Y פנימה',sub:'שיפור ב־X ונסיגה ב־Y',x:UP,y:DN,o:[B,B],n:[88,38],
+  oc:'העלות האלטרנטיבית של X יורדת. העקומה שטוחה יותר.',exam:'הנסיגה בייצור Y מזיזה פנימה את נקודת הקצה של Y. נקודת הקצה של X לא משתנה. העקומה מסתובבת פנימה סביב נקודת הקצה של X.'},
+ {id:7,g:'mixed',name:'חיתוך: X החוצה, Y פנימה',sub:'שיפור ב־X ונסיגה ב־Y',o:O,n:[150,60],
+  story:'רשת חדשה, ובאותה שנה מחלה בעצי הקוקוס: דגים עד 150, קוקוסים רק עד 60.',
+  cost:'דג אחד עולה עכשיו הרבה פחות קוקוסים: בממוצע 0.4 במקום 1 (60 ÷ 150).',
   why:['המצאה בענף X, ובאותו זמן נסיגה בענף Y'],
-  oc:'של X יורדת מאוד: העקומה הרבה יותר שטוחה.',exam:'השיפור ב־X מזיז החוצה את נקודת הקצה של X, והנסיגה ב־Y מזיזה פנימה את נקודת הקצה של Y. העקומה החדשה חוצה את הישנה. ליד ציר X (הרבה X) המשק יכול יותר. ליד ציר Y (הרבה Y) הוא יכול פחות.'},
- {id:8,g:'mixed',name:'חיתוך: X פנימה, Y החוצה',sub:'נסיגה ב־X ושיפור ב־Y (שאלה 4 בתרגיל 2)',x:DN,y:UP,o:[B,B],n:[38,88],
+  oc:'העלות האלטרנטיבית של X יורדת מאוד. העקומה הרבה יותר שטוחה.',exam:'השיפור ב־X מזיז החוצה את נקודת הקצה של X, והנסיגה ב־Y מזיזה פנימה את נקודת הקצה של Y. העקומה החדשה חוצה את הישנה. ליד ציר X (הרבה X) המשק יכול יותר. ליד ציר Y (הרבה Y) הוא יכול פחות.'},
+ {id:8,g:'mixed',name:'חיתוך: X פנימה, Y החוצה',sub:'נסיגה ב־X ושיפור ב־Y (שאלה 4 בתרגיל 2)',o:O,n:[60,150],
+  story:'הרשת נקרעה, ובאותה שנה המציאו סולם טיפוס חדש: דגים רק עד 60, קוקוסים עד 150.',
+  cost:'דג אחד עולה עכשיו הרבה יותר קוקוסים: בממוצע 2.5 במקום 1 (150 ÷ 60).',
   why:['נסיגה טכנולוגית בענף X, ובאותו זמן שיפור בענף Y'],
-  oc:'של X עולה מאוד: העקומה הרבה יותר תלולה.',exam:'הנסיגה ב־X מזיזה פנימה את נקודת הקצה של X, והשיפור ב־Y מזיז החוצה את נקודת הקצה של Y. העקומה החדשה חוצה את הישנה. ייתכן שהמשק ימשיך לייצר את אותן כמויות, אם הנקודה המקורית נמצאת בחלק שבו העקומה החדשה מעל הישנה.'},
- {id:9,g:'same',name:'שום קצה לא זז',sub:'העקומה נשארת במקום',x:EQ,y:EQ,o:[B,B],n:[B,B],draw:'none',
+  oc:'העלות האלטרנטיבית של X עולה מאוד. העקומה הרבה יותר תלולה.',exam:'הנסיגה ב־X מזיזה פנימה את נקודת הקצה של X, והשיפור ב־Y מזיז החוצה את נקודת הקצה של Y. העקומה החדשה חוצה את הישנה. ייתכן שהמשק ימשיך לייצר את אותן כמויות, אם הנקודה המקורית נמצאת בחלק שבו העקומה החדשה מעל הישנה.'},
+ {id:9,g:'same',name:'שום נקודת קצה לא זזה',sub:'העקומה נשארת במקום',o:O,n:O,draw:'none',
+  story:'השנה לא קרה שום דבר שמשנה את היכולת: אותם אנשים ואותם כלים. דגים עד 100, קוקוסים עד 100, כמו קודם.',
+  cost:'דג אחד עולה בממוצע קוקוס אחד, כמו קודם.',
+  alt:'עקומה אחת, רציפה, שמגיעה עד 100 דגים ועד 100 קוקוסים. היא לא זזה.',
   why:['אין שינוי ביכולת: אותם גורמי ייצור ואותה טכנולוגיה'],
   oc:'לא משתנה.',exam:'יכולת הייצור לא השתנתה, ולכן עקומת התמורה לא זזה. השתנתה רק הבחירה, או רק הצריכה (ראו את הכרטיסים הבאים).'},
  {id:'ד1',g:'same',name:'תנועה לאורך העקומה',sub:'שינוי בבחירה, לא ביכולת',draw:'along',
+  story:'התושבים החליטו שהם רוצים יותר דגים. הם עברו מ־A = (60, 80) ל־B = (80, 60): עוד 20 דגים, ו־20 קוקוסים פחות. העקומה לא זזה.',
+  cost:'20 הדגים הנוספים עלו 20 קוקוסים, כלומר קוקוס אחד לכל דג. אם ימשיכו לדוג עוד, כל דג יעלה יותר.',
+  alt:'העקומה מגיעה עד 100 דגים ועד 100 קוקוסים. חץ לאורך העקומה מנקודה A, 60 דגים ו־80 קוקוסים, לנקודה B, 80 דגים ו־60 קוקוסים.',
   why:['שינוי בהעדפות: רוצים יותר X ופחות Y','החלטה של הממשלה על סדרי עדיפויות'],
-  oc:'משתנה לאורך העקומה (בעקומה קעורה: ככל שמייצרים יותר X, העלות של X עולה).',exam:'המשק עובר מנקודה A לנקודה B על אותה עקומה. כדי לייצר יותר X הוא מוותר על Y. העקומה עצמה לא זזה.'},
- {id:'ד2',g:'same',name:'מבפנים אל העקומה, ובחזרה',sub:'אבטלה ויציאה מאבטלה',draw:'inside',
-  why:['A בפנים: אבטלה, שביתה, מיתון, ייצור לא יעיל','מ־A ל־B: מעסיקים את המובטלים, ומגדילים את שני המוצרים בלי ויתור'],
-  oc:'לא רלוונטי: בין A לעקומה אין ויתור בכלל.',exam:'נקודה A נמצאת בתוך העקומה, כלומר יש אבטלה או חוסר יעילות. כשמעסיקים את גורמי הייצור המובטלים, אפשר להגדיל את שני המוצרים בלי לוותר על אף אחד, עד שמגיעים לעקומה. העקומה לא זזה.'},
+  oc:'משתנה לאורך העקומה. בעקומה קמורה (בולטת החוצה), ככל שמייצרים יותר X, כל X נוסף עולה יותר Y.',exam:'המשק עובר מנקודה A לנקודה B על אותה עקומה. כדי לייצר יותר X הוא מוותר על Y. העקומה עצמה לא זזה.'},
+ {id:'ד2',g:'same',name:'מבפנים אל העקומה',sub:'אבטלה, ויציאה מאבטלה',draw:'inside',
+  story:'בחורף הייתה שביתה, וחצי מהתושבים לא עבדו. האי ייצר רק A = (30, 40). כשכולם חזרו לעבוד, האי הגיע ל־B = (60, 80).',
+  cost:'מ־A ל־B לא מוותרים על כלום: מקבלים עוד 30 דגים וגם עוד 40 קוקוסים.',
+  alt:'העקומה מגיעה עד 100 דגים ועד 100 קוקוסים. נקודה A, 30 דגים ו־40 קוקוסים, נמצאת בתוך העקומה. חץ ממנה לנקודה B על העקומה, 60 דגים ו־80 קוקוסים.',
+  why:['A בפנים: אבטלה, שביתה, מיתון, ייצור לא יעיל','מ־A ל־B: מעסיקים את המובטלים, ומגדילים את שני המוצרים בלי לוותר על אף אחד'],
+  oc:'בין A לעקומה אין ויתור, ולכן אין כאן עלות אלטרנטיבית.',exam:'נקודה A נמצאת בתוך העקומה, כלומר יש אבטלה או חוסר יעילות. כשמעסיקים את גורמי הייצור המובטלים, אפשר להגדיל את שני המוצרים בלי לוותר על אף אחד, עד שמגיעים לעקומה. העקומה לא זזה.'},
  {id:'ד3',g:'same',name:'מענק או סיוע מחו״ל',sub:'הצריכה זזה, הייצור לא',draw:'grant',
-  why:['מענק של כמות קבועה מכל מוצר (למשל 5 X ו־10 Y)','הלוואה או סיוע חוץ'],
-  oc:'עקומת התמורה לא משתנה, ולכן גם העלות בייצור לא משתנה.',exam:'עקומת התמורה לא זזה, כי יכולת הייצור לא השתנתה. עקומת אפשרויות הצריכה זזה במקביל: ימינה בכמות ה־X של המענק, ולמעלה בכמות ה־Y שלו (שאלה 6 בתרגיל 2).'},
+  story:'אונייה הביאה מתנה: 10 דגים ו־10 קוקוסים. האי עדיין מייצר עד 100 מכל מוצר. אבל אם הוא מייצר (60, 80), הוא יכול לצרוך (70, 90).',
+  cost:'המתנה לא משנה כמה קוקוסים עולה לייצר דג. בממוצע זה עדיין קוקוס אחד.',
+  alt:'עקומת התמורה, רציפה, מגיעה עד 100 דגים ועד 100 קוקוסים ולא זזה. עקומת הצריכה, מקווקוות, זזה 10 ימינה ו־10 למעלה. חץ מנקודת הייצור, 60 דגים ו־80 קוקוסים, לנקודת הצריכה, 70 דגים ו־90 קוקוסים.',
+  why:['מענק של כמות קבועה מכל מוצר','הלוואה או סיוע חוץ'],
+  oc:null,exam:'עקומת התמורה לא זזה, כי יכולת הייצור לא השתנתה. עקומת אפשרויות הצריכה זזה במקביל: ימינה בכמות ה־X של המענק, ולמעלה בכמות ה־Y שלו (שאלה 6 בתרגיל 2).'},
  {id:'ד4',g:'same',name:'נקודה מחוץ לעקומה',sub:'בלתי אפשרית (היום)',draw:'outside',
+  story:'התושבים רוצים 80 דגים וגם 80 קוקוסים: C = (80, 80). זו נקודה מחוץ לעקומה. עם 80 דגים הם יכולים לקטוף לכל היותר 60 קוקוסים: B = (80, 60).',
+  cost:'כדי לדוג 80 דגים צריך לוותר על 40 קוקוסים (מ־100 ל־60). לכן אי אפשר להשאיר 80 קוקוסים.',
+  alt:'העקומה מגיעה עד 100 דגים ועד 100 קוקוסים. נקודה C, 80 דגים ו־80 קוקוסים, נמצאת מחוץ לעקומה. מתחתיה נקודה B על העקומה, 80 דגים ו־60 קוקוסים.',
   why:['אין מספיק גורמי ייצור או טכנולוגיה כדי להגיע אליה','אפשר להגיע אליה רק אם העקומה תזוז החוצה, או בצריכה בעזרת מענק או סחר'],
-  oc:'לא רלוונטי.',exam:'נקודה C נמצאת מחוץ לעקומת התמורה, ולכן המשק לא יכול לייצר אותה בגורמי הייצור ובטכנולוגיה הקיימים.'},
+  oc:null,exam:'נקודה C נמצאת מחוץ לעקומת התמורה, ולכן המשק לא יכול לייצר אותה בגורמי הייצור ובטכנולוגיה הקיימים.'},
  {id:'ה1',g:'shapes',name:'עקומה ישרה',sub:'עלות אלטרנטיבית קבועה',draw:'line',
-  why:['כל גורמי הייצור מתאימים באותה מידה לשני המוצרים','דוגמה: ‏Y = 200 − 4X, רובינזון'],
-  oc:'קבועה לאורך כל הקו (= השיפוע).',exam:'העקומה ישרה, ולכן העלות האלטרנטיבית של X קבועה: כל יחידת X עולה תמיד אותה כמות Y.'},
- {id:'ה2',g:'shapes',name:'עקומה קעורה (בולטת החוצה)',sub:'עלות אלטרנטיבית עולה',draw:'concave',
+  story:'כל התושבים טובים באותה מידה בדיג ובקטיף. כל שעת עבודה נותנת דג אחד או קוקוס אחד. לכן העקומה היא קו ישר מ־100 דגים עד 100 קוקוסים.',
+  cost:'דג אחד עולה תמיד קוקוס אחד, גם הדג הראשון וגם הדג המאה.',
+  alt:'קו ישר מ־100 קוקוסים על הציר האנכי עד 100 דגים על הציר האופקי. הנקודה 50 דגים ו־50 קוקוסים נמצאת עליו.',
+  why:['כל גורמי הייצור מתאימים באותה מידה לשני המוצרים','דוגמה מהשיעור: ⟦Y = 200 − 4X⟧ (רובינזון)'],
+  oc:'העלות האלטרנטיבית של X קבועה לאורך כל הקו. היא השיפוע.',exam:'העקומה ישרה, ולכן העלות האלטרנטיבית של X קבועה: כל יחידת X עולה תמיד אותה כמות Y.'},
+ {id:'ה2',g:'shapes',name:'עקומה קמורה (בולטת החוצה)',sub:'עלות אלטרנטיבית עולה',note:'כך המרצה קוראת לה. בחלק מהספרים קוראים לה "קעורה".',draw:'concave',
+  story:'קודם שולחים לדוג את הדייגים הכי טובים, ובסוף גם את מי שטוב רק בטיפוס. 60 הדגים הראשונים עולים רק 20 קוקוסים. 20 הדגים האחרונים עולים 60 קוקוסים.',
+  cost:'דג עולה יותר ויותר: בהתחלה 1/3 קוקוס, באמצע קוקוס אחד, ובסוף 3 קוקוסים.',
+  alt:'עקומה שבולטת החוצה, מ־100 קוקוסים עד 100 דגים, דרך הנקודות 60 דגים ו־80 קוקוסים, ו־80 דגים ו־60 קוקוסים.',
   why:['גורמי הייצור שונים זה מזה: חלקם טובים ב־X וחלקם ב־Y','מעבירים קודם את מי שהכי טוב ב־X, ואחר כך את הפחות מתאימים'],
-  oc:'עולה: ככל שמייצרים יותר X, כל יחידה נוספת עולה יותר Y.',exam:'העקומה קעורה, כי העלות האלטרנטיבית של X עולה ככל שמגדילים את ייצור X. בכל שלב עוברים לייצור X גורמי ייצור שפחות מתאימים לו.'},
+  oc:'העלות האלטרנטיבית של X עולה: ככל שמייצרים יותר X, כל יחידה נוספת עולה יותר Y.',exam:'העקומה קמורה, כי העלות האלטרנטיבית של X עולה ככל שמגדילים את ייצור X. בכל שלב עוברים לייצור X גורמי ייצור שפחות מתאימים לו.'},
  {id:'ה3',g:'shapes',name:'עקומה שבורה',sub:'כמה קטעים ישרים',draw:'kinked',
+  story:'באי גרים רק שניים. דנה יכולה לדוג 50 דגים או לקטוף 25 קוקוסים. יוסי יכול לדוג 50 דגים או לקטוף 75 קוקוסים.',
+  cost:'דג של דנה עולה חצי קוקוס, ודג של יוסי עולה 1.5 קוקוסים. לכן קודם דנה דגה. בפינה (50, 75) העלות קופצת.',
+  alt:'שני קטעים ישרים: מ־100 קוקוסים לפינה ב־50 דגים ו־75 קוקוסים, ומשם עד 100 דגים.',
   why:['צוואר בקבוק: בכל קטע משאב אחר נגמר ראשון (שאלה 5 בתרגיל 1)','יתרון יחסי: חלקות או משקים שונים, כל אחד עם עלות קבועה (שאלה 6 בתרגיל 1)'],
-  oc:'קבועה בתוך כל קטע, וקופצת בפינות. אם היא עולה מקטע לקטע, העקומה קעורה.',exam:'העקומה בנויה מקטעים ישרים. בכל קטע העלות האלטרנטיבית קבועה, ובכל פינה היא משתנה.'},
- {id:'ה4',g:'shapes',name:'עקומה קמורה (שקועה פנימה)',sub:'עלות אלטרנטיבית יורדת (נדיר)',draw:'convex',
+  oc:'העלות האלטרנטיבית קבועה בתוך כל קטע, וקופצת בפינות. אם היא עולה מקטע לקטע, העקומה קמורה.',exam:'העקומה בנויה מקטעים ישרים. בכל קטע העלות האלטרנטיבית קבועה, ובכל פינה היא משתנה.'},
+ {id:'ה4',g:'shapes',name:'עקומה קעורה (שקועה פנימה)',sub:'עלות אלטרנטיבית יורדת (נדיר)',draw:'convex',
+  story:'נניח שדיג נעשה קל יותר ככל שדגים יותר, כי לומדים איפה הדגים. 50 הדגים הראשונים עולים 75 קוקוסים. 50 הדגים הבאים עולים רק 25 קוקוסים.',
+  cost:'דג עולה פחות ופחות: בהתחלה 1.5 קוקוסים, ובסוף חצי קוקוס.',
+  alt:'עקומה ששקועה פנימה, מ־100 קוקוסים עד 100 דגים, דרך הנקודה 50 דגים ו־25 קוקוסים.',
   why:['מצב חריג: ככל שמתמחים יותר במוצר, הוא נעשה זול יותר'],
-  oc:'יורדת: כל יחידה נוספת של X עולה פחות Y.',exam:'העקומה קמורה, ולכן העלות האלטרנטיבית של X יורדת ככל שמגדילים את ייצור X. זה מצב נדיר, ובקורס הוא מופיע בעיקר כשאלת הבנה.'},
+  oc:'העלות האלטרנטיבית של X יורדת: כל יחידה נוספת של X עולה פחות Y.',exam:'העקומה קעורה (שקועה פנימה), ולכן העלות האלטרנטיבית של X יורדת ככל שמגדילים את ייצור X. זה מצב נדיר, ובקורס הוא מופיע בעיקר כשאלת הבנה.'},
 ];
+const BASE={id:'base',draw:'none',alt:'העקומה של האי היום: עד 100 דגים, או עד 100 קוקוסים.'};
+
+const UP='החוצה',DN='פנימה',EQ='לא זזה';
+const dir=(o,n)=>n>o?UP:n<o?DN:EQ;
+function altText(cs){
+  if(cs.alt)return cs.alt;
+  const [ox,oy]=cs.o,[nx,ny]=cs.n;
+  const mv=(o,n,w)=>n===o?`נקודת הקצה של ה${w} לא זזה, ${o}`:`נקודת הקצה של ה${w} זזה ${n>o?'החוצה':'פנימה'}, מ־${o} ל־${n}`;
+  return `העקומה הישנה, מקווקוות, מגיעה עד ${ox} דגים ועד ${oy} קוקוסים. העקומה החדשה, רציפה, מגיעה עד ${nx} דגים ועד ${ny} קוקוסים. ${mv(ox,nx,'דגים')}. ${mv(oy,ny,'קוקוסים')}.`;
+}
 
 function drawCase(svg,cs,small){
-  const W=small?120:300,H=small?96:240;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  const c=frame(svg,W,H,small);const acc=css('--accent'),pen=css('--pen'),mut=css('--control'),good=css('--good');
-  const d=cs.draw;
+  const W=small?120:300,H=small?96:260;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const d=cs.draw,D=d?125:165;
+  const c=frame(svg,W,H,small,D);const acc=css('--accent'),pen=css('--pen'),good=css('--good'),ink=css('--ink'),mut=css('--muted');
   if(!d){shift(svg,c,cs.o,cs.n,small);return;}
-  if(d==='none'){path(svg,c,arc(B,B),acc,small?2.6:4);return;}
-  if(d==='along'){path(svg,c,arc(B+10,B+10),acc,4);const A=[25,yOn(70,70,25)],Bp=[52,yOn(70,70,52)];
-    arrow(svg,c,[A[0]+3,A[1]+1],[Bp[0]-3,Bp[1]+3],pen,2.6);dot(svg,c,A,pen,'A',-4,-10);dot(svg,c,Bp,pen,'B',8,-6);return;}
-  if(d==='inside'){path(svg,c,arc(70,70),acc,4);const A=[25,25],Bp=[45,yOn(70,70,45)];
-    arrow(svg,c,[A[0]+2,A[1]+2],[Bp[0]-2,Bp[1]-3],good,2.6);dot(svg,c,A,pen,'A',-16,18);dot(svg,c,Bp,good,'B',8,-6);
-    el('text',{x:c.X(28),y:c.Y(14),'font-size':13,fill:css('--muted'),direction:'rtl','text-anchor':'end'},svg,'אבטלה');return;}
-  if(d==='grant'){const P=arc(60,60);path(svg,c,P,acc,4);path(svg,c,P.map(p=>[p[0]+14,p[1]+14]),pen,3,'8 5');
-    arrow(svg,c,[P[22][0],P[22][1]],[P[22][0]+12,P[22][1]+12],pen,2.4);
-    el('text',{x:c.X(62),y:c.Y(80),'font-size':13,'font-weight':700,fill:pen,direction:'rtl','text-anchor':'end'},svg,'צריכה');
-    el('text',{x:c.X(20),y:c.Y(30),'font-size':13,'font-weight':700,fill:acc,direction:'rtl','text-anchor':'end'},svg,'ייצור');return;}
-  if(d==='outside'){path(svg,c,arc(60,60),acc,4);const P=[58,58];dot(svg,c,P,pen,'C ✗',8,-8);dot(svg,c,[25,25],good,'A ✓',8,-8);return;}
-  if(d==='line'){path(svg,c,[[0,75],[75,0]],acc,4);return;}
-  if(d==='concave'){path(svg,c,arc(75,75),acc,4);return;}
-  if(d==='kinked'){path(svg,c,[[0,75],[25,70],[55,45],[75,0]],acc,4);[[25,70],[55,45]].forEach(p=>dot(svg,c,p,acc,'',0,0));return;}
-  if(d==='convex'){const P=[];for(let i=0;i<=40;i++){const t=i/40*Math.PI/2;P.push([75-75*Math.cos(t),75-75*Math.sin(t)]);}path(svg,c,P,acc,4);return;}
+  const base=()=>{path(svg,c,ellipse(100,100),acc,small?2.6:4);if(!small){xTick(svg,c,100,ink);yTick(svg,c,100,ink);}};
+  if(d==='none'){base();return;}
+  if(d==='along'){base();const A=[60,80],B=[80,60];
+    arrow(svg,c,[62,77],[78.5,62.5],pen,2.6);dot(svg,c,A,pen);dot(svg,c,B,pen);
+    plab(svg,c,A,'A (60, 80)',pen,-8,22,'end');plab(svg,c,B,'B (80, 60)',pen,10,-8);return;}
+  if(d==='inside'){base();const A=[30,40],B=[60,80];
+    arrow(svg,c,[32,43],[58,77],good,2.6);dot(svg,c,A,pen);dot(svg,c,B,good);
+    plab(svg,c,A,'A (30, 40)',pen,10,22);heb(svg,c.X(30)+38,c.Y(40)+40,'אבטלה',mut);
+    plab(svg,c,B,'B (60, 80)',good,10,-8);return;}
+  if(d==='grant'){const P=ellipse(100,100);path(svg,c,P,acc,4);path(svg,c,P.map(p=>[p[0]+10,p[1]+10]),pen,3,'8 5');
+    xTick(svg,c,100,ink);yTick(svg,c,100,ink);
+    const A=[60,80],B=[70,90];arrow(svg,c,[61.2,81.2],[68.6,88.6],pen,2.4);dot(svg,c,A,acc);dot(svg,c,B,pen);
+    plab(svg,c,A,'(60, 80)',acc,-6,20,'end');plab(svg,c,B,'(70, 90)',pen,10,-6);
+    heb(svg,c.X(114),c.Y(55),'צריכה',pen,700);heb(svg,c.X(48),c.Y(30),'ייצור',acc,700);return;}
+  if(d==='outside'){base();const Cp=[80,80],B=[80,60];
+    el('line',{x1:c.X(80),y1:c.Y(80),x2:c.X(80),y2:c.Y(0),stroke:mut,'stroke-width':1.5,'stroke-dasharray':'3 4'},svg);
+    dot(svg,c,Cp,pen);dot(svg,c,B,good);xTick(svg,c,80,mut,500);
+    plab(svg,c,Cp,'C (80, 80)',pen,10,-6);heb(svg,c.X(80)+46,c.Y(80)+14,'אי אפשר',pen);
+    plab(svg,c,B,'B (80, 60)',good,-10,20,'end');return;}
+  if(d==='line'){path(svg,c,[[0,100],[100,0]],acc,4);xTick(svg,c,100,ink);yTick(svg,c,100,ink);
+    dot(svg,c,[50,50],acc);plab(svg,c,[50,50],'(50, 50)',acc,10,-8);return;}
+  if(d==='concave'){base();[[60,80],[80,60]].forEach(p=>dot(svg,c,p,acc));
+    plab(svg,c,[60,80],'(60, 80)',acc,8,-10);plab(svg,c,[80,60],'(80, 60)',acc,10,-4);return;}
+  if(d==='kinked'){path(svg,c,[[0,100],[50,75],[100,0]],acc,4);xTick(svg,c,100,ink);yTick(svg,c,100,ink);
+    dot(svg,c,[50,75],acc);plab(svg,c,[50,75],'(50, 75)',acc,10,-8);return;}
+  if(d==='convex'){const P=[];for(let i=0;i<=40;i++){const x=i*2.5;P.push([x,(100-x)**2/100]);}path(svg,c,P,acc,4);
+    xTick(svg,c,100,ink);yTick(svg,c,100,ink);dot(svg,c,[50,25],acc);plab(svg,c,[50,25],'(50, 25)',acc,8,-10);return;}
 }
-const chip=(t,lbl)=>`<span class="chip ${t===UP||t.startsWith(UP)?'up':t===DN?'dn':'same'}"><span class="k">${lbl}</span> ${t}</span>`;
+const chip=(o,n,ax)=>{const t=dir(o,n),cls=t===UP?'up':t===DN?'dn':'same';
+  return `<span class="chip ${cls}"><span class="k">נקודת הקצה של ${BD(ax)}:</span> ${t}, ${o===n?BD(String(o)):BD(o+' → '+n)}</span>`;};
 function cards(){
   document.querySelectorAll('.cards').forEach(box=>{
     const g=box.dataset.group;box.innerHTML='';
     C.filter(cs=>cs.g===g).forEach(cs=>{
       const a=document.createElement('article');a.className='case';a.id='c'+cs.id;
-      a.innerHTML=`<div class="case-head"><span class="num">${cs.id}</span><div><h3>${cs.name}</h3><div class="sub">${cs.sub}</div></div></div>
-        <svg class="pic-svg" role="img" aria-label="שרטוט: ${cs.name}"></svg>
-        ${cs.x?`<div class="chips">${chip(cs.x,'קצה X:')}${chip(cs.y,'קצה Y:')}</div>`:''}
-        <div class="row"><b>מתי זה קורה:</b><ul>${cs.why.map(w=>`<li>${w}</li>`).join('')}</ul></div>
-        <div class="row"><b>העלות האלטרנטיבית של X:</b> ${cs.oc}</div>
-        <div class="exam-s"><span class="lbl">במבחן כותבים</span>${cs.exam}</div>`;
+      const shiftCase=!cs.draw;
+      a.innerHTML=`<div class="case-head"><span class="num">${cs.id}</span><div><h3>${L(cs.name)}</h3><div class="sub">${L(cs.sub)}</div>${cs.note?`<div class="sub note2">${cs.note}</div>`:''}</div></div>
+        <div class="story"><span class="lbl">דוגמה פשוטה</span>${L(cs.story)}</div>
+        <svg class="pic-svg" role="img" aria-label="${plain('שרטוט מצב '+cs.id+': '+altText(cs))}"></svg>
+        ${shiftCase?`<div class="chips">${chip(cs.o[0],cs.n[0],'X')}${chip(cs.o[1],cs.n[1],'Y')}</div>`:''}
+        <div class="row cost"><b>מה זה אומר על העלות:</b> ${L(cs.cost)}${cs.oc?`<span class="gen"><span class="k">באופן כללי:</span> ${L(cs.oc)}</span>`:''}</div>
+        <div class="row"><b>מתי זה קורה:</b><ul>${cs.why.map(w=>`<li>${L(w)}</li>`).join('')}</ul></div>
+        <div class="exam-s"><span class="lbl">במבחן כותבים</span>${L(cs.exam)}</div>`;
       box.appendChild(a);drawCase(a.querySelector('svg'),cs,false);
     });
   });
+  const bs=document.getElementById('baseSvg');
+  if(bs){bs.setAttribute('aria-label','שרטוט: '+BASE.alt);drawCase(bs,BASE,false);}
 }
 function matrix(){
   const mx=document.getElementById('mx');mx.innerHTML='';
   const cols=[UP,EQ,DN],rows=[UP,EQ,DN];
   const map={[UP+UP]:1,[EQ+UP]:3,[DN+UP]:8,[UP+EQ]:2,[EQ+EQ]:9,[DN+EQ]:5,[UP+DN]:7,[EQ+DN]:6,[DN+DN]:4};
-  const add=(html,cls,role)=>{const d=document.createElement('div');d.className=cls;d.setAttribute('role',role);d.innerHTML=html;mx.appendChild(d);return d;};
-  add('','mh corner','columnheader');
-  cols.forEach(cx=>add(`<span>קצה X</span><b>${cx}</b>`,'mh col','columnheader'));
-  rows.forEach(ry=>{
-    add(`<span>קצה Y</span><b>${ry}</b>`,'mh rowh','rowheader');
+  const row=()=>{const r=document.createElement('div');r.className='mrow';r.setAttribute('role','row');mx.appendChild(r);return r;};
+  const add=(r,html,cls,role)=>{const d=document.createElement('div');d.className=cls;d.setAttribute('role',role);d.innerHTML=html;r.appendChild(d);return d;};
+  const hr=row();add(hr,'<span class="sr">נקודת הקצה של Y / נקודת הקצה של X</span>','mh corner','columnheader');
+  cols.forEach(cx=>add(hr,`<span>${BD('X')}</span><b>${cx}</b>`,'mh col','columnheader'));
+  rows.forEach(ry=>{const r=row();
+    add(r,`<span>${BD('Y')}</span><b>${ry}</b>`,'mh rowh','rowheader');
     cols.forEach(cx=>{const id=map[cx+ry];const cs=C.find(k=>k.id===id);
-      const cell=add(`<a href="#c${id}"><svg class="mini" aria-hidden="true"></svg><span class="n">${id}</span><span class="nm">${cs.name}</span></a>`,'cell '+cs.g,'cell');
+      const lab=`מצב ${id}: ${plain(cs.name)}. נקודת הקצה של X ${cx}, נקודת הקצה של Y ${ry}.`;
+      const cell=add(r,`<a href="#c${id}" aria-label="${lab}"><svg class="mini" aria-hidden="true" focusable="false"></svg><span class="n">${id}</span><span class="nm">${L(cs.name)}</span></a>`,'cell '+cs.g,'cell');
       drawCase(cell.querySelector('svg'),cs,true);});
   });
 }
