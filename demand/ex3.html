@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>תרגיל 3 · הביקוש</title>
+<meta name="description" content="הסבר מלא לתרגיל 3 בביקוש: ביקוש של צרכן, תזוזות של עקומת הביקוש, וביקוש מצרפי, עם חישובים, גרפים ותשובות למבחן.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Secular+One&display=swap">
+<style>
+/* Layout: one reading column that follows the question (story → simulator → build the curve → section 2 → section 3 → beyond → exam answer → practice). Same tokens as the lesson 1 page so the two feel like one book. */
+:root{
+  --paper:#f4f6fa; --surface:#ffffff; --ink:#141a2c; --muted:#566079; --line:#dce2ec; --grid:#e8ecf3; --control:#858ea3;
+  --accent:#2340d0; --accent-soft:#e7ecff; --pen:#b8351f; --pen-soft:#fcebe7;
+  --good:#167a4c; --good-soft:#e2f3ea; --bad:#b4311d; --bad-soft:#fbe9e5;
+  --sun:#8a5a00; --sun-soft:#fdf3dc;
+  --c-labor:#8f5800; --c-mach:#087575; --c-floor:#8a3ccf;
+  --c-labor-soft:#f6ead4; --c-mach-soft:#d9f0ef; --c-floor-soft:#efe2fb;
+  --font-display:'Secular One','IBM Plex Sans Hebrew','Segoe UI',Arial,sans-serif;
+  --font-body:'IBM Plex Sans Hebrew','Segoe UI',Arial,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1220; --surface:#161b2c; --ink:#e7eaf3; --muted:#9ba3ba; --line:#2a3249; --grid:#1f2639; --control:#6a7490;
+  --accent:#8299ff; --accent-soft:#1f2851; --pen:#ff8c74; --pen-soft:#3a201b;
+  --good:#4fca93; --good-soft:#123427; --bad:#ff8c74; --bad-soft:#3a201b;
+  --sun:#f2c14e; --sun-soft:#33280f;
+  --c-labor:#f2b346; --c-mach:#45cccc; --c-floor:#bc8fff;
+  --c-labor-soft:#3a2c10; --c-mach-soft:#0f3333; --c-floor-soft:#2c1f45; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1220; --surface:#161b2c; --ink:#e7eaf3; --muted:#9ba3ba; --line:#2a3249; --grid:#1f2639; --control:#6a7490;
+  --accent:#8299ff; --accent-soft:#1f2851; --pen:#ff8c74; --pen-soft:#3a201b;
+  --good:#4fca93; --good-soft:#123427; --bad:#ff8c74; --bad-soft:#3a201b;
+  --sun:#f2c14e; --sun-soft:#33280f;
+  --c-labor:#f2b346; --c-mach:#45cccc; --c-floor:#bc8fff;
+  --c-labor-soft:#3a2c10; --c-mach-soft:#0f3333; --c-floor-soft:#2c1f45; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:1.125rem;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{width:100%;max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:60px}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,6vw,2.8rem)} h2{font-size:1.75rem} h3{font-size:1.3rem}
+p{margin:0} strong{font-weight:700} a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.m{font-family:var(--font-mono);font-size:.92em;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
+section p,section li{max-width:36em}
+.eyebrow{font-size:.875rem;color:var(--muted);font-weight:600}
+.lead{font-size:1.1rem;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:4px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.sec-head .eyebrow{color:var(--accent)}
+
+.top{padding-top:44px;display:flex;flex-direction:column;gap:16px}
+.jump{display:flex;flex-wrap:wrap;gap:8px}
+.jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--control);background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}
+.jump a.main{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px clamp(16px,4vw,24px);display:flex;flex-direction:column;gap:12px}
+.brief{background:var(--accent-soft);border-radius:10px;padding:10px 14px;font-weight:600;font-size:1.06rem}
+.brief .lbl{font-size:.875rem;color:var(--accent);font-weight:700;margin-inline-end:8px}
+.trap{background:var(--pen-soft);border-radius:10px;padding:12px 16px;font-size:1rem}
+.trap b{color:var(--pen)}
+.exam{border:1.5px dashed var(--pen);background:var(--pen-soft);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:8px}
+.exam .who{font-size:.875rem;font-weight:700;color:var(--pen)}
+.note{font-size:.95rem;color:var(--muted)}
+.pic{margin:0;display:flex;flex-direction:column;gap:8px}
+.pic img{width:100%;height:auto;aspect-ratio:3/2;border-radius:14px;display:block;border:1px solid var(--line);background:var(--surface)}
+.pic figcaption{font-size:.95rem;color:var(--muted)}
+
+/* data table */
+.tscroll{overflow-x:auto;max-width:100%}
+table.t{border-collapse:collapse;width:100%;font-size:1rem}
+.t th,.t td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line)}
+.t thead th{font-size:.9rem;color:var(--muted);font-weight:600}
+.t td.n{font-family:var(--font-mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;text-align:right}
+.t caption{caption-side:top;text-align:right;font-weight:700;padding-bottom:6px}
+.t tr.hi td,.t tr.hi th{background:var(--accent-soft)}
+th.labor,td.labor{color:var(--c-labor)} th.mach,td.mach{color:var(--c-mach)} th.floor,td.floor{color:var(--c-floor)}
+
+/* boxes (3 resources) */
+.res3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.res{border-radius:12px;padding:12px 14px;border:2px solid currentColor;display:flex;flex-direction:column;gap:2px;min-width:0}
+.res b{font-size:1.05rem}
+.res span{font-family:var(--font-mono);font-size:1.1rem}
+.res.labor{color:var(--c-labor);background:var(--c-labor-soft)} .res.mach{color:var(--c-mach);background:var(--c-mach-soft)} .res.floor{color:var(--c-floor);background:var(--c-floor-soft)}
+.res .sm{font-family:var(--font-body);font-size:.92rem;color:var(--ink)}
+@media (max-width:560px){.res3{grid-template-columns:1fr}}
+
+/* lab */
+.lab{background:var(--surface);border:1.5px solid var(--ink);border-radius:16px;padding:18px clamp(14px,3vw,22px);display:flex;flex-direction:column;gap:14px}
+.lab-title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tag{font-family:var(--font-mono);font-size:.8rem;background:var(--ink);color:var(--paper);padding:2px 8px;border-radius:4px}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:720px){.lab-grid{grid-template-columns:1fr}}
+.range{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
+.range label{font-weight:600;font-size:1rem}
+.range output{font-family:var(--font-mono);font-weight:600;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:4px 10px;min-width:4.2em;text-align:center}
+input[type=range]{width:100%;accent-color:var(--accent);height:44px}
+.meter{display:flex;flex-direction:column;gap:4px}
+.meter .row{display:flex;justify-content:space-between;gap:8px;font-size:.95rem}
+.meter .row b{font-weight:700}
+.bar{height:16px;border-radius:999px;background:var(--grid);overflow:hidden;position:relative;border:1px solid var(--line)}
+.bar i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:999px;transition:width .25s}
+.meter.labor i{background:var(--c-labor)} .meter.mach i{background:var(--c-mach)} .meter.floor i{background:var(--c-floor)}
+.meter.boss .row b::after{content:" · הבוס";font-weight:700}
+.meter.boss .bar{outline:3px solid var(--pen);outline-offset:1px}
+.readout{background:var(--paper);border-radius:10px;padding:12px 14px;font-size:1rem;min-height:3.4em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:600 .95rem var(--font-body);border:1.5px solid var(--control);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 16px;cursor:pointer;min-height:44px}
+.btn:hover{border-color:var(--accent)}
+.btn[aria-pressed="true"],.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* charts */
+.chart{width:100%;height:auto;display:block;direction:ltr;max-width:100%}
+.chart text{font-family:var(--font-body)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.92rem;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px;vertical-align:middle;margin-inline-end:6px}
+
+/* steps / stepper */
+.steps{margin:0;padding-inline-start:1.4em;display:flex;flex-direction:column;gap:10px}
+.steps li::marker{font-family:var(--font-mono);color:var(--accent);font-weight:600}
+.eq{font-family:var(--font-mono);direction:ltr;text-align:right;background:var(--paper);border-radius:8px;padding:8px 12px;overflow-x:auto;white-space:nowrap;line-height:1.9;font-size:.98rem}
+.stepcap{background:var(--paper);border-radius:10px;padding:12px 14px;min-height:5.2em}
+
+/* stairs */
+.stairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stair{border-radius:12px;padding:12px 14px;border:2px solid currentColor;display:flex;flex-direction:column;gap:4px;min-width:0}
+.stair .big{font-family:var(--font-display);font-size:1.8rem;line-height:1.1}
+.stair .sm{color:var(--ink);font-size:.95rem}
+.stair.labor{color:var(--c-labor);background:var(--c-labor-soft)} .stair.floor{color:var(--c-floor);background:var(--c-floor-soft)} .stair.mach{color:var(--c-mach);background:var(--c-mach-soft)}
+@media (max-width:560px){.stairs{grid-template-columns:1fr}}
+
+/* practice */
+.qrow{display:grid;grid-template-columns:minmax(0,1fr) 7.5em auto;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:8px 0}
+.qrow label{font-size:1rem}
+.qrow input{font:600 1.05rem var(--font-mono);padding:8px 10px;border:1.5px solid var(--control);border-radius:8px;background:var(--surface);color:var(--ink);width:100%;min-height:44px;direction:ltr;text-align:center}
+.qrow .st{font-weight:700;min-width:2.2em;text-align:center}
+.qrow .st.ok{color:var(--good)} .qrow .st.no{color:var(--bad)}
+@media (max-width:520px){.qrow{grid-template-columns:1fr 6.5em auto}}
+details.sol{border:1.5px solid var(--good);border-radius:12px;background:var(--surface)}
+details.sol>summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--good);min-height:44px;display:flex;align-items:center}
+.sol-body{padding:0 16px 16px;display:flex;flex-direction:column;gap:10px}
+.mist{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.mist li{background:var(--surface);border:1px solid var(--line);border-inline-start:5px solid var(--pen);border-radius:8px;padding:10px 14px}
+.mist b{color:var(--pen)}
+footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padding-top:16px}
+.wrap>*,.stack>*,.lab>*,.box>*,.exam>*,.lab-grid>*,.sol-body>*{min-width:0}
+.eq{max-width:100%}
+.t td.n{white-space:nowrap}
+@media (max-width:620px){#buildChart text,#areaChart text{font-size:21px!important}#simChart text{font-size:16px!important}}
+
+.jump .sep{color:var(--muted);font-size:.9rem;align-self:center;margin-inline:4px}
+.part-sep{display:flex;flex-direction:column;gap:6px;background:var(--ink);color:var(--paper);border-radius:16px;padding:18px clamp(16px,4vw,24px);scroll-margin-top:16px}
+.part-sep span{font-family:var(--font-mono);font-size:.9rem;opacity:.8}
+.part-sep h2{color:var(--paper)}
+.syms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.syms{grid-template-columns:1fr}}
+.sym{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;font-size:.98rem;line-height:1.6;scroll-margin-top:16px;min-width:0}
+.sym .s{font-family:var(--font-mono);font-size:1.5rem;font-weight:600;color:var(--accent)}
+.sym:target{outline:3px solid var(--accent);outline-offset:2px}
+.fracs{display:inline-flex;flex-direction:column;align-items:center;font-size:.8em;line-height:1;vertical-align:middle}
+.fracs span:first-child{border-bottom:2px solid currentColor;padding:0 3px 2px}
+.symnote{background:var(--sun-soft);border-inline-start:4px solid var(--sun);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.symnote b{color:var(--sun)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.stairs.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:620px){.stairs.five{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stairs.five .stair{color:var(--accent);background:var(--accent-soft)}
+th.veg{color:var(--good)} th.wheat{color:var(--sun)}
+.btn.plot{min-width:64px;font-family:var(--font-mono);font-size:1.05rem}
+.btn.plot:disabled{opacity:1;background:var(--pen-soft);border-color:var(--pen);color:var(--pen);cursor:default}
+
+.pill{display:inline-block;border-radius:999px;padding:0 10px;font-size:.92rem;font-weight:700;border:1.5px solid currentColor}
+.pill.t{color:var(--c-mach)} .pill.d{color:var(--accent)} .pill.w{color:var(--sun)}
+.tstep{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px clamp(12px,3vw,20px)}
+.tnum{width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--surface);display:grid;place-items:center;font-family:var(--font-mono);font-weight:600;font-size:1.1rem}
+.tstep.bonus .tnum{background:var(--sun)}
+.tbody{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tbody>*{min-width:0}
+.tbody h3{font-size:1.3rem}
+.teach{border-inline-start:4px solid var(--c-mach);background:var(--c-mach-soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.teach b{color:var(--c-mach)}
+.did{display:flex;flex-direction:column;gap:8px;min-width:0}
+.did>b:first-child{color:var(--accent)}
+.why{border-inline-start:4px solid var(--sun);background:var(--sun-soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.why b{color:var(--sun)}
+.t td.hl{font-weight:700}
+@media (max-width:520px){.tstep{grid-template-columns:1fr}.tnum{width:36px;height:36px}}
+
+.eq.mixed{direction:rtl;text-align:right;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;white-space:normal}
+.eq.mixed .hx{font-family:var(--font-body);font-weight:600;white-space:nowrap}
+.eq.mixed .mx{white-space:normal}
+.eq.mixed .sg{white-space:nowrap}
+.eq.mixed .sg.op{color:var(--muted)}
+
+.vidsec{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1.5px solid var(--ink);border-radius:16px;padding:16px clamp(12px,3vw,20px);scroll-margin-top:16px}
+.vid-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.vid-head h2{font-size:clamp(1.3rem,3.6vw,1.7rem)}
+.vidframe{margin:0}
+.vidframe video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);background:#000}
+.transcript summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center;color:var(--accent)}
+.transcript p{margin:0 0 8px;font-size:1rem}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* exercise 2 */
+.part-sep.ex2sep{background:var(--accent)}
+.part-sep.ex2sep h2,.part-sep.ex2sep span{color:var(--surface)}
+.qtext{background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:0 12px 12px 0;padding:12px 16px;font-size:1.05rem}
+.mcq{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:start;font:500 1rem var(--font-body);border:1.5px solid var(--control);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer;min-height:44px}
+.opt:hover{border-color:var(--accent)}
+.opt.ok{border-color:var(--good);background:var(--good-soft);font-weight:700}
+.opt.no{border-color:var(--bad);background:var(--bad-soft)}
+.opt.dim{opacity:.6}
+.fb{margin:0;padding:10px 14px;border-radius:10px;background:var(--paper)}
+.fb:empty{display:none}
+.chart.sm{max-width:560px;margin-inline:auto}
+.qsec .tstep .tnum{font-family:var(--font-display)}
+.dd{margin:0}
+.bk-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:620px){.bk-facts,.bk-defs{grid-template-columns:1fr}}
+.bk-fact{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.bk-fact p{margin:0}
+.bk-fact.cake{border-inline-start:4px solid var(--c-floor)}
+.bk-fact.bread{border-inline-start:4px solid var(--c-labor)}
+.bk-ico{font-size:1.8rem;line-height:1.1}
+.bk-calc{margin:0;font-weight:700;background:var(--accent-soft);border-radius:8px;padding:6px 10px;color:var(--accent)}
+.bk-defs .box{gap:8px}
+.bk-legend,.bk-barkey{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;color:var(--muted)}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-inline-end:6px;box-sizing:border-box}
+.sw.cake{background:var(--c-floor-soft);border:2px solid var(--c-floor)}
+.sw.bread{background:var(--c-labor-soft);border:2px solid var(--c-labor)}
+.sw.moved{background:var(--c-labor-soft);border:2.5px solid var(--pen)}
+.sw.lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 3px,var(--pen) 3px 5px);border:2px solid var(--pen)}
+.bk-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;max-width:440px;width:100%;margin-inline:auto}
+.bk-grid .w{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:clamp(.72rem,2.7vw,1.05rem);border:2px solid;position:relative;transition:background-color .4s,border-color .4s,box-shadow .4s}
+.bk-grid .w.cake{background:var(--c-floor-soft);border-color:var(--c-floor)}
+.bk-grid .w.bread{background:var(--c-labor-soft);border-color:var(--c-labor)}
+.bk-grid .w.moved{border-color:var(--pen);box-shadow:0 0 0 2.5px var(--pen)}
+.bk-grid .w.boost::after{content:'✨';position:absolute;top:-6px;inset-inline-start:-5px;font-size:.62em}
+.bk-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:520px){.bk-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bk-st{background:var(--paper);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.bk-st.hi{background:var(--accent-soft)}
+.bk-st .k{font-size:.82rem;color:var(--muted);font-weight:600;line-height:1.3}
+.bk-st .v{font:600 1.35rem var(--font-mono);direction:ltr;unicode-bidi:isolate;text-align:right}
+.bk-st .d{font-size:.82rem;font-weight:700;color:var(--accent);min-height:1.2em}
+.bk-barwrap{display:flex;flex-direction:column;gap:6px}
+.bk-barlbl{font-weight:700;font-size:.95rem}
+.bk-bar{display:flex;height:36px;border-radius:10px;overflow:hidden;border:1.5px solid var(--line)}
+.bk-bar>div{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;transition:flex-basis .5s;flex-grow:0;flex-shrink:0}
+.bk-bar .have{background:var(--c-labor-soft);color:var(--c-labor)}
+.bk-bar .lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 9px,var(--surface) 9px 14px);color:var(--pen);border-inline-start:2px solid var(--pen)}
+.dd>b:first-child{color:var(--accent)}
+.mainflow{display:flex;flex-direction:column;gap:56px}
+.mainflow>*{min-width:0}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.rules{grid-template-columns:1fr}}
+.rule-c{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.rule-c .k{font-size:.8rem;font-weight:700;color:var(--muted)} .rule-c b{font-size:1.05rem} .rule-c span{font-size:.97rem}
+.chart.sm{max-width:560px;margin-inline:auto}
+.jump .sep{color:var(--muted);font-size:.9rem;align-self:center;margin-inline:4px}
+.eq{white-space:normal}
+@media (max-width:560px){.eq .m,p .m,td .m{white-space:normal}}
+.legend-l{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;font-size:.92rem;font-weight:600}
+.lg.c1{color:var(--accent)} .lg.c2{color:var(--good)} .lg.c3{color:var(--pen)}
+</style>
+<div class="wrap" dir="rtl" lang="he">
+<header class="top" id="top">
+  <div class="eyebrow">מבוא למיקרו־כלכלה · תרגיל 3 · הביקוש</div>
+  <h1>תרגיל 3: הביקוש</h1>
+  <p class="lead">הסבר לכל השאלות בתרגיל: ביקוש של צרכן אחד, מה מזיז את עקומת הביקוש, וביקוש מצרפי (של כל השוק). לכל שאלה: איך חושבים, החישוב, שרטוט, ומה כותבים בתשובה.</p>
+  <p class="brief"><span class="lbl">לפני שמתחילים</span>התרגיל נשען על <a href="./#p1">שיעור הביקוש והגמישות</a>. אם מילה לא ברורה, יש <a href="../#dict">מילון</a>.</p>
+  <nav class="jump" aria-label="קפיצה לשאלות">
+    <a class="main" href="#rules">3 הכללים</a><span class="sep">חלק א׳:</span><a href="#a1">שאלה 1</a><a href="#a2">שאלה 2</a><a href="#a3">שאלה 3</a><span class="sep">ביקוש מצרפי:</span><a href="#b1">שאלה 1</a><a href="#b2">שאלה 2</a><a href="#b3">שאלה 3</a><span class="sep">אמריקאיות:</span><a href="#c1">1</a><a href="#c2">2</a><a href="#sum">סיכום</a>
+  </nav>
+</header>
+
+<main class="mainflow">
+
+<section id="rules" class="stack" aria-labelledby="h-rules">
+  <div class="sec-head"><div class="eyebrow">לפני השאלות</div><h2 id="h-rules">3 כללים שפותרים את כל התרגיל</h2></div>
+  <div class="rules">
+    <div class="rule-c"><div class="k">כלל 1</div><b>מחיר המוצר עצמו משתנה</b><span>זזים <strong>לאורך</strong> עקומת הביקוש. העקומה לא זזה. זה "שינוי בכמות המבוקשת".</span></div>
+    <div class="rule-c"><div class="k">כלל 2</div><b>משהו אחר משתנה</b><span>הכנסה, מחיר של מוצר אחר, טעמים: <strong>כל העקומה זזה</strong>. זה "שינוי בביקוש".</span></div>
+    <div class="rule-c"><div class="k">כלל 3</div><b>ביקוש מצרפי = מחברים כמויות</b><span>בכל מחיר, מחברים את הכמויות של כל הצרכנים. מחברים <strong>לרוחב</strong> (כמויות), לא לגובה (מחירים).</span></div>
+  </div>
+  <div class="tscroll"><table class="t"><caption>לאן זזה עקומת הביקוש של המוצר שלנו</caption>
+    <thead><tr><th scope="col">מה קרה</th><th scope="col">מוצר נורמלי / תחליפי</th><th scope="col">מוצר נחות / משלים</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">ההכנסה עלתה</th><td>ימינה (קונים יותר)</td><td>נחות: שמאלה (קונים פחות)</td></tr>
+      <tr><th scope="row">מחיר המוצר האחר עלה</th><td>תחליפי: ימינה (עוברים אלינו)</td><td>משלים: שמאלה (קונים פחות מהזוג)</td></tr>
+    </tbody></table></div>
+  <p class="symnote"><b>מוצר ניטרלי:</b> כשההכנסה משתנה, הביקוש לא משתנה בכלל. העקומה נשארת במקום.</p>
+</section>
+
+<div class="part-sep"><span>חלק א׳</span><h2>הביקוש של צרכן אחד</h2></div>
+
+<!-- A1 -->
+<section id="a1" class="stack qsec" aria-labelledby="h-a1">
+  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a1" style="font-size:1.6rem">שאלה 1 · ביקוש לבשר בקר</h3></div>
+  <div class="qtext">הביקוש לבשר בקר: <bdi dir="ltr" class="m">Q_B = 0.03I − 3P_B + 2P_C</bdi>. ‏<bdi dir="ltr" class="m">Q_B</bdi> = כמות בשר בקר, <bdi dir="ltr" class="m">P_B</bdi> = מחיר ק״ג בקר, <bdi dir="ltr" class="m">P_C</bdi> = מחיר ק״ג עוף, <bdi dir="ltr" class="m">I</bdi> = הכנסה. הניחו <bdi dir="ltr" class="m">P_C = 5</bdi> ו־<bdi dir="ltr" class="m">I = 2,000</bdi>. תארו את עקומת הביקוש, ואז ענו על סעיפים 1–4.</div>
+  <div class="tstep"><div class="tnum">0</div><div class="tbody">
+    <h3>קודם כול: מה כל מספר בנוסחה אומר</h3>
+    <ul class="steps" style="list-style:disc">
+      <li><bdi dir="ltr" class="m">−3P_B</bdi>: כשמחיר הבקר עולה בשקל, קונים 3 ק״ג פחות. המינוס הוא חוק הביקוש.</li>
+      <li><bdi dir="ltr" class="m">+2P_C</bdi>: כשמחיר העוף עולה, קונים <strong>יותר</strong> בקר. לכן עוף ובקר הם <strong>תחליפים</strong>.</li>
+      <li><bdi dir="ltr" class="m">+0.03I</bdi>: כשההכנסה עולה, קונים <strong>יותר</strong> בקר. לכן בקר הוא <strong>מוצר נורמלי</strong>.</li>
+    </ul>
+    <p class="did"><strong>מציבים את הנתונים:</strong></p>
+    <div class="eq"><bdi dir="ltr" class="m">Q_B = 0.03·2000 − 3P_B + 2·5 = 60 + 10 − 3P_B = 70 − 3P_B</bdi></div>
+    <p>זו עקומת הביקוש: קו ישר. אם הבקר בחינם, קונים 70 ק״ג. אם המחיר <bdi dir="ltr" class="m">70 ÷ 3 ≈ 23.3</bdi> ש״ח, לא קונים כלום.</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">1</div><div class="tbody">
+    <h3>סעיף 1: המחיר 8 ש״ח</h3>
+    <div class="eq"><bdi dir="ltr" class="m">Q_B = 70 − 3·8 = 70 − 24 = 46</bdi></div>
+    <p>הכמות המבוקשת: <strong>46 ק״ג</strong> (נקודה A בגרף).</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">2</div><div class="tbody">
+    <h3>סעיף 2: מחיר הבקר עלה ל־14 ש״ח</h3>
+    <div class="eq"><bdi dir="ltr" class="m">Q_B = 70 − 3·14 = 70 − 42 = 28</bdi></div>
+    <p>הכמות ירדה ל־<strong>28 ק״ג</strong> (נקודה B). <strong>העקומה לא זזה.</strong> השתנה המחיר של המוצר עצמו, ולכן זזים <strong>לאורך</strong> העקומה, מ־A ל־B. זה שינוי בכמות המבוקשת, לא בביקוש.</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">3</div><div class="tbody">
+    <h3>סעיף 3: מחיר העוף עלה ל־10 ש״ח</h3>
+    <div class="eq"><bdi dir="ltr" class="m">Q_B = 60 + 2·10 − 3P_B = 80 − 3P_B</bdi></div>
+    <p>בכל מחיר של בקר, קונים עכשיו <strong>10 ק״ג יותר</strong>. במחיר 14: <bdi dir="ltr" class="m">80 − 42 = 38</bdi> ק״ג (ובמחיר 8: <bdi dir="ltr" class="m">80 − 24 = 56</bdi>).</p>
+    <p><strong>כן, העקומה זזה ימינה.</strong> השתנה מחיר של מוצר <strong>אחר</strong>. העוף התייקר, ואנשים עוברים לבקר, ולכן עוף ובקר הם <strong>מוצרים תחליפיים</strong>.</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">4</div><div class="tbody">
+    <h3>סעיף 4: ההכנסה עלתה ל־3,000 ש״ח</h3>
+    <div class="eq"><bdi dir="ltr" class="m">Q_B = 0.03·3000 + 2·5 − 3P_B = 90 + 10 − 3P_B = 100 − 3P_B</bdi></div>
+    <p>בכל מחיר קונים <strong>30 ק״ג יותר</strong>. במחיר 14: <bdi dir="ltr" class="m">100 − 42 = 58</bdi> ק״ג (ובמחיר 8: <bdi dir="ltr" class="m">100 − 24 = 76</bdi>).</p>
+    <p><strong>כן, העקומה זזה ימינה.</strong> ההכנסה עלתה והביקוש עלה, ולכן בשר בקר הוא <strong>מוצר נורמלי</strong>.</p>
+    <p class="note" style="margin:0">הנחה: בכל סעיף משנים רק את הנתון שבסעיף, והשאר כמו בנתונים המקוריים (עוף 5 ש״ח). אם המורה רוצה שהשינויים יצטברו (עוף 10 וגם הכנסה 3,000), העקומה היא <bdi dir="ltr" class="m">Q_B = 110 − 3P_B</bdi>.</p>
+  </div></div>
+  <div class="lab">
+    <div class="lab-title"><span class="tag">גרף</span><h3>כל הסעיפים על גרף אחד</h3></div>
+    <div class="btns" id="a1Btns" role="group" aria-label="מה להציג">
+      <button class="btn" type="button" data-s="0" aria-pressed="false">רק העקומה המקורית</button><button class="btn" type="button" data-s="1" aria-pressed="false">+ סעיף 3 (עוף)</button><button class="btn" type="button" data-s="2" aria-pressed="true">+ סעיף 4 (הכנסה)</button>
+    </div>
+    <svg class="chart" id="a1Chart" viewBox="0 0 560 420" role="img" aria-label="עקומות הביקוש לבשר בקר"></svg>
+    <p class="legend-l"><span class="lg c1">כחול: העקומה המקורית <bdi dir="ltr" class="m">Q = 70 − 3P</bdi></span><span class="lg c2">ירוק: אחרי שהעוף התייקר</span><span class="lg c3">כתום: אחרי שההכנסה עלתה</span></p>
+    <p class="note" style="margin:0">המחיר על הציר האנכי, הכמות על האופקי, כמו בכל גרף ביקוש. A ל־B: תנועה לאורך העקומה. החיצים: תזוזה של כל העקומה.</p>
+  </div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div>
+    <p>עקומת הביקוש: <bdi dir="ltr" class="m">Q_B = 70 − 3P_B</bdi>. (1) ‏<bdi dir="ltr" class="m">Q_B = 46</bdi>. (2) ‏<bdi dir="ltr" class="m">Q_B = 28</bdi>. זו תנועה לאורך עקומת הביקוש ולא שינוי שלה, כי השתנה מחיר המוצר עצמו. (3) ‏<bdi dir="ltr" class="m">Q_B = 80 − 3P_B</bdi>, ובמחיר 14 ‏<bdi dir="ltr" class="m">Q_B = 38</bdi>. עקומת הביקוש זזה ימינה, כי השתנה מחיר מוצר אחר. העוף הוא מוצר תחליפי לבקר, כי עלייה במחירו הגדילה את הביקוש לבקר (המקדם של <bdi dir="ltr" class="m">P_C</bdi> חיובי). (4) ‏<bdi dir="ltr" class="m">Q_B = 100 − 3P_B</bdi>, ובמחיר 14 ‏<bdi dir="ltr" class="m">Q_B = 58</bdi>. עקומת הביקוש זזה ימינה. בשר בקר הוא מוצר נורמלי, כי עלייה בהכנסה הגדילה את הביקוש (המקדם של <bdi dir="ltr" class="m">I</bdi> חיובי).</p>
+  </div>
+</section>
+
+<!-- A2 -->
+<section id="a2" class="stack qsec" aria-labelledby="h-a2">
+  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a2" style="font-size:1.6rem">שאלה 2 · גרביים</h3></div>
+  <div class="qtext">הטבלה: כמה זוגות גרביים צרכן יקנה בשנה, לפי המחיר (P) וההכנסה החודשית (I). (1) התוו את עקומות הביקוש (המחיר על ציר Y). (2) האם גרביים הם מוצר נורמלי או נחות?</div>
+  <div class="tscroll"><table class="t"><caption>זוגות גרביים בשנה</caption><thead><tr><th scope="col">מחיר P</th><th scope="col">I = 800</th><th scope="col">I = 1000</th><th scope="col">I = 1200</th><th scope="col">I = 1400</th></tr></thead>
+  <tbody><tr><th scope="row">2</th><td class="n">12</td><td class="n">14</td><td class="n">18</td><td class="n">20</td></tr><tr><th scope="row">3</th><td class="n">8</td><td class="n">10</td><td class="n">13</td><td class="n">16</td></tr><tr><th scope="row">4</th><td class="n">6</td><td class="n">7</td><td class="n">8</td><td class="n">10</td></tr></tbody></table></div>
+  <div class="tstep"><div class="tnum">1</div><div class="tbody">
+    <h3>הטריק: כל עמודה היא עקומת ביקוש אחת</h3>
+    <p>עקומת ביקוש מראה מה קורה כשרק <strong>המחיר</strong> משתנה. לכן מחזיקים את ההכנסה קבועה, כלומר לוקחים <strong>עמודה אחת</strong>. למשל ב־<bdi dir="ltr" class="m">I = 800</bdi> הנקודות הן <bdi dir="ltr" class="m">(12, 2)</bdi>, ‏<bdi dir="ltr" class="m">(8, 3)</bdi>, ‏<bdi dir="ltr" class="m">(6, 4)</bdi>: כמות ראשונה, מחיר שני. ארבע עמודות = ארבע עקומות.</p>
+    <p class="note" style="margin:0">המספר מתחת לכל קו = ההכנסה <bdi dir="ltr" class="m">I</bdi> של העקומה.</p>
+    <svg class="chart" id="a2Chart" viewBox="0 0 560 420" role="img" aria-label="ארבע עקומות ביקוש לגרביים, אחת לכל רמת הכנסה. ככל שההכנסה גבוהה יותר, העקומה ימינה יותר"></svg>
+  </div></div>
+  <div class="tstep"><div class="tnum">2</div><div class="tbody">
+    <h3>נורמלי או נחות?</h3>
+    <p>קוראים <strong>שורה</strong> (מחיר קבוע): במחיר 2, ככל שההכנסה עולה, הכמות עולה: <bdi dir="ltr" class="m">12, 14, 18, 20</bdi>. אותו דבר בכל שורה. לכן כל עקומה חדשה נמצאת <strong>מימין</strong> לקודמת, וגרביים הם <strong>מוצר נורמלי</strong>.</p>
+  </div></div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p>כל עמודה בטבלה (הכנסה קבועה) נותנת עקומת ביקוש אחת: ככל שהמחיר עולה, הכמות יורדת. גרביים הם מוצר נורמלי, כי בכל מחיר, עלייה בהכנסה מגדילה את הכמות המבוקשת. כלומר עקומת הביקוש זזה ימינה כשההכנסה עולה.</p></div>
+</section>
+
+<!-- A3 -->
+<section id="a3" class="stack qsec" aria-labelledby="h-a3">
+  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a3" style="font-size:1.6rem">שאלה 3 · נכון או לא נכון</h3></div>
+  <div class="qtext">"אם מצרך נתון הוא מצרך משלים למצרך אחר, אזי עלייה במחיר השוק של המוצר האחר תביא לעלייה בכמות המבוקשת מן המצרך הנתון."</div>
+  <div class="tstep"><div class="tnum">✗</div><div class="tbody">
+    <h3>לא נכון</h3>
+    <p>מוצרים משלימים קונים <strong>יחד</strong>, כמו מדפסת ודיו. אם המדפסת מתייקרת, קונים פחות מדפסות, ולכן צריך <strong>פחות</strong> דיו. הביקוש לדיו <strong>יורד</strong>: העקומה זזה <strong>שמאלה</strong>, ובכל מחיר קונים פחות דיו.</p>
+    <svg class="chart sm" id="a3Chart" viewBox="0 0 560 360" role="img" aria-label="עקומת הביקוש לדיו זזה שמאלה כשמחיר המדפסת עולה"></svg>
+    <p class="symnote"><b>הטענה מתאימה למוצרים תחליפיים:</b> אם הקפה מתייקר, קונים יותר תה.</p>
+  </div></div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p>לא נכון. מוצרים משלימים נצרכים יחד. עלייה במחיר המוצר האחר מקטינה את הכמות שקונים ממנו, ולכן גם את הביקוש למוצר הנתון. עקומת הביקוש למוצר הנתון זזה שמאלה, ובכל מחיר הכמות המבוקשת קטנה. (עלייה בכמות המבוקשת הייתה מתרחשת אם המוצרים היו תחליפיים.)</p></div>
+</section>
+
+<div class="part-sep"><span>חלק ב׳</span><h2>ביקוש הצרכן וביקוש מצרפי</h2></div>
+
+<!-- B1 -->
+<section id="b1" class="stack qsec" aria-labelledby="h-b1">
+  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי</div><h3 id="h-b1" style="font-size:1.6rem">שאלה 1 · טיסות נופש: פרטיים וּוַעדים</h3></div>
+  <div class="qtext">ביקוש לטיסות נופש של צרכנים פרטיים ושל ועדי עובדים. השוק = שתי הקבוצות בלבד. (א) עקומת ביקוש לכל קבוצה ולשוק. (ב) ההכנסה של חברי הוועדים עלתה: +5 טיסות בכל מחיר נמוך מ־10, ו־+3 בכל מחיר גבוה מ־10. (ג) שכר הפרטיים נשחק ב־10%, והכמות שלהם ירדה בכ־20% בכל מחיר. (ד) מה קרה לשוק?</div>
+  <div class="tstep"><div class="tnum">א</div><div class="tbody">
+    <h3>הביקוש בשוק = פרטיים + ועדים, בכל מחיר</h3>
+    <div class="tscroll"><table class="t" id="b1Table"><caption>סעיף א: מחברים כל שורה</caption><thead><tr><th scope="col">מחיר</th><th scope="col">פרטיים</th><th scope="col">ועדים</th><th scope="col">שוק</th></tr></thead><tbody></tbody></table></div>
+  </div></div>
+  <div class="tstep"><div class="tnum">ב</div><div class="tbody">
+    <h3>הוועדים: ההכנסה עלתה</h3>
+    <p>במחירים 3, 6, 8 (פחות מ־10) מוסיפים 5. במחירים 12, 15, 20 (יותר מ־10) מוסיפים 3. העקומה של הוועדים זזה <strong>ימינה</strong>. ההכנסה עלתה והביקוש עלה, ולכן בשבילם טיסות נופש הן <strong>מוצר נורמלי</strong>.</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">ג</div><div class="tbody">
+    <h3>הפרטיים: ההכנסה ירדה</h3>
+    <p>כופלים כל כמות ב־0.8 (ירידה של 20%): <bdi dir="ltr" class="m">20 × 0.8 = 16</bdi>, וכן הלאה. העקומה של הפרטיים זזה <strong>שמאלה</strong>. ההכנסה ירדה והביקוש ירד, ולכן גם בשבילם טיסות נופש הן <strong>מוצר נורמלי</strong>.</p>
+    <p class="note" style="margin:0">בשאלה כתוב בסעיף ג "בשביל ועדי העובדים". כנראה התכוונו לצרכנים הפרטיים, שבהם עוסק הסעיף. התשובה: מוצר נורמלי.</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">ד</div><div class="tbody">
+    <h3>השוק אחרי שני השינויים</h3>
+    <p>מחברים את הכמויות <strong>החדשות</strong>. בכל מחיר, התוספת של הוועדים גדולה מההפסד של הפרטיים. לכן <strong>הביקוש בשוק עלה</strong>, והעקומה המצרפית זזה ימינה, אבל רק מעט (בין 1 ל־2.6 טיסות בכל מחיר).</p>
+  </div></div>
+  <div class="tscroll"><table class="t"><caption>כל הנתונים: לפני ואחרי</caption><thead><tr><th scope="col">מחיר</th><th scope="col">ועדים חדש</th><th scope="col">פרטיים חדש</th><th scope="col">שוק לפני</th><th scope="col">שוק אחרי</th><th scope="col">שינוי</th></tr></thead><tbody id="b1Table2"></tbody></table></div>
+  <div class="lab">
+    <div class="lab-title"><span class="tag">גרף</span><h3>שלושת הגרפים</h3></div>
+    <div class="btns" id="b1Btns" role="group" aria-label="איזה גרף">
+      <button class="btn" type="button" data-g="pr" aria-pressed="false">פרטיים</button><button class="btn" type="button" data-g="co" aria-pressed="false">ועדים</button><button class="btn" type="button" data-g="mk" aria-pressed="true">השוק</button>
+    </div>
+    <svg class="chart" id="b1Chart" viewBox="0 0 560 420" role="img" aria-label="עקומת הביקוש לפני ואחרי"></svg>
+    <p class="note" style="margin:0">קו מקווקו = לפני. קו רציף = אחרי.</p>
+  </div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p>(א) עקומת הביקוש המצרפית מתקבלת מסכימה אופקית: בכל מחיר מחברים את הכמויות של שתי הקבוצות. (ב) עקומת הביקוש של הוועדים זזה ימינה. טיסות נופש הן מוצר נורמלי עבורם, כי עלייה בהכנסה הגדילה את הביקוש. (ג) עקומת הביקוש של הפרטיים זזה שמאלה. גם עבורם זה מוצר נורמלי, כי ירידה בהכנסה הקטינה את הביקוש. (ד) בכל מחיר, הגידול בביקוש של הוועדים גדול מהירידה בביקוש של הפרטיים, ולכן עקומת הביקוש המצרפית זזה מעט ימינה.</p></div>
+</section>
+
+<!-- B2 -->
+<section id="b2" class="stack qsec" aria-labelledby="h-b2">
+  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי</div><h3 id="h-b2" style="font-size:1.6rem">שאלה 2 · 700 צרכנים זהים</h3></div>
+  <div class="qtext">בשוק בתחרות משוכללת יש 700 צרכנים למוצר X. פונקציית הביקוש של צרכן בודד: <bdi dir="ltr" class="m">P = 700 − 2100q</bdi>. חשבו את עקומת הביקוש המצרפית.</div>
+  <div class="tstep"><div class="tnum">1</div><div class="tbody">
+    <h3>שלב 1: מבודדים את הכמות</h3>
+    <p>הנוסחה כתובה "מחיר לפי כמות". כדי לחבר כמויות, הופכים אותה ל"כמות לפי מחיר":</p>
+    <div class="eq"><bdi dir="ltr" class="m">2100q = 700 − P → q = (700 − P) ÷ 2100</bdi></div>
+  </div></div>
+  <div class="tstep"><div class="tnum">2</div><div class="tbody">
+    <h3>שלב 2: כופלים במספר הצרכנים</h3>
+    <p>כל 700 הצרכנים זהים, ולכן בכל מחיר הכמות בשוק היא פי 700:</p>
+    <div class="eq"><bdi dir="ltr" class="m">Q = 700 · (700 − P) ÷ 2100 = (700 − P) ÷ 3</bdi></div>
+  </div></div>
+  <div class="tstep"><div class="tnum">3</div><div class="tbody">
+    <h3>שלב 3: אפשר לכתוב גם "מחיר לפי כמות"</h3>
+    <div class="eq"><bdi dir="ltr" class="m">3Q = 700 − P → P = 700 − 3Q</bdi></div>
+    <p><strong>בדיקה:</strong> במחיר 400, צרכן אחד קונה <bdi dir="ltr" class="m">300 ÷ 2100 = 1/7</bdi>, ו־700 צרכנים קונים <bdi dir="ltr" class="m">700 × 1/7 = 100</bdi>. מהנוסחה: <bdi dir="ltr" class="m">(700 − 400) ÷ 3 = 100</bdi> ✓.</p>
+    <svg class="chart sm" id="b2Chart" viewBox="0 0 560 360" role="img" aria-label="עקומת הביקוש המצרפית P = 700 − 3Q: מחיר 700 בכמות 0, כמות 233 במחיר 0"></svg>
+  </div></div>
+  <p class="symnote"><b>הטעות הכי נפוצה:</b> לכפול את המחיר ב־700. לא! מחברים <strong>כמויות</strong>, אז קודם מבודדים את q. שימו לב שהמחיר המקסימלי (700) נשאר אותו דבר, ורק הכמות גדלה פי 700.</p>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p>מבודדים את הכמות של צרכן בודד: <bdi dir="ltr" class="m">q = (700 − P) ÷ 2100</bdi>. כל הצרכנים זהים, ולכן הביקוש המצרפי הוא סכימה אופקית של 700 ביקושים זהים: <bdi dir="ltr" class="m">Q = 700q = (700 − P) ÷ 3</bdi>, כלומר <bdi dir="ltr" class="m">P = 700 − 3Q</bdi>, בתחום <bdi dir="ltr" class="m">0 ≤ P ≤ 700</bdi>.</p></div>
+</section>
+
+<!-- B3 -->
+<section id="b3" class="stack qsec" aria-labelledby="h-b3">
+  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי · רשות</div><h3 id="h-b3" style="font-size:1.6rem">שאלה 3 · מזגנים: פרטיים ועסקיים</h3></div>
+  <div class="qtext">100 צרכנים פרטיים זהים: <bdi dir="ltr" class="m">q_c = 80 − 0.2P</bdi>. ‏20 צרכנים עסקיים זהים: <bdi dir="ltr" class="m">q_f = 400 − P</bdi>. נסחו את פונקציית הביקוש המצרפית.</div>
+  <div class="tstep"><div class="tnum">1</div><div class="tbody">
+    <h3>שלב 1: כל קבוצה בנפרד (כמות × מספר הצרכנים)</h3>
+    <div class="eq"><bdi dir="ltr" class="m">Q_c = 100 · (80 − 0.2P) = 8000 − 20P</bdi></div>
+    <div class="eq"><bdi dir="ltr" class="m">Q_f = 20 · (400 − P) = 8000 − 20P</bdi></div>
+  </div></div>
+  <div class="tstep"><div class="tnum">2</div><div class="tbody">
+    <h3>שלב 2: בודקים מאיזה מחיר כל קבוצה מפסיקה לקנות</h3>
+    <p>פרטי: <bdi dir="ltr" class="m">80 − 0.2P = 0 → P = 400</bdi>. עסקי: <bdi dir="ltr" class="m">400 − P = 0 → P = 400</bdi>. <strong>שתי הקבוצות מפסיקות לקנות באותו מחיר, 400.</strong> לכן אין "שבירה" בעקומה המצרפית, וזה מקרה פשוט.</p>
+    <p class="symnote"><b>למה בודקים את זה?</b> אם קבוצה אחת הייתה מפסיקה לקנות במחיר נמוך יותר, מעל המחיר הזה הייתה נשארת בשוק רק הקבוצה השנייה, והעקומה המצרפית הייתה שבורה. זו הנקודה שבודקים בכל שאלת ביקוש מצרפי.</p>
+  </div></div>
+  <div class="tstep"><div class="tnum">3</div><div class="tbody">
+    <h3>שלב 3: מחברים</h3>
+    <div class="eq"><bdi dir="ltr" class="m">Q = 8000 − 20P + 8000 − 20P = 16000 − 40P , 0 ≤ P ≤ 400</bdi></div>
+    <p>ובמחיר מעל 400: <bdi dir="ltr" class="m">Q = 0</bdi>. כתיבה הפוכה: <bdi dir="ltr" class="m">P = 400 − Q ÷ 40</bdi>. בדיקה במחיר 100: <bdi dir="ltr" class="m">100·60 + 20·300 = 6000 + 6000 = 12000</bdi>, ומהנוסחה <bdi dir="ltr" class="m">16000 − 4000 = 12000</bdi> ✓.</p>
+    <svg class="chart sm" id="b3Chart" viewBox="0 0 560 360" role="img" aria-label="שתי עקומות הביקוש של הקבוצות זהות, והעקומה המצרפית היא Q = 16000 − 40P"></svg>
+  </div></div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p>הביקוש של כל קבוצה: <bdi dir="ltr" class="m">Q_c = 8000 − 20P</bdi>, ‏<bdi dir="ltr" class="m">Q_f = 8000 − 20P</bdi>. שתי הקבוצות מפסיקות לצרוך במחיר 400, ולכן הביקוש המצרפי בכל התחום הוא סכום שתיהן: <bdi dir="ltr" class="m">Q = 16000 − 40P</bdi> עבור <bdi dir="ltr" class="m">0 ≤ P ≤ 400</bdi>, ו־<bdi dir="ltr" class="m">Q = 0</bdi> עבור <bdi dir="ltr" class="m">P &gt; 400</bdi>.</p></div>
+</section>
+
+<div class="part-sep"><span>שאלות אמריקאיות</span><h2>סמנו ונמקו בקצרה</h2></div>
+
+<section id="c1" class="stack qsec" aria-labelledby="h-c1">
+  <div class="sec-head"><div class="eyebrow">אמריקאית</div><h3 id="h-c1" style="font-size:1.6rem">שאלה 1 · משה, מנחם וסיגריות</h3></div>
+  <div class="qtext">עבור משה, סיגריות הן מוצר <strong>נחות</strong>. עבור מנחם הן מוצר <strong>ניטרלי</strong>.</div>
+  <div class="mcq" data-ans="3">
+    <button class="opt" type="button" data-i="0" data-why="לא. ׳ניטרלי׳ מדבר על הכנסה, לא על מחיר. כשמחיר הסיגריות עולה, מנחם קונה פחות, לפי חוק הביקוש.">1. עלייה במחיר הסיגריות תגרום לעלייה בכמות המבוקשת של מנחם</button>
+    <button class="opt" type="button" data-i="1" data-why="לא. עבור מנחם סיגריות הן מוצר ניטרלי: שינוי בהכנסה לא משנה את הביקוש שלו בכלל.">2. עלייה בהכנסה של מנחם תגדיל את ביקושו לסיגריות</button>
+    <button class="opt" type="button" data-i="2" data-why="לא. עבור משה סיגריות הן מוצר נחות: כשההכנסה שלו עולה, הביקוש שלו יורד.">3. עלייה בהכנסה של משה תגדיל את ביקושו לסיגריות</button>
+    <button class="opt" type="button" data-i="3" data-why="נכון. כל שלוש הטענות שגויות: (1) חוק הביקוש, (2) מוצר ניטרלי לא מגיב להכנסה, (3) מוצר נחות: ההכנסה עולה, הביקוש יורד.">4. אף תשובה אינה נכונה</button>
+    <p class="fb" role="status"></p>
+  </div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><strong>תשובה 4.</strong> (1) לפי חוק הביקוש, עלייה במחיר מקטינה את הכמות המבוקשת. (2) למנחם הסיגריות ניטרליות, ולכן שינוי בהכנסה לא משנה את הביקוש. (3) למשה הסיגריות נחותות, ולכן עלייה בהכנסה מקטינה את הביקוש.</p></div>
+</section>
+
+<section id="c2" class="stack qsec" aria-labelledby="h-c2">
+  <div class="sec-head"><div class="eyebrow">אמריקאית</div><h3 id="h-c2" style="font-size:1.6rem">שאלה 2 · מה מזיז ימינה את הביקוש לצנון</h3></div>
+  <div class="qtext">תזוזה ימינה של עקומת הביקוש לצנון עשויה להתרחש בעקבות:</div>
+  <div class="mcq" data-ans="3">
+    <button class="opt" type="button" data-i="0" data-why="לא. שינוי במחיר הצנון עצמו הוא תנועה לאורך העקומה, לא תזוזה שלה.">1. ירידה במחיר השוק של הצנון</button>
+    <button class="opt" type="button" data-i="1" data-why="לא. צנון משלים למוצר שהתייקר: קונים פחות מהמוצר, ולכן גם פחות צנון. העקומה זזה שמאלה.">2. עלייה במחיר מצרך אחר, שצנון משלים לו</button>
+    <button class="opt" type="button" data-i="2" data-why="לא. התחליף של הצנון הוזל: אנשים עוברים אליו, ולכן קונים פחות צנון. העקומה זזה שמאלה.">3. ירידה במחיר מצרך אחר, שצנון תחליפי לו</button>
+    <button class="opt" type="button" data-i="3" data-why="נכון. במוצר נחות, כשההכנסה יורדת, קונים ממנו יותר. לכן העקומה זזה ימינה.">4. ירידה בהכנסה של הצרכן, אם צנון הוא מצרך נחות</button>
+    <p class="fb" role="status"></p>
+  </div>
+  <div class="exam"><div class="who">ככה כותבים בתשובה</div><p><strong>תשובה 4.</strong> צנון הוא מוצר נחות, ולכן ירידה בהכנסה מגדילה את הביקוש לו, ועקומת הביקוש זזה ימינה. תשובה 1 היא תנועה לאורך העקומה. בתשובות 2 ו־3 הביקוש לצנון יורד, והעקומה זזה שמאלה.</p></div>
+</section>
+
+<section id="sum" class="stack" aria-labelledby="h-sum">
+  <div class="sec-head"><div class="eyebrow">סיכום</div><h2 id="h-sum">כל התשובות במבט אחד</h2></div>
+  <div class="tscroll"><table class="t"><thead><tr><th scope="col">שאלה</th><th scope="col">תשובה</th></tr></thead><tbody>
+    <tr><th scope="row">א1</th><td><bdi dir="ltr" class="m">Q_B = 70 − 3P_B</bdi>; ‏46; ‏28 (תנועה על העקומה); ‏38 (ימינה, תחליפים); ‏58 (ימינה, נורמלי)</td></tr>
+    <tr><th scope="row">א2</th><td>4 עקומות, אחת לכל הכנסה. גרביים: מוצר נורמלי</td></tr>
+    <tr><th scope="row">א3</th><td>לא נכון: במשלימים, הביקוש למוצר הנתון יורד</td></tr>
+    <tr><th scope="row">ב1</th><td>שוק: 60, 50, 39, 27, 22, 16. ועדים: ימינה (נורמלי). פרטיים: שמאלה (נורמלי). השוק: מעט ימינה</td></tr>
+    <tr><th scope="row">ב2</th><td><bdi dir="ltr" class="m">Q = (700 − P) ÷ 3</bdi>, כלומר <bdi dir="ltr" class="m">P = 700 − 3Q</bdi></td></tr>
+    <tr><th scope="row">ב3</th><td><bdi dir="ltr" class="m">Q = 16000 − 40P</bdi> עבור <bdi dir="ltr" class="m">0 ≤ P ≤ 400</bdi></td></tr>
+    <tr><th scope="row">אמריקאית 1</th><td>4: אף תשובה אינה נכונה</td></tr>
+    <tr><th scope="row">אמריקאית 2</th><td>4: ירידה בהכנסה, כשהצנון מוצר נחות</td></tr>
+  </tbody></table></div>
+  <p class="brief"><span class="lbl">חזרה</span><a href="./">לשיעור הביקוש והגמישות</a> · <a href="../">לדף המרכזי</a></p>
+</section>
+
+</main>
+<footer>תרגיל 3 · הביקוש. כל המספרים חושבו ונבדקו.</footer>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg';const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function el(t,a,p,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;if(p)p.appendChild(e);return e;}
+/* demand chart: Q on x, P on y */
+function frame(svg,W,H,xmax,ymax,xs,ys){
+  svg.innerHTML='';const ink=css('--ink'),mut=css('--muted'),grid=css('--grid');const m={l:52,r:18,t:22,b:44};
+  const X=v=>m.l+v/xmax*(W-m.l-m.r),Y=v=>H-m.b-v/ymax*(H-m.t-m.b);
+  for(let v=0;v<=xmax+1e-9;v+=xs){el('line',{x1:X(v),y1:Y(0),x2:X(v),y2:Y(ymax),stroke:grid},svg);el('text',{x:X(v),y:Y(0)+18,'font-size':13,fill:mut,'text-anchor':'middle'},svg,v.toLocaleString('en-US'));}
+  for(let v=ys;v<=ymax+1e-9;v+=ys){el('line',{x1:X(0),y1:Y(v),x2:X(xmax),y2:Y(v),stroke:grid},svg);el('text',{x:X(0)-7,y:Y(v)+4,'font-size':13,fill:mut,'text-anchor':'end'},svg,v.toLocaleString('en-US'));}
+  el('line',{x1:X(0),y1:Y(0),x2:X(xmax),y2:Y(0),stroke:ink,'stroke-width':1.6},svg);el('line',{x1:X(0),y1:Y(0),x2:X(0),y2:Y(ymax),stroke:ink,'stroke-width':1.6},svg);
+  el('text',{x:X(xmax),y:Y(0)+36,'font-size':14,'font-weight':700,fill:ink,'text-anchor':'end'},svg,'Q (כמות)');
+  el('text',{x:X(0)+6,y:Y(ymax)-6,'font-size':14,'font-weight':700,fill:ink},svg,'P (מחיר)');
+  return {X,Y};
+}
+const line=(svg,c,pts,col,w,dash)=>el('polyline',{points:pts.map(p=>c.X(p[0])+','+c.Y(p[1])).join(' '),fill:'none',stroke:col,'stroke-width':w||3,'stroke-linejoin':'round','stroke-dasharray':dash||''},svg);
+const dot=(svg,c,p,col,lab,dx,dy,anchor)=>{el('circle',{cx:c.X(p[0]),cy:c.Y(p[1]),r:5.5,fill:css('--surface'),stroke:col,'stroke-width':2.5},svg);if(lab)el('text',{x:c.X(p[0])+(dx??8),y:c.Y(p[1])+(dy??-8),'font-size':13,'font-weight':700,fill:col,'text-anchor':anchor||'start'},svg,lab);};
+const txt=(svg,c,p,t,col,dx,dy,anchor)=>el('text',{x:c.X(p[0])+(dx||0),y:c.Y(p[1])+(dy||0),'font-size':13,'font-weight':700,fill:col,'text-anchor':anchor||'start'},svg,t);
+function arrowDefs(svg,id,col){const d=el('defs',{},svg);const m=el('marker',{id,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'},d);el('path',{d:'M0,0 L10,5 L0,10 z',fill:col},m);}
+const arrow=(svg,c,p,q,col,id)=>el('line',{x1:c.X(p[0]),y1:c.Y(p[1]),x2:c.X(q[0]),y2:c.Y(q[1]),stroke:col,'stroke-width':2.4,'marker-end':`url(#${id})`},svg);
+
+/* A1 */
+let a1s=2;
+function a1(){const s=$('#a1Chart');const c=frame(s,560,420,110,40,10,5);const acc=css('--accent'),pen=css('--pen'),good=css('--good'),mut=css('--control');
+  const D=k=>[[0,k/3],[k,0]];
+  line(s,c,D(70),acc,3.5);txt(s,c,[5,70/3],'Q = 70 − 3P',acc,0,-10);
+  dot(s,c,[46,8],acc,'A (46, 8)',8,-8);dot(s,c,[28,14],acc,'B (28, 14)',-8,-8,'end');
+  arrowDefs(s,'ar1',pen);arrow(s,c,[44,8.8],[30.5,13.2],pen,'ar1');
+  if(a1s>=1){line(s,c,D(80),good,3,'8 5');dot(s,c,[38,14],good,'(38, 14)',8,-8);txt(s,c,[62,6],'Q = 80 − 3P',good,10,-4);}
+  if(a1s>=2){line(s,c,D(100),pen,3,'8 5');dot(s,c,[58,14],pen,'(58, 14)',8,-8);txt(s,c,[75,25/3],'Q = 100 − 3P',pen,10,-4);
+    arrowDefs(s,'ar2',pen);arrow(s,c,[45,18],[63,18],pen,'ar2');}
+  s.setAttribute('aria-label',`עקומת הביקוש Q = 70 − 3P עם A (46, 8) ו־B (28, 14)${a1s>=1?'; העקומה זזה ימינה ל־80 − 3P כשהעוף מתייקר':''}${a1s>=2?'; וימינה ל־100 − 3P כשההכנסה עולה':''}.`);
+}
+$$('#a1Btns .btn').forEach(b=>b.onclick=()=>{a1s=+b.dataset.s;$$('#a1Btns .btn').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));a1();});
+
+/* A2 */
+function a2(){const s=$('#a2Chart');const c=frame(s,560,420,22,5,2,1);
+  const cols=[css('--muted'),css('--accent'),css('--good'),css('--pen')];const I=[800,1000,1200,1400];
+  const T=[[12,8,6],[14,10,7],[18,13,8],[20,16,10]];
+  T.forEach((q,k)=>{const pts=[[q[0],2],[q[1],3],[q[2],4]];line(s,c,pts,cols[k],3);pts.forEach(p=>dot(s,c,p,cols[k]));txt(s,c,[q[0],2],String(I[k]),cols[k],0,24,'middle');});
+  arrowDefs(s,'ar3',css('--pen'));arrow(s,c,[6,4.5],[12,4.5],css('--pen'),'ar3');txt(s,c,[9,4.5],'ההכנסה עולה',css('--pen'),0,-10,'middle');
+}
+/* A3 */
+function a3(){const s=$('#a3Chart');const c=frame(s,560,360,100,100,20,20);const acc=css('--accent'),pen=css('--pen'),mut=css('--control');
+  line(s,c,[[0,90],[90,0]],mut,3,'8 5');line(s,c,[[0,65],[65,0]],pen,3.5);
+  arrowDefs(s,'ar4',pen);arrow(s,c,[56,34],[40,34],pen,'ar4');
+  txt(s,c,[86,10],'לפני',css('--muted'),6,0);txt(s,c,[58,10],'אחרי: המדפסת התייקרה',pen,0,-10,'end');
+  el('text',{x:c.X(100),y:20,'font-size':13,'font-weight':700,fill:css('--ink'),'text-anchor':'end'},s,'הביקוש לדיו');
+}
+/* B1 */
+const P=[3,6,8,12,15,20],PR=[20,16,12,6,4,2],CO=[40,34,27,21,18,14];
+const CO2=CO.map((q,i)=>q+(P[i]<10?5:3)),PR2=PR.map(q=>Math.round(q*0.8*10)/10);
+const MK=PR.map((q,i)=>q+CO[i]),MK2=PR2.map((q,i)=>Math.round((q+CO2[i])*10)/10);
+const f=v=>Number.isInteger(v)?String(v):v.toFixed(1);
+$('#b1Table tbody').innerHTML=P.map((p,i)=>`<tr><th scope="row">${p}</th><td class="n">${PR[i]}</td><td class="n">${CO[i]}</td><td class="n"><strong>${PR[i]} + ${CO[i]} = ${MK[i]}</strong></td></tr>`).join('');
+$('#b1Table2').innerHTML=P.map((p,i)=>`<tr><th scope="row">${p}</th><td class="n">${CO[i]} + ${P[i]<10?5:3} = ${CO2[i]}</td><td class="n">${PR[i]} × 0.8 = ${f(PR2[i])}</td><td class="n">${MK[i]}</td><td class="n"><strong>${f(MK2[i])}</strong></td><td class="n">+${f(Math.round((MK2[i]-MK[i])*10)/10)}</td></tr>`).join('');
+let b1g='mk';
+function b1(){const s=$('#b1Chart');const G={pr:[PR,PR2,25,'פרטיים'],co:[CO,CO2,50,'ועדים'],mk:[MK,MK2,70,'השוק']}[b1g];
+  const c=frame(s,560,420,G[2],22,G[2]>40?10:5,4);const before=G[0].map((q,i)=>[q,P[i]]),after=G[1].map((q,i)=>[q,P[i]]);
+  const mut=css('--control'),col=b1g==='pr'?css('--pen'):css('--accent');
+  line(s,c,before,mut,2.6,'7 5');before.forEach(p=>dot(s,c,p,mut));line(s,c,after,col,3.5);after.forEach(p=>dot(s,c,p,col));
+  txt(s,c,before[before.length-1],'לפני',css('--muted'),b1g==='pr'?8:-8,4,b1g==='pr'?'start':'end');txt(s,c,after[0],'אחרי',col,b1g==='pr'?-8:8,-10,b1g==='pr'?'end':'start');
+  s.setAttribute('aria-label',`עקומת הביקוש של ${G[3]}: לפני ${G[0].map(f).join(', ')}; אחרי ${G[1].map(f).join(', ')}, במחירים ${P.join(', ')}.`);}
+$$('#b1Btns .btn').forEach(b=>b.onclick=()=>{b1g=b.dataset.g;$$('#b1Btns .btn').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));b1();});
+/* B2 */
+function b2(){const s=$('#b2Chart');const c=frame(s,560,360,250,800,50,100);const acc=css('--accent');
+  line(s,c,[[0,700],[700/3,0]],acc,3.5);dot(s,c,[0,700],acc,'(0, 700)',8,4);dot(s,c,[700/3,0],acc,'(233⅓, 0)',-8,-10,'end');dot(s,c,[100,400],acc,'(100, 400)',8,-8);
+  txt(s,c,[120,560],'P = 700 − 3Q',acc,0,0);}
+/* B3 */
+function b3(){const s=$('#b3Chart');const c=frame(s,560,360,17000,450,4000,100);const acc=css('--accent'),pen=css('--pen');
+  line(s,c,[[0,400],[8000,0]],pen,3,'8 5');line(s,c,[[0,400],[16000,0]],acc,3.5);
+  txt(s,c,[8000,0],'כל קבוצה: 8000 − 20P',pen,-6,-12,'end');txt(s,c,[9000,200],'מצרפי: 16000 − 40P',acc,8,-6);
+  dot(s,c,[0,400],acc,'P = 400',8,4);dot(s,c,[12000,100],acc,'(12000, 100)',-8,-10,'end');}
+
+/* MCQ */
+$$('.mcq').forEach(q=>{const ans=+q.dataset.ans,fb=q.querySelector('.fb');q.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===ans;
+  b.classList.remove('ok','no');b.classList.add(ok?'ok':'no');fb.innerHTML=(ok?'<b style="color:var(--good)">✓ נכון.</b> ':'<b style="color:var(--bad)">✗ לא.</b> ')+b.dataset.why;});});
+
+function all(){a1();a2();a3();b1();b2();b3();}
+all();
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',all);
+new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+
+</body>
+</html>
