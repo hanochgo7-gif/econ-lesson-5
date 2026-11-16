@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>תזוזות עקומת התמורה</title>
+<meta name="description" content="כל המצבים של עקומת התמורה: שיפור ונסיגה טכנולוגיים, שיפור באחד ונסיגה בשני, מה לא מזיז את העקומה, וצורות העקומה. עם שם ושרטוט לכל מצב.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Secular+One&display=swap">
+<style>
+/* Layout: one reading column that follows the question (story → simulator → build the curve → section 2 → section 3 → beyond → exam answer → practice). Same tokens as the lesson 1 page so the two feel like one book. */
+:root{
+  --paper:#f4f6fa; --surface:#ffffff; --ink:#141a2c; --muted:#566079; --line:#dce2ec; --grid:#e8ecf3; --control:#858ea3;
+  --accent:#2340d0; --accent-soft:#e7ecff; --pen:#b8351f; --pen-soft:#fcebe7;
+  --good:#167a4c; --good-soft:#e2f3ea; --bad:#b4311d; --bad-soft:#fbe9e5;
+  --sun:#8a5a00; --sun-soft:#fdf3dc;
+  --c-labor:#8f5800; --c-mach:#087575; --c-floor:#8a3ccf;
+  --c-labor-soft:#f6ead4; --c-mach-soft:#d9f0ef; --c-floor-soft:#efe2fb;
+  --font-display:'Secular One','IBM Plex Sans Hebrew','Segoe UI',Arial,sans-serif;
+  --font-body:'IBM Plex Sans Hebrew','Segoe UI',Arial,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1220; --surface:#161b2c; --ink:#e7eaf3; --muted:#9ba3ba; --line:#2a3249; --grid:#1f2639; --control:#6a7490;
+  --accent:#8299ff; --accent-soft:#1f2851; --pen:#ff8c74; --pen-soft:#3a201b;
+  --good:#4fca93; --good-soft:#123427; --bad:#ff8c74; --bad-soft:#3a201b;
+  --sun:#f2c14e; --sun-soft:#33280f;
+  --c-labor:#f2b346; --c-mach:#45cccc; --c-floor:#bc8fff;
+  --c-labor-soft:#3a2c10; --c-mach-soft:#0f3333; --c-floor-soft:#2c1f45; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1220; --surface:#161b2c; --ink:#e7eaf3; --muted:#9ba3ba; --line:#2a3249; --grid:#1f2639; --control:#6a7490;
+  --accent:#8299ff; --accent-soft:#1f2851; --pen:#ff8c74; --pen-soft:#3a201b;
+  --good:#4fca93; --good-soft:#123427; --bad:#ff8c74; --bad-soft:#3a201b;
+  --sun:#f2c14e; --sun-soft:#33280f;
+  --c-labor:#f2b346; --c-mach:#45cccc; --c-floor:#bc8fff;
+  --c-labor-soft:#3a2c10; --c-mach-soft:#0f3333; --c-floor-soft:#2c1f45; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:1.125rem;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{width:100%;max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:60px}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,6vw,2.8rem)} h2{font-size:1.75rem} h3{font-size:1.3rem}
+p{margin:0} strong{font-weight:700} a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.m{font-family:var(--font-mono);font-size:.92em;white-space:nowrap;direction:ltr;unicode-bidi:isolate}
+section p,section li{max-width:36em}
+.eyebrow{font-size:.875rem;color:var(--muted);font-weight:600}
+.lead{font-size:1.1rem;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:4px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.sec-head .eyebrow{color:var(--accent)}
+
+.top{padding-top:44px;display:flex;flex-direction:column;gap:16px}
+.jump{display:flex;flex-wrap:wrap;gap:8px}
+.jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--control);background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}
+.jump a.main{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px clamp(16px,4vw,24px);display:flex;flex-direction:column;gap:12px}
+.brief{background:var(--accent-soft);border-radius:10px;padding:10px 14px;font-weight:600;font-size:1.06rem}
+.brief .lbl{font-size:.875rem;color:var(--accent);font-weight:700;margin-inline-end:8px}
+.trap{background:var(--pen-soft);border-radius:10px;padding:12px 16px;font-size:1rem}
+.trap b{color:var(--pen)}
+.exam{border:1.5px dashed var(--pen);background:var(--pen-soft);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:8px}
+.exam .who{font-size:.875rem;font-weight:700;color:var(--pen)}
+.note{font-size:.95rem;color:var(--muted)}
+.pic{margin:0;display:flex;flex-direction:column;gap:8px}
+.pic img{width:100%;height:auto;aspect-ratio:3/2;border-radius:14px;display:block;border:1px solid var(--line);background:var(--surface)}
+.pic figcaption{font-size:.95rem;color:var(--muted)}
+
+/* data table */
+.tscroll{overflow-x:auto;max-width:100%}
+table.t{border-collapse:collapse;width:100%;font-size:1rem}
+.t th,.t td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line)}
+.t thead th{font-size:.9rem;color:var(--muted);font-weight:600}
+.t td.n{font-family:var(--font-mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;text-align:right}
+.t caption{caption-side:top;text-align:right;font-weight:700;padding-bottom:6px}
+.t tr.hi td,.t tr.hi th{background:var(--accent-soft)}
+th.labor,td.labor{color:var(--c-labor)} th.mach,td.mach{color:var(--c-mach)} th.floor,td.floor{color:var(--c-floor)}
+
+/* boxes (3 resources) */
+.res3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.res{border-radius:12px;padding:12px 14px;border:2px solid currentColor;display:flex;flex-direction:column;gap:2px;min-width:0}
+.res b{font-size:1.05rem}
+.res span{font-family:var(--font-mono);font-size:1.1rem}
+.res.labor{color:var(--c-labor);background:var(--c-labor-soft)} .res.mach{color:var(--c-mach);background:var(--c-mach-soft)} .res.floor{color:var(--c-floor);background:var(--c-floor-soft)}
+.res .sm{font-family:var(--font-body);font-size:.92rem;color:var(--ink)}
+@media (max-width:560px){.res3{grid-template-columns:1fr}}
+
+/* lab */
+.lab{background:var(--surface);border:1.5px solid var(--ink);border-radius:16px;padding:18px clamp(14px,3vw,22px);display:flex;flex-direction:column;gap:14px}
+.lab-title{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.tag{font-family:var(--font-mono);font-size:.8rem;background:var(--ink);color:var(--paper);padding:2px 8px;border-radius:4px}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:720px){.lab-grid{grid-template-columns:1fr}}
+.range{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
+.range label{font-weight:600;font-size:1rem}
+.range output{font-family:var(--font-mono);font-weight:600;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:4px 10px;min-width:4.2em;text-align:center}
+input[type=range]{width:100%;accent-color:var(--accent);height:44px}
+.meter{display:flex;flex-direction:column;gap:4px}
+.meter .row{display:flex;justify-content:space-between;gap:8px;font-size:.95rem}
+.meter .row b{font-weight:700}
+.bar{height:16px;border-radius:999px;background:var(--grid);overflow:hidden;position:relative;border:1px solid var(--line)}
+.bar i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:999px;transition:width .25s}
+.meter.labor i{background:var(--c-labor)} .meter.mach i{background:var(--c-mach)} .meter.floor i{background:var(--c-floor)}
+.meter.boss .row b::after{content:" · הבוס";font-weight:700}
+.meter.boss .bar{outline:3px solid var(--pen);outline-offset:1px}
+.readout{background:var(--paper);border-radius:10px;padding:12px 14px;font-size:1rem;min-height:3.4em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:600 .95rem var(--font-body);border:1.5px solid var(--control);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 16px;cursor:pointer;min-height:44px}
+.btn:hover{border-color:var(--accent)}
+.btn[aria-pressed="true"],.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* charts */
+.chart{width:100%;height:auto;display:block;direction:ltr;max-width:100%}
+.chart text{font-family:var(--font-body)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.92rem;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px;vertical-align:middle;margin-inline-end:6px}
+
+/* steps / stepper */
+.steps{margin:0;padding-inline-start:1.4em;display:flex;flex-direction:column;gap:10px}
+.steps li::marker{font-family:var(--font-mono);color:var(--accent);font-weight:600}
+.eq{font-family:var(--font-mono);direction:ltr;text-align:right;background:var(--paper);border-radius:8px;padding:8px 12px;overflow-x:auto;white-space:nowrap;line-height:1.9;font-size:.98rem}
+.stepcap{background:var(--paper);border-radius:10px;padding:12px 14px;min-height:5.2em}
+
+/* stairs */
+.stairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stair{border-radius:12px;padding:12px 14px;border:2px solid currentColor;display:flex;flex-direction:column;gap:4px;min-width:0}
+.stair .big{font-family:var(--font-display);font-size:1.8rem;line-height:1.1}
+.stair .sm{color:var(--ink);font-size:.95rem}
+.stair.labor{color:var(--c-labor);background:var(--c-labor-soft)} .stair.floor{color:var(--c-floor);background:var(--c-floor-soft)} .stair.mach{color:var(--c-mach);background:var(--c-mach-soft)}
+@media (max-width:560px){.stairs{grid-template-columns:1fr}}
+
+/* practice */
+.qrow{display:grid;grid-template-columns:minmax(0,1fr) 7.5em auto;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:8px 0}
+.qrow label{font-size:1rem}
+.qrow input{font:600 1.05rem var(--font-mono);padding:8px 10px;border:1.5px solid var(--control);border-radius:8px;background:var(--surface);color:var(--ink);width:100%;min-height:44px;direction:ltr;text-align:center}
+.qrow .st{font-weight:700;min-width:2.2em;text-align:center}
+.qrow .st.ok{color:var(--good)} .qrow .st.no{color:var(--bad)}
+@media (max-width:520px){.qrow{grid-template-columns:1fr 6.5em auto}}
+details.sol{border:1.5px solid var(--good);border-radius:12px;background:var(--surface)}
+details.sol>summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--good);min-height:44px;display:flex;align-items:center}
+.sol-body{padding:0 16px 16px;display:flex;flex-direction:column;gap:10px}
+.mist{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.mist li{background:var(--surface);border:1px solid var(--line);border-inline-start:5px solid var(--pen);border-radius:8px;padding:10px 14px}
+.mist b{color:var(--pen)}
+footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padding-top:16px}
+.wrap>*,.stack>*,.lab>*,.box>*,.exam>*,.lab-grid>*,.sol-body>*{min-width:0}
+.eq{max-width:100%}
+.t td.n{white-space:nowrap}
+@media (max-width:620px){#buildChart text,#areaChart text{font-size:21px!important}#simChart text{font-size:16px!important}}
+
+.jump .sep{color:var(--muted);font-size:.9rem;align-self:center;margin-inline:4px}
+.part-sep{display:flex;flex-direction:column;gap:6px;background:var(--ink);color:var(--paper);border-radius:16px;padding:18px clamp(16px,4vw,24px);scroll-margin-top:16px}
+.part-sep span{font-family:var(--font-mono);font-size:.9rem;opacity:.8}
+.part-sep h2{color:var(--paper)}
+.syms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.syms{grid-template-columns:1fr}}
+.sym{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;font-size:.98rem;line-height:1.6;scroll-margin-top:16px;min-width:0}
+.sym .s{font-family:var(--font-mono);font-size:1.5rem;font-weight:600;color:var(--accent)}
+.sym:target{outline:3px solid var(--accent);outline-offset:2px}
+.fracs{display:inline-flex;flex-direction:column;align-items:center;font-size:.8em;line-height:1;vertical-align:middle}
+.fracs span:first-child{border-bottom:2px solid currentColor;padding:0 3px 2px}
+.symnote{background:var(--sun-soft);border-inline-start:4px solid var(--sun);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.symnote b{color:var(--sun)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.stairs.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:620px){.stairs.five{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stairs.five .stair{color:var(--accent);background:var(--accent-soft)}
+th.veg{color:var(--good)} th.wheat{color:var(--sun)}
+.btn.plot{min-width:64px;font-family:var(--font-mono);font-size:1.05rem}
+.btn.plot:disabled{opacity:1;background:var(--pen-soft);border-color:var(--pen);color:var(--pen);cursor:default}
+
+.pill{display:inline-block;border-radius:999px;padding:0 10px;font-size:.92rem;font-weight:700;border:1.5px solid currentColor}
+.pill.t{color:var(--c-mach)} .pill.d{color:var(--accent)} .pill.w{color:var(--sun)}
+.tstep{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px clamp(12px,3vw,20px)}
+.tnum{width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--surface);display:grid;place-items:center;font-family:var(--font-mono);font-weight:600;font-size:1.1rem}
+.tstep.bonus .tnum{background:var(--sun)}
+.tbody{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tbody>*{min-width:0}
+.tbody h3{font-size:1.3rem}
+.teach{border-inline-start:4px solid var(--c-mach);background:var(--c-mach-soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.teach b{color:var(--c-mach)}
+.did{display:flex;flex-direction:column;gap:8px;min-width:0}
+.did>b:first-child{color:var(--accent)}
+.why{border-inline-start:4px solid var(--sun);background:var(--sun-soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem}
+.why b{color:var(--sun)}
+.t td.hl{font-weight:700}
+@media (max-width:520px){.tstep{grid-template-columns:1fr}.tnum{width:36px;height:36px}}
+
+.eq.mixed{direction:rtl;text-align:right;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;white-space:normal}
+.eq.mixed .hx{font-family:var(--font-body);font-weight:600;white-space:nowrap}
+.eq.mixed .mx{white-space:normal}
+.eq.mixed .sg{white-space:nowrap}
+.eq.mixed .sg.op{color:var(--muted)}
+
+.vidsec{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1.5px solid var(--ink);border-radius:16px;padding:16px clamp(12px,3vw,20px);scroll-margin-top:16px}
+.vid-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.vid-head h2{font-size:clamp(1.3rem,3.6vw,1.7rem)}
+.vidframe{margin:0}
+.vidframe video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);background:#000}
+.transcript summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center;color:var(--accent)}
+.transcript p{margin:0 0 8px;font-size:1rem}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* exercise 2 */
+.part-sep.ex2sep{background:var(--accent)}
+.part-sep.ex2sep h2,.part-sep.ex2sep span{color:var(--surface)}
+.qtext{background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:0 12px 12px 0;padding:12px 16px;font-size:1.05rem}
+.mcq{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:start;font:500 1rem var(--font-body);border:1.5px solid var(--control);background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer;min-height:44px}
+.opt:hover{border-color:var(--accent)}
+.opt.ok{border-color:var(--good);background:var(--good-soft);font-weight:700}
+.opt.no{border-color:var(--bad);background:var(--bad-soft)}
+.opt.dim{opacity:.6}
+.fb{margin:0;padding:10px 14px;border-radius:10px;background:var(--paper)}
+.fb:empty{display:none}
+.chart.sm{max-width:560px;margin-inline:auto}
+.qsec .tstep .tnum{font-family:var(--font-display)}
+.dd{margin:0}
+.bk-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:620px){.bk-facts,.bk-defs{grid-template-columns:1fr}}
+.bk-fact{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.bk-fact p{margin:0}
+.bk-fact.cake{border-inline-start:4px solid var(--c-floor)}
+.bk-fact.bread{border-inline-start:4px solid var(--c-labor)}
+.bk-ico{font-size:1.8rem;line-height:1.1}
+.bk-calc{margin:0;font-weight:700;background:var(--accent-soft);border-radius:8px;padding:6px 10px;color:var(--accent)}
+.bk-defs .box{gap:8px}
+.bk-legend,.bk-barkey{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;color:var(--muted)}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-inline-end:6px;box-sizing:border-box}
+.sw.cake{background:var(--c-floor-soft);border:2px solid var(--c-floor)}
+.sw.bread{background:var(--c-labor-soft);border:2px solid var(--c-labor)}
+.sw.moved{background:var(--c-labor-soft);border:2.5px solid var(--pen)}
+.sw.lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 3px,var(--pen) 3px 5px);border:2px solid var(--pen)}
+.bk-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;max-width:440px;width:100%;margin-inline:auto}
+.bk-grid .w{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:clamp(.72rem,2.7vw,1.05rem);border:2px solid;position:relative;transition:background-color .4s,border-color .4s,box-shadow .4s}
+.bk-grid .w.cake{background:var(--c-floor-soft);border-color:var(--c-floor)}
+.bk-grid .w.bread{background:var(--c-labor-soft);border-color:var(--c-labor)}
+.bk-grid .w.moved{border-color:var(--pen);box-shadow:0 0 0 2.5px var(--pen)}
+.bk-grid .w.boost::after{content:'✨';position:absolute;top:-6px;inset-inline-start:-5px;font-size:.62em}
+.bk-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:520px){.bk-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bk-st{background:var(--paper);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.bk-st.hi{background:var(--accent-soft)}
+.bk-st .k{font-size:.82rem;color:var(--muted);font-weight:600;line-height:1.3}
+.bk-st .v{font:600 1.35rem var(--font-mono);direction:ltr;unicode-bidi:isolate;text-align:right}
+.bk-st .d{font-size:.82rem;font-weight:700;color:var(--accent);min-height:1.2em}
+.bk-barwrap{display:flex;flex-direction:column;gap:6px}
+.bk-barlbl{font-weight:700;font-size:.95rem}
+.bk-bar{display:flex;height:36px;border-radius:10px;overflow:hidden;border:1.5px solid var(--line)}
+.bk-bar>div{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;transition:flex-basis .5s;flex-grow:0;flex-shrink:0}
+.bk-bar .have{background:var(--c-labor-soft);color:var(--c-labor)}
+.bk-bar .lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 9px,var(--surface) 9px 14px);color:var(--pen);border-inline-start:2px solid var(--pen)}
+.dd>b:first-child{color:var(--accent)}
+.mainflow{display:flex;flex-direction:column;gap:56px}
+.mainflow>*{min-width:0}
+.howto{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.sw{display:inline-block;width:26px;height:0;vertical-align:middle;margin-inline-end:6px}
+.sw.old{border-top:3px dashed var(--control)} .sw.new{border-top:4px solid var(--accent)} .sw.arr{border-top:3px solid var(--pen);position:relative}
+.sw.arr::after{content:"";position:absolute;inset-inline-start:-2px;top:-7px;border:5.5px solid transparent;border-inline-end-color:var(--pen)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+.q2{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.q2 .k{font-size:.82rem;font-weight:700;color:var(--muted)} .q2 b{font-size:1.1rem} .q2 span{font-size:.98rem}
+.q2.x{border-inline-start:5px solid var(--accent)} .q2.y{border-inline-start:5px solid var(--pen)}
+.mx-wrap{overflow-x:auto;max-width:100%}
+.mx{display:grid;grid-template-columns:5.2em repeat(3,minmax(0,1fr));gap:6px;min-width:0}
+.mh{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.85rem;line-height:1.3;padding:4px}
+.mh span{color:var(--muted);font-size:.78rem} .mh b{font-size:.95rem}
+.cell a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:6px 4px 8px;height:100%;text-align:center}
+.cell a:hover,.cell a:focus-visible{border-color:var(--accent)}
+.cell.grow a{background:var(--good-soft)} .cell.shrink a{background:var(--bad-soft)} .cell.mixed a{background:var(--sun-soft)}
+.cell .mini{width:100%;max-width:120px;height:auto;display:block;direction:ltr}
+.cell .n{font:700 .85rem var(--font-mono);color:var(--muted)}
+.cell .nm{font-size:.85rem;font-weight:700;line-height:1.3}
+@media (max-width:420px){.mx{grid-template-columns:3.6em repeat(3,minmax(0,1fr));gap:4px}.cell .nm{font-size:.74rem}.mh b{font-size:.8rem}}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.cards{grid-template-columns:1fr}}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px;min-width:0}
+.case:target{outline:3px solid var(--accent);outline-offset:2px}
+.case-head{display:flex;gap:10px;align-items:flex-start}
+.case-head .num{font:700 1rem var(--font-mono);background:var(--ink);color:var(--paper);border-radius:8px;min-width:2.2em;padding:2px 6px;text-align:center;flex-shrink:0}
+.case-head h3{font-size:1.2rem}
+.case-head .sub{color:var(--muted);font-size:.95rem}
+.pic-svg{width:100%;max-width:320px;height:auto;display:block;margin-inline:auto;direction:ltr;background:var(--paper);border-radius:12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border-radius:999px;padding:2px 10px;font-size:.88rem;font-weight:700;border:1.5px solid}
+.chip .k{font-weight:600;opacity:.8}
+.chip.up{color:var(--good);border-color:var(--good);background:var(--good-soft)}
+.chip.dn{color:var(--bad);border-color:var(--bad);background:var(--bad-soft)}
+.chip.same{color:var(--muted);border-color:var(--control);background:var(--surface)}
+.case .row{font-size:.98rem}
+.case ul{margin:2px 0 0;padding-inline-start:1.2em}
+.exam-s{border:1.5px dashed var(--pen);background:var(--pen-soft);border-radius:10px;padding:8px 12px;font-size:.98rem}
+.exam-s .lbl{display:block;font-size:.8rem;font-weight:700;color:var(--pen)}
+</style>
+<div class="wrap" dir="rtl" lang="he">
+<header class="top" id="top">
+  <div class="eyebrow">מבוא למיקרו־כלכלה · עקומת התמורה · דף עזר</div>
+  <h1>כל התזוזות של עקומת התמורה</h1>
+  <p class="lead">כל מה שיכול לקרות לעקומת התמורה, עם שם לכל מצב ושרטוט לידו. שיפור טכנולוגי, נסיגה טכנולוגית, שיפור באחד ונסיגה בשני, ומה <strong>לא</strong> מזיז את העקומה בכלל.</p>
+  <div class="howto">
+    <b>איך קוראים כל שרטוט:</b>
+    <span><i class="sw old"></i>העקומה הישנה (מקווקו)</span>
+    <span><i class="sw new"></i>העקומה החדשה</span>
+    <span><i class="sw arr"></i>חץ = לאן זז הקצה</span>
+    <span>הציר האופקי = מוצר <bdi dir="ltr" class="m">X</bdi>, האנכי = מוצר <bdi dir="ltr" class="m">Y</bdi></span>
+  </div>
+  <nav class="jump" aria-label="קפיצה לחלקים">
+    <a class="main" href="#rule">הכלל</a><a href="#matrix">מפת 9 המצבים</a><a href="#grow">החוצה</a><a href="#shrink">פנימה</a><a href="#mixed">שיפור באחד, נסיגה בשני</a><a href="#same">העקומה לא זזה</a><a href="#shapes">צורות העקומה</a><a href="#exam">ככה עונים במבחן</a>
+  </nav>
+</header>
+
+<main class="mainflow">
+
+<section id="rule" class="stack" aria-labelledby="h-rule">
+  <div class="sec-head"><div class="eyebrow">לפני הכול</div><h2 id="h-rule">הכלל שפותר כל שאלה</h2></div>
+  <p>כדי לדעת מה קרה לעקומה, שואלים <strong>שתי שאלות בלבד</strong>:</p>
+  <div class="two">
+    <div class="q2 x"><div class="k">שאלה 1</div><b>מה קרה לקצה של X?</b><span>הכי הרבה X שאפשר לייצר (אם מייצרים רק X). שיפור ב־X מזיז אותו החוצה. נסיגה ב־X מזיזה אותו פנימה.</span></div>
+    <div class="q2 y"><div class="k">שאלה 2</div><b>מה קרה לקצה של Y?</b><span>הכי הרבה Y שאפשר לייצר (אם מייצרים רק Y). שיפור ב־Y מזיז אותו החוצה. נסיגה ב־Y מזיזה אותו פנימה.</span></div>
+  </div>
+  <p class="brief"><span class="lbl">למה?</span>שיפור טכנולוגי בייצור X עוזר רק כשמייצרים X. אם מייצרים רק Y, השיפור ב־X לא משנה כלום. לכן הקצה של Y נשאר במקום, והעקומה <strong>מסתובבת</strong> סביבו.</p>
+  <p>לכל קצה יש 3 אפשרויות (זז החוצה, נשאר, זז פנימה). 3 × 3 = <strong>9 מצבים</strong>. הנה כולם:</p>
+</section>
+
+<section id="matrix" class="stack" aria-labelledby="h-matrix">
+  <div class="sec-head"><div class="eyebrow">המפה</div><h2 id="h-matrix">9 המצבים במבט אחד</h2></div>
+  <p class="note" style="margin:0">שורה = מה קרה לקצה של Y. עמודה = מה קרה לקצה של X. לחצו על מצב כדי לקפוץ להסבר המלא שלו.</p>
+  <div class="mx-wrap"><div class="mx" id="mx" role="table" aria-label="טבלת 9 המצבים"></div></div>
+</section>
+
+<section id="grow" class="stack" aria-labelledby="h-grow">
+  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h2 id="h-grow">העקומה זזה החוצה: צמיחה</h2></div>
+  <p>המשק יכול לייצר <strong>יותר</strong> ממה שיכול היה קודם. הסיבות: שיפור טכנולוגי, או יותר גורמי ייצור (עובדים, מכונות, קרקע).</p>
+  <div class="cards" data-group="grow"></div>
+</section>
+
+<section id="shrink" class="stack" aria-labelledby="h-shrink">
+  <div class="sec-head"><div class="eyebrow">חלק ב׳</div><h2 id="h-shrink">העקומה זזה פנימה: התכווצות</h2></div>
+  <p>המשק יכול לייצר <strong>פחות</strong>. הסיבות: נסיגה טכנולוגית (מחלה, אסון, שכחת ידע), או פחות גורמי ייצור (מלחמה, הגירה החוצה, הרס מפעלים).</p>
+  <div class="cards" data-group="shrink"></div>
+</section>
+
+<section id="mixed" class="stack" aria-labelledby="h-mixed">
+  <div class="sec-head"><div class="eyebrow">חלק ג׳</div><h2 id="h-mixed">שיפור במוצר אחד ונסיגה בשני</h2></div>
+  <p>כאן קצה אחד זז החוצה והשני פנימה. התוצאה המיוחדת: <strong>העקומה החדשה חוצה את הישנה</strong>. בצד אחד של החיתוך המשק יכול יותר, ובצד השני פחות.</p>
+  <div class="cards" data-group="mixed"></div>
+  <p class="symnote"><b>שאלה שאוהבים לשאול:</b> האם המשק יכול להמשיך לייצר את אותן כמויות? <strong>ייתכן.</strong> אם הנקודה המקורית נמצאת בחלק שבו העקומה החדשה מעל הישנה, או בדיוק בנקודת החיתוך, כן. אחרת לא.</p>
+</section>
+
+<section id="same" class="stack" aria-labelledby="h-same">
+  <div class="sec-head"><div class="eyebrow">חלק ד׳ · מלכודות</div><h2 id="h-same">מצבים שבהם העקומה לא זזה</h2></div>
+  <p>בשאלות האלה משהו כן משתנה, אבל <strong>לא היכולת לייצר</strong>. לכן עקומת התמורה נשארת במקום. מה שזז הוא הנקודה, או עקומה אחרת.</p>
+  <div class="cards" data-group="same"></div>
+</section>
+
+<section id="shapes" class="stack" aria-labelledby="h-shapes">
+  <div class="sec-head"><div class="eyebrow">חלק ה׳ · בונוס</div><h2 id="h-shapes">צורות של העקומה עצמה</h2></div>
+  <p>לא תזוזה, אלא <strong>הצורה</strong>. הצורה אומרת מה קורה לעלות האלטרנטיבית כשמייצרים עוד ועוד X.</p>
+  <div class="cards" data-group="shapes"></div>
+</section>
+
+<section id="exam" class="stack" aria-labelledby="h-exam">
+  <div class="sec-head"><div class="eyebrow">לסיום</div><h2 id="h-exam">ככה עונים על כל שאלת "מה קרה לעקומה"</h2></div>
+  <ol class="steps">
+    <li><strong>מזהים את האירוע.</strong> שיפור או נסיגה? בייצור של איזה מוצר? או שזה בכלל לא שינוי ביכולת (אבטלה, העדפות, מענק)?</li>
+    <li><strong>אם זה לא שינוי ביכולת:</strong> העקומה לא זזה. זזה רק הנקודה (או עקומת הצריכה, במענק).</li>
+    <li><strong>אם זה שינוי ביכולת:</strong> בודקים כל קצה בנפרד. משפרים את X? הקצה של X החוצה. נסיגה ב־Y? הקצה של Y פנימה.</li>
+    <li><strong>מוצאים את המצב במפה</strong> ומשרטטים: העקומה הישנה מקווקו, החדשה רציפה, וחצים על הצירים.</li>
+    <li><strong>כותבים במילים:</strong> מה זז, לאן, ולמה. למשל: "השיפור בייצור X מזיז החוצה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה, כי השיפור לא משפיע על ייצור Y. העקומה מסתובבת החוצה סביב הקצה של Y."</li>
+    <li><strong>מילים חשודות:</strong> "בהכרח", "בוודאות". העקומה אומרת מה <strong>אפשר</strong>. מה המשק <strong>בוחר</strong> לייצר, זו שאלה אחרת.</li>
+  </ol>
+  <p class="brief"><span class="lbl">הקשר לתרגיל 2</span>שאלות 1, 2, 3 ו־4 בתרגיל הן מצבים מהדף הזה: שיפור בחקלאות (מצב 2), שיפור בייצור הצבאי (מצב 2 או 3), שיפור ב־X ו־Y גדל (מצב 2), נסיגה ב־X ושיפור ב־Y (מצב 8). <a href="./#ex2">חזרה להסבר של תרגיל 2</a>.</p>
+</section>
+
+</main>
+<footer>דף עזר לעקומת התמורה: 9 מצבי תזוזה, 4 מצבים שבהם העקומה לא זזה, ו־4 צורות. כל השרטוטים סכמטיים (בלי מספרים).</footer>
+</div>
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function el(t,a,p,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;if(p)p.appendChild(e);return e;}
+const B=60; // base extent of the old curve (0..100 units)
+const arc=(a,b,n=40)=>{const p=[];for(let i=0;i<=n;i++){const t=i/n*Math.PI/2;p.push([a*Math.sin(t),b*Math.cos(t)]);}return p;};
+const yOn=(a,b,x)=>b*Math.sqrt(Math.max(0,1-(x/a)**2));
+
+/* one schematic chart; W×H in px, data units 0..100 */
+function frame(svg,W,H,small){
+  svg.innerHTML='';const ink=css('--ink');const m=small?{l:16,r:10,t:10,b:16}:{l:28,r:16,t:16,b:30};
+  const X=v=>m.l+v/100*(W-m.l-m.r),Y=v=>H-m.b-v/100*(H-m.t-m.b);
+  el('line',{x1:X(0),y1:Y(0),x2:X(100),y2:Y(0),stroke:ink,'stroke-width':small?1.5:2},svg);
+  el('line',{x1:X(0),y1:Y(0),x2:X(0),y2:Y(100),stroke:ink,'stroke-width':small?1.5:2},svg);
+  if(!small){el('text',{x:X(100),y:Y(0)+22,'font-size':15,'font-weight':700,fill:ink,'text-anchor':'end'},svg,'X');
+    el('text',{x:X(0)+8,y:Y(100)+6,'font-size':15,'font-weight':700,fill:ink},svg,'Y');}
+  return {X,Y};
+}
+const path=(svg,c,pts,col,w,dash)=>el('polyline',{points:pts.map(p=>c.X(p[0])+','+c.Y(p[1])).join(' '),fill:'none',stroke:col,'stroke-width':w,'stroke-linejoin':'round','stroke-linecap':'round','stroke-dasharray':dash||''},svg);
+let mk=0;
+function arrow(svg,c,p,q,col,w){const id='ah'+(mk++);const d=el('defs',{},svg);const m=el('marker',{id,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'},d);el('path',{d:'M0,0 L10,5 L0,10 z',fill:col},m);
+  el('line',{x1:c.X(p[0]),y1:c.Y(p[1]),x2:c.X(q[0]),y2:c.Y(q[1]),stroke:col,'stroke-width':w||2.5,'marker-end':`url(#${id})`},svg);}
+function dot(svg,c,p,col,label,dx,dy,small){el('circle',{cx:c.X(p[0]),cy:c.Y(p[1]),r:small?3.5:6,fill:css('--surface'),stroke:col,'stroke-width':small?2:3},svg);
+  if(label&&!small)el('text',{x:c.X(p[0])+(dx??8),y:c.Y(p[1])+(dy??-8),'font-size':15,'font-weight':700,fill:col},svg,label);}
+function shift(svg,c,o,n,small){
+  const mut=css('--control'),acc=css('--accent'),pen=css('--pen');
+  path(svg,c,arc(o[0],o[1]),mut,small?1.8:2.6,small?'4 3':'7 5');
+  path(svg,c,arc(n[0],n[1]),acc,small?2.6:4);
+  const g=small?1:1.5;
+  if(n[0]!==o[0])arrow(svg,c,[o[0],small?4:3],[n[0]+(n[0]>o[0]?-g*2:g*2),small?4:3],pen,small?1.8:2.6);
+  if(n[1]!==o[1])arrow(svg,c,[small?4:3,o[1]],[small?4:3,n[1]+(n[1]>o[1]?-g*2:g*2)],pen,small?1.8:2.6);
+}
+/* ---------- the cases ---------- */
+const UP='החוצה',DN='פנימה',EQ='לא זז';
+const C=[
+ {id:1,g:'grow',name:'התרחבות כללית',sub:'צמיחה בשני המוצרים',x:UP,y:UP,o:[B,B],n:[80,80],
+  why:['יותר גורמי ייצור: עלייה בכוח העבודה, עלייה, יותר מכונות או קרקע','שיפור טכנולוגי בשני המוצרים (למשל חשמל, אינטרנט)'],
+  oc:'לא משתנה אם שני הקצוות גדלים באותו שיעור. אחרת, ראו מצב 1ב.',exam:'גידול בגורמי הייצור מאפשר לייצר יותר משני המוצרים. שתי נקודות הקצה זזות החוצה, וכל העקומה מתרחבת.'},
+ {id:'1ב',g:'grow',name:'צמיחה לא מאוזנת',sub:'שניהם החוצה, אבל אחד יותר',x:UP+' (הרבה)',y:UP+' (מעט)',o:[B,B],n:[88,70],
+  why:['שיפור בשני המוצרים, אבל חזק יותר ב־X','גידול בגורם ייצור שמתאים יותר ל־X (למשל עוד קרקע חקלאית, כש־X = חקלאות)'],
+  oc:'של X יורדת (X נעשה "זול" יותר), כי הקצה של X זז יותר.',exam:'שתי נקודות הקצה זזות החוצה, אך נקודת הקצה של X זזה יותר. העקומה מתרחבת ונעשית שטוחה יותר.'},
+ {id:2,g:'grow',name:'סיבוב החוצה על ציר X',sub:'שיפור טכנולוגי רק בייצור X',x:UP,y:EQ,o:[B,B],n:[88,B],
+  why:['המצאה שמשפרת רק את ייצור X (זן חיטה חדש, מכונה חדשה למפעל X)','הכשרה של עובדים שמתאימה רק לענף של X'],
+  oc:'של X יורדת: העקומה שטוחה יותר, וכל X עולה פחות Y.',exam:'השיפור בייצור X מזיז החוצה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה, כי השיפור לא משפיע על ייצור Y. העקומה מסתובבת החוצה סביב נקודת הקצה של Y.'},
+ {id:3,g:'grow',name:'סיבוב החוצה על ציר Y',sub:'שיפור טכנולוגי רק בייצור Y',x:EQ,y:UP,o:[B,B],n:[B,88],
+  why:['המצאה שמשפרת רק את ייצור Y','השקעה במכונות שמתאימות רק לענף של Y'],
+  oc:'של X עולה: העקומה תלולה יותר, וכל X עולה יותר Y (כי Y "זול" יותר).',exam:'השיפור בייצור Y מזיז החוצה את נקודת הקצה של Y. נקודת הקצה של X לא משתנה. העקומה מסתובבת החוצה סביב נקודת הקצה של X.'},
+ {id:4,g:'shrink',name:'התכווצות כללית',sub:'פחות יכולת בשני המוצרים',x:DN,y:DN,o:[B,B],n:[40,40],
+  why:['מלחמה או אסון טבע שהורסים מפעלים','ירידה בכוח העבודה: הגירה החוצה, מגפה','נסיגה טכנולוגית בשני המוצרים'],
+  oc:'לא משתנה אם שני הקצוות קטנים באותו שיעור.',exam:'הירידה בכמות גורמי הייצור מקטינה את היכולת לייצר את שני המוצרים. שתי נקודות הקצה זזות פנימה.'},
+ {id:5,g:'shrink',name:'סיבוב פנימה על ציר X',sub:'נסיגה טכנולוגית רק בייצור X',x:DN,y:EQ,o:[B,B],n:[38,B],
+  why:['מחלה שפוגעת ביבול (כש־X = חקלאות)','מכונה של ענף X שהתקלקלה ואין לה תחליף'],
+  oc:'של X עולה: כל X עולה עכשיו יותר Y.',exam:'הנסיגה בייצור X מזיזה פנימה את נקודת הקצה של X. נקודת הקצה של Y לא משתנה. העקומה מסתובבת פנימה סביב נקודת הקצה של Y.'},
+ {id:6,g:'shrink',name:'סיבוב פנימה על ציר Y',sub:'נסיגה טכנולוגית רק בייצור Y',x:EQ,y:DN,o:[B,B],n:[B,38],
+  why:['פגיעה בטכנולוגיה של ענף Y בלבד','איסור על שימוש בחומר גלם שרק Y צריך'],
+  oc:'של X יורדת: Y "יקר" יותר, ולכן כל X עולה פחות Y.',exam:'הנסיגה בייצור Y מזיזה פנימה את נקודת הקצה של Y. נקודת הקצה של X לא משתנה. העקומה מסתובבת פנימה סביב נקודת הקצה של X.'},
+ {id:7,g:'mixed',name:'חיתוך: X החוצה, Y פנימה',sub:'שיפור ב־X ונסיגה ב־Y',x:UP,y:DN,o:[B,B],n:[88,38],
+  why:['המצאה בענף X, ובאותו זמן נסיגה בענף Y'],
+  oc:'של X יורדת מאוד: העקומה הרבה יותר שטוחה.',exam:'השיפור ב־X מזיז החוצה את נקודת הקצה של X, והנסיגה ב־Y מזיזה פנימה את נקודת הקצה של Y. העקומה החדשה חוצה את הישנה. ליד ציר X (הרבה X) המשק יכול יותר. ליד ציר Y (הרבה Y) הוא יכול פחות.'},
+ {id:8,g:'mixed',name:'חיתוך: X פנימה, Y החוצה',sub:'נסיגה ב־X ושיפור ב־Y (שאלה 4 בתרגיל 2)',x:DN,y:UP,o:[B,B],n:[38,88],
+  why:['נסיגה טכנולוגית בענף X, ובאותו זמן שיפור בענף Y'],
+  oc:'של X עולה מאוד: העקומה הרבה יותר תלולה.',exam:'הנסיגה ב־X מזיזה פנימה את נקודת הקצה של X, והשיפור ב־Y מזיז החוצה את נקודת הקצה של Y. העקומה החדשה חוצה את הישנה. ייתכן שהמשק ימשיך לייצר את אותן כמויות, אם הנקודה המקורית נמצאת בחלק שבו העקומה החדשה מעל הישנה.'},
+ {id:9,g:'same',name:'שום קצה לא זז',sub:'העקומה נשארת במקום',x:EQ,y:EQ,o:[B,B],n:[B,B],draw:'none',
+  why:['אין שינוי ביכולת: אותם גורמי ייצור ואותה טכנולוגיה'],
+  oc:'לא משתנה.',exam:'יכולת הייצור לא השתנתה, ולכן עקומת התמורה לא זזה. השתנתה רק הבחירה, או רק הצריכה (ראו את הכרטיסים הבאים).'},
+ {id:'ד1',g:'same',name:'תנועה לאורך העקומה',sub:'שינוי בבחירה, לא ביכולת',draw:'along',
+  why:['שינוי בהעדפות: רוצים יותר X ופחות Y','החלטה של הממשלה על סדרי עדיפויות'],
+  oc:'משתנה לאורך העקומה (בעקומה קעורה: ככל שמייצרים יותר X, העלות של X עולה).',exam:'המשק עובר מנקודה A לנקודה B על אותה עקומה. כדי לייצר יותר X הוא מוותר על Y. העקומה עצמה לא זזה.'},
+ {id:'ד2',g:'same',name:'מבפנים אל העקומה, ובחזרה',sub:'אבטלה ויציאה מאבטלה',draw:'inside',
+  why:['A בפנים: אבטלה, שביתה, מיתון, ייצור לא יעיל','מ־A ל־B: מעסיקים את המובטלים, ומגדילים את שני המוצרים בלי ויתור'],
+  oc:'לא רלוונטי: בין A לעקומה אין ויתור בכלל.',exam:'נקודה A נמצאת בתוך העקומה, כלומר יש אבטלה או חוסר יעילות. כשמעסיקים את גורמי הייצור המובטלים, אפשר להגדיל את שני המוצרים בלי לוותר על אף אחד, עד שמגיעים לעקומה. העקומה לא זזה.'},
+ {id:'ד3',g:'same',name:'מענק או סיוע מחו״ל',sub:'הצריכה זזה, הייצור לא',draw:'grant',
+  why:['מענק של כמות קבועה מכל מוצר (למשל 5 X ו־10 Y)','הלוואה או סיוע חוץ'],
+  oc:'עקומת התמורה לא משתנה, ולכן גם העלות בייצור לא משתנה.',exam:'עקומת התמורה לא זזה, כי יכולת הייצור לא השתנתה. עקומת אפשרויות הצריכה זזה במקביל: ימינה בכמות ה־X של המענק, ולמעלה בכמות ה־Y שלו (שאלה 6 בתרגיל 2).'},
+ {id:'ד4',g:'same',name:'נקודה מחוץ לעקומה',sub:'בלתי אפשרית (היום)',draw:'outside',
+  why:['אין מספיק גורמי ייצור או טכנולוגיה כדי להגיע אליה','אפשר להגיע אליה רק אם העקומה תזוז החוצה, או בצריכה בעזרת מענק או סחר'],
+  oc:'לא רלוונטי.',exam:'נקודה C נמצאת מחוץ לעקומת התמורה, ולכן המשק לא יכול לייצר אותה בגורמי הייצור ובטכנולוגיה הקיימים.'},
+ {id:'ה1',g:'shapes',name:'עקומה ישרה',sub:'עלות אלטרנטיבית קבועה',draw:'line',
+  why:['כל גורמי הייצור מתאימים באותה מידה לשני המוצרים','דוגמה: ‏Y = 200 − 4X, רובינזון'],
+  oc:'קבועה לאורך כל הקו (= השיפוע).',exam:'העקומה ישרה, ולכן העלות האלטרנטיבית של X קבועה: כל יחידת X עולה תמיד אותה כמות Y.'},
+ {id:'ה2',g:'shapes',name:'עקומה קעורה (בולטת החוצה)',sub:'עלות אלטרנטיבית עולה',draw:'concave',
+  why:['גורמי הייצור שונים זה מזה: חלקם טובים ב־X וחלקם ב־Y','מעבירים קודם את מי שהכי טוב ב־X, ואחר כך את הפחות מתאימים'],
+  oc:'עולה: ככל שמייצרים יותר X, כל יחידה נוספת עולה יותר Y.',exam:'העקומה קעורה, כי העלות האלטרנטיבית של X עולה ככל שמגדילים את ייצור X. בכל שלב עוברים לייצור X גורמי ייצור שפחות מתאימים לו.'},
+ {id:'ה3',g:'shapes',name:'עקומה שבורה',sub:'כמה קטעים ישרים',draw:'kinked',
+  why:['צוואר בקבוק: בכל קטע משאב אחר נגמר ראשון (שאלה 5 בתרגיל 1)','יתרון יחסי: חלקות או משקים שונים, כל אחד עם עלות קבועה (שאלה 6 בתרגיל 1)'],
+  oc:'קבועה בתוך כל קטע, וקופצת בפינות. אם היא עולה מקטע לקטע, העקומה קעורה.',exam:'העקומה בנויה מקטעים ישרים. בכל קטע העלות האלטרנטיבית קבועה, ובכל פינה היא משתנה.'},
+ {id:'ה4',g:'shapes',name:'עקומה קמורה (שקועה פנימה)',sub:'עלות אלטרנטיבית יורדת (נדיר)',draw:'convex',
+  why:['מצב חריג: ככל שמתמחים יותר במוצר, הוא נעשה זול יותר'],
+  oc:'יורדת: כל יחידה נוספת של X עולה פחות Y.',exam:'העקומה קמורה, ולכן העלות האלטרנטיבית של X יורדת ככל שמגדילים את ייצור X. זה מצב נדיר, ובקורס הוא מופיע בעיקר כשאלת הבנה.'},
+];
+
+function drawCase(svg,cs,small){
+  const W=small?120:300,H=small?96:240;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const c=frame(svg,W,H,small);const acc=css('--accent'),pen=css('--pen'),mut=css('--control'),good=css('--good');
+  const d=cs.draw;
+  if(!d){shift(svg,c,cs.o,cs.n,small);return;}
+  if(d==='none'){path(svg,c,arc(B,B),acc,small?2.6:4);return;}
+  if(d==='along'){path(svg,c,arc(B+10,B+10),acc,4);const A=[25,yOn(70,70,25)],Bp=[52,yOn(70,70,52)];
+    arrow(svg,c,[A[0]+3,A[1]+1],[Bp[0]-3,Bp[1]+3],pen,2.6);dot(svg,c,A,pen,'A',-4,-10);dot(svg,c,Bp,pen,'B',8,-6);return;}
+  if(d==='inside'){path(svg,c,arc(70,70),acc,4);const A=[25,25],Bp=[45,yOn(70,70,45)];
+    arrow(svg,c,[A[0]+2,A[1]+2],[Bp[0]-2,Bp[1]-3],good,2.6);dot(svg,c,A,pen,'A',-16,18);dot(svg,c,Bp,good,'B',8,-6);
+    el('text',{x:c.X(28),y:c.Y(14),'font-size':13,fill:css('--muted'),direction:'rtl','text-anchor':'end'},svg,'אבטלה');return;}
+  if(d==='grant'){const P=arc(60,60);path(svg,c,P,acc,4);path(svg,c,P.map(p=>[p[0]+14,p[1]+14]),pen,3,'8 5');
+    arrow(svg,c,[P[22][0],P[22][1]],[P[22][0]+12,P[22][1]+12],pen,2.4);
+    el('text',{x:c.X(62),y:c.Y(80),'font-size':13,'font-weight':700,fill:pen,direction:'rtl','text-anchor':'end'},svg,'צריכה');
+    el('text',{x:c.X(20),y:c.Y(30),'font-size':13,'font-weight':700,fill:acc,direction:'rtl','text-anchor':'end'},svg,'ייצור');return;}
+  if(d==='outside'){path(svg,c,arc(60,60),acc,4);const P=[58,58];dot(svg,c,P,pen,'C ✗',8,-8);dot(svg,c,[25,25],good,'A ✓',8,-8);return;}
+  if(d==='line'){path(svg,c,[[0,75],[75,0]],acc,4);return;}
+  if(d==='concave'){path(svg,c,arc(75,75),acc,4);return;}
+  if(d==='kinked'){path(svg,c,[[0,75],[25,70],[55,45],[75,0]],acc,4);[[25,70],[55,45]].forEach(p=>dot(svg,c,p,acc,'',0,0));return;}
+  if(d==='convex'){const P=[];for(let i=0;i<=40;i++){const t=i/40*Math.PI/2;P.push([75-75*Math.cos(t),75-75*Math.sin(t)]);}path(svg,c,P,acc,4);return;}
+}
+const chip=(t,lbl)=>`<span class="chip ${t===UP||t.startsWith(UP)?'up':t===DN?'dn':'same'}"><span class="k">${lbl}</span> ${t}</span>`;
+function cards(){
+  document.querySelectorAll('.cards').forEach(box=>{
+    const g=box.dataset.group;box.innerHTML='';
+    C.filter(cs=>cs.g===g).forEach(cs=>{
+      const a=document.createElement('article');a.className='case';a.id='c'+cs.id;
+      a.innerHTML=`<div class="case-head"><span class="num">${cs.id}</span><div><h3>${cs.name}</h3><div class="sub">${cs.sub}</div></div></div>
+        <svg class="pic-svg" role="img" aria-label="שרטוט: ${cs.name}"></svg>
+        ${cs.x?`<div class="chips">${chip(cs.x,'קצה X:')}${chip(cs.y,'קצה Y:')}</div>`:''}
+        <div class="row"><b>מתי זה קורה:</b><ul>${cs.why.map(w=>`<li>${w}</li>`).join('')}</ul></div>
+        <div class="row"><b>העלות האלטרנטיבית של X:</b> ${cs.oc}</div>
+        <div class="exam-s"><span class="lbl">במבחן כותבים</span>${cs.exam}</div>`;
+      box.appendChild(a);drawCase(a.querySelector('svg'),cs,false);
+    });
+  });
+}
+function matrix(){
+  const mx=document.getElementById('mx');mx.innerHTML='';
+  const cols=[UP,EQ,DN],rows=[UP,EQ,DN];
+  const map={[UP+UP]:1,[EQ+UP]:3,[DN+UP]:8,[UP+EQ]:2,[EQ+EQ]:9,[DN+EQ]:5,[UP+DN]:7,[EQ+DN]:6,[DN+DN]:4};
+  const add=(html,cls,role)=>{const d=document.createElement('div');d.className=cls;d.setAttribute('role',role);d.innerHTML=html;mx.appendChild(d);return d;};
+  add('','mh corner','columnheader');
+  cols.forEach(cx=>add(`<span>קצה X</span><b>${cx}</b>`,'mh col','columnheader'));
+  rows.forEach(ry=>{
+    add(`<span>קצה Y</span><b>${ry}</b>`,'mh rowh','rowheader');
+    cols.forEach(cx=>{const id=map[cx+ry];const cs=C.find(k=>k.id===id);
+      const cell=add(`<a href="#c${id}"><svg class="mini" aria-hidden="true"></svg><span class="n">${id}</span><span class="nm">${cs.name}</span></a>`,'cell '+cs.g,'cell');
+      drawCase(cell.querySelector('svg'),cs,true);});
+  });
+}
+function all(){cards();matrix();}
+all();
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',all);
+new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+
+</body>
+</html>
