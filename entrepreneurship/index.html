@@ -738,8 +738,8 @@ main>section,main>.cover,main>.vidsec,.srcl li{scroll-margin-top:0}
 .route .core-chip{background:var(--accent)}
 .min-chip{background:var(--grid);color:var(--muted)}
 h3{font-size:var(--fs-h3)}
-.stack>h3,.tab-panel>h3{margin-top:14px;display:flex;align-items:center;gap:10px}
-.stack>h3::before,.tab-panel>h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--part);flex:none}
+.stack>h3,.tab-panel>h3{margin-top:14px;display:block}
+.stack>h3::before,.tab-panel>h3::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--part);margin-inline-end:10px;vertical-align:.12em}
 .tab-panel>h3:first-child{margin-top:4px}
 main>section.stack{gap:20px}
 @media (min-width:700px){main>section.stack>p,.split>p{font-size:1.15rem}}
