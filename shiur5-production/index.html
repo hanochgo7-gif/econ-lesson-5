@@ -12,6 +12,49 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<!--narr:css--><style>/* narr: lesson narration players (shared by all lesson pages; injected inline by each page's build) */
+.narr{--n-acc:var(--accent,#2340d0);--n-acc-soft:var(--accent-soft,#e7ecff);--n-surf:var(--surface,#fff);--n-ink:var(--ink,#141a2c);
+  --n-mut:var(--muted,#566079);--n-line:var(--line,#dce2ec);
+  display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;margin:4px 0 6px;scroll-margin-top:16px;max-width:100%;min-width:0}
+.narr-btn,.narr-all-btn,.narr-tr>summary,.narr-speed button{font:inherit;font-size:.95rem;font-weight:600;min-height:44px;border-radius:999px;
+  border:1.5px solid var(--n-acc);background:var(--n-surf);color:var(--n-acc);cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;line-height:1.3;text-align:start}
+.narr-btn{display:none}
+.narr-js .narr-btn{display:inline-flex}
+.narr-btn[aria-expanded="true"],.narr-all-btn[aria-pressed="true"]{background:var(--n-acc);color:var(--n-surf)}
+.narr-btn .narr-d,.narr-all-btn .narr-d{font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.narr-tr{min-width:0;flex:0 1 auto}
+.narr-tr[open]{flex:1 1 100%}
+.narr-tr>summary{list-style:none;color:var(--n-mut);border-color:var(--n-line);width:max-content}
+.narr-tr>summary::-webkit-details-marker{display:none}
+.narr-tr>summary::after{content:"▾";font-size:.8em}
+.narr-tr[open]>summary::after{content:"▴"}
+.narr-lines{margin:8px 0 0;padding:10px 14px;padding-inline-start:30px;background:var(--n-surf);border:1px solid var(--n-line);border-radius:12px;
+  display:flex;flex-direction:column;gap:4px;font-size:1rem;line-height:1.65}
+.narr-lines li{border-radius:6px;padding:1px 6px;margin-inline-start:-6px;transition:background-color .2s}
+.narr-lines li.is-on{background:var(--n-acc-soft);box-shadow:inset 3px 0 0 var(--n-acc)}
+.narr-lines li.narr-gap{margin-top:6px}
+.narr-panel{flex:1 1 100%;display:flex;flex-direction:column;gap:8px;background:var(--n-surf);border:1px solid var(--n-line);border-radius:14px;padding:10px 12px;min-width:0}
+.narr-js .narr-panel:not(.is-open){display:none}
+.narr-nojs{margin:0;font-weight:600;color:var(--n-acc);font-size:.95rem}
+.narr-js .narr-nojs{display:none}
+.narr audio{width:100%;max-width:100%;min-height:44px;display:block}
+.narr-tools{display:none;flex-wrap:wrap;gap:6px;align-items:center}
+.narr-js .narr-tools{display:flex}
+.narr-speed{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.narr-speed .lbl{font-size:.875rem;color:var(--n-mut)}
+.narr-speed button{min-width:56px;justify-content:center;padding:6px 10px;border-color:var(--n-line);color:var(--n-ink);font-variant-numeric:tabular-nums}
+.narr-speed button[aria-pressed="true"]{border-color:var(--n-acc);background:var(--n-acc-soft);color:var(--n-acc)}
+.narr-cap{margin:0;min-height:3.3em;font-size:1rem;line-height:1.65;color:var(--n-ink)}
+.narr-all{display:none;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0}
+.narr-js .narr-all{display:flex}
+.narr-all-btn{--n-acc:var(--accent,#2340d0);--n-surf:var(--surface,#fff);border-color:var(--n-acc);color:var(--n-acc);background:var(--n-surf)}
+.narr-all-status{font-size:.9rem;color:var(--muted,#566079);min-height:1.4em}
+.narr-all-restart{font:inherit;font-size:.875rem;background:none;border:0;color:var(--accent,#2340d0);text-decoration:underline;cursor:pointer;min-height:44px;padding:0 6px}
+.narr :focus-visible,.narr-all :focus-visible{outline:3px solid var(--n-acc,var(--accent,#2340d0));outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.narr-lines li{transition:none}}
+@media print{.narr,.narr-all{display:none!important}}
+</style><script>document.documentElement.classList.add("narr-js")</script><!--/narr:css-->
 
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1187,6 +1230,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
         <a class="cta primary" href="#idea">מתחילים מההתחלה</a>
         <a class="cta ghost" href="#video" id="ctaVideo"><span class="play" aria-hidden="true"></span>השיעור בסרטון</a>
       </div>
+<!--narr:all--><div class="narr-all" role="group" aria-label="האזנה לשיעור"><button type="button" class="narr-all-btn" aria-pressed="false"><span aria-hidden="true">🎧</span><span class="narr-all-lbl">האזנה לכל השיעור</span> <span class="narr-d">(≈ 24 דקות)</span></button><button type="button" class="narr-all-restart" hidden>מההתחלה</button><span class="narr-all-status" role="status"></span></div><!--/narr:all-->
     </div>
   </div>
 </header>
@@ -1270,7 +1314,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 1 THE STORY + DEFINITION ===== -->
 <section id="idea" class="stack" data-ch="A" aria-labelledby="h-idea">
-  <div class="sec-head"><div class="eyebrow">נושא 1 · הסיפור וההגדרה</div><h2 id="h-idea">מסעדה אחת ושאלה אחת</h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 1 · הסיפור וההגדרה</div><h2 id="h-idea">מסעדה אחת ושאלה אחת</h2><!--narr:idea--><div class="narr" id="narr-idea" data-key="idea" data-title="מסעדה אחת ושאלה אחת"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-idea"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:28)</span></button><div class="narr-panel" id="narr-p-idea"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:28)</p><audio controls preload="none" src="audio/idea.m4a" aria-label="האזנה לנושא: מסעדה אחת ושאלה אחת"><track kind="captions" srclang="he" label="עברית" src="audio/idea.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">פונקציית ייצור אומרת כמה הכי הרבה אפשר לייצר מכמות נתונה של גורמי ייצור, בטכנולוגיה הקיימת.</li><li data-n="2">גורמי ייצור הם למשל עובדים, מכונות וחומרים.</li><li data-n="3">בנוסחה כותבים q = f(K, L): התפוקה היא פונקציה של ההון (K) ושל העבודה (L).</li><li data-n="4" class="narr-gap">הכירו את מסעדה 1 מהסיכום, עם מטבח אחד בגודל קבוע.</li><li data-n="5">בעלת המסעדה מחליטה רק דבר אחד: כמה עובדים יעבדו היום.</li><li data-n="6">עם עובד אחד המסעדה מכינה 15 ארוחות ביום.</li><li data-n="7">עם 2 עובדים היא מכינה 29, ועם 3 עובדים 42.</li><li data-n="8">ועם 6 עובדים, 70 ארוחות ביום.</li><li data-n="9" class="narr-gap">ומה קורה כשמוסיפים עוד עובד?</li><li data-n="10">זו השאלה של כל השיעור.</li><li data-n="11" class="narr-gap">את ההגדרה המלאה צריך לדעת בעל פה, עם שלוש מילות מפתח.</li><li data-n="12">״מקסימלית״, כלומר הכי הרבה שאפשר לייצר.</li><li data-n="13">״בלי בזבוז״, כלומר רק שילובים יעילים של גורמי ייצור.</li><li data-n="14">ו״בהינתן הטכנולוגיה״, כי תנור מהיר יותר משנה את הפונקציה עצמה.</li><li data-n="15" class="narr-gap">שימו לב: הפונקציה אומרת כמה אפשר לייצר, ולא כמה כדאי לייצר.</li><li data-n="16" class="narr-gap">בקיצור, פונקציית הייצור היא ״המתכון״ של העסק: כמה יוצא ממה שנכנס.</li></ol></details></div><!--/narr:idea--></div>
   <p class="brief"><span class="lbl">הכלל</span><strong>פונקציית ייצור</strong> אומרת כמה <strong>הכי הרבה</strong> אפשר לייצר מכמות נתונה של גורמי ייצור (עובדים, מכונות, חומרים), בטכנולוגיה הקיימת. כותבים אותה כך: <bdi dir="ltr" class="m">q = f(K, L)</bdi>.</p>
   <p>הכירו את <strong>מסעדה 1</strong> מהסיכום. יש לה מטבח אחד, בגודל קבוע. בעלת המסעדה מחליטה רק דבר אחד: כמה עובדים יעבדו היום. והשאלה של כל השיעור: <strong>מה קורה כשמוסיפים עוד עובד?</strong></p>
   <ul class="stats" aria-label="הנתונים של מסעדה 1">
@@ -1297,7 +1341,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 2 TP / AP / MP ===== -->
 <section id="apmp" class="stack" data-ch="A" aria-labelledby="h-apmp">
-  <div class="sec-head"><div class="eyebrow">נושא 2 · שלושה מספרים</div><h2 id="h-apmp">תפוקה כוללת, ממוצעת ושולית</h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 2 · שלושה מספרים</div><h2 id="h-apmp">תפוקה כוללת, ממוצעת ושולית</h2><!--narr:apmp--><div class="narr" id="narr-apmp" data-key="apmp" data-title="תפוקה כוללת, ממוצעת ושולית"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-apmp"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:34)</span></button><div class="narr-panel" id="narr-p-apmp"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:34)</p><audio controls preload="none" src="audio/apmp.m4a" aria-label="האזנה לנושא: תפוקה כוללת, ממוצעת ושולית"><track kind="captions" srclang="he" label="עברית" src="audio/apmp.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שלושה מספרים מתארים את הייצור.</li><li data-n="2">הראשון הוא התפוקה הכוללת, שמסמנים אותה TP.</li><li data-n="3">היא אומרת כמה מייצרים בסך הכול.</li><li data-n="4">השני הוא התפוקה הממוצעת, AP, שאומרת כמה מייצר עובד אחד בממוצע.</li><li data-n="5">מחשבים אותה כך: AP = TP : L, התפוקה הכוללת חלקי מספר העובדים.</li><li data-n="6">השלישי הוא התפוקה השולית, MP, שאומרת כמה הוסיף העובד האחרון.</li><li data-n="7">מחשבים אותה כך: MP = ΔTP : ΔL, השינוי בתפוקה הכוללת חלקי השינוי במספר העובדים.</li><li data-n="8" class="narr-gap">נבדוק במסעדה 1, שבה 3 עובדים מכינים 42 ארוחות.</li><li data-n="9">42 : 3 = 14, וזו התפוקה הממוצעת (AP).</li><li data-n="10">עם 2 עובדים היו 29 ארוחות.</li><li data-n="11">לכן העובד השלישי הוסיף 42 − 29 = 13 ארוחות, וזו התפוקה השולית (MP).</li><li data-n="12" class="narr-gap">בגרף, התפוקה השולית היא השיפוע בין שתי נקודות.</li><li data-n="13">בכמה עולים למעלה, חלקי בכמה זזים ימינה.</li><li data-n="14" class="narr-gap">בטבלה, התפוקה השולית היא פשוט ההפרש בין שתי שורות סמוכות.</li><li data-n="15">טעות נפוצה היא לחשב את MP כמו את AP, בחילוק במספר העובדים.</li><li data-n="16" class="narr-gap">בקיצור, AP היא כמה לכל עובד, ו־MP היא כמה הוסיף האחרון.</li></ol></details></div><!--/narr:apmp--></div>
   <p class="brief"><span class="lbl">הכלל</span><bdi dir="ltr" class="m">TP</bdi> היא כמה מייצרים בסך הכול. <bdi dir="ltr" class="m">AP = TP : L</bdi> היא כמה מייצר עובד אחד בממוצע. <bdi dir="ltr" class="m">MP = ΔTP : ΔL</bdi> היא כמה הוסיף העובד האחרון. בגרף, <bdi dir="ltr" class="m">MP</bdi> היא <strong>השיפוע בין שתי נקודות</strong>.</p>
   <div class="fx3">
     <div class="card fx c-var"><span class="k"><bdi dir="ltr" class="m">TP</bdi> · תפוקה כוללת</span><bdi dir="ltr" class="m">TP = q</bdi><span class="s">כל הארוחות יחד</span></div>
@@ -1347,7 +1391,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 3 FIXED / VARIABLE, SHORT / LONG RUN ===== -->
 <section id="run" class="stack" data-ch="B" aria-labelledby="h-run">
-  <div class="sec-head"><div class="eyebrow">נושא 3 · מה אפשר לשנות</div><h2 id="h-run">גורם קבוע, גורם משתנה, טווח קצר וטווח ארוך</h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 3 · מה אפשר לשנות</div><h2 id="h-run">גורם קבוע, גורם משתנה, טווח קצר וטווח ארוך</h2><!--narr:run--><div class="narr" id="narr-run" data-key="run" data-title="גורם קבוע, גורם משתנה, טווח קצר וטווח ארוך"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-run"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:29)</span></button><div class="narr-panel" id="narr-p-run"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:29)</p><audio controls preload="none" src="audio/run.m4a" aria-label="האזנה לנושא: גורם קבוע, גורם משתנה, טווח קצר וטווח ארוך"><track kind="captions" srclang="he" label="עברית" src="audio/run.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">גורם משתנה אפשר לשנות כבר בטווח הקצר, למשל עובדים וחומרי גלם.</li><li data-n="2">גורם קבוע אי אפשר לשנות בטווח הקצר, למשל מבנה, מכונות וטרקטורים.</li><li data-n="3">ובטווח הארוך כל הגורמים משתנים, ואין בכלל גורם קבוע.</li><li data-n="4" class="narr-gap">במסעדה, העובדים הם הגורם המשתנה, והמטבח הוא הגורם הקבוע.</li><li data-n="5">טווח קצר הוא תקופה שבה לפחות גורם ייצור אחד קבוע.</li><li data-n="6">מוסיפים עובדים, אבל המטבח נשאר אותו מטבח.</li><li data-n="7">טווח ארוך הוא תקופה ארוכה מספיק כדי לשנות הכול, גם את המבנה.</li><li data-n="8" class="narr-gap">ועכשיו, תיקון לסיכום.</li><li data-n="9">בסיכום כתוב ״גורם ייצור משתנה: רק בזמן הקצר״ ו״גורם ייצור קבוע: בזמן הארוך״.</li><li data-n="10">הניסוח הזה הפוך ומבלבל.</li><li data-n="11">הנכון: גורם משתנה יש בשני הטווחים, וגורם קבוע יש רק בטווח הקצר.</li><li data-n="12" class="narr-gap">וטווח קצר הוא לא מספר קבוע של חודשים.</li><li data-n="13">במפעל שמחליף מבנה רק כל 20 שנה, כל תקופה קצרה מ־20 שנה היא טווח קצר.</li><li data-n="14">כלומר, ההבחנה תלויה בפירמה, ולא בלוח השנה.</li><li data-n="15" class="narr-gap">בקיצור, בטווח הקצר משהו תקוע, ובטווח הארוך אפשר לשנות הכול.</li></ol></details></div><!--/narr:run--></div>
   <p class="brief"><span class="lbl">הכלל</span><strong>גורם משתנה</strong> אפשר לשנות כבר בטווח הקצר (עובדים, חומרי גלם). <strong>גורם קבוע</strong> אי אפשר לשנות בטווח הקצר (מבנה, מכונות, טרקטורים). <strong>בטווח הארוך כל הגורמים משתנים</strong>, ואין גורם קבוע.</p>
   <div class="two" id="factors">
     <div class="card c-var"><b class="card-h">גורם משתנה</b><p>אפשר להגדיל או להקטין אותו מהר. בסיכום: עובדים וחומרי גלם. במסעדה: מספר העובדים.</p></div>
@@ -1376,7 +1420,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 4 THE LAW ===== -->
 <section id="law" class="stack" data-ch="B" aria-labelledby="h-law">
-  <div class="sec-head"><div class="eyebrow">נושא 4 · הלב של השיעור</div><h2 id="h-law">עוד ועוד עובדים באותו מטבח</h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 4 · הלב של השיעור</div><h2 id="h-law">עוד ועוד עובדים באותו מטבח</h2><!--narr:law--><div class="narr" id="narr-law" data-key="law" data-title="עוד ועוד עובדים באותו מטבח"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-law"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:39)</span></button><div class="narr-panel" id="narr-p-law"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:39)</p><audio controls preload="none" src="audio/law.m4a" aria-label="האזנה לנושא: עוד ועוד עובדים באותו מטבח"><track kind="captions" srclang="he" label="עברית" src="audio/law.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">חוק התפוקה השולית הפוחתת הוא הלב של השיעור.</li><li data-n="2">מוסיפים עוד ועוד מגורם משתנה אחד, והשאר נשארים קבועים.</li><li data-n="3">אז מנקודה מסוימת, כל יחידה נוספת מוסיפה פחות מהקודמת.</li><li data-n="4" class="narr-gap">באזור א׳, כל עובד מוסיף יותר מהקודם, כי העובדים מתחלקים בעבודה.</li><li data-n="5">באזור ב׳, כל עובד מוסיף פחות, אבל עדיין מוסיף.</li><li data-n="6">המטבח לא גדל, ולכל עובד חדש יש פחות מקום ופחות כלים.</li><li data-n="7">באזור ג׳ אין מקום לכולם, ועובד נוסף מקטין את התפוקה הכוללת.</li><li data-n="8" class="narr-gap">למה זה קורה?</li><li data-n="9">כי המטבח נשאר קבוע, ולא כי העובד החמישי גרוע מהראשון.</li><li data-n="10">הוא מוסיף פחות רק כי הוא מגיע למטבח שכבר מלא.</li><li data-n="11" class="narr-gap">במסעדה 1, העובד הראשון מוסיף 15 ארוחות, השני 14 והשלישי 13.</li><li data-n="12">הרביעי מוסיף 12, החמישי 9 והשישי 7.</li><li data-n="13">כבר מהעובד השני כל עובד מוסיף פחות, אבל עדיין מוסיף, ולכן זה אזור ב׳.</li><li data-n="14" class="narr-gap">שימו לב: החוק לא אומר שהתפוקה הכוללת יורדת, אלא שהתוספת יורדת.</li><li data-n="15">במסעדה 1 התפוקה הכוללת עולה כל הזמן, מ־15 עד 70.</li><li data-n="16" class="narr-gap">בקיצור, במטבח שלא גדל, כל עובד נוסף מוסיף פחות מהקודם.</li></ol></details></div><!--/narr:law--></div>
   <p class="brief"><span class="lbl">הכלל</span><strong>חוק התפוקה השולית הפוחתת:</strong> כשמוסיפים עוד ועוד מגורם משתנה אחד, והשאר קבועים, מנקודה מסוימת כל יחידה נוספת מוסיפה <strong>פחות</strong> מהקודמת.</p>
   <p>ההסבר מהסיכום: נוסיף עובד שני, והתפוקה תעלה. נוסיף עוד, והיא עדיין תעלה. אבל כשיש כבר יותר מדי עובדים, אין מקום לכולם. הם מפריעים זה לזה, והתפוקה <strong>יורדת</strong>.</p>
   <figure class="pic wide"><img src="img/orchard.webp" width="1600" height="904" loading="lazy" decoding="async" alt="אותו פרדס לימונים שלוש פעמים: 2 קוטפים עם סלים מלאים, 6 קוטפים עם סלים חצי מלאים, ו־12 קוטפים שנתקעים זה בזה."><figcaption>קוראים מימין לשמאל: אותו פרדס ואותם עצים. רק מספר הקוטפים גדל, מ־2 ל־6 ול־12.</figcaption></figure>
@@ -1404,7 +1448,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 5 THE TP CURVE ===== -->
 <section id="tp" class="stack" data-ch="C" aria-labelledby="h-tp">
-  <div class="sec-head"><div class="eyebrow">נושא 5 · הגרף הראשון מהסיכום</div><h2 id="h-tp">עקומת <bdi dir="ltr" class="m">TP</bdi>: נקודת הפיתול ו־<bdi dir="ltr" class="m">MAX TP</bdi></h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 5 · הגרף הראשון מהסיכום</div><h2 id="h-tp">עקומת <bdi dir="ltr" class="m">TP</bdi>: נקודת הפיתול ו־<bdi dir="ltr" class="m">MAX TP</bdi></h2><!--narr:tp--><div class="narr" id="narr-tp" data-key="tp" data-title="עקומת TP: נקודת הפיתול ו־MAX TP"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-tp"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:32)</span></button><div class="narr-panel" id="narr-p-tp"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:32)</p><audio controls preload="none" src="audio/tp.m4a" aria-label="האזנה לנושא: עקומת TP: נקודת הפיתול ו־MAX TP"><track kind="captions" srclang="he" label="עברית" src="audio/tp.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">עקומת TP עולה ונעשית תלולה יותר ויותר, עד נקודת הפיתול.</li><li data-n="2">את נקודת הפיתול מסמנים L̂: האות L, עם גג מעליה.</li><li data-n="3">שם העקומה הכי תלולה, ולכן MP בשיא.</li><li data-n="4">אחרי נקודת הפיתול העקומה עדיין עולה, אבל מתמתנת.</li><li data-n="5">בנקודה L* העקומה מגיעה לפסגה, ל־MAX TP: התפוקה הכוללת המקסימלית.</li><li data-n="6">בפסגה העקומה שטוחה, ולכן MP = 0.</li><li data-n="7">ואחרי הפסגה העקומה יורדת, כי MP שלילית.</li><li data-n="8" class="narr-gap">וכל זה כי MP היא השיפוע של העקומה.</li><li data-n="9">תחשבו על טיפוס על גבעה.</li><li data-n="10">כל עוד הצעד הבא עולה (MP &gt; 0), ממשיכים לטפס.</li><li data-n="11">בפסגה הצעד הבא שטוח (MP = 0), וצעד נוסף כבר מוריד (MP &lt; 0).</li><li data-n="12" class="narr-gap">העקומה של מסעדה 1 מתחילה כבר ״אחרי הפיתול״.</li><li data-n="13">היא עולה מההתחלה, וכל קטע פחות תלול מהקודם.</li><li data-n="14">ול־MAX TP היא עוד לא הגיעה, כי גם העובד השישי מוסיף 7 ארוחות.</li><li data-n="15" class="narr-gap">כדי למצוא את MAX TP בטבלה, מחפשים את העובד האחרון שה־MP שלו לא שלילית.</li><li data-n="16" class="narr-gap">בקיצור, בנקודת הפיתול (L̂) MP בשיא, וב־MAX TP היא שווה ל־0.</li></ol></details></div><!--/narr:tp--></div>
   <p class="brief"><span class="lbl">הכלל</span><bdi dir="ltr" class="m">TP</bdi> עולה ונעשית תלולה יותר ויותר עד <strong>נקודת הפיתול <bdi dir="ltr" class="m">L̂</bdi></strong>. שם <bdi dir="ltr" class="m">MP</bdi> בשיא. אחרי <bdi dir="ltr" class="m">L̂</bdi> היא עדיין עולה, אבל מתמתנת. ב־<bdi dir="ltr" class="m">L*</bdi> היא מגיעה ל־<bdi dir="ltr" class="m">MAX TP</bdi>, ושם <bdi dir="ltr" class="m">MP = 0</bdi>. אחרי <bdi dir="ltr" class="m">L*</bdi> היא יורדת.</p>
   <p>בסיכום יש גרף של <bdi dir="ltr" class="m">TP</bdi> בלי מספרים, רק הצורה. זו הצורה של פונקציית ייצור ״רגילה״, עם שלושת האזורים מנושא 4. <bdi dir="ltr" class="m">MP</bdi> היא השיפוע של העקומה, ולכן כל מה שקורה ל־<bdi dir="ltr" class="m">MP</bdi> רואים בשיפוע:</p>
   <div class="lab" id="tplab">
@@ -1445,7 +1489,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 6 AP AND MP CURVES ===== -->
 <section id="curves" class="stack" data-ch="D" aria-labelledby="h-curves">
-  <div class="sec-head"><div class="eyebrow" id="mine-curves">נושא 6 · הגרף השני מהסיכום</div><h2 id="h-curves">שלוש העקומות, זו מתחת לזו</h2></div>
+  <div class="sec-head"><div class="eyebrow" id="mine-curves">נושא 6 · הגרף השני מהסיכום</div><h2 id="h-curves">שלוש העקומות, זו מתחת לזו</h2><!--narr:curves--><div class="narr" id="narr-curves" data-key="curves" data-title="שלוש העקומות, זו מתחת לזו"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-curves"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:39)</span></button><div class="narr-panel" id="narr-p-curves"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:39)</p><audio controls preload="none" src="audio/curves.m4a" aria-label="האזנה לנושא: שלוש העקומות, זו מתחת לזו"><track kind="captions" srclang="he" label="עברית" src="audio/curves.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">בגרף השני מהסיכום, AP ו־MP מצוירות מתחת לעקומת TP.</li><li data-n="2">הסדר של השיאים הוא תמיד אותו סדר.</li><li data-n="3">קודם השיא של MP, אחר כך השיא של AP ובסוף MAX TP.</li><li data-n="4" class="narr-gap">MP עולה עד L̂, נקודת הפיתול, ואז יורדת.</li><li data-n="5">השיא שלה נמצא בדיוק מתחת לנקודת הפיתול של עקומת TP.</li><li data-n="6">בהתחלה AP ו־MP יוצאות מאותה נקודה, וזה לא שיא.</li><li data-n="7">MP חוצה את AP בדיוק בשיא של AP, מלמעלה למטה.</li><li data-n="8">ו־MP מגיעה ל־0 ב־L*, בדיוק מתחת ל־MAX TP.</li><li data-n="9" class="narr-gap">ועכשיו, תיקון לסיכום.</li><li data-n="10">בגרף שבסיכום, השיא של העקומה הגבוהה מסומן ״AP במקסימום״.</li><li data-n="11">אבל העקומה הזאת היא MP, כי היא זו שיורדת עד 0.</li><li data-n="12">לכן זה השיא של MP, והשיא של AP נמצא קצת ימינה משם.</li><li data-n="13" class="narr-gap">במסעדה 1 AP רק יורדת.</li><li data-n="14">היא מתחילה ב־15 בעובד הראשון, ויורדת עד בערך 11.67 בעובד השישי.</li><li data-n="15">השיא שלה כבר בעובד הראשון, ו־MP מתחתיה מהעובד השני והלאה.</li><li data-n="16" class="narr-gap">בקיצור, MP חוצה את AP בשיא של AP, ומגיעה ל־0 ב־MAX TP.</li></ol></details></div><!--/narr:curves--></div>
   <p class="brief"><span class="lbl">הכלל</span><bdi dir="ltr" class="m">MP</bdi> מגיעה לשיא ב־<bdi dir="ltr" class="m">L̂</bdi>. היא חוצה את <bdi dir="ltr" class="m">AP</bdi> בדיוק <strong>בשיא של <bdi dir="ltr" class="m">AP</bdi></strong>, ומגיעה ל־0 ב־<bdi dir="ltr" class="m">L*</bdi>. הסדר תמיד אותו סדר: קודם השיא של <bdi dir="ltr" class="m">MP</bdi>, אחר כך השיא של <bdi dir="ltr" class="m">AP</bdi>, ובסוף <bdi dir="ltr" class="m">MAX TP</bdi>.</p>
   <p>בסיכום מצוירות <bdi dir="ltr" class="m">AP</bdi> ו־<bdi dir="ltr" class="m">MP</bdi> מתחת לגרף של <bdi dir="ltr" class="m">TP</bdi>, על אותו ציר <bdi dir="ltr" class="m">L</bdi>. כך רואים בבת אחת מה קורה לשלושתן.</p>
   <div class="lab" id="cvlab">
@@ -1480,7 +1524,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 7 THE RULES ===== -->
 <section id="link" class="stack" data-ch="D" aria-labelledby="h-link">
-  <div class="sec-head"><div class="eyebrow">נושא 7 · הכללים מהסיכום</div><h2 id="h-link">הכללים: <bdi dir="ltr" class="m">MP</bdi> מושכת את <bdi dir="ltr" class="m">AP</bdi>, ומזיזה את <bdi dir="ltr" class="m">TP</bdi></h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 7 · הכללים מהסיכום</div><h2 id="h-link">הכללים: <bdi dir="ltr" class="m">MP</bdi> מושכת את <bdi dir="ltr" class="m">AP</bdi>, ומזיזה את <bdi dir="ltr" class="m">TP</bdi></h2><!--narr:link--><div class="narr" id="narr-link" data-key="link" data-title="הכללים: MP מושכת את AP, ומזיזה את TP"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-link"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:33)</span></button><div class="narr-panel" id="narr-p-link"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:33)</p><audio controls preload="none" src="audio/link.m4a" aria-label="האזנה לנושא: הכללים: MP מושכת את AP, ומזיזה את TP"><track kind="captions" srclang="he" label="עברית" src="audio/link.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">כש־MP &gt; AP, התפוקה הממוצעת עולה.</li><li data-n="2">כש־MP = AP, התפוקה הממוצעת בשיא.</li><li data-n="3">וכש־MP &lt; AP, התפוקה הממוצעת יורדת.</li><li data-n="4" class="narr-gap">ובנפרד, כש־MP &gt; 0, התפוקה הכוללת עולה.</li><li data-n="5">כש־MP = 0, זו MAX TP.</li><li data-n="6">וכש־MP &lt; 0, התפוקה הכוללת יורדת.</li><li data-n="7" class="narr-gap">תיקון לסיכום: בשורה השלישית כתוב MP &gt; AP ליד ״תפוקה ממוצעת יורדת״.</li><li data-n="8">הנכון: AP יורדת כש־MP &lt; AP.</li><li data-n="9" class="narr-gap">זה עובד בדיוק כמו ממוצע ציונים.</li><li data-n="10">נניח שעשיתם 3 מבחנים, והממוצע שלכם הוא 80.</li><li data-n="11">ציון 95 במבחן הרביעי מעלה את הממוצע ל־83.75.</li><li data-n="12">וציון 70 מוריד את הממוצע ל־77.5, אף שזה ציון עובר.</li><li data-n="13" class="narr-gap">במסעדה 1, העובד החמישי מוסיף 9 ארוחות.</li><li data-n="14">זה פחות מ־AP שלפניו, 13.5, ולכן AP יורדת ל־12.6.</li><li data-n="15">אבל MP חיובית, ולכן TP עדיין עולה.</li><li data-n="16" class="narr-gap">בקיצור, MP מושכת אחריה את AP, והסימן שלה קובע אם TP עולה או יורדת.</li></ol></details></div><!--/narr:link--></div>
   <p class="brief"><span class="lbl">הכלל</span>כש־<bdi dir="ltr" class="m">MP &gt; AP</bdi>, <bdi dir="ltr" class="m">AP</bdi> עולה. כש־<bdi dir="ltr" class="m">MP = AP</bdi>, <bdi dir="ltr" class="m">AP</bdi> בשיא. כש־<bdi dir="ltr" class="m">MP &lt; AP</bdi>, <bdi dir="ltr" class="m">AP</bdi> יורדת. ובנפרד: כש־<bdi dir="ltr" class="m">MP &gt; 0</bdi>, <bdi dir="ltr" class="m">TP</bdi> עולה. כש־<bdi dir="ltr" class="m">MP = 0</bdi>, זו <bdi dir="ltr" class="m">MAX TP</bdi>. כש־<bdi dir="ltr" class="m">MP &lt; 0</bdi>, <bdi dir="ltr" class="m">TP</bdi> יורדת.</p>
   <h3><bdi dir="ltr" class="m">MP</bdi> מול <bdi dir="ltr" class="m">AP</bdi></h3>
   <div class="rule3">
@@ -1521,7 +1565,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 8 THE RELEVANT RANGE ===== -->
 <section id="stages" class="stack" data-ch="D" aria-labelledby="h-stages">
-  <div class="sec-head"><div class="eyebrow">נושא 8 · איפה כדאי לעבוד</div><h2 id="h-stages">התחום הרלוונטי לייצור</h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 8 · איפה כדאי לעבוד</div><h2 id="h-stages">התחום הרלוונטי לייצור</h2><!--narr:stages--><div class="narr" id="narr-stages" data-key="stages" data-title="התחום הרלוונטי לייצור"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-stages"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:27)</span></button><div class="narr-panel" id="narr-p-stages"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:27)</p><audio controls preload="none" src="audio/stages.m4a" aria-label="האזנה לנושא: התחום הרלוונטי לייצור"><track kind="captions" srclang="he" label="עברית" src="audio/stages.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">פירמה רציונלית מעסיקה עובדים מהשיא של AP ועד L*, הפסגה של TP.</li><li data-n="2">זה התחום הרלוונטי לייצור, ובספרים קוראים לו ״שלב II״.</li><li data-n="3" class="narr-gap">למה לא אחרי L*?</li><li data-n="4">שם עובד נוסף מוריד את התפוקה (MP &lt; 0), וגם צריך לשלם לו שכר.</li><li data-n="5" class="narr-gap">ולמה לא לעצור לפני השיא של AP?</li><li data-n="6">שם כל עובד נוסף מייצר יותר מהממוצע, ולכן הוא מעלה את התפוקה הממוצעת.</li><li data-n="7">אז אם בכלל כדאי לייצר, כדאי להמשיך לפחות עד השיא של AP.</li><li data-n="8" class="narr-gap">איפה בדיוק בתוך התחום?</li><li data-n="9">זה תלוי בשכר ובמחיר, ונלמד את זה בשיעור 8.</li><li data-n="10" class="narr-gap">ועכשיו, תיקון לסיכום.</li><li data-n="11">ליד הנקודה האדומה בסיכום כתוב ״הנקודה הטובה ביותר להיות״.</li><li data-n="12">מדויק יותר לומר שהשיא של AP הוא רק תחילת התחום הרלוונטי.</li><li data-n="13">הפירמה יכולה לעבוד בכל מקום בתחום, עד L*.</li><li data-n="14" class="narr-gap">במסעדה 1 AP בשיא כבר בעובד הראשון, ו־MP חיובית עד העובד השישי.</li><li data-n="15">לכן כל 6 העובדים נמצאים בתחום הרלוונטי.</li><li data-n="16" class="narr-gap">בקיצור, הפירמה עובדת מהשיא של AP ועד ש־MP מגיעה ל־0.</li></ol></details></div><!--/narr:stages--></div>
   <p class="brief"><span class="lbl">הכלל</span>פירמה רציונלית מעסיקה עובדים <strong>מהשיא של <bdi dir="ltr" class="m">AP</bdi> ועד <bdi dir="ltr" class="m">L*</bdi></strong>. זה התחום הרלוונטי לייצור, ובספרים קוראים לו ״שלב II״. איפה בדיוק בתוכו? זה תלוי בשכר ובמחיר, ונלמד את זה בשיעור 8.</p>
   <div class="stage3">
     <div class="card stg s-bad"><span class="n">שלב I · מ־0 עד השיא של <bdi dir="ltr" class="m">AP</bdi></span><b>לא עוצרים כאן</b><p><bdi dir="ltr" class="m">MP &gt; AP</bdi>: כל עובד נוסף מעלה את התפוקה הממוצעת. כדאי להמשיך להוסיף.</p></div>
@@ -1553,7 +1597,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 9 STUDY HOURS ===== -->
 <section id="hours" class="stack" data-ch="E" aria-labelledby="h-hours">
-  <div class="sec-head"><div class="eyebrow" id="mine-hours">נושא 9 · הדוגמה הראשונה מהעמוד השני</div><h2 id="h-hours">6 שעות לימוד, שלושה מבחנים</h2></div>
+  <div class="sec-head"><div class="eyebrow" id="mine-hours">נושא 9 · הדוגמה הראשונה מהעמוד השני</div><h2 id="h-hours">6 שעות לימוד, שלושה מבחנים</h2><!--narr:hours--><div class="narr" id="narr-hours" data-key="hours" data-title="שעות לימוד, שלושה מבחנים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-hours"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:49)</span></button><div class="narr-panel" id="narr-p-hours"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:49)</p><audio controls preload="none" src="audio/hours.m4a" aria-label="האזנה לנושא: שעות לימוד, שלושה מבחנים"><track kind="captions" srclang="he" label="עברית" src="audio/hours.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">כל שעת לימוד הולכת למבחן שבו היא תוסיף הכי הרבה נקודות (MP הכי גבוהה).</li><li data-n="2">כך מקבלים את סכום הציונים הכי גבוה, ולכן גם את הממוצע הכי גבוה.</li><li data-n="3" class="narr-gap">לסטודנט יש 6 שעות ללמוד לשלושה מבחנים: כלכלה, מחשבה ושיטות.</li><li data-n="4">השעות הן הגורם המשתנה, והציון הוא התפוקה.</li><li data-n="5">השעות הראשונות בכל מקצוע מוסיפות הרבה, והשעות הבאות מוסיפות פחות.</li><li data-n="6" class="narr-gap">שתי השעות הראשונות הולכות לכלכלה, כי שם הן מוסיפות 25 נקודות, ואחר כך 20.</li><li data-n="7">השעות השלישית והרביעית הולכות למחשבה, כי שם הן מוסיפות 12 ו־11.</li><li data-n="8">בשעה החמישית יש תיקו: 10 נקודות בכלכלה ו־10 בשיטות.</li><li data-n="9">החמישית הולכת לכלכלה, והשישית הולכת לשיטות.</li><li data-n="10" class="narr-gap">התוצאה: 3 שעות כלכלה, 2 שעות מחשבה ושעה אחת שיטות.</li><li data-n="11">הציונים הם 75 בכלכלה, 63 במחשבה ו־90 בשיטות.</li><li data-n="12">הסכום הוא 228, ובחלוקה ל־3 מבחנים הממוצע הוא 76.</li><li data-n="13" class="narr-gap">ואם יש רק 5 שעות, מוותרים על אחת השעות שמוסיפות 10 נקודות, והסכום יורד ל־218.</li><li data-n="14" class="narr-gap">ויש תיקון קטן לסיכום, שבו כתוב שהממוצע עם 5 שעות הוא 72.6.</li><li data-n="15">אבל 218 : 3 זה בערך 72.67.</li><li data-n="16" class="narr-gap">בקיצור, משווים רק את מה שהשעה הבאה תוסיף (MP), ולא את הציון עצמו.</li></ol></details></div><!--/narr:hours--></div>
   <p class="brief"><span class="lbl">הכלל</span>כל שעה הולכת למקום שבו היא מוסיפה <strong>הכי הרבה</strong>: למבחן שבו <bdi dir="ltr" class="m">MP</bdi> של השעה <em>הבאה</em> הכי גבוהה. כך מקבלים את סכום הציונים הכי גבוה, ולכן גם את הממוצע הכי גבוה.</p>
   <p>לסטודנט יש 6 שעות ללמוד לשלושה מבחנים: כלכלה, מחשבה ושיטות. כל שעה מעלה את הציון (או לפחות לא מורידה), אבל שעה נוספת באותו מקצוע לא מוסיפה יותר מהקודמת, ובדרך כלל מוסיפה פחות. זה שוב חוק התפוקה השולית הפוחתת: השעות הן הגורם המשתנה, והציון הוא התפוקה.</p>
   <div class="tscroll"><table class="t" id="hoursTable"><caption>הציון בכל מבחן לפי שעות הלימוד</caption><thead><tr><th scope="col">שעות</th><th scope="col">ציון בכלכלה</th><th scope="col"><bdi dir="ltr">MP</bdi> כלכלה</th><th scope="col">ציון במחשבה</th><th scope="col"><bdi dir="ltr">MP</bdi> מחשבה</th><th scope="col">ציון בשיטות</th><th scope="col"><bdi dir="ltr">MP</bdi> שיטות</th></tr></thead><tbody><tr><th scope="row" class="n">0</th><td class="n">20</td><td class="n">—</td><td class="n">40</td><td class="n">—</td><td class="n">80</td><td class="n">—</td></tr><tr><th scope="row" class="n">1</th><td class="n">45</td><td class="n"><b>25</b></td><td class="n">52</td><td class="n"><b>12</b></td><td class="n">90</td><td class="n"><b>10</b></td></tr><tr><th scope="row" class="n">2</th><td class="n">65</td><td class="n"><b>20</b></td><td class="n">63</td><td class="n"><b>11</b></td><td class="n">95</td><td class="n">5</td></tr><tr><th scope="row" class="n">3</th><td class="n">75</td><td class="n"><b>10</b></td><td class="n">71</td><td class="n">8</td><td class="n">97</td><td class="n">2</td></tr><tr><th scope="row" class="n">4</th><td class="n">83</td><td class="n">8</td><td class="n">78</td><td class="n">7</td><td class="n">98</td><td class="n">1</td></tr><tr><th scope="row" class="n">5</th><td class="n">90</td><td class="n">7</td><td class="n">83</td><td class="n">5</td><td class="n">99</td><td class="n">1</td></tr><tr><th scope="row" class="n">6</th><td class="n">92</td><td class="n">2</td><td class="n">86</td><td class="n">3</td><td class="n">99</td><td class="n">0</td></tr></tbody></table></div>
@@ -1586,7 +1630,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 10 TWO RESTAURANTS ===== -->
 <section id="rest" class="stack" data-ch="E" aria-labelledby="h-rest">
-  <div class="sec-head"><div class="eyebrow" id="mine-rest">נושא 10 · הדוגמה השנייה מהעמוד השני</div><h2 id="h-rest">שתי מסעדות, 5 עובדים</h2></div>
+  <div class="sec-head"><div class="eyebrow" id="mine-rest">נושא 10 · הדוגמה השנייה מהעמוד השני</div><h2 id="h-rest">שתי מסעדות, 5 עובדים</h2><!--narr:rest--><div class="narr" id="narr-rest" data-key="rest" data-title="שתי מסעדות, 5 עובדים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-rest"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:43)</span></button><div class="narr-panel" id="narr-p-rest"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:43)</p><audio controls preload="none" src="audio/rest.m4a" aria-label="האזנה לנושא: שתי מסעדות, 5 עובדים"><track kind="captions" srclang="he" label="עברית" src="audio/rest.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">אותו כלל בדיוק: כל עובד הולך למסעדה שבה הוא יוסיף יותר ארוחות (MP גבוהה יותר).</li><li data-n="2">לבעלת מסעדה 1 יש גם מסעדה שנייה, ובסך הכול 5 עובדים לחלק ביניהן.</li><li data-n="3" class="narr-gap">במסעדה 2, העובד הראשון מוסיף 20 ארוחות, והשני מוסיף 19.</li><li data-n="4">במסעדה 1 העובד הראשון מוסיף רק 15, ולכן שני העובדים הראשונים הולכים למסעדה 2.</li><li data-n="5">עובד שלישי במסעדה 2 יוסיף רק 12.</li><li data-n="6">לכן שלושת העובדים הבאים הולכים למסעדה 1, ומוסיפים 15, 14 ו־13.</li><li data-n="7" class="narr-gap">התוצאה: 3 עובדים במסעדה 1 ו־2 במסעדה 2.</li><li data-n="8">מסעדה 1 מכינה 42 ארוחות, ומסעדה 2 מכינה 39.</li><li data-n="9">יחד TP = 42 + 39 = 81 ארוחות.</li><li data-n="10">כל חלוקה אחרת נותנת פחות.</li><li data-n="11">למשל, 4 עובדים במסעדה 1 ועובד אחד במסעדה 2 נותנים רק 74 ארוחות.</li><li data-n="12" class="narr-gap">ומה התפוקה השולית של העובד החמישי?</li><li data-n="13">מסתכלים על העובד האחרון ששובץ, השלישי במסעדה 1, והוא הוסיף 13 ארוחות: MP₅ = 13.</li><li data-n="14">שימו לב: לא מחלקים 81 : 5, כי כך מקבלים את התפוקה הממוצעת (AP).</li><li data-n="15">הכלל עובד כי בכל מסעדה MP רק יורדת.</li><li data-n="16" class="narr-gap">בקיצור, משבצים עובד אחרי עובד למקום שבו הוא יוסיף יותר.</li></ol></details></div><!--/narr:rest--></div>
   <p class="brief"><span class="lbl">הכלל</span>אותו כלל בדיוק: כל עובד הולך למסעדה שבה <bdi dir="ltr" class="m">MP</bdi> של העובד הבא גבוהה יותר. עם 5 עובדים: 3 למסעדה 1 ו־2 למסעדה 2, ו־<bdi dir="ltr" class="m">TP = 42 + 39 = 81</bdi>.</p>
   <p>לבעלת מסעדה 1 יש גם מסעדה שנייה, ו־5 עובדים בסך הכול. כמה עובדים לשלוח לכל מסעדה, כדי שיוכנו כמה שיותר ארוחות?</p>
   <div class="tscroll"><table class="t" id="restTable"><caption>שתי המסעדות: ארוחות ותוספות. מודגשים 5 העובדים שנבחרים</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small>עובדים</small></th><th scope="col"><bdi dir="ltr">TP</bdi><small>מסעדה 1</small></th><th scope="col"><bdi dir="ltr">MP</bdi><small>מסעדה 1</small></th><th scope="col"><bdi dir="ltr">TP</bdi><small>מסעדה 2</small></th><th scope="col"><bdi dir="ltr">MP</bdi><small>מסעדה 2</small></th></tr></thead><tbody>
@@ -1622,7 +1666,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 11 CLOSING A RESTAURANT ===== -->
 <section id="close" class="stack" data-ch="E" aria-labelledby="h-close">
-  <div class="sec-head"><div class="eyebrow">נושא 11 · שאלה מהסיכום</div><h2 id="h-close">סוגרים את מסעדה 2: כמה מפסידים?</h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 11 · שאלה מהסיכום</div><h2 id="h-close">סוגרים את מסעדה 2: כמה מפסידים?</h2><!--narr:close--><div class="narr" id="narr-close" data-key="close" data-title="סוגרים את מסעדה 2: כמה מפסידים?"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-close"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:35)</span></button><div class="narr-panel" id="narr-p-close"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:35)</p><audio controls preload="none" src="audio/close.m4a" aria-label="האזנה לנושא: סוגרים את מסעדה 2: כמה מפסידים?"><track kind="captions" srclang="he" label="עברית" src="audio/close.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">ההפסד מסגירה הוא מה שהמסעדה ייצרה, פחות מה שהעובדים שלה יוסיפו במקום אחר.</li><li data-n="2" class="narr-gap">מסעדה 2 מכינה 39 ארוחות, עם 2 עובדים.</li><li data-n="3">אם סוגרים אותה, האם מפסידים 39 ארוחות?</li><li data-n="4">לא, כי שני העובדים שלה לא נעלמים.</li><li data-n="5">הם עוברים למסעדה 1, ושם הם העובד הרביעי והעובד החמישי.</li><li data-n="6" class="narr-gap">מאבדים את מה שמסעדה 2 הכינה: 39 ארוחות.</li><li data-n="7">העובד הרביעי במסעדה 1 מוסיף 12, והחמישי מוסיף 9.</li><li data-n="8">סך הכול: −39 + 12 + 9 = −18.</li><li data-n="9">כלומר, מפסידים רק 18 ארוחות.</li><li data-n="10">התפוקה יורדת מ־81 ארוחות ל־63.</li><li data-n="11">וזה מסתדר, כי 5 עובדים במסעדה 1 מכינים בדיוק 63 ארוחות.</li><li data-n="12" class="narr-gap">אותו היגיון עובד גם בחיים.</li><li data-n="13">מישהי עוזבת עבודה שמכניסה 8,000 ₪, ועוברת לעבודה שמכניסה 6,000 ₪.</li><li data-n="14">היא לא מפסידה 8,000 ₪, אלא רק 2,000 ₪.</li><li data-n="15">זה ההיגיון של עלות אלטרנטיבית, שנפגוש בשיעור 8.</li><li data-n="16" class="narr-gap">בקיצור, ההפסד מסגירה הוא התפוקה של המקום שנסגר, פחות מה שהעובדים יוסיפו במקום החדש.</li></ol></details></div><!--/narr:close--></div>
   <p class="brief"><span class="lbl">הכלל</span>ההפסד מסגירה = מה שהמסעדה ייצרה, <strong>פחות</strong> מה שהעובדים שלה יוסיפו במקום אחר. כאן: <bdi dir="ltr" class="m">−39 + 12 + 9 = −18</bdi>. מפסידים 18 ארוחות, ולא 39.</p>
   <p>מסעדה 2 מכינה 39 ארוחות עם 2 עובדים. אם סוגרים אותה, האם מפסידים 39 ארוחות? לא. שני העובדים שלה לא נעלמים: הם עוברים למסעדה 1, ושם הם העובד הרביעי והחמישי.</p>
   <ol class="steps">
@@ -1651,7 +1695,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== 12 THE DECK ===== -->
 <section id="deck" class="stack" data-ch="S" aria-labelledby="h-deck">
-  <div class="sec-head"><div class="eyebrow">נושא 12 · מהמצגת</div><h2 id="h-deck">מפעל האופנועים, שני השדות ועוד</h2></div>
+  <div class="sec-head"><div class="eyebrow">נושא 12 · מהמצגת</div><h2 id="h-deck">מפעל האופנועים, שני השדות ועוד</h2><!--narr:deck--><div class="narr" id="narr-deck" data-key="deck" data-title="מפעל האופנועים, שני השדות ועוד"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-deck"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:50)</span></button><div class="narr-panel" id="narr-p-deck"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:50)</p><audio controls preload="none" src="audio/deck.m4a" aria-label="האזנה לנושא: מפעל האופנועים, שני השדות ועוד"><track kind="captions" srclang="he" label="עברית" src="audio/deck.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">אלה אותם כללים, עם המספרים של המרצה.</li><li data-n="2" class="narr-gap">במפעל האופנועים המכונות קבועות, ולכן זה טווח קצר.</li><li data-n="3">קודם התוספות (MP) עולות: העובד הראשון מוסיף 4 אופנועים, השני 8 והשלישי 12.</li><li data-n="4">אחר כך הן יורדות ל־8 ול־3, ובסוף הן שליליות: −5.</li><li data-n="5">העובד השלישי מוסיף הכי הרבה, ולכן ב־3 עובדים נמצאת נקודת הפיתול.</li><li data-n="6">עם 4 עובדים AP בשיא, 8 אופנועים לעובד, ושם MP = AP = 8.</li><li data-n="7">עם 5 עובדים MAX TP: 35 אופנועים.</li><li data-n="8">העובד השישי מוריד את TP ל־30, ולכן פירמה רציונלית לא תעסיק אותו.</li><li data-n="9" class="narr-gap">בשני השדות יש 4 עובדים, וכל עובד הולך לשדה שבו הוא מוסיף יותר.</li><li data-n="10">3 עובדים הולכים לשדה א׳, ואחד לשדה ב׳.</li><li data-n="11">יחד q = 35 + 11 = 46 יחידות, הכי הרבה שאפשר.</li><li data-n="12">4 עובדים בשדה א׳ היו נותנים רק 43.</li><li data-n="13" class="narr-gap">במאפייה, בכל שעת עבודה מכינים 2 עוגות, ולכן AP = MP = 2 תמיד.</li><li data-n="14">אין במאפייה גורם קבוע, ולכן אין תפוקה שולית פוחתת.</li><li data-n="15">ובמשק כולו, כשהטכנולוגיה (A) משתפרת, אותם עובדים ומכונות מייצרים יותר.</li><li data-n="16" class="narr-gap">בקיצור, במפעל האופנועים רואים את שלושת האזורים, ובשדות רואים שוב את כלל ההקצאה.</li></ol></details></div><!--/narr:deck--></div>
   <p class="brief"><span class="lbl">הכלל</span>אותם כללים, עם המספרים של המרצה. במפעל האופנועים רואים בטבלה את שלושת האזורים, כולל קטע שבו <bdi dir="ltr" class="m">MP</bdi> עולה. בשני השדות רואים שוב את כלל ההקצאה: כל עובד הולך לאן שהוא מוסיף הכי הרבה.</p>
     <div class="vidsec vid-deck" id="deckvideo" role="region" aria-labelledby="h-deckvideo">
     <div class="vid-head"><h3 id="h-deckvideo">סרטון הדוגמאות מהמצגת</h3><span class="note"><bdi dir="ltr">2:37</bdi> דקות · קריינות וכתוביות בעברית</span><p class="note vid-src">הסרטון הקודם של השיעור, שנבנה מהמצגת של המרצה: הפרדס, מפעל האופנועים ושני השדות.</p></div>
@@ -1769,7 +1813,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== TRAPS ===== -->
 <section id="traps" class="stack" data-ch="P" aria-labelledby="h-traps">
-  <div class="sec-head"><div class="eyebrow">תרגול · לפני שפותרים</div><h2 id="h-traps">11 מלכודות שהמבחן אוהב</h2></div>
+  <div class="sec-head"><div class="eyebrow">תרגול · לפני שפותרים</div><h2 id="h-traps">11 מלכודות שהמבחן אוהב</h2><!--narr:traps--><div class="narr" id="narr-traps" data-key="traps" data-title="מלכודות שהמבחן אוהב"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-traps"><span aria-hidden="true">🎧</span><span>האזנה למלכודות</span> <span class="narr-d">(1:30)</span></button><div class="narr-panel" id="narr-p-traps"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה למלכודות (1:30)</p><audio controls preload="none" src="audio/traps.m4a" aria-label="האזנה למלכודות: מלכודות שהמבחן אוהב"><track kind="captions" srclang="he" label="עברית" src="audio/traps.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">הנה 6 מלכודות חשובות מתוך 11, כל אחת עם התשובה הנכונה.</li><li data-n="2" class="narr-gap">הטעות הראשונה: ״MP יורדת, ולכן TP יורדת״.</li><li data-n="3">הנכון: TP יורדת רק כש־MP שלילית.</li><li data-n="4" class="narr-gap">הטעות השנייה: ״AP יורדת, ולכן MP שלילית״.</li><li data-n="5">הנכון: מספיק ש־MP &lt; AP.</li><li data-n="6" class="narr-gap">הטעות השלישית: ״MP חוצה את AP בשיא של MP״.</li><li data-n="7">הנכון: MP חוצה את AP בשיא של AP.</li><li data-n="8" class="narr-gap">הטעות הרביעית: ״לעובד הראשון MP = AP, ולכן AP בשיא״.</li><li data-n="9">הנכון: לעובד הראשון הן תמיד שוות, וזה לא אומר כלום על שיא.</li><li data-n="10" class="narr-gap">הטעות החמישית: ״סוגרים מסעדה, ולכן מפסידים את כל מה שהיא ייצרה״.</li><li data-n="11">הנכון: העובדים עוברים למקום אחר, ומוסיפים שם.</li><li data-n="12" class="narr-gap">הטעות השישית: ״ה־MP של העובד החמישי היא TP : 5״.</li><li data-n="13">הנכון: TP : 5 היא AP, ו־MP היא רק התוספת של העובד החמישי.</li><li data-n="14" class="narr-gap">בקיצור, MP היא תמיד רק התוספת של היחידה האחרונה.</li></ol></details></div><!--/narr:traps--></div>
   <p>בדקו את עצמכם: לכל טענה, נסו להגיד מה לא נכון בה, ורק אז פתחו.</p>
   <ol class="mist traps">
     <li><details class="card trapd"><summary><span>״<bdi dir="ltr" class="m">MP</bdi> יורדת, ולכן <bdi dir="ltr" class="m">TP</bdi> יורדת״.</span></summary><p>לא. <bdi dir="ltr" class="m">TP</bdi> יורדת רק כש־<bdi dir="ltr" class="m">MP</bdi> שלילית. במסעדה 1 <bdi dir="ltr" class="m">MP</bdi> יורדת כל הזמן, ו־<bdi dir="ltr" class="m">TP</bdi> עולה כל הזמן.</p></details></li>
@@ -1789,7 +1833,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== EXAM ===== -->
 <section id="exam" class="stack qsec" data-ch="P" aria-labelledby="h-exam">
-  <div class="sec-head"><div class="eyebrow">תרגול · כמו במבחן</div><h2 id="h-exam">25 שאלות מבחן, עם פתרון מלא</h2></div>
+  <div class="sec-head"><div class="eyebrow">תרגול · כמו במבחן</div><h2 id="h-exam">25 שאלות מבחן, עם פתרון מלא</h2><!--narr:exam--><div class="narr" id="narr-exam" data-key="exam" data-title="שאלות מבחן, עם פתרון מלא"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-exam"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:39)</span></button><div class="narr-panel" id="narr-p-exam"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:39)</p><audio controls preload="none" src="audio/exam.m4a" aria-label="האזנה לנושא: שאלות מבחן, עם פתרון מלא"><track kind="captions" srclang="he" label="עברית" src="audio/exam.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלות המבחן בודקות שוב ושוב כמה רעיונות, והנה החשובים שבהם.</li><li data-n="2" class="narr-gap">תפוקה שולית מחשבים מההפרש בין שתי שורות סמוכות בטבלה.</li><li data-n="3">במסעדה 1, 4 עובדים מכינים 54 ארוחות, ו־5 עובדים מכינים 63.</li><li data-n="4">לכן העובד החמישי הוסיף 9 ארוחות.</li><li data-n="5">התשובה 12.6 היא מלכודת, וגם התשובה 13.5.</li><li data-n="6">אלה תפוקות ממוצעות (AP), ולא התוספת של העובד החמישי.</li><li data-n="7" class="narr-gap">תפוקה ממוצעת מחשבים בחילוק.</li><li data-n="8">למשל, 51 ארוחות : 3 עובדים = 17 ארוחות לעובד.</li><li data-n="9" class="narr-gap">כש־AP = 13.5, ועובד חדש מוסיף MP = 9, AP יורדת.</li><li data-n="10">אבל TP עדיין עולה, כי MP חיובית.</li><li data-n="11" class="narr-gap">בשאלות הקצאה משווים רק את התוספת הבאה (MP), ולא את הציון.</li><li data-n="12">אם שעה תוסיף 8 נקודות בכלכלה, 7 במחשבה ו־10 בשיטות, היא הולכת לשיטות.</li><li data-n="13">וזה נכון גם אם הציון בשיטות כבר הכי גבוה.</li><li data-n="14" class="narr-gap">בסגירת מסעדה 2, התפוקה יורדת ב־18 ארוחות, ולא ב־39.</li><li data-n="15" class="narr-gap">וכשנתונה נוסחה ל־TP, ה־MP היא הנגזרת שלה.</li><li data-n="16" class="narr-gap">בקיצור, לפני כל שאלה בדקו אם מבקשים את התוספת (MP) או את הממוצע (AP).</li></ol></details></div><!--/narr:exam--></div>
   <p>16 שאלות אמריקאיות ו־9 שאלות חישוב והקצאה, כמו בסיכום. בשאלות האמריקאיות לחצו על תשובה: תקבלו משוב והסבר. בשאלות החישוב נסו לבד, ורק אז פתחו את הפתרון.</p>
   <p class="score" id="score" aria-live="polite">בחרו תשובה כדי לקבל משוב.</p>
   <div class="tabs extabs" data-tabs>
@@ -2031,7 +2075,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 
 <!-- ===== SUMMARY ===== -->
 <section id="sum" class="stack" data-ch="P" aria-labelledby="h-sum">
-  <div class="sec-head"><div class="eyebrow">תרגול · לפני המבחן</div><h2 id="h-sum">דף סיכום בעמוד אחד</h2></div>
+  <div class="sec-head"><div class="eyebrow">תרגול · לפני המבחן</div><h2 id="h-sum">דף סיכום בעמוד אחד</h2><!--narr:sum--><div class="narr" id="narr-sum" data-key="sum" data-title="דף סיכום בעמוד אחד"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-sum"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:39)</span></button><div class="narr-panel" id="narr-p-sum"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:39)</p><audio controls preload="none" src="audio/sum.m4a" aria-label="האזנה לנושא: דף סיכום בעמוד אחד"><track kind="captions" srclang="he" label="עברית" src="audio/sum.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">כל השיעור בדף אחד, בסדר של הסיכום.</li><li data-n="2" class="narr-gap">התפוקה הממוצעת: AP = TP : L.</li><li data-n="3">התפוקה השולית: MP = ΔTP : ΔL, מה שהוסיף העובד האחרון, והיא גם השיפוע בין שתי נקודות.</li><li data-n="4">גורם קבוע יש רק בטווח הקצר, וגורם משתנה יש בשני הטווחים.</li><li data-n="5" class="narr-gap">סדר השיאים: קודם MP (ב־L̂), אחר כך AP ובסוף TP (ב־L*).</li><li data-n="6">כש־MP &gt; AP, AP עולה, וכש־MP &lt; AP, AP יורדת.</li><li data-n="7">כש־MP &gt; 0, TP עולה, וכש־MP &lt; 0, TP יורדת.</li><li data-n="8">התחום הרלוונטי: משיא AP עד L*, שם MP = 0.</li><li data-n="9">הקצאה: כל יחידה הולכת למקום שבו MP הבאה הכי גבוהה.</li><li data-n="10" class="narr-gap">ועכשיו המספרים מהדוגמאות.</li><li data-n="11">עם 6 שעות לימוד, הממוצע הכי גבוה הוא 76.</li><li data-n="12">עם 5 שעות, הממוצע הכי גבוה הוא בערך 72.67.</li><li data-n="13">בשתי המסעדות, 5 עובדים מכינים 81 ארוחות.</li><li data-n="14">וה־MP של העובד החמישי היא 13.</li><li data-n="15">ואם סוגרים את מסעדה 2, מפסידים 18 ארוחות (−39 + 12 + 9).</li><li data-n="16" class="narr-gap">בקיצור, כמעט כל שאלה בשיעור הזה מתחילה בתפוקה השולית (MP), כלומר במה שהוסיפה היחידה האחרונה.</li></ol></details></div><!--/narr:sum--></div>
   <p>כל השיעור בעמוד אחד, בסדר של הסיכום: הנוסחאות, הכללים, והמספרים מהדוגמאות.</p>
   <div class="sheet tabs sumtabs" data-tabs data-narrow="640">
     <div class="tab-panel sh-f" data-tab="נוסחאות">
@@ -2521,5 +2565,161 @@ new MutationObserver(all).observe(document.documentElement,{attributes:true,attr
 })();
 </script>
 
+<!--narr:js--><script>/* narr: lesson narration players. Per section: .narr (button, panel with <audio>, speed, live caption, transcript).
+   Per lesson: .narr-all plays every section in order, scrolls each into view, remembers the place (localStorage).
+   Only one audio/video plays at a time. Without JS the plain <audio controls> and the transcript still work. */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  root.classList.add('narr-js');
+  var players = [].slice.call(document.querySelectorAll('.narr'));
+  if (!players.length) return;
+  var KEY = 'narr:' + location.pathname, RKEY = 'narr:rate';
+  function get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
+  function del(k) { try { localStorage.removeItem(k); } catch (e) { } }
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rate = +get(RKEY) || 1;
+  var allBox = document.querySelector('.narr-all');
+  var allBtn = allBox && allBox.querySelector('.narr-all-btn');
+  var allStatus = allBox && allBox.querySelector('.narr-all-status');
+  var allRestart = allBox && allBox.querySelector('.narr-all-restart');
+  var allMode = false, cur = -1, lastSave = 0;
+
+  function fmt(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+
+  // ---- one audio at a time (narration and the page's videos) ----
+  document.addEventListener('play', function (e) {
+    var t = e.target;
+    [].forEach.call(document.querySelectorAll('audio, video'), function (m) { if (m !== t && !m.paused) m.pause(); });
+    // a page may also have the device's read-aloud (speechSynthesis): stop it while media plays
+    try { if (window.speechSynthesis && speechSynthesis.speaking) speechSynthesis.cancel(); } catch (x) { }
+    [].forEach.call(document.querySelectorAll('.say[aria-pressed="true"]'), function (b) { b.setAttribute('aria-pressed', 'false'); });
+  }, true);
+  document.addEventListener('click', function (e) {   // the page's own read-aloud button pauses the narration
+    if (e.target.closest && e.target.closest('.say')) players.forEach(function (p) { if (p.audio && !p.audio.paused) p.audio.pause(); });
+  }, true);
+
+  function open(p, yes) {
+    p.panel.classList.toggle('is-open', yes);
+    p.btn.setAttribute('aria-expanded', yes ? 'true' : 'false');
+  }
+
+  function setRate(r) {
+    rate = r; set(RKEY, r);
+    players.forEach(function (p) {
+      p.audio.defaultPlaybackRate = r; p.audio.playbackRate = r;
+      [].forEach.call(p.speed, function (b) { b.setAttribute('aria-pressed', +b.dataset.rate === r ? 'true' : 'false'); });
+    });
+  }
+
+  function showCue(p) {
+    var tr = p.track, c = tr && tr.activeCues && tr.activeCues[0];
+    var id = c ? c.id : null;
+    if (id === p.on) return;
+    p.on = id;
+    [].forEach.call(p.lines, function (li) {
+      var on = li.dataset.n === id;
+      li.classList.toggle('is-on', on);
+      if (on) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
+    });
+    if (c) p.cap.textContent = c.text.replace(/^‏/, '');
+  }
+
+  players.forEach(function (el, i) {
+    var p = { el: el, i: i, btn: el.querySelector('.narr-btn'), panel: el.querySelector('.narr-panel'), audio: el.querySelector('audio'),
+      speed: el.querySelectorAll('.narr-speed button'), cap: el.querySelector('.narr-cap'), lines: el.querySelectorAll('.narr-lines li'),
+      title: el.dataset.title || '', on: null };
+    players[i] = p;
+    var tEl = p.audio.querySelector('track');
+    p.track = tEl ? tEl.track : (p.audio.textTracks && p.audio.textTracks[0]);
+    if (p.track) {
+      p.track.mode = 'hidden';
+      p.track.addEventListener('cuechange', function () { showCue(p); });
+    }
+    p.btn.addEventListener('click', function () {
+      var willOpen = p.btn.getAttribute('aria-expanded') !== 'true';
+      open(p, willOpen);
+      if (willOpen) { stopAll(false); play(p); } else { p.audio.pause(); }
+    });
+    [].forEach.call(p.speed, function (b) { b.addEventListener('click', function () { setRate(+b.dataset.rate); }); });
+    p.audio.addEventListener('play', function () {
+      open(p, true); p.audio.playbackRate = rate;
+      if (allMode && cur !== i) { cur = i; status(); }
+      if (allMode) allUI();
+    });
+    p.audio.addEventListener('pause', function () { save(p); if (allMode) allUI(); });
+    p.audio.addEventListener('timeupdate', function () {
+      if (Date.now() - lastSave > 2000) save(p);
+      if (p.track && p.track.mode === 'disabled') p.track.mode = 'hidden';
+    });
+    p.audio.addEventListener('ended', function () {
+      [].forEach.call(p.lines, function (li) { li.classList.remove('is-on'); li.removeAttribute('aria-current'); });
+      p.on = null;
+      if (allMode && cur === i) next(); else save(p, true);
+    });
+  });
+  setRate(rate);
+
+  function play(p, at) {
+    var a = p.audio;
+    function go() { if (at) { try { a.currentTime = at; } catch (e) { } } var r = a.play(); if (r && r.catch) r.catch(function () { allUI(); }); }
+    if (at && a.readyState < 1) { a.preload = 'auto'; a.addEventListener('loadedmetadata', function h() { a.removeEventListener('loadedmetadata', h); go(); }); a.load(); }
+    else go();
+  }
+
+  function save(p, done) {
+    lastSave = Date.now();
+    if (done) { set(KEY, { i: Math.min(p.i + 1, players.length - 1), t: 0 }); if (p.i === players.length - 1) del(KEY); return; }
+    if (p.audio.currentTime > 0.5) set(KEY, { i: p.i, t: Math.round(p.audio.currentTime * 10) / 10 });
+  }
+
+  // ---- whole lesson ----
+  function scrollTo(p) {
+    var r = p.el.getBoundingClientRect();
+    if (r.top >= 0 && r.top <= innerHeight * 0.6) return;
+    // show the section (or topic) heading with its player; fall back to the player when the section is taller than the screen
+    var t = p.el.parentElement && p.el.parentElement.closest('[id]');
+    if (!t || p.el.getBoundingClientRect().top - t.getBoundingClientRect().top > innerHeight * 0.5) t = p.el;
+    t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+  function status(msg) {
+    if (!allStatus) return;
+    allStatus.textContent = msg || (allMode && cur >= 0 ? 'חלק ' + (cur + 1) + ' מתוך ' + players.length + ': ' + players[cur].title : '');
+  }
+  function allUI() {
+    if (!allBtn) return;
+    var playing = allMode && cur >= 0 && !players[cur].audio.paused;
+    allBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    allBtn.querySelector('.narr-all-lbl').textContent = playing ? 'עצירת ההאזנה לשיעור' : (allMode || get(KEY) ? 'המשך האזנה לשיעור' : 'האזנה לכל השיעור');
+    if (allRestart) allRestart.hidden = !(get(KEY) || allMode);
+  }
+  function start(i, t) {
+    allMode = true; cur = i; var p = players[i];
+    players.forEach(function (q) { if (q !== p) open(q, false); });
+    open(p, true); scrollTo(p); status(); play(p, t); allUI();
+  }
+  function next() {
+    if (cur + 1 < players.length) start(cur + 1, 0);
+    else { allMode = false; cur = -1; del(KEY); status('סוף השיעור. כל הכבוד!'); allUI(); }
+  }
+  function stopAll(clear) { if (allMode) { allMode = false; allUI(); status(''); } if (clear) del(KEY); }
+  if (allBtn) {
+    allBtn.addEventListener('click', function () {
+      if (allMode && cur >= 0 && !players[cur].audio.paused) { players[cur].audio.pause(); status('ההאזנה נעצרה. אפשר להמשיך מאותו מקום.'); return; }
+      if (allMode && cur >= 0) { play(players[cur]); return; }
+      var s = get(KEY) || { i: 0, t: 0 };
+      var i = Math.max(0, Math.min(players.length - 1, s.i | 0));
+      start(i, +s.t || 0);
+    });
+    if (allRestart) allRestart.addEventListener('click', function () {
+      players.forEach(function (q) { q.audio.pause(); });
+      del(KEY); allMode = false; start(0, 0);
+    });
+    allUI();
+  }
+  window.__narr = { players: players, next: next, start: start, state: function () { return { allMode: allMode, cur: cur }; } };
+})();
+</script><!--/narr:js-->
 </body>
 </html>
