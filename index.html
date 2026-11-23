@@ -262,7 +262,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .bk-bar .have{background:var(--c-labor-soft);color:var(--c-labor)}
 .bk-bar .lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 9px,var(--surface) 9px 14px);color:var(--pen);border-inline-start:2px solid var(--pen)}
 .dd>b:first-child{color:var(--accent)}
-.mainflow{display:flex;flex-direction:column;gap:56px}
+bdi.nw{white-space:nowrap}.mainflow{display:flex;flex-direction:column;gap:56px}
 .mainflow>*{min-width:0}
 .lcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:640px){.lcards{grid-template-columns:1fr}}
@@ -310,9 +310,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <header class="top" id="top">
   <div class="eyebrow">מבוא למיקרו־כלכלה · כל החומרים במקום אחד</div>
   <h1>מיקרו־כלכלה מאפס</h1>
-  <p class="lead">כל השיעורים, הסרטונים, דפי המחברת ודפי העזר במיקרו־כלכלה, בקישור אחד. וגם שיעור נפרד ביזמות. ובסוף הדף: מילון של כל המילים הקשות מהשיעורים ומהתרגילים, עם הסבר פשוט ודוגמה.</p>
+  <p class="lead">כל השיעורים, הסרטונים, דפי המחברת ודפי העזר במיקרו־כלכלה, בקישור אחד. ובסוף הדף: מילון של כל המילים הקשות מהשיעורים ומהתרגילים, עם הסבר פשוט ודוגמה.</p>
   <nav class="jump" aria-label="קפיצה">
-    <a class="main" href="#lessons">השיעורים</a><a href="#entre">🚀 שיעור ביזמות</a><a href="#tools">דפי מחברת ועזר</a><a href="#order">באיזה סדר ללמוד</a><a href="#dict">📖 המילון</a>
+    <a class="main" href="#lessons">השיעורים</a><a href="#tools">דפי מחברת ועזר</a><a href="#order">באיזה סדר ללמוד</a><a href="#dict">📖 המילון</a>
   </nav>
 </header>
 
@@ -364,19 +364,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </section>
 
-<section id="entre" class="stack" aria-labelledby="h-entre">
-  <div class="sec-head"><div class="eyebrow">שיעור נפרד · יזמות</div><h2 id="h-entre">שיעור ביזמות: ניתוח שוק ותחרות</h2></div>
-  <div class="lcards">
-    <a class="lcard" href="entrepreneurship/">
-      <div class="lc-top t-entre"><span class="lc-k">יזמות</span><span class="lc-ic" aria-hidden="true">🚀</span></div>
-      <div class="lc-body"><h3>ניתוח שוק ותחרות, איך זה עובד במציאות</h3><p>גודל שוק (TAM, SAM, SOM), חישוב מלמטה למעלה, מי באמת מתחרה בכם, מפות תחרות, בידול וחפיר. כולל את כל המחקר האקדמי על ניתוח מתחרים, וטיפים ממייסדים ומשקיעים.</p>
-      <div class="tags"><span>▶ 3 סרטונים</span><span>29 נושאים</span><span>מחשבון ותרגילים</span><span>בוחן 23 שאלות</span></div></div>
-    </a>
-  </div>
-</section>
-
 <section id="tools" class="stack" aria-labelledby="h-tools">
-  <div class="sec-head"><div class="eyebrow">חלק 3</div><h2 id="h-tools">דפי מחברת ודפי עזר</h2></div>
+  <div class="sec-head"><div class="eyebrow">חלק 2</div><h2 id="h-tools">דפי מחברת ודפי עזר</h2></div>
   <div class="tools">
     <a class="tool" href="shiur1-q5/notebook.html"><span class="ti" aria-hidden="true">📝</span><span><b>דף מחברת: תרגיל 1, שאלות 5 ו־6</b><small>הפתרון בכתב יד, כמו שכותבים במבחן</small></span></a>
     <a class="tool" href="shiur1-q5/notebook.pdf"><span class="ti" aria-hidden="true">🖨️</span><span><b>PDF להדפסה: תרגיל 1</b><small>5 עמודים</small></span></a>
@@ -388,7 +377,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </section>
 
 <section id="order" class="stack" aria-labelledby="h-order">
-  <div class="sec-head"><div class="eyebrow">חלק 4</div><h2 id="h-order">באיזה סדר ללמוד</h2></div>
+  <div class="sec-head"><div class="eyebrow">חלק 3</div><h2 id="h-order">באיזה סדר ללמוד</h2></div>
   <ol class="steps">
     <li><strong>שיעור 1</strong>: עקומת התמורה. כל השאר נשען עליו.</li>
     <li><strong>תרגיל 1</strong>: שאלות 1–4 בדף השיעור, ואז שאלות 5–6 בדף ההעמקה. בסוף, דף המחברת.</li>
@@ -401,7 +390,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </section>
 
 <section id="dict" class="stack" aria-labelledby="h-dict">
-  <div class="sec-head"><div class="eyebrow">חלק 5</div><h2 id="h-dict">המילון: מילים קשות במילים פשוטות</h2></div>
+  <div class="sec-head"><div class="eyebrow">חלק 4</div><h2 id="h-dict">המילון: מילים קשות במילים פשוטות</h2></div>
   <p>כל המילים שמופיעות בשיעורים ובשאלות. לכל מילה: <strong>מה זה</strong>, <strong>דוגמה</strong>, ו<strong>איפה לומדים עליה</strong>.</p>
   <div class="dsearch">
     <label for="q">חיפוש מילה</label>
