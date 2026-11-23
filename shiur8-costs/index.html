@@ -817,6 +817,14 @@ details.assumed .assume{margin-bottom:4px}
 }
 @media (max-width:620px){.mainflow{gap:36px}main>section.stack{gap:14px}.trapd>summary{font-size:.98rem;gap:10px}.trapd>p{padding-inline-start:0}}
 @media (max-width:620px){.chcover{padding:20px 14px 14px;gap:6px}.chcover-toc{gap:6px}}
+
+/* ---------- handwritten-summary block (#mine) ---------- */
+.mine{border-top:1px dashed var(--line);padding-top:18px;margin-top:8px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.mine>*{min-width:0}
+.mine h4{font-family:var(--font-display);font-weight:400;font-size:1.15rem;line-height:1.3;margin:8px 0 0;scroll-margin-top:64px}
+.mine .co-body .steps{margin:0}
+.mine .co .m:not(.mw){white-space:nowrap}
+#restTable tr.best th{background:var(--good-soft)}
 </style>
 
 <div class="lesson" dir="rtl" lang="he">
@@ -1124,6 +1132,7 @@ details.assumed .assume{margin-bottom:4px}
   </div>
   <p><strong>ובאופן כללי:</strong> בטווח הקצר, מנקודה מסוימת (במפעל: מהעובד הרביעי) התפוקה השולית פוחתת, ולכן <bdi dir="ltr" class="m">MC</bdi> עולה. זו הסיבה שעקומת ההיצע עולה. נראה את זה בנושא 13, עם ניסוי שבו מזיזים את <bdi dir="ltr" class="m">w</bdi> ואת <bdi dir="ltr" class="m">MP<sub>L</sub></bdi>.</p>
   <div class="co exam"><b class="co-k">מה כותבים במבחן</b><p><bdi dir="ltr" class="m">MC = w / MP<sub>L</sub></bdi>: קשר הפוך בין <bdi dir="ltr" class="m">MC</bdi> ל־<bdi dir="ltr" class="m">MP</bdi>. <bdi dir="ltr" class="m">w</bdi> עולה, <bdi dir="ltr" class="m">MC</bdi> עולה בכל <bdi dir="ltr" class="m">q</bdi>. <bdi dir="ltr" class="m">MP<sub>L</sub></bdi> עולה, <bdi dir="ltr" class="m">MC</bdi> יורדת בכל <bdi dir="ltr" class="m">q</bdi>. בט״ק התפוקה השולית פוחתת, ולכן <bdi dir="ltr" class="m">MC</bdi> עולה.</p></div>
+  <details class="co more"><summary>ומה אם כל יחידה עולה גם חומרי גלם?</summary><div class="co-body"><p>אם כל יחידה עולה עוד <bdi dir="ltr" class="m">c</bdi> ₪ בחומרי גלם, העלות השולית היא <bdi dir="ltr" class="m">MC = w / MP<sub>L</sub> + c</bdi>. העובד האחרון עולה <bdi dir="ltr" class="m">w / MP<sub>L</sub></bdi> לכל יחידה שהוא הוסיף, וכל יחידה עולה עוד <bdi dir="ltr" class="m">c</bdi>. דוגמה פתורה: <a href="#mine-ex">תרגיל המסעדה</a>, מהסיכום בכתב יד.</p></div></details>
   <details class="co more"><summary>שאלה שאוהבים לשאול: למה <bdi dir="ltr" class="m">FC</bdi> לא מופיעה בנוסחה?</summary><div class="co-body"><p>כי <bdi dir="ltr" class="m">MC</bdi> מודדת רק שינוי בעלות, ו־<bdi dir="ltr" class="m">FC</bdi> לא משתנה. אם השכירות של המפעל תעלה מ־160 ל־300, <bdi dir="ltr" class="m">MC</bdi> לא תזוז בכלל. מה כן ישתנה? <bdi dir="ltr" class="m">AFC</bdi> ו־<bdi dir="ltr" class="m">ATC</bdi> (ולכן גם נקודת האיזון). <bdi dir="ltr" class="m">AVC</bdi> ו־<bdi dir="ltr" class="m">MC</bdi> נשארות כמו שהן.</p></div></details>
   <a class="nextsec" href="#tablelab"><span>הנושא הבא · נושא 7</span><b>בונים את טבלת העלויות, עמודה אחרי עמודה</b></a>
 </section>
@@ -1446,7 +1455,7 @@ details.assumed .assume{margin-bottom:4px}
   <span class="chcover-k">תרגול</span>
   <h2 id="h-chP">תרגול ומבחן</h2>
   <p class="chcover-q">בודקים שהבנתם, וחוזרים לפני המבחן.</p>
-  <ol class="chcover-toc"><li><a href="#traps">12 מלכודות</a></li><li><a href="#exam">25 שאלות מבחן</a></li><li><a href="#sum">דף סיכום <span class="core">חובה</span></a></li><li><a href="#gloss">מילון מונחים</a></li></ol>
+  <ol class="chcover-toc"><li><a href="#traps">12 מלכודות</a></li><li><a href="#exam">25 שאלות מבחן</a></li><li><a href="#sum">דף סיכום <span class="core">חובה</span></a></li><li><a href="#mine">מהסיכום בכתב יד: תרגיל המסעדה</a></li><li><a href="#gloss">מילון מונחים</a></li></ol>
 </div>
 
 <!-- ===== TRAPS ===== -->
@@ -1760,6 +1769,53 @@ details.assumed .assume{margin-bottom:4px}
     </div>
   </div>
   <div class="btns noprint"><button type="button" class="btn" id="printBtn">הדפסת דף הסיכום</button></div>
+  <div class="mine" id="mine">
+    <h3>מהסיכום בכתב יד</h3>
+    <p>עמודים 3 עד 5 של סיכום שנכתב ביד בשיעור: הגדרות העלויות ותרגיל על מסעדה. ההגדרות כבר מוסברות בשיעור, ולכן כאן יש קישור לכל אחת. התרגיל חדש, והוא פתור כאן במלואו. מצאנו בסיכום טעות חישוב אחת ושתי הערות קטנות, והן מסומנות כ״תיקון״.</p>
+    <p class="note"><a href="summary.pdf">לפתוח את הסיכום המקורי (PDF, 5 עמודים)</a>. עמודים 1 ו־2, על פונקציית הייצור, נמצאים <a href="../shiur5-production/#mine">בשיעור 5</a>.</p>
+    <details class="co more" id="mine-terms"><summary>עמוד 3: המושגים מהסיכום, ואיפה הם בשיעור</summary><div class="co-body">
+      <ul class="steps dots">
+        <li><strong>עלות חשבונאית:</strong> עלויות תזרימיות (<bdi lang="en">out of pocket</bdi>) ופחת, כמו בדוח רווח והפסד. <a href="#econ">נושא 2</a></li>
+        <li><strong>עלות כלכלית:</strong> כל ההוצאות, כולל מה שוויתרנו עליו. קרובה מאוד לעלות אלטרנטיבית. <a href="#econ">נושא 2</a></li>
+        <li><strong>עלות העבודה <bdi dir="ltr" class="m">w</bdi>:</strong> השכר לשעת עבודה. בעיני כלכלן זה גם מה שהעובד היה מרוויח בעבודה אחרת. <a href="#econTable">הטבלה בנושא 2</a></li>
+        <li><strong>עלות ההון:</strong> ההשקעה במבנה ובמכונות. בעיני כלכלן: כמה אפשר לקבל אם משכירים אותם. <a href="#econ">נושא 2</a></li>
+        <li><strong>עלות שקועה:</strong> הוצאה שכבר קרתה ואי אפשר להחזיר אותה, ולכן היא לא משפיעה על החלטות עכשיו. <a href="#econ">נושא 2</a></li>
+        <li><strong>שבע ההנחות של תחרות משוכללת:</strong> אותן הנחות כמו בשקף (שם הן ממוספרות 1, 2 ו־4 עד 8). <a href="#market">נושא 9</a></li>
+        <li><strong>עלות קבועה, משתנה וכוללת:</strong> <bdi dir="ltr" class="m">TC(q) = VC(q) + FC</bdi>. הדוגמה מהסיכום: השכירות קבועה בכל חודש, והחשבונות משתנים. <a href="#fixvar">נושא 3</a></li>
+        <li><strong>עלויות ממוצעות:</strong> <bdi dir="ltr" class="m">AVC = VC / q</bdi>, <bdi dir="ltr" class="m">AFC = FC / q</bdi>, <bdi dir="ltr" class="m">ATC = AVC + AFC</bdi>. ככל שמייצרים יותר, <bdi dir="ltr" class="m">AFC</bdi> יורדת. <a href="#avg">נושא 4</a></li>
+        <li><strong>עלות שולית:</strong> <bdi dir="ltr" class="m">MC = ΔTC / Δq</bdi>. <a href="#mc">נושא 5</a></li>
+        <li><strong>פדיון ורווח:</strong> <bdi dir="ltr" class="m">TR = P · q</bdi>, <bdi dir="ltr" class="m">π = TR − TC</bdi>. <a href="#market">נושא 9</a></li>
+      </ul>
+      <p class="note">בסיכום הכמות נקראת <bdi dir="ltr" class="m">Q</bdi>. בשיעור היא נקראת <bdi dir="ltr" class="m">q</bdi>. זה אותו דבר.</p>
+    </div></details>
+    <details class="co slide" id="mine-fix3"><summary>תיקון לסיכום, עמוד 3: שתי הערות קטנות</summary><p>(1) ליד <bdi dir="ltr" class="m">MC</bdi> כתוב <bdi dir="ltr" class="m">TC₀ = VC₀ − FC</bdi>. צריך להיות פלוס: <bdi dir="ltr" class="m">TC₀ = VC₀ + FC</bdi>, כמו <bdi dir="ltr" class="m">TC₁</bdi> שלידו. כך גם רואים למה <bdi dir="ltr" class="m">FC</bdi> לא משפיעה על <bdi dir="ltr" class="m">MC</bdi>: בהפרש <bdi dir="ltr" class="m">TC₁ − TC₀</bdi> היא מתקזזת, ונשאר <bdi dir="ltr" class="m">VC₁ − VC₀</bdi>.</p><p>(2) ליד <bdi dir="ltr" class="m">AVC</bdi> כתוב ״כמה בממוצע עולה לי גורם הייצור המשתנה״. מדויק יותר: כמה עולה בממוצע <strong>יחידה אחת של תפוקה</strong> (ארוחה, קסדה), רק בעלות המשתנה. מחלקים במספר היחידות <bdi dir="ltr" class="m">q</bdi>, ולא במספר העובדים. כך גם ב־<bdi dir="ltr" class="m">AFC</bdi>.</p></details>
+
+    <h4 id="mine-ex">תרגיל המסעדה (עמודים 4 ו־5)</h4>
+    <p><strong>הנתונים מהסיכום:</strong> עלות קבועה <bdi dir="ltr" class="m">FC = 20</bdi>. כל עובד עולה 80 ₪, וכל ארוחה עולה עוד 2 ₪ בחומרי גלם. <bdi dir="ltr" class="m">q</bdi> הוא מספר הארוחות. אלה הארוחות של מסעדה 1 <a href="../shiur5-production/#mine-rest">מהדוגמה בשיעור 5</a>.</p>
+    <p class="brief"><span class="lbl">הנוסחה</span><bdi dir="ltr" class="m">VC = 80 · L + 2 · q</bdi>, <bdi dir="ltr" class="m">TC = VC + 20</bdi></p>
+    <p>בסיכום מולאו רק העמודות <bdi dir="ltr" class="m">L</bdi>, <bdi dir="ltr" class="m">q</bdi>, <bdi dir="ltr" class="m">MP</bdi>, <bdi dir="ltr" class="m">FC</bdi>, <bdi dir="ltr" class="m">VC</bdi> ו־<bdi dir="ltr" class="m">TC</bdi>. כאן הטבלה מלאה. בסיכום אין מחיר, ולכן <strong>נניח שארוחה נמכרת ב־10 ₪</strong> (<bdi dir="ltr" class="m">P = 10</bdi>), כדי לחשב פדיון ורווח.</p>
+    <p class="note">מקרא: מסגרת = תא שתוקן. שורה ירוקה = הרווח הגדול ביותר במחיר 10. בטלפון גוללים את הטבלה הצידה.</p>
+    <div class="tscroll"><table class="t" id="restTable"><caption>תרגיל המסעדה, הטבלה המלאה</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small>עובדים</small></th><th scope="col"><bdi dir="ltr">q</bdi><small>ארוחות</small></th><th scope="col"><bdi dir="ltr">MP</bdi><small>תפוקה שולית</small></th><th scope="col"><bdi dir="ltr">FC</bdi><small>קבועה</small></th><th scope="col"><bdi dir="ltr">VC</bdi><small>משתנה</small></th><th scope="col"><bdi dir="ltr">TC</bdi><small>כוללת</small></th><th scope="col"><bdi dir="ltr">AVC</bdi><small>משתנה ממוצעת</small></th><th scope="col"><bdi dir="ltr">ATC</bdi><small>כוללת ממוצעת</small></th><th scope="col"><bdi dir="ltr">MC</bdi><small>שולית</small></th><th scope="col"><bdi dir="ltr">TR</bdi><small>פדיון</small></th><th scope="col"><bdi dir="ltr">π</bdi><small>רווח</small></th></tr></thead><tbody>
+<tr><th scope="row" class="n">0</th><td class="n">0</td><td class="n">—</td><td class="n">20</td><td class="n">0</td><td class="n">20</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">0</td><td class="n">−20</td></tr>
+<tr><th scope="row" class="n">1</th><td class="n">15</td><td class="n">15</td><td class="n">20</td><td class="n">110</td><td class="n">130</td><td class="n">7.33</td><td class="n">8.67</td><td class="n">7.33</td><td class="n">150</td><td class="n">20</td></tr>
+<tr><th scope="row" class="n">2</th><td class="n">29</td><td class="n">14</td><td class="n">20</td><td class="n fixd">218</td><td class="n fixd">238</td><td class="n">7.52</td><td class="n">8.21</td><td class="n">7.71</td><td class="n">290</td><td class="n">52</td></tr>
+<tr><th scope="row" class="n">3</th><td class="n">42</td><td class="n">13</td><td class="n">20</td><td class="n">324</td><td class="n">344</td><td class="n">7.71</td><td class="n">8.19</td><td class="n">8.15</td><td class="n">420</td><td class="n">76</td></tr>
+<tr class="best"><th scope="row" class="n">4</th><td class="n">54</td><td class="n">12</td><td class="n">20</td><td class="n">428</td><td class="n">448</td><td class="n">7.93</td><td class="n">8.30</td><td class="n">8.67</td><td class="n">540</td><td class="n">92</td></tr>
+<tr><th scope="row" class="n">5</th><td class="n">63</td><td class="n">9</td><td class="n">20</td><td class="n">526</td><td class="n">546</td><td class="n">8.35</td><td class="n">8.67</td><td class="n">10.89</td><td class="n">630</td><td class="n">84</td></tr>
+<tr><th scope="row" class="n">6</th><td class="n">70</td><td class="n">7</td><td class="n">20</td><td class="n">620</td><td class="n">640</td><td class="n">8.86</td><td class="n">9.14</td><td class="n">13.43</td><td class="n">700</td><td class="n">60</td></tr>
+</tbody></table></div>
+    <details class="co slide" id="mine-fix4"><summary>תיקון לסיכום, עמוד 4: השורה של 2 עובדים</summary><p>בסיכום כתוב <bdi dir="ltr" class="m">VC = 2·80 + 29·2 = 238</bdi>. החישוב הנכון: <bdi dir="ltr" class="m">160 + 58 = 218</bdi>. לכן גם <bdi dir="ltr" class="m">TC = 218 + 20 = 238</bdi>, ולא 258. בטבלה כאן שני התאים המתוקנים מסומנים במסגרת. שאר השורות בסיכום נכונות.</p></details>
+
+    <h4>מה רואים בטבלה</h4>
+    <ol class="steps">
+      <li><strong>חומרי הגלם מוסיפים 2 ₪ לכל ארוחה.</strong> לכן <bdi dir="ltr" class="m">MC = w / MP + 2</bdi>. למשל, העובד השני מוסיף 14 ארוחות: <bdi dir="ltr" class="m">80 / 14 + 2 ≈ 7.71</bdi>. זו הרחבה של <bdi dir="ltr" class="m">MC = w / MP<sub>L</sub></bdi> מ<a href="#mcmp">נושא 6</a>, למקרה שיש גם עלות לכל יחידה.</li>
+      <li><strong>כאן <bdi dir="ltr" class="m">MP</bdi> יורדת כבר מהעובד הראשון</strong> (15, 14, 13 וכן הלאה). לכן <bdi dir="ltr" class="m">MC</bdi> ו־<bdi dir="ltr" class="m">AVC</bdi> עולות כבר מההתחלה. המינימום של <bdi dir="ltr" class="m">AVC</bdi> הוא <bdi dir="ltr" class="m">7.33</bdi>, ב־15 ארוחות: זו נקודת הסגירה.</li>
+      <li><strong><bdi dir="ltr" class="m">ATC</bdi> בצורת <bdi dir="ltr" class="m">U</bdi>:</strong> היא יורדת עד 42 ארוחות, ושם היא במינימום, <bdi dir="ltr" class="m">8.19</bdi>. זו נקודת האיזון. <bdi dir="ltr" class="m">MC</bdi> חוצה אותה בדיוק שם: לפני 42 ארוחות <bdi dir="ltr" class="m">MC</bdi> נמוכה ממנה (<bdi dir="ltr" class="m">8.15</bdi>), ואחרי גבוהה ממנה (<bdi dir="ltr" class="m">8.67</bdi>).</li>
+      <li><strong>כמה לייצר במחיר 10?</strong> מוסיפים עובד כל עוד <bdi dir="ltr" class="m">MC</bdi> לא גבוהה מ־<bdi dir="ltr" class="m">P</bdi>. המעבר ל־54 ארוחות עולה <bdi dir="ltr" class="m">8.67</bdi> לארוחה: כדאי. המעבר ל־63 ארוחות עולה <bdi dir="ltr" class="m">10.89</bdi> לארוחה: לא כדאי. לכן <bdi dir="ltr" class="m">q* = 54</bdi> (4 עובדים), והרווח <bdi dir="ltr" class="m">π = 540 − 448 = 92</bdi>: הגדול ביותר בעמודה. <a href="#howmuch">נושא 10</a></li>
+      <li><strong>לייצר בכלל?</strong> המחיר 10 גבוה מהמינימום של <bdi dir="ltr" class="m">AVC</bdi> (<bdi dir="ltr" class="m">7.33</bdi>), ולכן מייצרים. הוא גבוה גם מ־<bdi dir="ltr" class="m">ATC</bdi> ב־54 ארוחות (<bdi dir="ltr" class="m">8.30</bdi>), ולכן יש רווח. <a href="#whether">נושא 11</a></li>
+    </ol>
+  </div>
+
   <a class="nextsec" href="#gloss"><span>הנושא הבא</span><b>מילון מונחים</b></a>
 </section>
 

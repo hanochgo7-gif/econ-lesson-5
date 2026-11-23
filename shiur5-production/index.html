@@ -406,6 +406,16 @@ details.chk>summary::before{color:var(--accent)}
 .okmsg{font-weight:700;color:var(--accent)}
 .rng input{margin:0}
 summary bdi,.t th bdi{white-space:nowrap}
+
+/* handwritten-summary block (#mine) */
+.mine h4{font-family:var(--font-display);font-weight:400;font-size:1.15rem;line-height:1.3;margin:8px 0 0}
+@media (max-width:560px){.mine .sumt .m{white-space:normal}}
+.mine .calc{text-align:center;margin:0}
+.mine .calc .m{white-space:normal}
+@media (max-width:560px){.sumt caption{display:block;width:100%}}
+.fixnote{border:1px dashed var(--line);border-inline-start:4px solid var(--sun);border-radius:0 10px 10px 0;padding:10px 14px;font-size:1rem;background:var(--surface)}
+.fixnote>b:first-child{color:var(--sun);margin-inline-end:8px}
+.mine .two{align-items:start}
 </style>
 
 <div class="wrap" dir="rtl" lang="he">
@@ -446,7 +456,7 @@ summary bdi,.t th bdi{white-space:nowrap}
     </details>
   </section>
   <nav class="jump" id="menu" aria-label="קפיצה לחלקי השיעור">
-    <a class="main" href="#video"><span aria-hidden="true">▶</span> סרטון</a><a href="#idea"><span class="pn">1</span>מתחילים</a><a href="#words"><span class="pn">2</span>מילון</a><a href="#factors"><span class="pn">3</span>גורמי ייצור</a><a href="#def"><span class="pn">4</span>ההגדרה</a><a href="#bakery5"><span class="pn">5</span>מאפייה</a><a href="#apmp"><span class="pn">6</span>ממוצעת ושולית</a><a href="#run"><span class="pn">7</span>טווח קצר וארוך</a><a href="#law"><span class="pn">8</span>החוק</a><a href="#bikes"><span class="pn">9</span>מפעל האופנועים</a><a href="#link"><span class="pn">10</span>שולית מול ממוצעת</a><a href="#fields"><span class="pn">11</span>שני שדות</a><a href="#stages"><span class="pn">12</span>שלבי הייצור</a><a href="#exam"><span class="pn">13</span>שאלות מבחן</a><a href="#traps"><span class="pn">14</span>מלכודות</a><a href="#sum"><span class="pn">15</span>דף סיכום</a>
+    <a class="main" href="#video"><span aria-hidden="true">▶</span> סרטון</a><a href="#idea"><span class="pn">1</span>מתחילים</a><a href="#words"><span class="pn">2</span>מילון</a><a href="#factors"><span class="pn">3</span>גורמי ייצור</a><a href="#def"><span class="pn">4</span>ההגדרה</a><a href="#bakery5"><span class="pn">5</span>מאפייה</a><a href="#apmp"><span class="pn">6</span>ממוצעת ושולית</a><a href="#run"><span class="pn">7</span>טווח קצר וארוך</a><a href="#law"><span class="pn">8</span>החוק</a><a href="#bikes"><span class="pn">9</span>מפעל האופנועים</a><a href="#link"><span class="pn">10</span>שולית מול ממוצעת</a><a href="#fields"><span class="pn">11</span>שני שדות</a><a href="#stages"><span class="pn">12</span>שלבי הייצור</a><a href="#exam"><span class="pn">13</span>שאלות מבחן</a><a href="#traps"><span class="pn">14</span>מלכודות</a><a href="#sum"><span class="pn">15</span>דף סיכום</a><a href="#mine"><span class="pn" aria-hidden="true">+</span>מהסיכום בכתב יד</a>
   </nav>
 </header>
 
@@ -780,6 +790,7 @@ summary bdi,.t th bdi{white-space:nowrap}
   <p><strong>תיקו.</strong> אם בשני השדות העובד הבא מוסיף אותו דבר, אפשר לשלוח אותו לכל אחד מהם. שתי התשובות נכונות (שאלה 12 במבחן).</p>
   <p><strong>מתי השיטה נכשלת?</strong> כשבשדה מסוים התפוקה השולית עולה בהתחלה. אז עובד ראשון "חלש" מסתיר עובד שני חזק, והבחירה עובד אחרי עובד מפספסת אותו (שאלה 13 במבחן).</p>
   <p class="note">כשאפשר לחלק עובדים לחלקים קטנים (למשל שעות עבודה), הכלל נהיה: התפוקה השולית בשדה א׳ שווה לתפוקה השולית בשדה ב׳.</p>
+  <p><strong>עוד שתי דוגמאות לאותו כלל</strong>, מהסיכום בכתב יד: <a href="#mine-hours">איך לחלק 6 שעות לימוד בין שלושה מבחנים</a>, ו<a href="#mine-rest">שתי מסעדות, ומה מפסידים כשסוגרים אחת מהן</a>.</p>
   <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
@@ -991,6 +1002,85 @@ summary bdi,.t th bdi{white-space:nowrap}
     <tr><th scope="row">הקצאה בין שדות</th><td data-l="נוסחה">מסדרים MP מהגבוהה לנמוכה</td><td data-l="במילים פשוטות">כל עובד הולך לאן שהוא מוסיף הכי הרבה</td></tr>
   </tbody></table></div>
   <p class="brief"><span class="lbl">בשיעור הבא</span>איך המפעל מחליט <strong>כמה</strong> לייצר.</p>
+
+  <div class="sub stack mine" id="mine">
+    <h3>מהסיכום בכתב יד</h3>
+    <p>כאן מסודר מחדש סיכום שנכתב ביד במהלך השיעור. העמודים 1 ו־2 שייכים לשיעור הזה. מה שכבר מוסבר בשיעור מקושר לחלק המתאים, ומה שחדש מוסבר כאן במלואו. מצאנו בסיכום גם כמה טעויות קטנות, והן מסומנות כ״תיקון״.</p>
+    <p class="note"><a href="summary.pdf">לפתוח את הסיכום המקורי (PDF, 5 עמודים)</a>. עמודים 3 עד 5, על עלויות, נמצאים <a href="../shiur8-costs/#mine">בשיעור 8</a>.</p>
+
+    <details class="deep" id="mine-curves"><summary>עמוד 1: התפוקה הכוללת, הממוצעת והשולית <span class="hint">· חזרה, עם קישורים</span></summary><div class="sol-body">
+      <div class="tscroll"><table class="t sumt"><caption>המושגים מהעמוד הראשון</caption><thead><tr><th scope="col">מושג</th><th scope="col">נוסחה</th><th scope="col">במילים פשוטות</th></tr></thead><tbody>
+        <tr><th scope="row">התפוקה הכוללת</th><td data-l="נוסחה"><bdi dir="ltr" class="m">TP</bdi></td><td data-l="במילים פשוטות">כמה מייצרים בסך הכול. <a href="#bikes">חלק 9</a></td></tr>
+        <tr><th scope="row">התפוקה הממוצעת</th><td data-l="נוסחה"><bdi dir="ltr" class="m">AP = TP ÷ L</bdi></td><td data-l="במילים פשוטות">כמה מייצר עובד בממוצע. <a href="#apmp">חלק 6</a></td></tr>
+        <tr><th scope="row">התפוקה השולית</th><td data-l="נוסחה"><bdi dir="ltr" class="m">MP = ΔTP ÷ ΔL</bdi><br><bdi dir="ltr" class="m">= (TP₁ − TP₀) ÷ (L₁ − L₀)</bdi></td><td data-l="במילים פשוטות">השיפוע בין שתי נקודות סמוכות: כמה הוסיף העובד האחרון. <a href="#apmp">חלק 6</a></td></tr>
+      </tbody></table></div>
+      <p><strong>הדוגמה מהסיכום:</strong> מהנקודה <bdi dir="ltr" class="m">(0, 20)</bdi> לנקודה <bdi dir="ltr" class="m">(1, 45)</bdi>. אלה הציונים בכלכלה בלי לימוד ואחרי שעת לימוד אחת, מהדוגמה בעמוד 2.</p>
+      <p class="calc" dir="ltr"><bdi dir="ltr" class="m">MP = (45 − 20) ÷ (1 − 0) = 25</bdi></p>
+      <h4>גורם קבוע וגורם משתנה</h4>
+      <p>בטווח הקצר חלק מגורמי הייצור קבועים (מבנה, מכונות, טרקטורים), וחלק משתנים (עובדים, חומרי גלם). בטווח הארוך כל גורמי הייצור משתנים. <a href="#run">חלק 7</a></p>
+      <p class="fixnote"><b>תיקון</b>בסיכום כתוב ״גורם ייצור משתנה: רק בזמן הקצר״ ו״גורם ייצור קבוע: בזמן הארוך״. הניסוח מבלבל. גורם <strong>משתנה</strong> יש בשני הטווחים. גורם <strong>קבוע</strong> יש רק בטווח הקצר. בטווח הארוך אין גורמים קבועים בכלל, כמו שכתוב בהמשך אותה שורה בסיכום.</p>
+      <p>בסיכום יש גם הסבר יפה לחוק: נוסיף עובד שני, והתפוקה תעלה. אבל כשיש כבר שמונה עובדים, אין מקום לכולם, והתפוקה יורדת. זה חוק התפוקה השולית הפוחתת. <a href="#law">חלק 8</a></p>
+      <h4>מה רואים בגרפים</h4>
+      <ul class="steps" style="list-style:disc">
+        <li><bdi dir="ltr" class="m">TP</bdi> עולה עד <bdi dir="ltr" class="m">L*</bdi>, ואחרי <bdi dir="ltr" class="m">L*</bdi> היא יורדת.</li>
+        <li>בנקודה <bdi dir="ltr" class="m">L̂</bdi> יש לעקומת <bdi dir="ltr" class="m">TP</bdi> <strong>נקודת פיתול</strong>. לפניה השיפוע של <bdi dir="ltr" class="m">TP</bdi> הולך וגדל, ואחריה הוא הולך וקטן. <a href="#geo">איך רואים את זה בגרף</a></li>
+        <li><bdi dir="ltr" class="m">MP</bdi> היא השיפוע של <bdi dir="ltr" class="m">TP</bdi>. לכן היא עולה עד <bdi dir="ltr" class="m">L̂</bdi> ואז יורדת. ב־<bdi dir="ltr" class="m">L*</bdi> היא 0, ואחרי <bdi dir="ltr" class="m">L*</bdi> היא שלילית: זה החלק היורד של <bdi dir="ltr" class="m">TP</bdi>.</li>
+        <li>ב־<bdi dir="ltr" class="m">L = 1</bdi> העקומות <bdi dir="ltr" class="m">AP</bdi> ו־<bdi dir="ltr" class="m">MP</bdi> יוצאות מאותה נקודה. זה תמיד כך, וזה לא השיא של <bdi dir="ltr" class="m">AP</bdi> (<a href="#traps">מלכודת 7</a>).</li>
+        <li><bdi dir="ltr" class="m">AP</bdi> עולה עד נקודת החיתוך שלה עם <bdi dir="ltr" class="m">MP</bdi>. שם השיא של <bdi dir="ltr" class="m">AP</bdi>.</li>
+      </ul>
+      <p class="fixnote"><b>תיקון לגרף</b>הנקודה השחורה בשיא של העקומה הגבוהה מסומנת ״AP במקסימום״. אבל העקומה הזאת היא <bdi dir="ltr" class="m">MP</bdi>: היא זו שיורדת עד 0 ב־<bdi dir="ltr" class="m">L*</bdi>. לכן זה <strong>השיא של <bdi dir="ltr" class="m">MP</bdi></strong>, והוא נמצא בדיוק מעל נקודת הפיתול <bdi dir="ltr" class="m">L̂</bdi>. השיא של <bdi dir="ltr" class="m">AP</bdi> הוא הנקודה האדומה, שבה <bdi dir="ltr" class="m">MP</bdi> חוצה את <bdi dir="ltr" class="m">AP</bdi>. <bdi dir="ltr" class="m">MP</bdi> מגיעה לשיא לפני <bdi dir="ltr" class="m">AP</bdi> (<a href="#traps">מלכודת 6</a>).</p>
+      <h4>הכללים</h4>
+      <ul class="steps" style="list-style:disc">
+        <li>כש־<bdi dir="ltr" class="m">MP &gt; AP</bdi>, התפוקה הממוצעת עולה.</li>
+        <li>כש־<bdi dir="ltr" class="m">MP = AP</bdi>, התפוקה הממוצעת בשיא.</li>
+        <li>כש־<bdi dir="ltr" class="m">MP &lt; AP</bdi>, התפוקה הממוצעת יורדת.</li>
+        <li>כש־<bdi dir="ltr" class="m">MP</bdi> חיובית, <bdi dir="ltr" class="m">TP</bdi> עולה. כש־<bdi dir="ltr" class="m">MP</bdi> שלילית, <bdi dir="ltr" class="m">TP</bdi> יורדת. כש־<bdi dir="ltr" class="m">MP = 0</bdi>, <bdi dir="ltr" class="m">TP</bdi> בשיא.</li>
+      </ul>
+      <p>למה זה עובד? כמו ציון חדש שמושך את ממוצע הציונים. <a href="#link">חלק 10</a></p>
+      <p class="fixnote"><b>תיקון</b>בשורה השלישית בסיכום כתוב <bdi dir="ltr" class="m">MP &gt; AP</bdi> ליד ״תפוקה ממוצעת יורדת״. צריך להיות <bdi dir="ltr" class="m">MP &lt; AP</bdi>: התפוקה הממוצעת יורדת כשהתפוקה השולית <strong>קטנה</strong> ממנה.</p>
+      <h4>התחום הרלוונטי לייצור</h4>
+      <p>הקטע האדום בגרף, מהשיא של <bdi dir="ltr" class="m">AP</bdi> ועד <bdi dir="ltr" class="m">L*</bdi>, הוא שלב II: שם עובדת פירמה רציונלית. <a href="#stages">חלק 12</a></p>
+      <p class="fixnote"><b>הבהרה</b>ליד הנקודה האדומה כתוב ״הנקודה הטובה ביותר להיות״. מדויק יותר: זו <strong>תחילת</strong> התחום. הפירמה יכולה לעבוד בכל מקום בקטע האדום. איפה בדיוק, תלוי במחירים ובשכר.</p>
+    </div></details>
+
+    <details class="deep" id="mine-hours"><summary>דוגמה מהחיים: איך לחלק 6 שעות לימוד בין שלושה מבחנים <span class="hint">· חדש</span></summary><div class="sol-body">
+      <p>יש לכם 6 שעות ללמוד לשלושה מבחנים: כלכלה, מחשבה ושיטות. כל שעה מעלה את הציון, אבל כל שעה נוספת באותו מקצוע מוסיפה פחות מהקודמת. זה חוק התפוקה השולית הפוחתת: השעות הן הגורם המשתנה, והציון הוא התפוקה.</p>
+      <p class="note">בטבלה, <bdi dir="ltr" class="m">MP</bdi> = כמה נקודות הוסיפה השעה האחרונה. מודגשות השעות שנבחרו בסוף. בטלפון גוללים את הטבלה הצידה.</p>
+      <div class="tscroll"><table class="t" id="hoursTable"><caption>הציון בכל מבחן לפי שעות הלימוד</caption><thead><tr><th scope="col">שעות</th><th scope="col">ציון בכלכלה</th><th scope="col"><bdi dir="ltr">MP</bdi> כלכלה</th><th scope="col">ציון במחשבה</th><th scope="col"><bdi dir="ltr">MP</bdi> מחשבה</th><th scope="col">ציון בשיטות</th><th scope="col"><bdi dir="ltr">MP</bdi> שיטות</th></tr></thead><tbody><tr><th scope="row" class="n">0</th><td class="n">20</td><td class="n">—</td><td class="n">40</td><td class="n">—</td><td class="n">80</td><td class="n">—</td></tr><tr><th scope="row" class="n">1</th><td class="n">45</td><td class="n"><b>25</b></td><td class="n">52</td><td class="n"><b>12</b></td><td class="n">90</td><td class="n"><b>10</b></td></tr><tr><th scope="row" class="n">2</th><td class="n">65</td><td class="n"><b>20</b></td><td class="n">63</td><td class="n"><b>11</b></td><td class="n">95</td><td class="n">5</td></tr><tr><th scope="row" class="n">3</th><td class="n">75</td><td class="n"><b>10</b></td><td class="n">71</td><td class="n">8</td><td class="n">97</td><td class="n">2</td></tr><tr><th scope="row" class="n">4</th><td class="n">83</td><td class="n">8</td><td class="n">78</td><td class="n">7</td><td class="n">98</td><td class="n">1</td></tr><tr><th scope="row" class="n">5</th><td class="n">90</td><td class="n">7</td><td class="n">83</td><td class="n">5</td><td class="n">99</td><td class="n">1</td></tr><tr><th scope="row" class="n">6</th><td class="n">92</td><td class="n">2</td><td class="n">86</td><td class="n">3</td><td class="n">99</td><td class="n">0</td></tr></tbody></table></div>
+      <p class="brief"><span class="lbl">הכלל</span>כל שעה הולכת למבחן שבו היא מוסיפה הכי הרבה נקודות. זה בדיוק הכלל של <a href="#fields">העובדים בשני השדות</a>.</p>
+      <ol class="steps"><li><strong>שעה 1:</strong> בכלכלה היא תוסיף 25 נקודות, במחשבה 12 ובשיטות 10. לכן כלכלה.</li><li><strong>שעה 2:</strong> בכלכלה היא תוסיף 20 נקודות, במחשבה 12 ובשיטות 10. לכן כלכלה.</li><li><strong>שעה 3:</strong> בכלכלה היא תוסיף 10 נקודות, במחשבה 12 ובשיטות 10. לכן מחשבה.</li><li><strong>שעה 4:</strong> בכלכלה היא תוסיף 10 נקודות, במחשבה 11 ובשיטות 10. לכן מחשבה.</li><li><strong>שעה 5:</strong> בכלכלה היא תוסיף 10 נקודות, במחשבה 8 ובשיטות 10. תיקו בין כלכלה לשיטות. נבחר כלכלה, והשעה הבאה תלך לשיטות.</li><li><strong>שעה 6:</strong> בכלכלה היא תוסיף 8 נקודות, במחשבה 8 ובשיטות 10. לכן שיטות.</li></ol>
+      <p><strong>התוצאה:</strong> 3 שעות כלכלה (ציון 75), 2 שעות מחשבה (ציון 63) ושעה אחת שיטות (ציון 90). הסכום: <bdi dir="ltr" class="m">75 + 63 + 90 = 228</bdi>, והממוצע: <bdi dir="ltr" class="m">228 ÷ 3 = 76</bdi>.</p>
+      <p class="note">בדקנו את כל 28 הדרכים לחלק 6 שעות בין שלושה מבחנים. לאף אחת אין ממוצע גבוה מ־76. ולמה מספיק לחשוב על הסכום? כי תמיד מחלקים ב־3, ולכן הסכום הגדול ביותר נותן גם את הממוצע הגדול ביותר.</p>
+      <h4>ואם יש רק 5 שעות?</h4>
+      <p>מוותרים על שעה שמוסיפה הכי מעט מבין השעות שנבחרו: אחת משתי השעות שמוסיפות 10. שתי האפשרויות נותנות אותו ממוצע:</p>
+      <ul class="steps" style="list-style:disc">
+        <li>2 שעות כלכלה, 2 מחשבה ושעה אחת שיטות (כמו בסיכום): <bdi dir="ltr" class="m">65 + 63 + 90 = 218</bdi>.</li>
+        <li>3 שעות כלכלה, 2 מחשבה, בלי שיטות: <bdi dir="ltr" class="m">75 + 63 + 80 = 218</bdi>.</li>
+      </ul>
+      <p>בשתיהן הממוצע הוא <bdi dir="ltr" class="m">218 ÷ 3 ≈ 72.67</bdi>.</p>
+      <p>השעה שירדה הוסיפה 10 נקודות לסכום, ולכן הממוצע ירד ב־<bdi dir="ltr" class="m">10 ÷ 3 ≈ 3.33</bdi>.</p>
+      <p class="fixnote"><b>תיקון</b>בסיכום כתוב 72.6. החישוב המדויק: <bdi dir="ltr" class="m">218 ÷ 3 = 72.666…</bdi>, ולכן בעיגול <bdi dir="ltr" class="m">72.67</bdi> (או <bdi dir="ltr" class="m">72.7</bdi>).</p>
+    </div></details>
+
+    <details class="deep" id="mine-rest"><summary>שתי מסעדות: איך מחלקים 5 עובדים, ומה קורה אם סוגרים מסעדה <span class="hint">· חדש</span></summary><div class="sol-body">
+      <p>אותו רעיון כמו <a href="#fields">שני השדות</a>, עם שתי מסעדות. התפוקה היא מספר הארוחות.</p>
+      <div class="two">
+        <div class="tscroll"><table class="t" id="rest1Table"><caption>מסעדה 1</caption><thead><tr><th scope="col">עובדים (L)</th><th scope="col">ארוחות (TP)</th><th scope="col"><bdi dir="ltr">MP</bdi></th></tr></thead><tbody><tr><td class="n">0</td><td class="n">0</td><td class="n">—</td></tr><tr><td class="n">1</td><td class="n">15</td><td class="n"><b>15</b></td></tr><tr><td class="n">2</td><td class="n">29</td><td class="n"><b>14</b></td></tr><tr><td class="n">3</td><td class="n">42</td><td class="n"><b>13</b></td></tr><tr><td class="n">4</td><td class="n">54</td><td class="n">12</td></tr><tr><td class="n">5</td><td class="n">63</td><td class="n">9</td></tr><tr><td class="n">6</td><td class="n">70</td><td class="n">7</td></tr></tbody></table></div>
+        <div class="tscroll"><table class="t" id="rest2Table"><caption>מסעדה 2</caption><thead><tr><th scope="col">עובדים (L)</th><th scope="col">ארוחות (TP)</th><th scope="col"><bdi dir="ltr">MP</bdi></th></tr></thead><tbody><tr><td class="n">0</td><td class="n">0</td><td class="n">—</td></tr><tr><td class="n">1</td><td class="n">20</td><td class="n"><b>20</b></td></tr><tr><td class="n">2</td><td class="n">39</td><td class="n"><b>19</b></td></tr><tr><td class="n">3</td><td class="n">51</td><td class="n">12</td></tr><tr><td class="n">4</td><td class="n">61</td><td class="n">10</td></tr><tr><td class="n">5</td><td class="n">70</td><td class="n">9</td></tr></tbody></table></div>
+      </div>
+      <p>יש 5 עובדים. כל עובד הולך למסעדה שבה הוא מוסיף יותר:</p>
+      <ol class="steps"><li><strong>עובד 1:</strong> במסעדה 1 הוא מוסיף 15, במסעדה 2 הוא מוסיף 20. לכן מסעדה 2.</li><li><strong>עובד 2:</strong> במסעדה 1 הוא מוסיף 15, במסעדה 2 הוא מוסיף 19. לכן מסעדה 2.</li><li><strong>עובד 3:</strong> במסעדה 1 הוא מוסיף 15, במסעדה 2 הוא מוסיף 12. לכן מסעדה 1.</li><li><strong>עובד 4:</strong> במסעדה 1 הוא מוסיף 14, במסעדה 2 הוא מוסיף 12. לכן מסעדה 1.</li><li><strong>עובד 5:</strong> במסעדה 1 הוא מוסיף 13, במסעדה 2 הוא מוסיף 12. לכן מסעדה 1.</li><li><strong>עובדים 6 ו־7:</strong> בשתי המסעדות העובד הבא מוסיף 12. תיקו, ולכן אחד לכל מסעדה.</li></ol>
+      <p class="brief"><span class="lbl">התוצאה</span>במסעדה 1 שלושה עובדים, ובמסעדה 2 שניים. <bdi dir="ltr" class="m">TP₅ = 42 + 39 = 81</bdi>. אפשר גם לחבר את התפוקות השוליות של חמשת העובדים:</p>
+      <p class="calc" dir="ltr"><bdi dir="ltr" class="m">20 + 19 + 15 + 14 + 13 = 81</bdi></p>
+      <p><strong>מה התפוקה השולית של העובד החמישי?</strong> מסתכלים על העובד האחרון ששובץ: השלישי במסעדה 1. הוא הוסיף 13, ולכן <bdi dir="ltr" class="m">MP = 13</bdi>.</p>
+      <h4>מה קורה אם סוגרים את מסעדה 2?</h4>
+      <p>מסעדה 2 מייצרת 39 ארוחות. האם זה כל ההפסד? לא. שני העובדים שלה לא נעלמים: הם עוברים למסעדה 1, ושם הם העובד הרביעי והחמישי. הם מוסיפים 12 ו־9.</p>
+      <p><bdi dir="ltr" class="m">−39 + 12 + 9 = −18</bdi>. התפוקה יורדת מ־81 ל־63 ארוחות: מפסידים 18, ולא 39.</p>
+      <p class="brief"><span class="lbl">הרעיון</span>ההפסד מסגירה = מה שהמסעדה ייצרה, פחות מה שהעובדים שלה יוסיפו במקום אחר. זה אותו היגיון של עלות אלטרנטיבית, שנפגוש <a href="../shiur8-costs/#econ">בשיעור 8</a>.</p>
+      <p class="note">מסעדה 1 ממשיכה בשיעור 8: שם הסיכום בונה לה טבלת עלויות מלאה. <a href="../shiur8-costs/#mine">לתרגיל המסעדה</a></p>
+    </div></details>
+  </div>
+
   <a class="totop" href="#top">↑ חזרה לתפריט</a>
 </section>
 
@@ -1162,6 +1252,13 @@ if(prog&&'IntersectionObserver' in window){
 }
 
 function all(){bakery();bikes();geo();tscroll();}
+/* links into a closed <details> (e.g. #mine-hours) open it first */
+function reveal(id){let t=null;try{t=id&&document.getElementById(decodeURIComponent(id));}catch(e){}if(!t)return null;
+  let d=t.closest('details');while(d){d.open=true;d=d.parentElement&&d.parentElement.closest('details');}return t;}
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a&&a.hash)reveal(a.hash.slice(1));});
+addEventListener('hashchange',()=>{const t=reveal(location.hash.slice(1));if(t)t.scrollIntoView();});
+if(location.hash){const t=reveal(location.hash.slice(1));if(t)requestAnimationFrame(()=>t.scrollIntoView());}
+$$('details').forEach(d=>d.addEventListener('toggle',tscroll));
 all();grade();fields();
 let rw=window.innerWidth,rt;
 window.addEventListener('resize',()=>{if(window.innerWidth===rw)return;rw=window.innerWidth;clearTimeout(rt);rt=setTimeout(all,120);});
