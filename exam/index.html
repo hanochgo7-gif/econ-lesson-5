@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>איך מקבלים 100 במבחן</title>
-<meta name="description" content="מדריך למבחן האמצע במבוא למיקרו־כלכלה: איך הבודק נותן נקודות, המבחן לדוגמה פתור כמו דף תשובות של 100, ארגז כלים לעקומת התמורה, ביקוש, ביקוש מצרפי, גמישות וייצור, 36 טענות נכון או לא נכון, ומבחן תרגול חדש עם פתרון.">
+<meta name="description" content="מדריך למבחן האמצע במבוא למיקרו־כלכלה: איך הבודק נותן נקודות, המבחן לדוגמה פתור כמו דף תשובות של 100, ארגז כלים לעקומת התמורה, יתרון יחסי, ביקוש, ביקוש מצרפי, גמישות וייצור, 42 טענות נכון או לא נכון, ומבחן תרגול חדש עם פתרון.">
 <meta property="og:title" content="איך מקבלים 100 במבחן">
 <meta property="og:description" content="המבחן לדוגמה פתור, כל נושא בכמה כללים, ומבחן תרגול חדש.">
 <meta property="og:image" content="img/hero-exam-1200.webp">
@@ -1051,6 +1051,12 @@ dl.rc dd{margin-inline-start:auto}
 .hero-facts{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .hero-facts li{padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);font-size:.92rem;font-weight:600;color:#fff}
 
+/* "where to start" card, above the chapter list */
+.startbox{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh-1);border-inline-start:5px solid var(--accent);padding:14px clamp(14px,3vw,22px) 12px;display:flex;flex-direction:column;gap:10px;margin-bottom:8px;--ch:var(--accent)}
+.startbox>*{min-width:0}
+.startbox ol.recipe li{max-width:none}
+.startbox .note{margin:0}
+
 /* ---------- graphs ---------- */
 .gx{max-width:520px;margin-inline:auto;overflow:visible}
 .gx text{font-family:var(--font-body);font-size:13px}
@@ -1244,7 +1250,7 @@ section p.note{max-width:none}
   <div class="toc-body" id="tocBody"></div>
 </dialog>
 
-<div class="printhead"><h1>איך מקבלים 100 במבחן</h1><p>מבוא למיקרו־כלכלה, מבחן אמצע. המבחן לדוגמה פתור, ארגז כלים לכל נושא, 36 טענות נכון או לא נכון, ומבחן תרגול עם פתרון.</p></div>
+<div class="printhead"><h1>איך מקבלים 100 במבחן</h1><p>מבוא למיקרו־כלכלה, מבחן אמצע. המבחן לדוגמה פתור, ארגז כלים לכל נושא, 42 טענות נכון או לא נכון, ומבחן תרגול עם פתרון.</p></div>
 
 <header class="top" id="top">
   <div class="hero bleed exhero">
@@ -1259,24 +1265,34 @@ section p.note{max-width:none}
         <li>60 דקות</li><li>3 שאלות, 34% כל אחת</li><li>מחשבון ודף נוסחאות</li>
       </ul>
       <div class="hero-cta">
-        <a class="cta primary" href="#sq1">המבחן לדוגמה, פתור</a>
-        <a class="cta ghost" href="#mq1">מבחן תרגול חדש</a>
+        <a class="cta primary" href="#start">מאיפה מתחילים</a>
+        <a class="cta ghost" href="#sq1">המבחן לדוגמה, פתור</a>
       </div>
     </div></div>
   </div>
 </header>
 
 <nav class="chapters" id="menu" aria-labelledby="h-menu">
+  <div class="startbox" id="start">
+    <h2 id="h-start">מאיפה מתחילים</h2>
+    <ol class="recipe">
+      <li><strong>15 דקות: <a href="#chA">חלק א׳</a>.</strong> איך הבודק נותן נקודות, ואיך מחלקים את הזמן.</li>
+      <li><strong>60 דקות: <a href="#chB">המבחן לדוגמה</a>.</strong> קוראים שאלה, פותרים לבד על דף, ורק אז קוראים את התשובה.</li>
+      <li><strong>מה שלא הלך:</strong> הכלי של הנושא ב<a href="#chC">חלק ג׳</a>, ואז הטענות שלו ב<a href="#chD">חלק ד׳</a>.</li>
+      <li><strong>60 דקות בשעון: <a href="#chE">מבחן התרגול</a>.</strong> בודקים את עצמכם מול הפתרון.</li>
+      <li><strong>ערב לפני: <a href="#chF">חלק ו׳</a>.</strong> רשימת בדיקה, מלכודות, ודף הנוסחאות.</li>
+    </ol>
+    <p class="note">יש לכם רק ערב אחד? צעדים 1, 2 ו־5. כל נושא מקושר גם לשיעור המלא באתר.</p>
+  </div>
   <h2 id="h-menu">שישה חלקים</h2>
   <ol class="chap-list">
     <li class="chap" data-ch="A"><a href="#chA"><span class="chap-k">חלק א׳</span><b>איך המבחן נבדק</b><span>זמנים, ומה נותן ציון מלא</span></a></li>
     <li class="chap" data-ch="B"><a href="#chB"><span class="chap-k">חלק ב׳</span><b>המבחן לדוגמה, פתור</b><span>שלוש השאלות, כמו דף תשובות של 100</span></a></li>
-    <li class="chap" data-ch="C"><a href="#chC"><span class="chap-k">חלק ג׳</span><b>ארגז כלים לכל נושא</b><span>תמורה, ביקוש, מצרפי, גמישות, ייצור</span></a></li>
-    <li class="chap" data-ch="D"><a href="#chD"><span class="chap-k">חלק ד׳</span><b>בנק נכון או לא נכון</b><span>36 טענות עם נימוק</span></a></li>
+    <li class="chap" data-ch="C"><a href="#chC"><span class="chap-k">חלק ג׳</span><b>ארגז כלים לכל נושא</b><span>תמורה, יתרון יחסי, ביקוש, מצרפי, גמישות, ייצור</span></a></li>
+    <li class="chap" data-ch="D"><a href="#chD"><span class="chap-k">חלק ד׳</span><b>בנק נכון או לא נכון</b><span>42 טענות עם נימוק</span></a></li>
     <li class="chap" data-ch="E"><a href="#chE"><span class="chap-k">חלק ה׳</span><b>מבחן תרגול חדש</b><span>3 שאלות, 60 דקות, פתרון מוסתר</span></a></li>
     <li class="chap" data-ch="F"><a href="#chF"><span class="chap-k">חלק ו׳</span><b>לפני המבחן</b><span>רשימת בדיקה, 15 מלכודות, דף הנוסחאות</span></a></li>
   </ol>
-  <p class="note">יש לכם ערב אחד? חלק א׳, חלק ב׳, ומבחן התרגול בשעון. יש לכם כמה ימים? כל הדף לפי הסדר. כל נושא מקושר לשיעור המלא באתר.</p>
 </nav>
 
 <main class="mainflow" id="main" tabindex="-1">
@@ -1298,13 +1314,13 @@ section p.note{max-width:none}
     <li><strong>שאלה 3: ביקוש.</strong> שתי קבוצות, ביקוש מצרפי, תזוזה של העקומה, וסוג המוצר.</li>
     <li>המבחן קורא לעלות האלטרנטיבית גם <strong>״הוצאה אלטרנטיבית״</strong>. זה אותו דבר.</li>
   </ul>
-  <p class="note">שימו לב: <bdi dir="ltr" class="m">3 × 34 = 102</bdi>. המשקלות מסתכמים ביותר מ־100, כך שטעות קטנה אחת לא חייבת להוריד אתכם מ־100. אל תתכננו על זה.</p>
+  <p class="note">שימו לב: <bdi dir="ltr" class="m">3 × 34 = 102</bdi>. יש 2 נקודות ״רזרבה״ מעל 100. זה מרווח קטן מאוד, אז אל תתכננו עליו.</p>
   <a class="nextsec" href="#time"><span>הבא בתור</span><b>תוכנית זמן ל־60 דקות</b></a>
 </section>
 
 <section id="time" class="stack" data-ch="A" aria-labelledby="h-time">
   <div class="sec-head"><div class="eyebrow"><span class="tn">א2</span></div><h2 id="h-time">תוכנית זמן ל־60 דקות</h2></div>
-  <p class="brief"><span class="lbl">הכלל</span>כ־18 דקות לשאלה. נכון או לא נכון קצר יותר. תמיד משאירים 7 דקות לבדיקה.</p>
+  <p class="brief"><span class="lbl">הכלל</span>שאלות החישוב מקבלות כ־18 דקות כל אחת. נכון או לא נכון קצרה יותר. תמיד משאירים 7 דקות לבדיקה.</p>
   <ol class="tplan" aria-label="חלוקת הזמן">
     <li class="r" style="flex:3"><b>3</b><span>קריאה</span></li>
     <li class="q" style="flex:13"><b>13</b><span>שאלה 1</span></li>
@@ -1351,7 +1367,7 @@ section p.note{max-width:none}
   </div>
   <h3>איך מאבדים נקודות, גם כשיודעים את החומר</h3>
   <ul class="lose">
-    <li><b>תשובה</b><span>״לא נכון״ בלי נימוק. זה בערך שליש מהנקודות, לא יותר.</span></li>
+    <li><b>תשובה</b><span>״לא נכון״ בלי נימוק. הכרעה לבד כמעט לא מקבלת נקודות.</span></li>
     <li><b>שרטוט</b><span>השאלה אמרה ״שרטטו״, ואין גרף. או שיש גרף בלי שמות לצירים.</span></li>
     <li><b>יחידות</b><span>״9״ במקום ״9 יחידות לבוש״. בממוצעת ובשולית: ״ליחידת מזון״.</span></li>
     <li><b>נוסחה</b><span>רק תוצאה. אם התוצאה שגויה, אין על מה לתת ניקוד חלקי.</span></li>
@@ -1377,8 +1393,9 @@ section p.note{max-width:none}
   <div class="ans">
     <p class="ans-k">התשובה, כמו שכותבים במבחן</p>
     <p><span class="verdict no">לא נכון.</span></p>
-    <p>ייצור לא יעיל הוא נקודה <strong>בתוך</strong> עקומת התמורה (נקודה N), למשל בגלל אבטלה או בזבוז. כשהמשק עובר לייצור יעיל, הנקודה זזה <strong>אל</strong> העקומה (נקודה C). העקומה עצמה לא זזה, כי כמות גורמי הייצור והטכנולוגיה לא השתנו.</p>
-    <p>עקומת התמורה מתרחבת רק כשיש <strong>יותר גורמי ייצור</strong> (עובדים, מכונות, משאבי טבע) או <strong>שיפור טכנולוגי</strong>.</p>
+    <p>עקומת התמורה מראה את הכמויות <strong>המרביות</strong> של שני המוצרים שהמשק יכול לייצר, כשכל גורמי הייצור מועסקים ביעילות. המיקום שלה תלוי רק בכמות גורמי הייצור ובטכנולוגיה.</p>
+    <p>ייצור לא יעיל הוא נקודה <strong>בתוך</strong> העקומה (נקודה N), למשל בגלל אבטלה או בזבוז. כשהמשק עובר לייצור יעיל, הנקודה זזה <strong>אל</strong> העקומה (נקודה C), ומייצרים יותר משני המוצרים. העקומה עצמה לא זזה, כי גורמי הייצור והטכנולוגיה לא השתנו.</p>
+    <p>עקומת התמורה מתרחבת רק כשיש <strong>יותר גורמי ייצור</strong> (עובדים, מכונות, משאבי טבע) או <strong>שיפור טכנולוגי</strong>. למשל, אם מתגלה שדה גז.</p>
   </div>
   <div class="figs two">
     <figure class="chartbox"><figcaption class="chart-t">מה קורה בשאלה: הנקודה זזה אל העקומה</figcaption><svg class="chart gx" id="gS1a" viewBox="0 0 340 270" role="img" aria-label="עקומת התמורה מהטבלה. נקודה N בתוך העקומה, ייצור לא יעיל. חץ מ־N אל נקודה C על העקומה. העקומה עצמה לא זזה."><path class="gr" d="M86.7 230.0 V36"/><path class="gr" d="M133.3 230.0 V36"/><path class="gr" d="M180.0 230.0 V36"/><path class="gr" d="M226.7 230.0 V36"/><path class="gr" d="M273.3 230.0 V36"/><path class="gr" d="M40.0 182.5 H320"/><path class="gr" d="M40.0 139.8 H320"/><path class="gr" d="M40.0 101.8 H320"/><path class="gr" d="M40.0 59.0 H320"/><path class="ln k1" d="M40.0 59.0 L86.7 73.2 L133.3 101.8 L180.0 139.8 L226.7 182.5 L273.3 230.0" stroke-width="3"/><path class="ax" d="M40.0 230.0 H324"/><path class="axh" d="M328.0 230.0 L320.7 233.3 L320.7 226.7 Z"/><path class="ax" d="M40.0 230.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="86.7" y="247.0" text-anchor="middle">2</text><text class="tk" x="133.3" y="247.0" text-anchor="middle">4</text><text class="tk" x="180.0" y="247.0" text-anchor="middle">6</text><text class="tk" x="226.7" y="247.0" text-anchor="middle">8</text><text class="tk" x="273.3" y="247.0" text-anchor="middle">10</text><text class="tk" x="34.0" y="187.0" text-anchor="end">10</text><text class="tk" x="34.0" y="144.3" text-anchor="end">19</text><text class="tk" x="34.0" y="106.3" text-anchor="end">27</text><text class="tk" x="34.0" y="63.5" text-anchor="end">36</text><text class="tk" x="34.0" y="247.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">Y</text><text class="axw" x="52.0" y="16" text-anchor="start">לבוש</text><text class="axl" x="328" y="264.0" text-anchor="end">X</text><text class="axw" x="311" y="264.0" text-anchor="end">מזון</text><circle class="f1" cx="40.0" cy="59.0" r="3.5"/><circle class="f1" cx="86.7" cy="73.2" r="3.5"/><circle class="f1" cx="133.3" cy="101.8" r="3.5"/><circle class="f1" cx="180.0" cy="139.8" r="3.5"/><circle class="f1" cx="226.7" cy="182.5" r="3.5"/><circle class="f1" cx="273.3" cy="230.0" r="3.5"/><circle class="f4" cx="110.0" cy="173.0" r="5.5"/><text class="lb b" x="98.0" y="178.0" text-anchor="middle">N</text><circle class="ring k4" cx="180.0" cy="139.8" r="8"/><path class="ln k4" stroke-width="2.2" d="M117.2 169.6 L167.4 145.8"/><path class="f4" d="M172.8 143.2 L166.9 150.1 L163.8 143.4 Z"/><text class="lb b" x="194.0" y="143.8" text-anchor="middle">C</text><text class="lb k1t" x="264.0" y="168.2" text-anchor="middle" direction="rtl" unicode-bidi="embed">העקומה</text><text class="lb k1t" x="264.0" y="184.2" text-anchor="middle" direction="rtl" unicode-bidi="embed">לא זזה</text><text class="lb k4t" x="110.0" y="197.0" text-anchor="middle" direction="rtl" unicode-bidi="embed">לא יעיל</text></svg></figure>
@@ -1401,7 +1418,6 @@ section p.note{max-width:none}
       <li>המשק קיבל מענק במוצרים של 2 יחידות מזון. הוא החליט לצרוך 6 יחידות מזון. כמה מוצרי לבוש יצרוך המשק? שרטטו והציגו על עקומת התמורה.</li>
     </ol></div>
   <div class="co exam"><b class="co-k">מה השאלה באמת בודקת</b><p>אם אתם בוחרים את <strong>הנקודה הנכונה</strong> לכל סוג עלות, ואם אתם מבינים שמענק נותן לצרוך מחוץ לעקומה בלי להזיז אותה. המוצר ש״מייצרים״ הוא מזון <bdi dir="ltr" class="m">(X)</bdi>, ומה ש״מוותרים״ עליו הוא לבוש <bdi dir="ltr" class="m">(Y)</bdi>.</p></div>
-  <p class="note">קיצורים בדף הזה: <bdi dir="ltr" class="m">TOC</bdi> = עלות אלטרנטיבית כוללת, <bdi dir="ltr" class="m">AOC</bdi> = ממוצעת, <bdi dir="ltr" class="m">MOC</bdi> = שולית. במבחן אפשר לכתוב את השם במילים.</p>
 
   <div class="part" id="sq2a">
     <h3><span class="pk">סעיף 1</span>כוללת: 4 יחידות מזון</h3>
@@ -1409,9 +1425,9 @@ section p.note{max-width:none}
       <p class="ans-k">התשובה</p>
       <p>4 יחידות מזון הן נקודה D, עם 27 יחידות לבוש. בלי מזון בכלל (נקודה F) מייצרים 36 יחידות לבוש.</p>
       <ol class="eqs">
-        <li><span class="st">נוסחה</span><bdi dir="ltr" class="m">TOC = Y<sub>max</sub> − Y₁</bdi></li>
+        <li><span class="st">נוסחה</span>כוללת = <bdi dir="ltr" class="m">Y<sub>max</sub> − Y₁</bdi></li>
         <li><span class="st">הצבה</span><bdi dir="ltr" class="m">= 36 − 27</bdi></li>
-        <li class="rs"><span class="st">תוצאה</span><bdi dir="ltr" class="m">TOC = 9</bdi> יחידות לבוש</li>
+        <li class="rs"><span class="st">תוצאה</span>כוללת = <bdi dir="ltr" class="m">9</bdi> יחידות לבוש</li>
       </ol>
       <p class="final">ההוצאה הכוללת היא 9 יחידות לבוש.</p>
     </div>
@@ -1424,10 +1440,10 @@ section p.note{max-width:none}
       <p class="ans-k">התשובה</p>
       <p>6 יחידות מזון הן נקודה C, עם 19 יחידות לבוש. קודם מחשבים את הכוללת בנקודה הזאת, ואז מחלקים בכמות <strong>המזון</strong>.</p>
       <ol class="eqs">
-        <li><span class="st">נוסחה</span><bdi dir="ltr" class="m">AOC = (Y<sub>max</sub> − Y₁) : X₁</bdi></li>
+        <li><span class="st">נוסחה</span>ממוצעת = <bdi dir="ltr" class="m">(Y<sub>max</sub> − Y₁) : X₁</bdi></li>
         <li><span class="st">הצבה</span><bdi dir="ltr" class="m">= (36 − 19) : 6</bdi></li>
         <li><span class="st">חישוב</span><bdi dir="ltr" class="m">= 17 : 6</bdi></li>
-        <li class="rs"><span class="st">תוצאה</span><bdi dir="ltr" class="m">AOC ≈ 2.83</bdi> יחידות לבוש ליחידת מזון</li>
+        <li class="rs"><span class="st">תוצאה</span>ממוצעת ≈ <bdi dir="ltr" class="m">2.83</bdi> יחידות לבוש ליחידת מזון</li>
       </ol>
       <p class="final">בממוצע, כל יחידת מזון עולה 2.83 יחידות לבוש.</p>
     </div>
@@ -1440,14 +1456,14 @@ section p.note{max-width:none}
       <p class="ans-k">התשובה</p>
       <p>מ־D ל־C מוסיפים 2 יחידות מזון, והלבוש יורד מ־27 ל־19.</p>
       <ol class="eqs">
-        <li><span class="st">נוסחה</span><bdi dir="ltr" class="m">MOC = |ΔY : ΔX|</bdi></li>
+        <li><span class="st">נוסחה</span>שולית = <bdi dir="ltr" class="m">|ΔY : ΔX|</bdi></li>
         <li><span class="st">הצבה</span><bdi dir="ltr" class="m">= (27 − 19) : (6 − 4)</bdi></li>
         <li><span class="st">חישוב</span><bdi dir="ltr" class="m">= 8 : 2</bdi></li>
-        <li class="rs"><span class="st">תוצאה</span><bdi dir="ltr" class="m">MOC = 4</bdi> יחידות לבוש ליחידת מזון</li>
+        <li class="rs"><span class="st">תוצאה</span>שולית = <bdi dir="ltr" class="m">4</bdi> יחידות לבוש ליחידת מזון</li>
       </ol>
       <p class="final">בקטע DC, כל יחידת מזון נוספת עולה 4 יחידות לבוש.</p>
     </div>
-    <div class="co trap"><b class="co-k">הטעות</b><p>לכתוב 8, ולשכוח לחלק ב־2 יחידות המזון. ועוד אחת: בדף הנוסחאות כתוב <bdi dir="ltr" class="m">(Y₂ − Y₁) : (X₂ − X₁)</bdi>, בלי ערך מוחלט. מ־D ל־C יוצא <bdi dir="ltr" class="m">(19 − 27) : 2 = −4</bdi>. הסימן השלילי הוא השיפוע. העלות היא 4.</p></div>
+    <div class="co trap"><b class="co-k">הטעות</b><p>לכתוב 8, ולשכוח לחלק ב־2 יחידות המזון. ועוד אחת: בדף הנוסחאות כתוב <bdi dir="ltr" class="m">(Y₂ − Y₁) : (X₂ − X₁)</bdi>, בלי ערך מוחלט. מ־D ל־C יוצא <bdi dir="ltr" class="m">(19 − 27) : 2 = −4</bdi>. זה השיפוע, והוא שלילי. העלות היא אותו מספר בלי המינוס: 4.</p></div>
   </div>
 
   <div class="part" id="sq2d">
@@ -1461,7 +1477,8 @@ section p.note{max-width:none}
         <li class="rs"><span class="st">צריכה</span><bdi dir="ltr" class="m">(6, 27)</bdi></li>
       </ol>
       <p class="final">המשק יצרוך 27 יחידות לבוש.</p>
-      <p>הוא מייצר בנקודה D <bdi dir="ltr" class="m">(4, 27)</bdi>, על עקומת התמורה, וצורך בנקודה G <bdi dir="ltr" class="m">(6, 27)</bdi>, <strong>מחוץ</strong> לעקומה. עקומת התמורה לא זזה, כי היכולת לייצר לא השתנתה. מה שזז הוא <strong>גבול אפשרויות הצריכה</strong>: 2 יחידות ימינה.</p>
+      <p>הוא <strong>מייצר</strong> בנקודה D <bdi dir="ltr" class="m">(4, 27)</bdi>, על עקומת התמורה. הוא <strong>צורך</strong> בנקודה G <bdi dir="ltr" class="m">(6, 27)</bdi>, <strong>מחוץ</strong> לעקומה.</p>
+      <p>עקומת התמורה לא זזה, כי היכולת לייצר לא השתנתה. מה שזז הוא <strong>גבול אפשרויות הצריכה</strong>, כלומר כל מה שהמשק יכול לצרוך: הייצור ועוד המענק. הגבול זז 2 יחידות ימינה.</p>
     </div>
     <figure class="chartbox"><figcaption class="chart-t">ייצור ב־D, צריכה ב־G</figcaption><svg class="chart gx" id="gS2d" viewBox="0 0 340 270" role="img" aria-label="מענק של 2 מזון. עקומת התמורה (ייצור) לא זזה. גבול הצריכה זז 2 ימינה, ומשמאל ל־2 הוא קו שטוח ב־36. המשק מייצר בנקודה D (4, 27) וצורך בנקודה G (6, 27), מחוץ לעקומת התמורה."><path class="gr" d="M83.1 230.0 V36"/><path class="gr" d="M126.2 230.0 V36"/><path class="gr" d="M169.2 230.0 V36"/><path class="gr" d="M255.4 230.0 V36"/><path class="gr" d="M298.5 230.0 V36"/><path class="gr" d="M40.0 139.8 H320"/><path class="gr" d="M40.0 101.8 H320"/><path class="gr" d="M40.0 59.0 H320"/><path class="ln k2" d="M40.0 59.0 L83.1 59.0 L126.2 73.2 L169.2 101.8 L212.3 139.8 L255.4 182.5 L298.5 230.0" stroke-dasharray="7 5" stroke-width="3"/><path class="ln k1" d="M40.0 59.0 L83.1 73.2 L126.2 101.8 L169.2 139.8 L212.3 182.5 L255.4 230.0" stroke-width="3"/><path class="ax" d="M40.0 230.0 H324"/><path class="axh" d="M328.0 230.0 L320.7 233.3 L320.7 226.7 Z"/><path class="ax" d="M40.0 230.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="83.1" y="247.0" text-anchor="middle">2</text><text class="tk" x="126.2" y="247.0" text-anchor="middle">4</text><text class="tk" x="169.2" y="247.0" text-anchor="middle">6</text><text class="tk" x="255.4" y="247.0" text-anchor="middle">10</text><text class="tk" x="298.5" y="247.0" text-anchor="middle">12</text><text class="tk" x="34.0" y="144.3" text-anchor="end">19</text><text class="tk" x="34.0" y="106.3" text-anchor="end">27</text><text class="tk" x="34.0" y="63.5" text-anchor="end">36</text><text class="tk" x="34.0" y="247.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">Y</text><text class="axw" x="52.0" y="16" text-anchor="start">לבוש</text><text class="axl" x="328" y="264.0" text-anchor="end">X</text><text class="axw" x="311" y="264.0" text-anchor="end">מזון</text><circle class="f1" cx="126.2" cy="101.8" r="5.5"/><circle class="f2" cx="169.2" cy="101.8" r="5.5"/><circle class="fm" cx="169.2" cy="139.8" r="4"/><path class="ln k4" stroke-width="2.2" d="M133.2 101.8 L156.2 101.8"/><path class="f4" d="M162.2 101.8 L154.0 105.5 L154.0 98.1 Z"/><text class="lb b" x="122.2" y="91.8" text-anchor="middle">D</text><text class="lb b" x="179.2" y="93.8" text-anchor="middle">G</text><text class="lb k4t b" x="147.7" y="125.8" text-anchor="middle">+2</text><text class="lb mt" x="159.2" y="153.8" text-anchor="middle">C</text><text class="lb k2t" x="259.7" y="125.5" text-anchor="middle" direction="rtl" unicode-bidi="embed">צריכה</text><text class="lb k1t" x="108.9" y="187.2" text-anchor="middle" direction="rtl" unicode-bidi="embed">ייצור</text></svg>
       <div class="legend"><span><i class="sw-l k1"></i>עקומת התמורה (ייצור), לא זזה</span><span><i class="sw-l k2 dsh"></i>גבול אפשרויות הצריכה</span></div></figure>
@@ -1474,7 +1491,7 @@ section p.note{max-width:none}
   <details class="co more"><summary><span class="sum-t">כל העלויות של הטבלה, בטבלה אחת</span></summary><div class="co-body">
     <p>כך נראה הסולם המלא. העלות השולית עולה מקטע לקטע, ולכן העקומה קמורה (בולטת החוצה).</p>
     <div class="tscroll" tabindex="0" role="region" aria-label="כל העלויות של המזון, ביחידות לבוש"><table class="t data" id="s2ladder"><caption>כל העלויות של המזון, ביחידות לבוש</caption><thead><tr><th scope="col">נקודה</th><th scope="col"><bdi dir="ltr" class="m">X</bdi> מזון</th><th scope="col"><bdi dir="ltr" class="m">Y</bdi> לבוש</th><th scope="col">כוללת</th><th scope="col">ממוצעת</th><th scope="col">שולית בקטע</th></tr></thead><tbody><tr><th scope="row" class="n">F</th><td class="n">0</td><td class="n">36</td><td class="n">0</td><td class="n">—</td><td class="n">—</td></tr><tr><th scope="row" class="n">E</th><td class="n">2</td><td class="n">33</td><td class="n">3</td><td class="n">1.5</td><td class="n">1.5</td></tr><tr><th scope="row" class="n">D</th><td class="n">4</td><td class="n">27</td><td class="n hl">9</td><td class="n hl">2.25</td><td class="n">3</td></tr><tr><th scope="row" class="n">C</th><td class="n">6</td><td class="n">19</td><td class="n hl">17</td><td class="n hl">2.83</td><td class="n hl2">4</td></tr><tr><th scope="row" class="n">B</th><td class="n">8</td><td class="n">10</td><td class="n">26</td><td class="n">3.25</td><td class="n">4.5</td></tr><tr><th scope="row" class="n">A</th><td class="n">10</td><td class="n">0</td><td class="n">36</td><td class="n">3.6</td><td class="n">5</td></tr></tbody></table></div>
-    <p>והכיוון ההפוך: העלות השולית של לבוש במזון, באותו קטע DC, היא <bdi dir="ltr" class="m">2 : 8 = 0.25</bdi> יחידות מזון ליחידת לבוש. אחד חלקי השולית של המזון.</p>
+    <p>והכיוון ההפוך: העלות השולית של לבוש במזון, באותו קטע DC, היא <bdi dir="ltr" class="m">2 : 8 = 0.25</bdi> יחידות מזון ליחידת לבוש. זה 1 חלקי העלות השולית של המזון.</p>
   </div></details>
   <a class="nextsec" href="#sq3"><span>הבא בתור</span><b>נופש באילת: צפון, מרכז ושוק</b></a>
 </section>
@@ -1533,7 +1550,7 @@ section p.note{max-width:none}
   <span class="chcover-k">חלק ג׳</span>
   <h2 id="h-chC">ארגז כלים לכל נושא</h2>
   <p class="chcover-q">כל נושא של המבחן: מה תמיד נבדק, מתכון לפתרון, דוגמה פתורה, ומלכודות.</p>
-  <ul class="chcover-toc"><li><a href="#ppf">עקומת התמורה</a></li><li><a href="#demand">ביקוש</a></li><li><a href="#agg">ביקוש מצרפי</a></li><li><a href="#elast">גמישות</a></li><li><a href="#prod">ייצור</a></li></ul>
+  <ul class="chcover-toc"><li><a href="#ppf">עקומת התמורה</a></li><li><a href="#comp">יתרון יחסי</a></li><li><a href="#demand">ביקוש</a></li><li><a href="#agg">ביקוש מצרפי</a></li><li><a href="#elast">גמישות</a></li><li><a href="#prod">ייצור</a></li></ul>
 </div>
 
 <section id="ppf" class="stack" data-ch="C" aria-labelledby="h-ppf">
@@ -1541,10 +1558,11 @@ section p.note{max-width:none}
   <p class="brief"><span class="lbl">הכלל</span>העקומה היא כל מה שהמשק <strong>יכול לייצר</strong>. רק יותר גורמי ייצור או טכנולוגיה טובה יותר מזיזים אותה. כל השאר מזיז נקודה, או את גבול הצריכה.</p>
   <h3>מה תמיד נבדק</h3>
   <ol class="facts">
-    <li><strong>על העקומה</strong> = ייצור יעיל. <strong>בתוך</strong> = לא יעיל, או אבטלה. <strong>מחוץ</strong> = אי אפשר לייצר. אפשר לצרוך שם רק עם מענק, סחר, הלוואה או מלאי.</li>
+    <li><strong>על העקומה:</strong> ייצור יעיל. אי אפשר לקבל יותר ממוצר אחד בלי לוותר על השני. <strong>בתוך:</strong> לא יעיל, או אבטלה. אפשר יותר משניהם. <strong>מחוץ:</strong> אי אפשר לייצר. אפשר לצרוך שם רק עם מענק, סחר, הלוואה או מלאי.</li>
+    <li><strong>נקודה <bdi dir="ltr" class="m">(X, Y)</bdi> מטבלה:</strong> מוצאים בטבלה את ה־<bdi dir="ltr" class="m">Y</bdi> של אותו <bdi dir="ltr" class="m">X</bdi> על העקומה. ה־<bdi dir="ltr" class="m">Y</bdi> של הנקודה קטן ממנו: בתוך. שווה: על. גדול: מחוץ.</li>
     <li><strong>יורדת</strong>, כי גורמי הייצור מוגבלים: עוד <bdi dir="ltr" class="m">X</bdi> דורש לוותר על <bdi dir="ltr" class="m">Y</bdi>.</li>
     <li><strong>קמורה</strong> (בולטת החוצה), כי העלות השולית עולה: לא כל העובדים טובים באותה מידה בכל מוצר. <strong>קו ישר</strong>: גורם ייצור אחד וזהה, ולכן העלות קבועה, והממוצעת שווה לשולית.</li>
-    <li>שלוש עלויות, כשמייצרים <bdi dir="ltr" class="m">X</bdi> ומוותרים על <bdi dir="ltr" class="m">Y</bdi>: כוללת <bdi dir="ltr" class="m">Y<sub>max</sub> − Y₁</bdi>, ממוצעת = הכוללת חלקי <bdi dir="ltr" class="m">X₁</bdi>, שולית <bdi dir="ltr" class="m">|ΔY : ΔX|</bdi>.</li>
+    <li><strong>שלוש עלויות</strong>, כוללת, ממוצעת ושולית: הנוסחאות בטבלה ״איזו נקודה לוקחים״ למטה. <bdi dir="ltr" class="m">Y<sub>max</sub></bdi> הוא ה־<bdi dir="ltr" class="m">Y</bdi> בשורה שבה <bdi dir="ltr" class="m">X = 0</bdi>. <bdi dir="ltr" class="m">Y₁</bdi> הוא ה־<bdi dir="ltr" class="m">Y</bdi> בנקודה שבשאלה.</li>
     <li>הכיוון ההפוך (מייצרים <bdi dir="ltr" class="m">Y</bdi>): מתחילים מ־<bdi dir="ltr" class="m">X<sub>max</sub></bdi> ומחלקים ב־<bdi dir="ltr" class="m">Y₁</bdi>. השולית של <bdi dir="ltr" class="m">Y</bdi> = 1 חלקי השולית של <bdi dir="ltr" class="m">X</bdi> באותו קטע.</li>
     <li><strong>תזוזות:</strong> יותר גורמי ייצור או טכנולוגיה בשני המוצרים: החוצה. טכנולוגיה רק ב־<bdi dir="ltr" class="m">X</bdi>: העקומה <strong>מסתובבת</strong> סביב הקצה של <bdi dir="ltr" class="m">Y</bdi>. אסון, בלאי שלא מוחלף: פנימה.</li>
     <li><strong>מענק במוצרים, סחר, הלוואה, מלאי:</strong> רק גבול הצריכה זז. מענק בגורמי ייצור: ״תלוי״, אם אפשר להפעיל אותם.</li>
@@ -1576,11 +1594,59 @@ section p.note{max-width:none}
   <div class="co trap"><b class="co-k">המלכודות</b><p>(1) ממוצעת שמחולקת ב־<bdi dir="ltr" class="m">Y</bdi> במקום ב־<bdi dir="ltr" class="m">X</bdi>. (2) שולית בלי חלוקה, כשהצעד בטבלה הוא 2 או 3 יחידות. (3) עלות עם מינוס. (4) ״מענק מזיז את עקומת התמורה״. (5) ״קמורה״ ו״יורדת״ מתחלפות: יורדת בגלל מחסור, קמורה בגלל עלות שולית עולה.</p></div>
   <figure class="chartbox"><figcaption class="chart-t">שיפור טכנולוגי רק במוצר אחד: העקומה מסתובבת</figcaption><svg class="chart gx" id="gRot" viewBox="0 0 340 270" role="img" aria-label="שיפור טכנולוגי רק ב־X: העקומה מסתובבת סביב הקצה של Y. הקצה של X זז ימינה. באותה כמות X אפשר לקבל יותר Y."><path class="ln k4" d="M40.0 78.0 L46.6 78.1 L53.2 78.2 L59.8 78.5 L66.3 78.8 L72.9 79.3 L79.4 79.9 L85.9 80.5 L92.4 81.3 L98.8 82.2 L105.2 83.2 L111.6 84.3 L117.9 85.4 L124.1 86.7 L130.3 88.1 L136.4 89.6 L142.5 91.1 L148.5 92.8 L154.4 94.6 L160.2 96.4 L166.0 98.4 L171.7 100.4 L177.2 102.5 L182.7 104.7 L188.1 107.0 L193.4 109.4 L198.6 111.9 L203.7 114.4 L208.6 117.0 L213.5 119.7 L218.2 122.5 L222.8 125.4 L227.3 128.3 L231.6 131.3 L235.8 134.3 L239.9 137.5 L243.9 140.7 L247.7 143.9 L251.3 147.2 L254.9 150.6 L258.2 154.0 L261.5 157.5 L264.5 161.0 L267.5 164.6 L270.2 168.2 L272.8 171.8 L275.3 175.5 L277.5 179.3 L279.7 183.0 L281.6 186.8 L283.4 190.7 L285.0 194.5 L286.5 198.4 L287.8 202.3 L288.9 206.2 L289.8 210.2 L290.6 214.1 L291.2 218.1 L291.7 222.0 L291.9 226.0 L292.0 230.0" stroke-dasharray="7 5" stroke-width="3"/><path class="ln k1" d="M40.0 78.0 L44.9 78.1 L49.8 78.2 L54.6 78.5 L59.5 78.8 L64.4 79.3 L69.2 79.9 L74.0 80.5 L78.8 81.3 L83.6 82.2 L88.3 83.2 L93.0 84.3 L97.7 85.4 L102.3 86.7 L106.9 88.1 L111.4 89.6 L115.9 91.1 L120.4 92.8 L124.7 94.6 L129.1 96.4 L133.3 98.4 L137.5 100.4 L141.7 102.5 L145.7 104.7 L149.7 107.0 L153.6 109.4 L157.5 111.9 L161.2 114.4 L164.9 117.0 L168.5 119.7 L172.0 122.5 L175.4 125.4 L178.7 128.3 L181.9 131.3 L185.1 134.3 L188.1 137.5 L191.0 140.7 L193.8 143.9 L196.6 147.2 L199.2 150.6 L201.7 154.0 L204.0 157.5 L206.3 161.0 L208.5 164.6 L210.5 168.2 L212.5 171.8 L214.3 175.5 L216.0 179.3 L217.5 183.0 L219.0 186.8 L220.3 190.7 L221.5 194.5 L222.6 198.4 L223.5 202.3 L224.4 206.2 L225.1 210.2 L225.6 214.1 L226.1 218.1 L226.4 222.0 L226.6 226.0 L226.7 230.0" stroke-width="3"/><path class="ax" d="M40.0 230.0 H324"/><path class="axh" d="M328.0 230.0 L320.7 233.3 L320.7 226.7 Z"/><path class="ax" d="M40.0 230.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="34.0" y="247.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">Y</text><text class="axw" x="52.0" y="16" text-anchor="start">לבוש</text><text class="axl" x="328" y="264.0" text-anchor="end">X</text><text class="axw" x="311" y="264.0" text-anchor="end">מזון</text><path class="ln k4" stroke-width="2.2" d="M230.7 230.0 L282.0 230.0"/><path class="f4" d="M288.0 230.0 L279.8 233.7 L279.8 226.3 Z"/><circle class="f1" cx="40.0" cy="78.0" r="5"/><text class="lb" x="50.0" y="68.0" text-anchor="end" direction="rtl" unicode-bidi="embed">הקצה של Y לא זז</text><path class="ln k2" stroke-width="2.2" d="M152.0 105.4 L152.0 102.8"/><path class="f2" d="M152.0 96.8 L155.7 105.0 L148.3 105.0 Z"/><circle class="f1" cx="152.0" cy="108.4" r="4"/><circle class="f2" cx="152.0" cy="93.8" r="4"/><text class="lb k2t" x="160.0" y="89.8" text-anchor="end" direction="rtl" unicode-bidi="embed">אותו X, יותר Y</text><text class="lb k1t" x="194.9" y="179.3" text-anchor="middle" direction="rtl" unicode-bidi="embed">לפני</text><text class="lb k4t" x="271.5" y="162.4" text-anchor="middle" direction="rtl" unicode-bidi="embed">אחרי</text></svg></figure>
   <p class="note">ההסבר המלא: <a href="../shiur1/">שיעור 1: עקומת התמורה</a>, <a href="../shiur1-q5/">תרגילים 1 ו־2</a>, ו<a href="../notes/#d3">מענקים במחברת</a>.</p>
+  <a class="nextsec" href="#comp"><span>הבא בתור</span><b>יתרון יחסי ועקומה משותפת</b></a>
+</section>
+
+<section id="comp" class="stack" data-ch="C" aria-labelledby="h-comp">
+  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 2</span></div><h2 id="h-comp">יתרון יחסי ועקומה משותפת</h2></div>
+  <p class="brief"><span class="lbl">הכלל</span>כל אחד מייצר את מה ש״הכי זול״ לו, כלומר את מה שהוויתור שלו עליו הכי קטן. לא את מה שהוא הכי טוב בו.</p>
+  <h3>מה תמיד נבדק</h3>
+  <ol class="facts">
+    <li><strong>יתרון מוחלט:</strong> מייצר את המוצר בפחות משאבים מהאחר. בטבלה: מייצר ממנו יותר באותו זמן.</li>
+    <li><strong>יתרון יחסי:</strong> העלות האלטרנטיבית שלו במוצר <strong>נמוכה</strong> משל האחר. ככה כותבים בתשובה.</li>
+    <li>העלות של <bdi dir="ltr" class="m">X</bdi> אצל כל אחד: מה שהוא מוותר עליו, חלקי מה שהוא מקבל. <bdi dir="ltr" class="m">Y<sub>max</sub> : X<sub>max</sub></bdi> שלו.</li>
+    <li>אפשר יתרון מוחלט בשני המוצרים. אי אפשר יתרון <strong>יחסי</strong> בשניהם: העלות של <bdi dir="ltr" class="m">Y</bdi> היא 1 חלקי העלות של <bdi dir="ltr" class="m">X</bdi>. מי שזול ב־<bdi dir="ltr" class="m">X</bdi> יקר ב־<bdi dir="ltr" class="m">Y</bdi>.</li>
+    <li><strong>עקומה משותפת</strong> של שני עובדים, אזורים או חלקות: מתחילים מהכול <bdi dir="ltr" class="m">Y</bdi>. את <bdi dir="ltr" class="m">X</bdi> מתחיל לייצר מי שהעלות שלו ב־<bdi dir="ltr" class="m">X</bdi> <strong>הכי נמוכה</strong>. השני מצטרף רק כשהראשון גמר.</li>
+    <li>כך יוצאת עקומה עם <strong>נקודת שבר</strong>, והיא קמורה: הקטע השני תלול יותר. סדר הפוך נותן נקודות <strong>בתוך</strong> העקומה, כלומר ייצור לא יעיל.</li>
+  </ol>
+  <h3>המתכון לעקומה משותפת</h3>
+  <ol class="recipe">
+    <li>לכל אחד: כמה <bdi dir="ltr" class="m">X</bdi> לבד, כמה <bdi dir="ltr" class="m">Y</bdi> לבד, והעלות של <bdi dir="ltr" class="m">X</bdi> בתוך <bdi dir="ltr" class="m">Y</bdi>.</li>
+    <li>הקצה העליון: כולם מייצרים <bdi dir="ltr" class="m">Y</bdi>. מחברים את ה־<bdi dir="ltr" class="m">Y</bdi> של כולם.</li>
+    <li>מעבירים ל־<bdi dir="ltr" class="m">X</bdi> את הזול ביותר. רושמים נקודה: ה־<bdi dir="ltr" class="m">X</bdi> שלו, וה־<bdi dir="ltr" class="m">Y</bdi> של כל השאר.</li>
+    <li>ממשיכים לפי הסדר עד שכולם ב־<bdi dir="ltr" class="m">X</bdi>. מחברים את הנקודות בקווים ישרים.</li>
+  </ol>
+  <h3>דוגמה פתורה: דנה ויואב</h3>
+  <div class="tscroll" tabindex="0" role="region" aria-label="מה כל אחד מייצר ביום עבודה, אם הוא עושה רק את זה. מודגש: הזול מבין השניים"><table class="t data" id="caT"><caption>מה כל אחד מייצר ביום עבודה, אם הוא עושה רק את זה. מודגש: הזול מבין השניים</caption><thead><tr><th scope="col"><span class="sr">עובד</span></th><th scope="col">עוגות <bdi dir="ltr" class="m">(X)</bdi></th><th scope="col">חולצות <bdi dir="ltr" class="m">(Y)</bdi></th><th scope="col">עוגה עולה, בחולצות</th><th scope="col">חולצה עולה, בעוגות</th></tr></thead><tbody><tr><th scope="row" class="rowh">דנה</th><td class="n">8</td><td class="n">12</td><td class="n">1.5</td><td class="n hl">0.67</td></tr><tr><th scope="row" class="rowh">יואב</th><td class="n">6</td><td class="n">6</td><td class="n hl">1</td><td class="n">1</td></tr></tbody></table></div>
+  <div class="ans">
+    <p class="ans-k">הפתרון</p>
+    <p><strong>יתרון מוחלט:</strong> לדנה בשני המוצרים. היא מייצרת יותר עוגות (8 מול 6) ויותר חולצות (12 מול 6).</p>
+    <ol class="eqs">
+      <li><span class="st">עוגה, דנה</span><bdi dir="ltr" class="m">12 : 8 = 1.5</bdi> חולצות</li>
+      <li><span class="st">עוגה, יואב</span><bdi dir="ltr" class="m">6 : 6 = 1</bdi> חולצה</li>
+      <li><span class="st">חולצה, דנה</span><bdi dir="ltr" class="m">8 : 12 ≈ 0.67</bdi> עוגה</li>
+      <li><span class="st">חולצה, יואב</span><bdi dir="ltr" class="m">6 : 6 = 1</bdi> עוגה</li>
+    </ol>
+    <p><strong>יתרון יחסי:</strong> ליואב בעוגות, כי אצלו עוגה עולה פחות (1 מול 1.5 חולצות). לדנה בחולצות (0.67 מול 1 עוגה).</p>
+    <ol class="eqs">
+      <li><span class="st">הכול חולצות</span><bdi dir="ltr" class="m">12 + 6 = 18</bdi>, הנקודה <bdi dir="ltr" class="m">(0, 18)</bdi></li>
+      <li><span class="st">יואב בעוגות</span>הנקודה <bdi dir="ltr" class="m">(6, 12)</bdi></li>
+      <li><span class="st">גם דנה</span><bdi dir="ltr" class="m">6 + 8 = 14</bdi>, הנקודה <bdi dir="ltr" class="m">(14, 0)</bdi></li>
+    </ol>
+    <p class="final">העקומה המשותפת עוברת ב־<bdi dir="ltr" class="m">(0, 18)</bdi>, <bdi dir="ltr" class="m">(6, 12)</bdi> ו־<bdi dir="ltr" class="m">(14, 0)</bdi>. יש בה שבר, והיא קמורה.</p>
+    <p><strong>10 עוגות?</strong> יואב מייצר 6, ודנה את ה־4 הנותרות. היא מוותרת על <bdi dir="ltr" class="m">4 · 1.5 = 6</bdi> חולצות, ונשארות לה <bdi dir="ltr" class="m">12 − 6 = 6</bdi>.</p>
+    <p>במשפט לתשובה: ״העקומה נבנתה לפי עקרון היתרון היחסי. את העוגות מייצר קודם יואב, כי העלות האלטרנטיבית שלו בעוגות נמוכה יותר. העלות השולית עולה מ־1 ל־1.5, ולכן העקומה קמורה.״</p>
+  </div>
+  <figure class="chartbox"><figcaption class="chart-t">שני עובדים, עקומה אחת עם שבר</figcaption><svg class="chart gx" id="gCA" viewBox="0 0 340 270" role="img" aria-label="עקומת התמורה המשותפת של דנה ויואב. מ־(0, 18) עד (6, 12) רק יואב מייצר עוגות, ושיפוע הקטע 1. מ־(6, 12) עד (14, 0) גם דנה מייצרת עוגות, והקטע תלול יותר: 1.5. העקומה קמורה. בקו מקווקו: הסדר ההפוך, דנה קודם, שעובר בתוך העקומה דרך (8, 6)."><path class="gr" d="M145.0 230.0 V36"/><path class="gr" d="M180.0 230.0 V36"/><path class="gr" d="M215.0 230.0 V36"/><path class="gr" d="M285.0 230.0 V36"/><path class="gr" d="M40.0 175.7 H320"/><path class="gr" d="M40.0 121.4 H320"/><path class="gr" d="M40.0 67.1 H320"/><path class="ln k4" d="M40.0 67.1 L180.0 175.7 L285.0 230.0" stroke-dasharray="7 5" stroke-width="2.4"/><path class="ln k1" d="M40.0 67.1 L145.0 121.4 L285.0 230.0" stroke-width="3.5"/><path class="ax" d="M40.0 230.0 H324"/><path class="axh" d="M328.0 230.0 L320.7 233.3 L320.7 226.7 Z"/><path class="ax" d="M40.0 230.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="145.0" y="247.0" text-anchor="middle">6</text><text class="tk" x="180.0" y="247.0" text-anchor="middle">8</text><text class="tk" x="215.0" y="247.0" text-anchor="middle">10</text><text class="tk" x="285.0" y="247.0" text-anchor="middle">14</text><text class="tk" x="34.0" y="180.2" text-anchor="end">6</text><text class="tk" x="34.0" y="125.9" text-anchor="end">12</text><text class="tk" x="34.0" y="71.6" text-anchor="end">18</text><text class="tk" x="34.0" y="247.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">Y</text><text class="axw" x="52.0" y="16" text-anchor="start">חולצות</text><text class="axl" x="328" y="264.0" text-anchor="end">X</text><text class="axw" x="311" y="264.0" text-anchor="end">עוגות</text><circle class="f1" cx="40.0" cy="67.1" r="4.5"/><circle class="f1" cx="145.0" cy="121.4" r="4.5"/><circle class="f1" cx="285.0" cy="230.0" r="4.5"/><circle class="f4" cx="180.0" cy="175.7" r="4.5"/><circle class="ring k3" cx="145.0" cy="121.4" r="8"/><text class="lb b k3t" x="155.0" y="113.4" text-anchor="end" direction="rtl" unicode-bidi="embed">השבר</text><text class="lb b k1t" x="92.5" y="80.3" text-anchor="middle" direction="rtl" unicode-bidi="embed">יואב</text><text class="lb b k1t" x="223.0" y="171.7" text-anchor="end" direction="rtl" unicode-bidi="embed">דנה</text><text class="lb k4t" x="170.0" y="189.7" text-anchor="start" direction="rtl" unicode-bidi="embed">סדר הפוך</text></svg>
+    <div class="legend"><span><i class="sw-l k1"></i>העקומה המשותפת</span><span><i class="sw-l k4 dsh"></i>סדר הפוך: דנה קודם</span></div></figure>
+  <p class="note">בדיקה: בסדר ההפוך, ב־<bdi dir="ltr" class="m">8</bdi> עוגות יש רק 6 חולצות. בסדר הנכון יש 9. סדר לא נכון מבזבז 9 פחות 6 חולצות. ובמספרים של ארגז הכלים: הכוללת של 10 עוגות היא <bdi dir="ltr" class="m">18 − 6 = 12</bdi> חולצות, והממוצעת <bdi dir="ltr" class="m">12 : 10 = 1.2</bdi> חולצות לעוגה.</p>
+  <div class="co trap"><b class="co-k">המלכודות</b><p>(1) לסדר לפי מי שמייצר <strong>הכי הרבה</strong>: זה יתרון מוחלט. (2) לחלק הפוך. <bdi dir="ltr" class="m">X : Y</bdi> הוא המחיר של <bdi dir="ltr" class="m">Y</bdi>, לא של <bdi dir="ltr" class="m">X</bdi>. (3) ״לדנה יתרון יחסי בשניהם״: לא ייתכן. (4) לחבר את שתי הנקודות הקיצוניות בקו ישר אחד, ולשכוח את נקודת השבר.</p></div>
+  <p class="note">ההסבר המלא: <a href="../shiur1/">שיעור 1</a>, נושא 8 (יתרון יחסי) ושאלה 6 (חמש חלקות).</p>
   <a class="nextsec" href="#demand"><span>הבא בתור</span><b>ביקוש: על הקו, או הקו כולו?</b></a>
 </section>
 
 <section id="demand" class="stack" data-ch="C" aria-labelledby="h-demand">
-  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 2</span></div><h2 id="h-demand">ביקוש: על הקו, או הקו כולו?</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 3</span></div><h2 id="h-demand">ביקוש: על הקו, או הקו כולו?</h2></div>
   <p class="brief"><span class="lbl">הכלל</span>המחיר של המוצר עצמו השתנה: זזים <strong>על</strong> הקו. כל דבר אחר השתנה: <strong>כל הקו</strong> זז.</p>
   <h3>מה תמיד נבדק</h3>
   <ol class="facts">
@@ -1619,7 +1685,7 @@ section p.note{max-width:none}
 </section>
 
 <section id="agg" class="stack" data-ch="C" aria-labelledby="h-agg">
-  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 3</span></div><h2 id="h-agg">ביקוש מצרפי: מחברים כמויות</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 4</span></div><h2 id="h-agg">ביקוש מצרפי: מחברים כמויות</h2></div>
   <p class="brief"><span class="lbl">הכלל</span><strong>סכימה אופקית</strong>: באותו מחיר מחברים כמויות. אף פעם לא מחברים מחירים.</p>
   <h3>מה תמיד נבדק</h3>
   <ol class="facts">
@@ -1629,12 +1695,13 @@ section p.note{max-width:none}
     <li>בכל תחום מחיר מחברים רק את מי שקונה בו. איפה שקבוצה מצטרפת יש <strong>נקודת שבר</strong>, ומתחתיה הקו שטוח יותר.</li>
     <li>התשובה היא פונקציה עם חלקים, ולכל חלק <strong>תחום מחירים</strong>.</li>
     <li>אם קבוצה אחת זזה (הכנסה, טעמים), גם הביקוש המצרפי זז, באותה כמות בכל מחיר.</li>
+    <li><strong>יותר קונים</strong> (למשל עוד סטודנטים בקמפוס): ביקוש השוק זז ימינה.</li>
   </ol>
   <h3>המתכון לנקודת שבר, בארבעה צעדים</h3>
   <ol class="recipe">
     <li>כותבים כל קבוצה ככמות לפי מחיר, ומוצאים את המחיר שבו היא קונה 0.</li>
     <li>מחלקים לתחומי מחיר לפי המחירים האלה.</li>
-    <li>בכל תחום מחברים רק את מי שקונה. בודקים בגבול שהשני החלקים נותנים אותה כמות.</li>
+    <li>בכל תחום מחברים רק את מי שקונה. בודקים במחיר של השבר ששני החלקים נותנים אותה כמות.</li>
     <li>כותבים את הפונקציה עם התחומים, ואת נקודת השבר עם שמות: <bdi dir="ltr" class="m">(Q = …, P = …)</bdi>.</li>
   </ol>
   <h3>דוגמה 1: קונים זהים</h3>
@@ -1668,8 +1735,8 @@ section p.note{max-width:none}
 </section>
 
 <section id="elast" class="stack" data-ch="C" aria-labelledby="h-elast">
-  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 4</span></div><h2 id="h-elast">גמישות ופדיון</h2></div>
-  <p class="brief"><span class="lbl">הכלל</span><bdi dir="ltr" class="m">η = %ΔQ : %ΔP</bdi>. כותבים עם הסימן, ומסווגים לפי <bdi dir="ltr" class="m">|η|</bdi>. הנוסחה <strong>לא</strong> בדף הנוסחאות: לומדים אותה בעל פה.</p>
+  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 5</span></div><h2 id="h-elast">גמישות ופדיון</h2></div>
+  <p class="brief"><span class="lbl">הכלל</span>גמישות מסמנים <bdi dir="ltr" class="m">η</bdi> (״אטה״): אחוז השינוי בכמות חלקי אחוז השינוי במחיר, <bdi dir="ltr" class="m">η = %ΔQ : %ΔP</bdi>. כותבים עם הסימן, ומסווגים לפי הערך המוחלט <bdi dir="ltr" class="m">|η|</bdi>. הנוסחה <strong>לא</strong> בדף הנוסחאות: לומדים אותה בעל פה.</p>
   <h3>מה תמיד נבדק</h3>
   <ol class="facts">
     <li>אחוז שינוי = השינוי חלקי מה שהיה <strong>לפני</strong>. קראו בשאלה מאיזה מחיר מתחילים.</li>
@@ -1680,6 +1747,7 @@ section p.note{max-width:none}
     <li>על קו ישר <bdi dir="ltr" class="m">Q = a − bP</bdi> הגמישות משתנה: למעלה גמיש, למטה קשיח. <strong>באמצע</strong>, <bdi dir="ltr" class="m">P = a : 2b</bdi>, <bdi dir="ltr" class="m">|η| = 1</bdi>, ושם הפדיון מקסימלי.</li>
     <li><strong>שיפוע הוא לא גמישות.</strong> משווים תלילות רק בנקודה שבה שני קווים נפגשים.</li>
     <li>גמיש יותר: הרבה תחליפים, חלק גדול מהתקציב, מותרות, הרבה זמן להסתגל.</li>
+    <li>הרחבה: <strong>גמישות הכנסה</strong> <bdi dir="ltr" class="m">η<sub>I</sub> = %ΔQ : %ΔI</bdi>. חיובית: נורמלי. שלילית: נחות. <strong>גמישות צולבת</strong> <bdi dir="ltr" class="m">η<sub>XY</sub> = %ΔQ<sub>X</sub> : %ΔP<sub>Y</sub></bdi>. חיובית: תחליפיים. שלילית: משלימים.</li>
   </ol>
   <h3>המתכון</h3>
   <ol class="recipe">
@@ -1703,17 +1771,18 @@ section p.note{max-width:none}
   </div>
   <figure class="chartbox"><figcaption class="chart-t">קו ישר: גמיש למעלה, קשיח למטה</figcaption><svg class="chart gx" id="gEl" viewBox="0 0 340 270" role="img" aria-label="עקומת הביקוש Q = 120 − 4P. בחלק העליון הביקוש גמיש, בחלק התחתון קשיח. באמצע, במחיר 15 ובכמות 60, הגמישות בערך מוחלט 1 והפדיון הכי גדול: 900."><path class="gr" d="M169.2 230.0 V36"/><path class="gr" d="M298.5 230.0 V36"/><path class="gr" d="M40.0 143.6 H320"/><path class="gr" d="M40.0 57.3 H320"/><path class="ln k4" d="M40.0 57.3 L169.2 143.6" stroke-width="4"/><path class="ln k2" d="M169.2 143.6 L298.5 230.0" stroke-width="4"/><path class="ar a3" d="M40.0 230.0 L40.0 143.6 L169.2 143.6 L169.2 230.0 Z"/><path class="gd" d="M40.0 143.6 H169.2 V230.0"/><path class="ax" d="M40.0 230.0 H324"/><path class="axh" d="M328.0 230.0 L320.7 233.3 L320.7 226.7 Z"/><path class="ax" d="M40.0 230.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="169.2" y="247.0" text-anchor="middle">60</text><text class="tk" x="298.5" y="247.0" text-anchor="middle">120</text><text class="tk" x="34.0" y="148.1" text-anchor="end">15</text><text class="tk" x="34.0" y="61.8" text-anchor="end">30</text><text class="tk" x="34.0" y="247.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">P</text><text class="axw" x="52.0" y="16" text-anchor="start">מחיר</text><text class="axl" x="328" y="264.0" text-anchor="end">Q</text><text class="axw" x="311" y="264.0" text-anchor="end">כמות</text><circle class="f3" cx="169.2" cy="143.6" r="6"/><text class="lb b k3t" x="104.6" y="178.2" text-anchor="middle">TR = 900</text><text class="lb b" x="179.2" y="137.6" text-anchor="start">|η| = 1</text><text class="lb b k4t" x="110.6" y="80.3" text-anchor="end" direction="rtl" unicode-bidi="embed">גמיש</text><text class="lb b k2t" x="246.8" y="166.7" text-anchor="middle" direction="rtl" unicode-bidi="embed">קשיח</text></svg></figure>
   <div class="tscroll" tabindex="0" role="region" aria-label="Q = 120 − 4P: פדיון וגמישות בכל מחיר"><table class="t data" id="elt"><caption><bdi dir="ltr" class="m">Q = 120 − 4P</bdi>: פדיון וגמישות בכל מחיר</caption><thead><tr><th scope="col"><bdi dir="ltr" class="m">P</bdi></th><th scope="col"><bdi dir="ltr" class="m">Q</bdi></th><th scope="col"><bdi dir="ltr" class="m">TR = P · Q</bdi></th><th scope="col"><bdi dir="ltr" class="m">|η|</bdi></th><th scope="col">הביקוש</th></tr></thead><tbody><tr><td class="n">5</td><td class="n">100</td><td class="n">500</td><td class="n">0.2</td><td>קשיח</td></tr><tr><td class="n">10</td><td class="n">80</td><td class="n">800</td><td class="n">0.5</td><td>קשיח</td></tr><tr><td class="n">15</td><td class="n">60</td><td class="n hl">900</td><td class="n">1</td><td>יחידתי</td></tr><tr><td class="n">20</td><td class="n">40</td><td class="n">800</td><td class="n">2</td><td>גמיש</td></tr><tr><td class="n">25</td><td class="n">20</td><td class="n">500</td><td class="n">5</td><td>גמיש</td></tr></tbody></table></div>
-  <div class="co trap"><b class="co-k">המלכודות</b><p>(1) ״<bdi dir="ltr" class="m">η = −2</bdi> קטן מ־1, ולכן קשיח״. מסווגים לפי <bdi dir="ltr" class="m">|η| = 2</bdi>. (2) הנוסחה הפוכה: <bdi dir="ltr" class="m">%ΔP</bdi> למעלה. (3) חלוקה ב״אחרי״. (4) ״הקו תלול ולכן קשיח״. (5) ״מעלים מחיר, ולכן הפדיון עולה״: רק בביקוש קשיח. (6) פדיון <bdi dir="ltr" class="m">TR</bdi> הוא לא רווח, ולא <bdi dir="ltr" class="m">I</bdi> של הקונה.</p></div>
+  <div class="co trap"><b class="co-k">המלכודות</b><p>(1) ״<bdi dir="ltr" class="m">η = −2</bdi> קטן מ־1, ולכן קשיח״. מסווגים לפי <bdi dir="ltr" class="m">|η| = 2</bdi>, גמיש. (2) הנוסחה הפוכה: <bdi dir="ltr" class="m">%ΔP</bdi> למעלה. (3) חלוקה ב״אחרי״. (4) ״הקו תלול ולכן קשיח״. (5) ״מעלים מחיר, ולכן הפדיון עולה״: רק בביקוש קשיח. (6) פדיון <bdi dir="ltr" class="m">TR</bdi> הוא לא רווח, ולא <bdi dir="ltr" class="m">I</bdi> של הקונה.</p></div>
   <p class="note">ההסבר המלא: <a href="../demand/#p3">גמישות</a>, <a href="../demand/#p4">גמישות ופדיון</a> ו<a href="../demand/#line">קו ישר</a>.</p>
   <a class="nextsec" href="#prod"><span>הבא בתור</span><b>פונקציית הייצור: TP, AP, MP</b></a>
 </section>
 
 <section id="prod" class="stack" data-ch="C" aria-labelledby="h-prod">
-  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 5</span></div><h2 id="h-prod">פונקציית הייצור: TP, AP, MP</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="tn">כלי 6</span></div><h2 id="h-prod">פונקציית הייצור: TP, AP, MP</h2></div>
   <p class="brief"><span class="lbl">הכלל</span><bdi dir="ltr" class="m">AP = TP : L</bdi> הוא הממוצע לעובד. <bdi dir="ltr" class="m">MP = ΔTP : ΔL</bdi> הוא מה שהוסיף העובד האחרון. <bdi dir="ltr" class="m">MP</bdi> ״מושכת״ את <bdi dir="ltr" class="m">AP</bdi>.</p>
   <h3>מה תמיד נבדק</h3>
   <ol class="facts">
     <li><bdi dir="ltr" class="m">Q = TP</bdi> = התפוקה הכוללת. בטבלה, <bdi dir="ltr" class="m">MP</bdi> היא ההפרש בין שתי שורות סמוכות. אם <bdi dir="ltr" class="m">L</bdi> קופץ ב־2, מחלקים ב־2.</li>
+    <li><strong>טבלה חסרה?</strong> הולכים אחורה. <bdi dir="ltr" class="m">TP</bdi> = סכום כל ה־<bdi dir="ltr" class="m">MP</bdi> עד אותו עובד. <bdi dir="ltr" class="m">TP = AP · L</bdi>.</li>
     <li>כש־<bdi dir="ltr" class="m">MP > AP</bdi>, <bdi dir="ltr" class="m">AP</bdi> עולה. כש־<bdi dir="ltr" class="m">MP < AP</bdi>, <bdi dir="ltr" class="m">AP</bdi> יורדת. כש־<bdi dir="ltr" class="m">MP = AP</bdi>, <bdi dir="ltr" class="m">AP</bdi> בשיא. <bdi dir="ltr" class="m">MP</bdi> חותכת את <bdi dir="ltr" class="m">AP</bdi> בשיא של <bdi dir="ltr" class="m">AP</bdi>, מלמעלה.</li>
     <li>כש־<bdi dir="ltr" class="m">MP > 0</bdi>, <bdi dir="ltr" class="m">TP</bdi> עולה. כש־<bdi dir="ltr" class="m">MP = 0</bdi>, <bdi dir="ltr" class="m">TP</bdi> מקסימלית. כש־<bdi dir="ltr" class="m">MP < 0</bdi>, <bdi dir="ltr" class="m">TP</bdi> יורדת.</li>
     <li>סדר השיאים: קודם <bdi dir="ltr" class="m">MP</bdi>, אחר כך <bdi dir="ltr" class="m">AP</bdi>, ובסוף <bdi dir="ltr" class="m">TP</bdi>.</li>
@@ -1734,11 +1803,12 @@ section p.note{max-width:none}
       <li><span class="st">פוחתת</span>מהעובד הרביעי <bdi dir="ltr" class="m">MP</bdi> יורדת: <bdi dir="ltr" class="m">19</bdi>, <bdi dir="ltr" class="m">17</bdi>, <bdi dir="ltr" class="m">10</bdi></li>
       <li class="rs"><span class="st">תחום רלוונטי</span>מ־4 עד 6 עובדים. העובד השביעי: <bdi dir="ltr" class="m">MP = −3</bdi></li>
       <li><span class="st">מ־2 ל־4</span><bdi dir="ltr" class="m">MP = (62 − 26) : 2 = 18</bdi> לכל עובד</li>
+      <li><span class="st">אחורה</span><bdi dir="ltr" class="m">TP</bdi> של 3 עובדים = <bdi dir="ltr" class="m">10 + 16 + 19 = 45</bdi></li>
     </ol>
   </div>
   <div class="figs two">
-    <figure class="chartbox"><figcaption class="chart-t">התפוקה הכוללת</figcaption><svg class="chart gx" id="gTP" viewBox="0 0 340 230" role="img" aria-label="עקומת התפוקה הכוללת מהטבלה: עולה עד 77 עם 6 עובדים, ויורדת ל־74 עם העובד השביעי."><path class="gr" d="M76.8 190.0 V36"/><path class="gr" d="M113.7 190.0 V36"/><path class="gr" d="M150.5 190.0 V36"/><path class="gr" d="M187.4 190.0 V36"/><path class="gr" d="M224.2 190.0 V36"/><path class="gr" d="M261.1 190.0 V36"/><path class="gr" d="M297.9 190.0 V36"/><path class="gr" d="M40.0 110.6 H320"/><path class="gr" d="M40.0 80.6 H320"/><path class="gr" d="M40.0 54.1 H320"/><path class="ln k1" d="M40.0 190.0 L76.8 172.4 L113.7 144.1 L150.5 110.6 L187.4 80.6 L224.2 62.9 L261.1 54.1 L297.9 59.4" stroke-width="3"/><path class="ax" d="M40.0 190.0 H324"/><path class="axh" d="M328.0 190.0 L320.7 193.3 L320.7 186.7 Z"/><path class="ax" d="M40.0 190.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="76.8" y="207.0" text-anchor="middle">1</text><text class="tk" x="113.7" y="207.0" text-anchor="middle">2</text><text class="tk" x="150.5" y="207.0" text-anchor="middle">3</text><text class="tk" x="187.4" y="207.0" text-anchor="middle">4</text><text class="tk" x="224.2" y="207.0" text-anchor="middle">5</text><text class="tk" x="261.1" y="207.0" text-anchor="middle">6</text><text class="tk" x="297.9" y="207.0" text-anchor="middle">7</text><text class="tk" x="34.0" y="115.1" text-anchor="end">45</text><text class="tk" x="34.0" y="85.1" text-anchor="end">62</text><text class="tk" x="34.0" y="58.6" text-anchor="end">77</text><text class="tk" x="34.0" y="207.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">TP</text><text class="axw" x="52.0" y="16" text-anchor="start"></text><text class="axl" x="328" y="224.0" text-anchor="end">L</text><text class="axw" x="311" y="224.0" text-anchor="end">עובדים</text><circle class="f1" cx="40.0" cy="190.0" r="3.5"/><circle class="f1" cx="76.8" cy="172.4" r="3.5"/><circle class="f1" cx="113.7" cy="144.1" r="3.5"/><circle class="f1" cx="150.5" cy="110.6" r="3.5"/><circle class="f1" cx="187.4" cy="80.6" r="3.5"/><circle class="f1" cx="224.2" cy="62.9" r="3.5"/><circle class="f1" cx="261.1" cy="54.1" r="3.5"/><circle class="f1" cx="297.9" cy="59.4" r="3.5"/><circle class="ring k4" cx="261.1" cy="54.1" r="8"/><text class="lb b k4t" x="261.1" y="40.1" text-anchor="middle">MAX TP</text></svg></figure>
-    <figure class="chartbox"><figcaption class="chart-t">התפוקה הממוצעת והשולית</figcaption><svg class="chart gx" id="gAPMP" viewBox="0 0 340 250" role="img" aria-label="AP ו־MP מהטבלה. MP בשיא עם 3 עובדים (19). AP בשיא עם 4 עובדים (15.5). MP שלילית עם העובד השביעי."><path class="gr" d="M76.8 202.0 V36"/><path class="gr" d="M113.7 202.0 V36"/><path class="gr" d="M150.5 202.0 V36"/><path class="gr" d="M187.4 202.0 V36"/><path class="gr" d="M224.2 202.0 V36"/><path class="gr" d="M261.1 202.0 V36"/><path class="gr" d="M297.9 202.0 V36"/><path class="gr" d="M40.0 165.2 H320"/><path class="gr" d="M40.0 128.4 H320"/><path class="gr" d="M40.0 91.5 H320"/><path class="gr" d="M40.0 54.7 H320"/><path class="ln k2" d="M76.8 128.4 L113.7 106.3 L150.5 91.5 L187.4 87.9 L224.2 96.0 L261.1 107.5 L297.9 124.2" stroke-width="3"/><path class="ln k4" d="M76.8 128.4 L113.7 84.2 L150.5 62.1 L187.4 76.8 L224.2 128.4 L261.1 165.2 L285.0 202.0" stroke-width="3"/><path class="ax" d="M40.0 202.0 H324"/><path class="axh" d="M328.0 202.0 L320.7 205.3 L320.7 198.7 Z"/><path class="ax" d="M40.0 202.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="76.8" y="219.0" text-anchor="middle">1</text><text class="tk" x="113.7" y="219.0" text-anchor="middle">2</text><text class="tk" x="150.5" y="219.0" text-anchor="middle">3</text><text class="tk" x="187.4" y="219.0" text-anchor="middle">4</text><text class="tk" x="224.2" y="219.0" text-anchor="middle">5</text><text class="tk" x="261.1" y="219.0" text-anchor="middle">6</text><text class="tk" x="297.9" y="219.0" text-anchor="middle">7</text><text class="tk" x="34.0" y="169.7" text-anchor="end">5</text><text class="tk" x="34.0" y="132.9" text-anchor="end">10</text><text class="tk" x="34.0" y="96.0" text-anchor="end">15</text><text class="tk" x="34.0" y="59.2" text-anchor="end">20</text><text class="tk" x="34.0" y="219.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle"></text><text class="axw" x="52.0" y="16" text-anchor="start"></text><text class="axl" x="328" y="236.0" text-anchor="end">L</text><text class="axw" x="311" y="236.0" text-anchor="end">עובדים</text><circle class="f2" cx="76.8" cy="128.4" r="3.5"/><circle class="f2" cx="113.7" cy="106.3" r="3.5"/><circle class="f2" cx="150.5" cy="91.5" r="3.5"/><circle class="f2" cx="187.4" cy="87.9" r="3.5"/><circle class="f2" cx="224.2" cy="96.0" r="3.5"/><circle class="f2" cx="261.1" cy="107.5" r="3.5"/><circle class="f2" cx="297.9" cy="124.2" r="3.5"/><circle class="f4" cx="76.8" cy="128.4" r="3.5"/><circle class="f4" cx="113.7" cy="84.2" r="3.5"/><circle class="f4" cx="150.5" cy="62.1" r="3.5"/><circle class="f4" cx="187.4" cy="76.8" r="3.5"/><circle class="f4" cx="224.2" cy="128.4" r="3.5"/><circle class="f4" cx="261.1" cy="165.2" r="3.5"/><text class="lb b k4t" x="142.5" y="58.1" text-anchor="end">MP</text><text class="lb b k2t" x="239.6" y="90.0" text-anchor="start">AP</text><circle class="ring k3" cx="187.4" cy="87.9" r="9"/><text class="lb k3t" x="187.4" y="73.9" text-anchor="middle" direction="rtl" unicode-bidi="embed">שיא AP</text><text class="lb k4t" x="297.9" y="194.0" text-anchor="middle">MP = −3</text></svg></figure>
+    <figure class="chartbox"><figcaption class="chart-t">התפוקה הכוללת</figcaption><svg class="chart gx" id="gTP" viewBox="0 0 340 230" role="img" aria-label="עקומת התפוקה הכוללת מהטבלה: עולה עד 77 עם 6 עובדים, ויורדת ל־74 עם העובד השביעי."><path class="gr" d="M76.8 190.0 V36"/><path class="gr" d="M113.7 190.0 V36"/><path class="gr" d="M150.5 190.0 V36"/><path class="gr" d="M187.4 190.0 V36"/><path class="gr" d="M224.2 190.0 V36"/><path class="gr" d="M261.1 190.0 V36"/><path class="gr" d="M297.9 190.0 V36"/><path class="gr" d="M40.0 110.6 H320"/><path class="gr" d="M40.0 80.6 H320"/><path class="gr" d="M40.0 54.1 H320"/><path class="ln k1" d="M40.0 190.0 L76.8 172.4 L113.7 144.1 L150.5 110.6 L187.4 80.6 L224.2 62.9 L261.1 54.1 L297.9 59.4" stroke-width="3"/><path class="ax" d="M40.0 190.0 H324"/><path class="axh" d="M328.0 190.0 L320.7 193.3 L320.7 186.7 Z"/><path class="ax" d="M40.0 190.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="76.8" y="207.0" text-anchor="middle">1</text><text class="tk" x="113.7" y="207.0" text-anchor="middle">2</text><text class="tk" x="150.5" y="207.0" text-anchor="middle">3</text><text class="tk" x="187.4" y="207.0" text-anchor="middle">4</text><text class="tk" x="224.2" y="207.0" text-anchor="middle">5</text><text class="tk" x="261.1" y="207.0" text-anchor="middle">6</text><text class="tk" x="297.9" y="207.0" text-anchor="middle">7</text><text class="tk" x="34.0" y="115.1" text-anchor="end">45</text><text class="tk" x="34.0" y="85.1" text-anchor="end">62</text><text class="tk" x="34.0" y="58.6" text-anchor="end">77</text><text class="tk" x="34.0" y="207.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">TP</text><text class="axw" x="52.0" y="16" text-anchor="start"></text><text class="axl" x="328" y="224.0" text-anchor="end">L</text><text class="axw" x="311" y="224.0" text-anchor="end">עובדים</text><circle class="f1" cx="40.0" cy="190.0" r="3.5"/><circle class="f1" cx="76.8" cy="172.4" r="3.5"/><circle class="f1" cx="113.7" cy="144.1" r="3.5"/><circle class="f1" cx="150.5" cy="110.6" r="3.5"/><circle class="f1" cx="187.4" cy="80.6" r="3.5"/><circle class="f1" cx="224.2" cy="62.9" r="3.5"/><circle class="f1" cx="261.1" cy="54.1" r="3.5"/><circle class="f1" cx="297.9" cy="59.4" r="3.5"/><circle class="ring k4" cx="261.1" cy="54.1" r="8"/><text class="lb b k4t" x="261.1" y="40.1" text-anchor="middle" direction="rtl" unicode-bidi="embed">שיא TP</text></svg></figure>
+    <figure class="chartbox"><figcaption class="chart-t">התפוקה הממוצעת והשולית</figcaption><svg class="chart gx" id="gAPMP" viewBox="0 0 340 250" role="img" aria-label="AP ו־MP מהטבלה. MP בשיא עם 3 עובדים (19). AP בשיא עם 4 עובדים (15.5). MP שלילית עם העובד השביעי."><path class="gr" d="M76.8 202.0 V36"/><path class="gr" d="M113.7 202.0 V36"/><path class="gr" d="M150.5 202.0 V36"/><path class="gr" d="M187.4 202.0 V36"/><path class="gr" d="M224.2 202.0 V36"/><path class="gr" d="M261.1 202.0 V36"/><path class="gr" d="M297.9 202.0 V36"/><path class="gr" d="M40.0 165.2 H320"/><path class="gr" d="M40.0 128.4 H320"/><path class="gr" d="M40.0 91.5 H320"/><path class="gr" d="M40.0 54.7 H320"/><path class="ln k2" d="M76.8 128.4 L113.7 106.3 L150.5 91.5 L187.4 87.9 L224.2 96.0 L261.1 107.5 L297.9 124.2" stroke-width="3"/><path class="ln k4" d="M76.8 128.4 L113.7 84.2 L150.5 62.1 L187.4 76.8 L224.2 128.4 L261.1 165.2 L284.1 202.0" stroke-width="3"/><path class="ax" d="M40.0 202.0 H324"/><path class="axh" d="M328.0 202.0 L320.7 205.3 L320.7 198.7 Z"/><path class="ax" d="M40.0 202.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="76.8" y="219.0" text-anchor="middle">1</text><text class="tk" x="113.7" y="219.0" text-anchor="middle">2</text><text class="tk" x="150.5" y="219.0" text-anchor="middle">3</text><text class="tk" x="187.4" y="219.0" text-anchor="middle">4</text><text class="tk" x="224.2" y="219.0" text-anchor="middle">5</text><text class="tk" x="261.1" y="219.0" text-anchor="middle">6</text><text class="tk" x="297.9" y="219.0" text-anchor="middle">7</text><text class="tk" x="34.0" y="169.7" text-anchor="end">5</text><text class="tk" x="34.0" y="132.9" text-anchor="end">10</text><text class="tk" x="34.0" y="96.0" text-anchor="end">15</text><text class="tk" x="34.0" y="59.2" text-anchor="end">20</text><text class="tk" x="34.0" y="219.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle"></text><text class="axw" x="52.0" y="16" text-anchor="start"></text><text class="axl" x="328" y="236.0" text-anchor="end">L</text><text class="axw" x="311" y="236.0" text-anchor="end">עובדים</text><circle class="f2" cx="76.8" cy="128.4" r="3.5"/><circle class="f2" cx="113.7" cy="106.3" r="3.5"/><circle class="f2" cx="150.5" cy="91.5" r="3.5"/><circle class="f2" cx="187.4" cy="87.9" r="3.5"/><circle class="f2" cx="224.2" cy="96.0" r="3.5"/><circle class="f2" cx="261.1" cy="107.5" r="3.5"/><circle class="f2" cx="297.9" cy="124.2" r="3.5"/><circle class="f4" cx="76.8" cy="128.4" r="3.5"/><circle class="f4" cx="113.7" cy="84.2" r="3.5"/><circle class="f4" cx="150.5" cy="62.1" r="3.5"/><circle class="f4" cx="187.4" cy="76.8" r="3.5"/><circle class="f4" cx="224.2" cy="128.4" r="3.5"/><circle class="f4" cx="261.1" cy="165.2" r="3.5"/><text class="lb b k4t" x="142.5" y="58.1" text-anchor="end">MP</text><text class="lb b k2t" x="239.6" y="90.0" text-anchor="start">AP</text><circle class="ring k3" cx="187.4" cy="87.9" r="9"/><text class="lb k3t" x="187.4" y="73.9" text-anchor="middle" direction="rtl" unicode-bidi="embed">שיא AP</text><text class="lb k4t" x="297.9" y="194.0" text-anchor="middle">MP = −3</text></svg></figure>
   </div>
   <div class="co trap"><b class="co-k">המלכודות</b><p>(1) ״<bdi dir="ltr" class="m">MP</bdi> יורדת ולכן <bdi dir="ltr" class="m">TP</bdi> יורדת״: רק כש־<bdi dir="ltr" class="m">MP < 0</bdi>. (2) <bdi dir="ltr" class="m">MP = TP : L</bdi>: זו <bdi dir="ltr" class="m">AP</bdi>. (3) ״<bdi dir="ltr" class="m">MP</bdi> חותכת את <bdi dir="ltr" class="m">AP</bdi> בשיא של <bdi dir="ltr" class="m">MP</bdi>״: בשיא של <bdi dir="ltr" class="m">AP</bdi>. (4) ״גורם קבוע יש בטווח הארוך״: הפוך. (5) בסיכום מהכיתה כתוב ״<bdi dir="ltr" class="m">MP > AP</bdi>: הממוצע פוחת״. הנכון: <bdi dir="ltr" class="m">MP < AP</bdi>.</p></div>
   <p class="note">ההסבר המלא: <a href="../shiur5-production/">שיעור 5: פונקציית הייצור</a>, ו<a href="../demand/#mysum">מה לתקן בסיכום</a>.</p>
@@ -1749,11 +1819,11 @@ section p.note{max-width:none}
 <div class="chcover" id="chD" data-ch="D" role="region" aria-labelledby="h-chD">
   <span class="chcover-k">חלק ד׳</span>
   <h2 id="h-chD">בנק נכון או לא נכון</h2>
-  <p class="chcover-q">36 טענות בסגנון שאלה 1. קודם עונים בקול: נכון או לא, ולמה. רק אז פותחים.</p>
+  <p class="chcover-q">42 טענות בסגנון שאלה 1. קודם עונים בקול: נכון או לא, ולמה. רק אז פותחים.</p>
 </div>
 
 <section id="tf" class="stack" data-ch="D" aria-labelledby="h-tf">
-  <div class="sec-head"><div class="eyebrow"><span class="tn">36 טענות</span></div><h2 id="h-tf">36 טענות, עם נימוק ושרטוט</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="tn">42 טענות</span></div><h2 id="h-tf">42 טענות, עם נימוק ושרטוט</h2></div>
   <p class="brief"><span class="lbl">הכלל</span>מילים כמו ״תמיד״, ״בהכרח״, ״אף פעם״ הן רמז. מספיקה דוגמה נגדית אחת כדי לענות ״לא נכון״.</p>
   <button type="button" class="btn openall" data-for="tfbank" aria-pressed="false">פתחו את כל התשובות</button>
   <div class="tfbank" id="tfbank">
@@ -1769,7 +1839,13 @@ section p.note{max-width:none}
 <details class="tfd" id="tf-ppf-9"><summary><span class="q">מענק של 100 מכונות יגרום בהכרח לצמיחה.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> רק אם אפשר להפעיל אותן. אם אין עובדים שיפעילו אותן, הן עומדות, והעקומה לא זזה. ״בהכרח״ נופל בדוגמה אחת.</p></div></details>
 <details class="tfd" id="tf-ppf-10"><summary><span class="q">רעידת אדמה שהרסה מפעלים מזיזה את עקומת התמורה פנימה.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> יש פחות גורמי ייצור (הון פיזי), ולכן המשק יכול לייצר פחות. זו נסיגה כלכלית.</p><p class="draw"><b>שרטוט:</b> עקומה חדשה בתוך הישנה, חצים פנימה.</p></div></details>
 <details class="tfd" id="tf-ppf-11"><summary><span class="q">ירידה באבטלה מזיזה את עקומת התמורה החוצה.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> העובדים היו קיימים גם קודם. הנקודה זזה מתוך העקומה אל העקומה, והעקומה לא זזה.</p><p class="draw"><b>שרטוט:</b> כמו ב<a href="#sq1">שאלה 1</a>.</p></div></details>
-<details class="tfd" id="tf-ppf-12"><summary><span class="q">לאורך עקומת תמורה, יותר <bdi dir="ltr" class="m">X</bdi> פירושו תמיד פחות <bdi dir="ltr" class="m">Y</bdi>.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> על העקומה הייצור יעיל. כדי להוסיף <bdi dir="ltr" class="m">X</bdi> צריך להעביר גורמי ייצור מ־<bdi dir="ltr" class="m">Y</bdi>. זו המשמעות של עלות אלטרנטיבית.</p></div></details>
+<details class="tfd" id="tf-ppf-12"><summary><span class="q">כשהמשק מייצר על עקומת התמורה, כדי לייצר יותר <bdi dir="ltr" class="m">X</bdi> הוא חייב לוותר על חלק מ־<bdi dir="ltr" class="m">Y</bdi>.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> על העקומה הייצור יעיל, וכל גורמי הייצור כבר עובדים. כדי להוסיף <bdi dir="ltr" class="m">X</bdi> צריך להעביר גורמי ייצור מ־<bdi dir="ltr" class="m">Y</bdi>. זו המשמעות של עלות אלטרנטיבית.</p></div></details>
+<details class="tfd" id="tf-ppf-13"><summary><span class="q">כל נקודה על עקומת התמורה עדיפה על כל נקודה בתוך העקומה.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> נקודה על העקומה עדיפה רק על נקודות בתוך העקומה שיש בהן פחות משני המוצרים. למשל, בשאלה 2, הנקודה F (0 מזון, 36 לבוש) על העקומה, והנקודה (3 מזון, 12 לבוש) בתוכה. ב־F אין בכלל מזון, ולכן היא לא עדיפה בהכרח.</p><p class="draw"><b>שרטוט:</b> עקומה, נקודה F על ציר <bdi dir="ltr" class="m">Y</bdi>, ונקודה בתוך העקומה מימין ל־F.</p></div></details>
+  </div>
+  <div class="tfgroup"><h3>יתרון יחסי</h3>
+    <details class="tfd" id="tf-comp-1"><summary><span class="q">מי שיש לו יתרון מוחלט בשני המוצרים צריך לייצר את שניהם בעצמו.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> מה שקובע הוא יתרון יחסי: מי שהעלות האלטרנטיבית שלו נמוכה יותר. כמו עורך הדין שמקליד מהר מהמזכירה, ובכל זאת היא מקלידה.</p></div></details>
+<details class="tfd" id="tf-comp-2"><summary><span class="q">לאותו אדם לא יכול להיות יתרון יחסי בשני המוצרים.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> העלות של <bdi dir="ltr" class="m">Y</bdi> היא 1 חלקי העלות של <bdi dir="ltr" class="m">X</bdi>. מי שהעלות שלו ב־<bdi dir="ltr" class="m">X</bdi> נמוכה יותר, העלות שלו ב־<bdi dir="ltr" class="m">Y</bdi> גבוהה יותר.</p></div></details>
+<details class="tfd" id="tf-comp-3"><summary><span class="q">בעקומה משותפת של שני אזורים, את <bdi dir="ltr" class="m">X</bdi> מתחיל לייצר האזור שמייצר הכי הרבה <bdi dir="ltr" class="m">X</bdi>.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> מתחיל האזור שהעלות האלטרנטיבית שלו ב־<bdi dir="ltr" class="m">X</bdi> הכי נמוכה. ״הכי הרבה״ הוא יתרון מוחלט, והסדר הזה נותן נקודות בתוך העקומה.</p><p class="draw"><b>שרטוט:</b> עקומה קמורה עם נקודת שבר, וקו מקווקו בתוכה לסדר ההפוך.</p></div></details>
   </div>
   <div class="tfgroup"><h3>ביקוש</h3>
     <details class="tfd" id="tf-dem-1"><summary><span class="q">מחיר הקפה עלה, ולכן הביקוש לקפה ירד.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> הכמות המבוקשת ירדה. זו תנועה על אותו קו. הביקוש (הקו) זז רק כשגורם אחר משתנה.</p><p class="draw"><b>שרטוט:</b> קו אחד, וחץ לאורכו למעלה.</p></div></details>
@@ -1794,6 +1870,7 @@ section p.note{max-width:none}
 <details class="tfd" id="tf-el-4"><summary><span class="q">בעקומת ביקוש ישרה, הפדיון מקסימלי בנקודה שבה <bdi dir="ltr" class="m">|η| = 1</bdi>.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> מעל האמצע הורדת מחיר מגדילה את הפדיון, ומתחתיו העלאת מחיר. שני הכיוונים מובילים לאמצע.</p></div></details>
 <details class="tfd" id="tf-el-5"><summary><span class="q">עקומת ביקוש אנכית היא גמישה לחלוטין.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> אנכית: הכמות לא משתנה בכלל, <bdi dir="ltr" class="m">η = 0</bdi>, קשיח לחלוטין. אופקית היא הגמישה לחלוטין.</p></div></details>
 <details class="tfd" id="tf-el-6"><summary><span class="q">הביקוש לחשמל בטווח של כמה שנים גמיש יותר מהביקוש לשבוע אחד.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> עם הזמן מוצאים תחליפים: מכשירים חסכוניים, דוד שמש. יותר זמן, יותר גמיש.</p></div></details>
+<details class="tfd" id="tf-el-7"><summary><span class="q">ההכנסה עלתה מ־10 ל־12, ובאותו מחיר הכמות המבוקשת ירדה מ־50 ל־45. המוצר נחות.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> גמישות ההכנסה <bdi dir="ltr" class="m">(−10%) : (+20%) = −0.5</bdi>. שלילית, ולכן המוצר נחות: ההכנסה עלתה, והביקוש ירד.</p></div></details>
   </div>
   <div class="tfgroup"><h3>פונקציית הייצור</h3>
     <details class="tfd" id="tf-prod-1"><summary><span class="q">כש־<bdi dir="ltr" class="m">MP</bdi> יורדת, גם <bdi dir="ltr" class="m">TP</bdi> יורדת.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> <bdi dir="ltr" class="m">TP</bdi> יורדת רק כש־<bdi dir="ltr" class="m">MP</bdi> <strong>שלילית</strong>. כל עוד <bdi dir="ltr" class="m">MP > 0</bdi>, <bdi dir="ltr" class="m">TP</bdi> עולה, גם אם לאט יותר.</p></div></details>
@@ -1802,6 +1879,7 @@ section p.note{max-width:none}
 <details class="tfd" id="tf-prod-4"><summary><span class="q">חוק התפוקה השולית הפוחתת שייך לטווח הקצר.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> הוא מניח גורם ייצור קבוע. בטווח הארוך כל הגורמים משתנים.</p></div></details>
 <details class="tfd" id="tf-prod-5"><summary><span class="q">בטווח הארוך יש לפחות גורם ייצור קבוע אחד.</span></summary><div class="tfa"><p><span class="verdict no">לא נכון.</span> הפוך. בטווח הקצר יש לפחות גורם קבוע אחד. בטווח הארוך כל הגורמים משתנים.</p></div></details>
 <details class="tfd" id="tf-prod-6"><summary><span class="q">פירמה רציונלית לא תעסיק עובד שה־<bdi dir="ltr" class="m">MP</bdi> שלו שלילית.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> הוא מוריד את התפוקה, וצריך לשלם לו. לכן התחום הרלוונטי נגמר ב־<bdi dir="ltr" class="m">MP = 0</bdi>.</p></div></details>
+<details class="tfd" id="tf-prod-7"><summary><span class="q">אם יודעים את ה־<bdi dir="ltr" class="m">MP</bdi> של כל עובד, אפשר לחשב את <bdi dir="ltr" class="m">TP</bdi>.</span></summary><div class="tfa"><p><span class="verdict yes">נכון.</span> <bdi dir="ltr" class="m">TP</bdi> של <bdi dir="ltr" class="m">L</bdi> עובדים הוא סכום ה־<bdi dir="ltr" class="m">MP</bdi> של כל העובדים עד <bdi dir="ltr" class="m">L</bdi> (כש־<bdi dir="ltr" class="m">TP = 0</bdi> בלי עובדים). למשל בטבלה של כלי 6: <bdi dir="ltr" class="m">10 + 16 + 19 = 45</bdi>.</p></div></details>
   </div>
   </div>
   <a class="nextsec chap-next" href="#chE"><span>הבא בתור, חלק ה׳</span><b>מבחן תרגול חדש</b></a>
@@ -1817,15 +1895,16 @@ section p.note{max-width:none}
 
 <section id="mq1" class="stack" data-ch="E" aria-labelledby="h-mq1">
   <div class="sec-head"><div class="eyebrow"><span class="tn">תרגול 1</span></div><h2 id="h-mq1">שאלה 1: שיפור טכנולוגי במזון</h2></div>
-  <div class="qbox"><span class="qk">השאלה, 34%</span><p>משק מייצר מזון <bdi dir="ltr" class="m">(X)</bdi> ולבוש <bdi dir="ltr" class="m">(Y)</bdi>. חל שיפור טכנולוגי בייצור מזון בלבד. ״השיפור לא ישפיע על כמות הלבוש שהמשק יכול לייצר.״ נכון או לא נכון? הסבירו, נמקו ושרטטו.</p></div>
+  <div class="qbox"><span class="qk">השאלה, 34%</span><p>משק מייצר מזון <bdi dir="ltr" class="m">(X)</bdi> ולבוש <bdi dir="ltr" class="m">(Y)</bdi>. חל שיפור טכנולוגי בייצור מזון בלבד. ״אם המשק ימשיך לייצר את אותה כמות מזון, הוא לא יוכל לייצר יותר לבוש מקודם, כי השיפור היה רק במזון.״ נכון או לא נכון? הסבירו, נמקו ושרטטו.</p></div>
   <details class="solx" id="ms1"><summary>הפתרון <span class="hint">נסו קודם לבד</span></summary><div class="solx-body">
     <div class="ans">
       <p><span class="verdict no">לא נכון.</span></p>
-      <p>השיפור רק במזון מזיז את הקצה של המזון החוצה, והקצה של הלבוש נשאר. העקומה <strong>מסתובבת</strong> החוצה סביב <bdi dir="ltr" class="m">Y<sub>max</sub></bdi>.</p>
-      <p>בכל נקודה חוץ מהקצה של הלבוש, המשק יכול עכשיו לייצר את אותה כמות מזון עם פחות עובדים. את העובדים שהתפנו הוא מעביר ללבוש. לכן באותה כמות מזון אפשר לקבל <strong>יותר לבוש</strong>. רק אם מייצרים לבוש בלבד <bdi dir="ltr" class="m">(X = 0)</bdi>, כמות הלבוש לא משתנה.</p>
+      <p>השיפור במזון מזיז את הקצה של המזון החוצה: אם כל גורמי הייצור במזון, מייצרים יותר מזון. הקצה של הלבוש <bdi dir="ltr" class="m">(Y<sub>max</sub>)</bdi> לא זז. לכן העקומה <strong>מסתובבת</strong> החוצה סביב <bdi dir="ltr" class="m">Y<sub>max</sub></bdi>.</p>
+      <p>את אותה כמות מזון אפשר עכשיו לייצר עם פחות גורמי ייצור. את מה שהתפנה מעבירים ללבוש. לכן, באותה כמות מזון, המשק יכול לייצר <strong>יותר לבוש</strong>.</p>
+      <p>הטענה נכונה רק בקצה אחד: כשלא מייצרים מזון בכלל <bdi dir="ltr" class="m">(X = 0)</bdi>, כמות הלבוש המרבית לא משתנה.</p>
     </div>
     <figure class="chartbox"><figcaption class="chart-t">העקומה מסתובבת סביב הקצה של הלבוש</figcaption><svg class="chart gx" id="gM1" viewBox="0 0 340 270" role="img" aria-label="שיפור טכנולוגי בייצור מזון בלבד: העקומה מסתובבת החוצה סביב הקצה של הלבוש. באותה כמות מזון אפשר לייצר יותר לבוש."><path class="ln k4" d="M40.0 78.0 L46.6 78.1 L53.2 78.2 L59.8 78.5 L66.3 78.8 L72.9 79.3 L79.4 79.9 L85.9 80.5 L92.4 81.3 L98.8 82.2 L105.2 83.2 L111.6 84.3 L117.9 85.4 L124.1 86.7 L130.3 88.1 L136.4 89.6 L142.5 91.1 L148.5 92.8 L154.4 94.6 L160.2 96.4 L166.0 98.4 L171.7 100.4 L177.2 102.5 L182.7 104.7 L188.1 107.0 L193.4 109.4 L198.6 111.9 L203.7 114.4 L208.6 117.0 L213.5 119.7 L218.2 122.5 L222.8 125.4 L227.3 128.3 L231.6 131.3 L235.8 134.3 L239.9 137.5 L243.9 140.7 L247.7 143.9 L251.3 147.2 L254.9 150.6 L258.2 154.0 L261.5 157.5 L264.5 161.0 L267.5 164.6 L270.2 168.2 L272.8 171.8 L275.3 175.5 L277.5 179.3 L279.7 183.0 L281.6 186.8 L283.4 190.7 L285.0 194.5 L286.5 198.4 L287.8 202.3 L288.9 206.2 L289.8 210.2 L290.6 214.1 L291.2 218.1 L291.7 222.0 L291.9 226.0 L292.0 230.0" stroke-dasharray="7 5" stroke-width="3"/><path class="ln k1" d="M40.0 78.0 L44.9 78.1 L49.8 78.2 L54.6 78.5 L59.5 78.8 L64.4 79.3 L69.2 79.9 L74.0 80.5 L78.8 81.3 L83.6 82.2 L88.3 83.2 L93.0 84.3 L97.7 85.4 L102.3 86.7 L106.9 88.1 L111.4 89.6 L115.9 91.1 L120.4 92.8 L124.7 94.6 L129.1 96.4 L133.3 98.4 L137.5 100.4 L141.7 102.5 L145.7 104.7 L149.7 107.0 L153.6 109.4 L157.5 111.9 L161.2 114.4 L164.9 117.0 L168.5 119.7 L172.0 122.5 L175.4 125.4 L178.7 128.3 L181.9 131.3 L185.1 134.3 L188.1 137.5 L191.0 140.7 L193.8 143.9 L196.6 147.2 L199.2 150.6 L201.7 154.0 L204.0 157.5 L206.3 161.0 L208.5 164.6 L210.5 168.2 L212.5 171.8 L214.3 175.5 L216.0 179.3 L217.5 183.0 L219.0 186.8 L220.3 190.7 L221.5 194.5 L222.6 198.4 L223.5 202.3 L224.4 206.2 L225.1 210.2 L225.6 214.1 L226.1 218.1 L226.4 222.0 L226.6 226.0 L226.7 230.0" stroke-width="3"/><path class="ax" d="M40.0 230.0 H324"/><path class="axh" d="M328.0 230.0 L320.7 233.3 L320.7 226.7 Z"/><path class="ax" d="M40.0 230.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="34.0" y="247.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">Y</text><text class="axw" x="52.0" y="16" text-anchor="start">לבוש</text><text class="axl" x="328" y="264.0" text-anchor="end">X</text><text class="axw" x="311" y="264.0" text-anchor="end">מזון</text><path class="ln k4" stroke-width="2.2" d="M230.7 230.0 L282.0 230.0"/><path class="f4" d="M288.0 230.0 L279.8 233.7 L279.8 226.3 Z"/><circle class="f1" cx="40.0" cy="78.0" r="5"/><text class="lb" x="50.0" y="68.0" text-anchor="end" direction="rtl" unicode-bidi="embed">הקצה של Y לא זז</text><path class="ln k2" stroke-width="2.2" d="M152.0 105.4 L152.0 102.8"/><path class="f2" d="M152.0 96.8 L155.7 105.0 L148.3 105.0 Z"/><circle class="f1" cx="152.0" cy="108.4" r="4"/><circle class="f2" cx="152.0" cy="93.8" r="4"/><text class="lb k2t" x="160.0" y="89.8" text-anchor="end" direction="rtl" unicode-bidi="embed">אותו מזון, יותר לבוש</text><text class="lb k1t" x="194.9" y="179.3" text-anchor="middle" direction="rtl" unicode-bidi="embed">לפני</text><text class="lb k4t" x="271.5" y="162.4" text-anchor="middle" direction="rtl" unicode-bidi="embed">אחרי</text></svg></figure>
-    <div class="co trap"><b class="co-k">הטעות שעולה נקודות</b><p>לשרטט את כל העקומה זזה החוצה במקביל. או לומר ״נכון, כי השיפור במזון בלבד״. ההבדל: מה <strong>מקסימלי</strong> בלבוש לא השתנה, אבל מה <strong>אפשרי</strong> בלבוש, ליד כל כמות מזון, גדל.</p></div>
+    <div class="co trap"><b class="co-k">הטעות שעולה נקודות</b><p>לשרטט את כל העקומה זזה החוצה במקביל. או לענות ״נכון, כי השיפור במזון בלבד״. הלבוש <strong>המרבי</strong> לא השתנה, אבל ליד כל כמות מזון אפשר עכשיו <strong>יותר</strong> לבוש.</p></div>
   </div></details>
   <a class="nextsec" href="#mq2"><span>הבא בתור</span><b>שאלה 2: מחשבים וחיטה</b></a>
 </section>
@@ -1845,16 +1924,16 @@ section p.note{max-width:none}
       <ol class="eqs">
         <li><span class="st">1. כוללת</span><bdi dir="ltr" class="m">50 − 32 = 18</bdi> טון חיטה (נקודה C)</li>
         <li><span class="st">2. ממוצעת</span><bdi dir="ltr" class="m">(50 − 42) : 6 = 8 : 6</bdi></li>
-        <li class="rs"><span class="st"></span><bdi dir="ltr" class="m">AOC ≈ 1.33</bdi> טון חיטה למחשב (נקודה D)</li>
+        <li class="rs"><span class="st"></span>ממוצעת ≈ <bdi dir="ltr" class="m">1.33</bdi> טון חיטה למחשב (נקודה D)</li>
         <li><span class="st">3. שולית</span><bdi dir="ltr" class="m">(32 − 18) : (12 − 9)</bdi></li>
-        <li class="rs"><span class="st"></span><bdi dir="ltr" class="m">MOC = 14 : 3 ≈ 4.67</bdi> טון חיטה למחשב</li>
-        <li><span class="st">חיטה במחשבים</span><bdi dir="ltr" class="m">3 : 14 ≈ 0.21</bdi> מחשב לטון חיטה</li>
+        <li class="rs"><span class="st"></span>שולית = <bdi dir="ltr" class="m">14 : 3 ≈ 4.67</bdi> טון חיטה למחשב</li>
+        <li><span class="st">שולית של חיטה</span><bdi dir="ltr" class="m">3 : 14 ≈ 0.21</bdi> מחשב לטון חיטה</li>
         <li><span class="st">4. מענק</span>מייצרים 9 מחשבים ו־32 טון. צורכים <bdi dir="ltr" class="m">32 + 6 = 38</bdi> טון חיטה.</li>
-        <li><span class="st">5. נקודה K</span>ב־6 מחשבים אפשר 42 טון. <bdi dir="ltr" class="m">40 < 42</bdi>: בתוך העקומה.</li>
+        <li><span class="st">5. נקודה K</span>ב־6 מחשבים העקומה נותנת 42 טון. <bdi dir="ltr" class="m">40 &lt; 42</bdi>, ולכן K בתוך העקומה.</li>
       </ol>
       <p class="final">סעיף 4: המשק יצרוך 38 טון חיטה, בנקודה G <bdi dir="ltr" class="m">(9, 38)</bdi> מחוץ לעקומת התמורה.</p>
+      <p>סעיף 4, השרטוט: עקומת התמורה לא זזה. גבול אפשרויות הצריכה זז 6 <strong>למעלה</strong>, כי המענק בחיטה. הוא מגיע עד 56 טון בקצה, וב־15 מחשבים יורד אנכית, כי המענק לא נותן מחשבים.</p>
       <p>סעיף 5: K היא ייצור <strong>לא יעיל</strong>, או אבטלה. אפשר לייצר יותר משני המוצרים, בלי לוותר על כלום.</p>
-      <p>סעיף 4, השרטוט: עקומת התמורה לא זזה. גבול אפשרויות הצריכה זז 6 <strong>למעלה</strong> (המענק בחיטה). הוא מגיע עד 56 טון בקצה, וב־15 מחשבים יורד אנכית, כי המענק לא נותן מחשבים.</p>
     </div>
     <figure class="chartbox"><figcaption class="chart-t">מענק בחיטה: גבול הצריכה זז למעלה</figcaption><svg class="chart gx" id="gM2" viewBox="0 0 340 270" role="img" aria-label="מענק של 6 טון חיטה. עקומת התמורה לא זזה. גבול הצריכה זז 6 למעלה. המשק מייצר 9 מחשבים ו־32 טון חיטה (נקודה C), וצורך 9 מחשבים ו־38 טון חיטה (נקודה G)."><path class="gr" d="M89.4 230.0 V36"/><path class="gr" d="M138.8 230.0 V36"/><path class="gr" d="M188.2 230.0 V36"/><path class="gr" d="M237.6 230.0 V36"/><path class="gr" d="M287.1 230.0 V36"/><path class="gr" d="M40.0 131.9 H320"/><path class="gr" d="M40.0 113.5 H320"/><path class="gr" d="M40.0 76.8 H320"/><path class="gr" d="M40.0 58.4 H320"/><path class="ln k2" d="M40.0 58.4 L89.4 64.5 L138.8 82.9 L188.2 113.5 L237.6 156.5 L287.1 211.6 L287.1 230.0" stroke-dasharray="7 5" stroke-width="3"/><path class="ln k1" d="M40.0 76.8 L89.4 82.9 L138.8 101.3 L188.2 131.9 L237.6 174.8 L287.1 230.0" stroke-width="3"/><path class="ax" d="M40.0 230.0 H324"/><path class="axh" d="M328.0 230.0 L320.7 233.3 L320.7 226.7 Z"/><path class="ax" d="M40.0 230.0 V28"/><path class="axh" d="M40.0 24.0 L43.3 31.3 L36.7 31.3 Z"/><text class="tk" x="89.4" y="247.0" text-anchor="middle">3</text><text class="tk" x="138.8" y="247.0" text-anchor="middle">6</text><text class="tk" x="188.2" y="247.0" text-anchor="middle">9</text><text class="tk" x="237.6" y="247.0" text-anchor="middle">12</text><text class="tk" x="287.1" y="247.0" text-anchor="middle">15</text><text class="tk" x="34.0" y="136.4" text-anchor="end">32</text><text class="tk" x="34.0" y="118.0" text-anchor="end">38</text><text class="tk" x="34.0" y="81.3" text-anchor="end">50</text><text class="tk" x="34.0" y="62.9" text-anchor="end">56</text><text class="tk" x="34.0" y="247.0" text-anchor="end">0</text><text class="axl" x="40.0" y="16" text-anchor="middle">Y</text><text class="axw" x="52.0" y="16" text-anchor="start">חיטה</text><text class="axl" x="328" y="264.0" text-anchor="end">X</text><text class="axw" x="311" y="264.0" text-anchor="end">מחשבים</text><circle class="f1" cx="188.2" cy="131.9" r="5.5"/><circle class="f2" cx="188.2" cy="113.5" r="5.5"/><path class="ln k4" stroke-width="2.2" d="M188.2 125.9 L188.2 125.5"/><path class="f4" d="M188.2 119.5 L191.9 127.7 L184.5 127.7 Z"/><text class="lb b" x="176.2" y="135.9" text-anchor="middle">C</text><text class="lb b" x="200.2" y="109.5" text-anchor="middle">G</text><text class="lb b k4t" x="178.2" y="126.7" text-anchor="end">+6</text><circle class="f3" cx="138.8" cy="107.4" r="5"/><text class="lb b k3t" x="127.8" y="119.4" text-anchor="middle">K</text><text class="lb k2t" x="264.0" y="138.1" text-anchor="middle" direction="rtl" unicode-bidi="embed">צריכה</text><text class="lb k1t" x="112.5" y="168.7" text-anchor="middle" direction="rtl" unicode-bidi="embed">ייצור</text></svg>
       <div class="legend"><span><i class="sw-l k1"></i>עקומת התמורה</span><span><i class="sw-l k2 dsh"></i>גבול הצריכה</span></div></figure>
@@ -1968,10 +2047,11 @@ section p.note{max-width:none}
   <div class="tscroll" tabindex="0" role="region" aria-label="דף הנוסחאות של המבחן לדוגמה"><table class="t fsheet stackt" id="fsheetT"><caption>דף הנוסחאות של המבחן לדוגמה</caption><thead><tr><th scope="col">בדף כתוב</th><th scope="col">מה זה אומר</th><th scope="col">מה חסר או מטעה</th></tr></thead><tbody><tr><td><bdi dir="ltr" class="m">Y<sub>max</sub> − Y₁</bdi></td><td data-l="מה זה אומר">עלות כוללת של <bdi dir="ltr" class="m">X</bdi>: כמה <bdi dir="ltr" class="m">Y</bdi> ויתרנו. <bdi dir="ltr" class="m">Y₁</bdi> הוא ה־<bdi dir="ltr" class="m">Y</bdi> בנקודה של הכמות שבשאלה.</td><td data-l="מה חסר או מטעה">לא כתוב באיזו נקודה. <bdi dir="ltr" class="m">Y<sub>max</sub></bdi> הוא ה־<bdi dir="ltr" class="m">Y</bdi> בשורה שבה <bdi dir="ltr" class="m">X = 0</bdi>.</td></tr><tr><td><bdi dir="ltr" class="m">X<sub>max</sub> − X₁</bdi></td><td data-l="מה זה אומר">אותו דבר בכיוון ההפוך: מייצרים <bdi dir="ltr" class="m">Y</bdi> ומוותרים על <bdi dir="ltr" class="m">X</bdi>.</td><td data-l="מה חסר או מטעה">בדף שני הכיוונים זה ליד זה. קראו את הכותרת: ״בייצור X ויתור על Y״.</td></tr><tr><td><bdi dir="ltr" class="m">(Y<sub>max</sub> − Y₁) : X₁</bdi></td><td data-l="מה זה אומר">ממוצעת: הכוללת, חלקי כמות המוצר שמייצרים.</td><td data-l="מה חסר או מטעה">מחלקים ב־<bdi dir="ltr" class="m">X₁</bdi>, לא ב־<bdi dir="ltr" class="m">Y₁</bdi>. התוצאה ביחידות <bdi dir="ltr" class="m">Y</bdi> ליחידת <bdi dir="ltr" class="m">X</bdi>.</td></tr><tr><td><bdi dir="ltr" class="m">(Y₂ − Y₁) : (X₂ − X₁)</bdi></td><td data-l="מה זה אומר">שולית: השיפוע בין שתי נקודות סמוכות.</td><td data-l="מה חסר או מטעה"><strong>אין ערך מוחלט.</strong> יוצא מספר שלילי. העלות היא בלי המינוס. ובטבלה זו עלות ליחידה בקטע, לא ״היחידה האחרונה״ בדיוק.</td></tr><tr><td><bdi dir="ltr" class="m">Qx = f(Px, I, Py, T)</bdi></td><td data-l="מה זה אומר">הכמות המבוקשת תלויה במחיר, בהכנסה, במחירי מוצרים אחרים ובטעמים. בדף כתוב ט׳ במקום <bdi dir="ltr" class="m">T</bdi>, והאות <bdi dir="ltr" class="m">f</bdi> נשמטה.</td><td data-l="מה חסר או מטעה">לא כתוב ש־<bdi dir="ltr" class="m">Px</bdi> מזיז <strong>על</strong> הקו, והשאר מזיזים את הקו. ולא כתוב מה אומר כל סימן.</td></tr><tr><td><bdi dir="ltr" class="m">ΣD = Q<sub>A</sub> + Q<sub>B</sub></bdi></td><td data-l="מה זה אומר">ביקוש מצרפי: מחברים כמויות.</td><td data-l="מה חסר או מטעה">חסר ״באותו מחיר״. וחסרים תחומי המחירים כשיש נקודת שבר.</td></tr><tr><td><bdi dir="ltr" class="m">P · Q</bdi></td><td data-l="מה זה אומר">״הוצאות הצרכנים = הכנסות היצרנים = פדיון״ (בדף: ״פידיון״, טעות כתיב).</td><td data-l="מה חסר או מטעה">פדיון הוא לא רווח, ולא <bdi dir="ltr" class="m">I</bdi> של הקונה. הכלל של גמישות ופדיון לא בדף.</td></tr><tr><td><bdi dir="ltr" class="m">Q = TP</bdi></td><td data-l="מה זה אומר">התפוקה הכוללת.</td><td data-l="מה חסר או מטעה">—</td></tr><tr><td><bdi dir="ltr" class="m">AP = Q : L</bdi></td><td data-l="מה זה אומר">תפוקה ממוצעת לעובד.</td><td data-l="מה חסר או מטעה">—</td></tr><tr><td><bdi dir="ltr" class="m mw"><span class="mc">MP</span> <span class="mc">= (Q₁ − Q₀) : (L₁ − L₀)</span></bdi></td><td data-l="מה זה אומר">תפוקה שולית: מה הוסיף העובד האחרון.</td><td data-l="מה חסר או מטעה">חסרים הכללים: <bdi dir="ltr" class="m">MP</bdi> מול <bdi dir="ltr" class="m">AP</bdi>, <bdi dir="ltr" class="m">MP = 0</bdi> בשיא של <bdi dir="ltr" class="m">TP</bdi>, והתחום הרלוונטי.</td></tr></tbody></table></div>
   <h3>מה חסר בדף, ולכן לומדים בעל פה</h3>
   <ul class="facts">
-    <li><strong>גמישות</strong>, <bdi dir="ltr" class="m">η = %ΔQ : %ΔP</bdi>, הסיווג לפי <bdi dir="ltr" class="m">|η|</bdi>, והקשר לפדיון. <a href="#elast">כלי 4</a>.</li>
-    <li><strong>מה זז ולאן:</strong> נורמלי, נחות, ניטרלי. תחליפיים, משלימים, בלתי תלויים. <a href="#demand">כלי 2</a>.</li>
+    <li><strong>גמישות</strong>, <bdi dir="ltr" class="m">η = %ΔQ : %ΔP</bdi>, הסיווג לפי <bdi dir="ltr" class="m">|η|</bdi>, והקשר לפדיון. <a href="#elast">כלי 5</a>.</li>
+    <li><strong>מה זז ולאן:</strong> נורמלי, נחות, ניטרלי. תחליפיים, משלימים, בלתי תלויים. <a href="#demand">כלי 3</a>.</li>
     <li><strong>מה מזיז את עקומת התמורה</strong>, ומה מזיז רק את גבול הצריכה. <a href="#ppf">כלי 1</a>.</li>
-    <li><strong>הכללים של <bdi dir="ltr" class="m">MP</bdi> ו־<bdi dir="ltr" class="m">AP</bdi></strong>, והתחום הרלוונטי. <a href="#prod">כלי 5</a>.</li>
+    <li><strong>יתרון מוחלט ויתרון יחסי</strong>, ואיך בונים עקומה משותפת. <a href="#comp">כלי 2</a>.</li>
+    <li><strong>הכללים של <bdi dir="ltr" class="m">MP</bdi> ו־<bdi dir="ltr" class="m">AP</bdi></strong>, והתחום הרלוונטי. <a href="#prod">כלי 6</a>.</li>
     <li><strong>טווח קצר וטווח ארוך.</strong></li>
   </ul>
   <details class="co more" id="costs"><summary><span class="sum-t">נספח: עלויות, אם יופיעו (שיעור 8)</span></summary><div class="co-body">
