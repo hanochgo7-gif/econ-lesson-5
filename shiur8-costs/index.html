@@ -31,6 +31,8 @@
 .narr-tr[open]>summary::after{content:"▴"}
 .narr-lines{margin:8px 0 0;padding:10px 14px;padding-inline-start:30px;background:var(--n-surf);border:1px solid var(--n-line);border-radius:12px;
   display:flex;flex-direction:column;gap:4px;font-size:1rem;line-height:1.65}
+.narr .narr-lines li bdi.m{white-space:normal!important;overflow-wrap:anywhere}
+.narr-tr:not([open])>.narr-lines{display:none}
 .narr-lines li{border-radius:6px;padding:1px 6px;margin-inline-start:-6px;transition:background-color .2s}
 .narr-lines li.is-on{background:var(--n-acc-soft);box-shadow:inset 3px 0 0 var(--n-acc)}
 .narr-lines li.narr-gap{margin-top:6px}
