@@ -265,7 +265,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 .bk-bar .have{background:var(--c-labor-soft);color:var(--c-labor)}
 .bk-bar .lost{background:repeating-linear-gradient(45deg,var(--pen-soft) 0 9px,var(--surface) 9px 14px);color:var(--pen);border-inline-start:2px solid var(--pen)}
 .dd>b:first-child{color:var(--accent)}
-
+bdi.nw{white-space:nowrap}
 /* ===================== lesson 8: costs of the firm ===================== */
 html{overflow-x:clip;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px)}
 @supports not (overflow:clip){body{overflow-x:hidden}}
@@ -1121,30 +1121,30 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 <!-- ===== 2 TP / AP / MP ===== -->
 <section id="apmp" class="stack" data-ch="A" aria-labelledby="h-apmp">
   <div class="sec-head"><div class="eyebrow">נושא 2 · שלושה מספרים</div><h2 id="h-apmp">תפוקה כוללת, ממוצעת ושולית</h2></div>
-  <p class="brief"><span class="lbl">הכלל</span><bdi dir="ltr" class="m">TP</bdi> היא כמה מייצרים בסך הכול. <bdi dir="ltr" class="m">AP = TP ÷ L</bdi> היא כמה מייצר עובד אחד בממוצע. <bdi dir="ltr" class="m">MP = ΔTP ÷ ΔL</bdi> היא כמה הוסיף העובד האחרון. בגרף, <bdi dir="ltr" class="m">MP</bdi> היא <strong>השיפוע בין שתי נקודות</strong>.</p>
+  <p class="brief"><span class="lbl">הכלל</span><bdi dir="ltr" class="m">TP</bdi> היא כמה מייצרים בסך הכול. <bdi dir="ltr" class="m">AP = TP : L</bdi> היא כמה מייצר עובד אחד בממוצע. <bdi dir="ltr" class="m">MP = ΔTP : ΔL</bdi> היא כמה הוסיף העובד האחרון. בגרף, <bdi dir="ltr" class="m">MP</bdi> היא <strong>השיפוע בין שתי נקודות</strong>.</p>
   <div class="fx3">
     <div class="card fx c-var"><span class="k"><bdi dir="ltr" class="m">TP</bdi> · תפוקה כוללת</span><bdi dir="ltr" class="m">TP = q</bdi><span class="s">כל הארוחות יחד</span></div>
-    <div class="card fx c-ap"><span class="k"><bdi dir="ltr" class="m">AP</bdi> · תפוקה ממוצעת</span><bdi dir="ltr" class="m">AP = TP ÷ L</bdi><span class="s">כמה לכל עובד, בממוצע</span></div>
-    <div class="card fx c-mp"><span class="k"><bdi dir="ltr" class="m">MP</bdi> · תפוקה שולית</span><bdi dir="ltr" class="m">MP = ΔTP ÷ ΔL</bdi><span class="s">כמה הוסיף העובד האחרון</span></div>
+    <div class="card fx c-ap"><span class="k"><bdi dir="ltr" class="m">AP</bdi> · תפוקה ממוצעת</span><bdi dir="ltr" class="m">AP = TP : L</bdi><span class="s">כמה לכל עובד, בממוצע</span></div>
+    <div class="card fx c-mp"><span class="k"><bdi dir="ltr" class="m">MP</bdi> · תפוקה שולית</span><bdi dir="ltr" class="m">MP = ΔTP : ΔL</bdi><span class="s">כמה הוסיף העובד האחרון</span></div>
   </div>
   <p><bdi dir="ltr" class="m">Δ</bdi> (״דלתא״) פירושה שינוי: הערך אחרי, פחות הערך לפני. והמילה ״שולי״ בכלכלה תמיד אומרת: מה קורה כשמוסיפים עוד יחידה אחת.</p>
   <h3>במסעדה 1</h3>
-  <div class="tscroll"><table class="t" id="r1Table"><caption>מסעדה 1: כמה ארוחות מכינים, לפי מספר העובדים</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small>עובדים</small></th><th scope="col"><bdi dir="ltr">TP</bdi><small>ארוחות</small></th><th scope="col"><bdi dir="ltr">AP = TP ÷ L</bdi><small>ממוצע לעובד</small></th><th scope="col"><bdi dir="ltr">MP = ΔTP ÷ ΔL</bdi><small>מה הוסיף האחרון</small></th></tr></thead><tbody>
+  <div class="tscroll"><table class="t" id="r1Table"><caption>מסעדה 1: כמה ארוחות מכינים, לפי מספר העובדים</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small>עובדים</small></th><th scope="col"><bdi dir="ltr">TP</bdi><small>ארוחות</small></th><th scope="col"><bdi dir="ltr">AP = TP : L</bdi><small>ממוצע לעובד</small></th><th scope="col"><bdi dir="ltr">MP = ΔTP : ΔL</bdi><small>מה הוסיף האחרון</small></th></tr></thead><tbody>
 <tr><th scope="row" class="n">0</th><td class="n">0</td><td class="n">—</td><td class="n">—</td></tr>
-<tr><th scope="row" class="n">1</th><td class="n">15</td><td class="n cx"><b>15</b><small>15 ÷ 1</small></td><td class="n cx"><b>15</b><small>15 − 0</small></td></tr>
-<tr><th scope="row" class="n">2</th><td class="n">29</td><td class="n cx"><b>14.5</b><small>29 ÷ 2</small></td><td class="n cx"><b>14</b><small>29 − 15</small></td></tr>
-<tr><th scope="row" class="n">3</th><td class="n">42</td><td class="n cx"><b>14</b><small>42 ÷ 3</small></td><td class="n cx"><b>13</b><small>42 − 29</small></td></tr>
-<tr><th scope="row" class="n">4</th><td class="n">54</td><td class="n cx"><b>13.5</b><small>54 ÷ 4</small></td><td class="n cx"><b>12</b><small>54 − 42</small></td></tr>
-<tr><th scope="row" class="n">5</th><td class="n">63</td><td class="n cx"><b>12.6</b><small>63 ÷ 5</small></td><td class="n cx"><b>9</b><small>63 − 54</small></td></tr>
-<tr><th scope="row" class="n">6</th><td class="n">70</td><td class="n cx"><b>≈ 11.67</b><small>70 ÷ 6</small></td><td class="n cx"><b>7</b><small>70 − 63</small></td></tr>
+<tr><th scope="row" class="n">1</th><td class="n">15</td><td class="n cx"><b>15</b><small>15 : 1</small></td><td class="n cx"><b>15</b><small>15 − 0</small></td></tr>
+<tr><th scope="row" class="n">2</th><td class="n">29</td><td class="n cx"><b>14.5</b><small>29 : 2</small></td><td class="n cx"><b>14</b><small>29 − 15</small></td></tr>
+<tr><th scope="row" class="n">3</th><td class="n">42</td><td class="n cx"><b>14</b><small>42 : 3</small></td><td class="n cx"><b>13</b><small>42 − 29</small></td></tr>
+<tr><th scope="row" class="n">4</th><td class="n">54</td><td class="n cx"><b>13.5</b><small>54 : 4</small></td><td class="n cx"><b>12</b><small>54 − 42</small></td></tr>
+<tr><th scope="row" class="n">5</th><td class="n">63</td><td class="n cx"><b>12.6</b><small>63 : 5</small></td><td class="n cx"><b>9</b><small>63 − 54</small></td></tr>
+<tr><th scope="row" class="n">6</th><td class="n">70</td><td class="n cx"><b>≈ 11.67</b><small>70 : 6</small></td><td class="n cx"><b>7</b><small>70 − 63</small></td></tr>
 </tbody></table></div>
-  <p>למשל, עם 3 עובדים: <bdi dir="ltr" class="m">AP = 42 ÷ 3 = 14</bdi> ארוחות לעובד. העובד השלישי הוסיף <bdi dir="ltr" class="m">MP = 42 − 29 = 13</bdi> ארוחות.</p>
+  <p>למשל, עם 3 עובדים: <bdi dir="ltr" class="m">AP = 42 : 3 = 14</bdi> ארוחות לעובד. העובד השלישי הוסיף <bdi dir="ltr" class="m">MP = 42 − 29 = 13</bdi> ארוחות.</p>
   <h3><bdi dir="ltr" class="m">MP</bdi> היא השיפוע בין שתי נקודות</h3>
   <p>בסיכום כתובה הנוסחה המלאה:</p>
-  <p class="fline"><bdi dir="ltr" class="m mw">MP = (TP₁ − TP₀) ÷ (L₁ − L₀)</bdi></p>
+  <p class="fline"><bdi dir="ltr" class="m mw">MP = (TP₁ − TP₀) : (L₁ − L₀)</bdi></p>
   <p><bdi dir="ltr" class="m">(L₀, TP₀)</bdi> היא הנקודה שלפני, ו־<bdi dir="ltr" class="m">(L₁, TP₁)</bdi> היא הנקודה שאחרי. זה בדיוק השיפוע של הקו שמחבר ביניהן: בכמה עולים למעלה, חלקי בכמה זזים ימינה.</p>
-  <div class="co ex"><b class="co-k">הדוגמה מהסיכום</b><p>מהנקודה <bdi dir="ltr" class="m">(0, 20)</bdi> לנקודה <bdi dir="ltr" class="m">(1, 45)</bdi>: <bdi dir="ltr" class="m mw">MP = (45 − 20) ÷ (1 − 0) = 25</bdi>. אלה הציונים בכלכלה בלי לימוד ואחרי שעת לימוד אחת. נפגוש אותם שוב <a href="#hours">בנושא 9</a>.</p></div>
-  <p>ואם מוסיפים כמה עובדים בבת אחת? מחלקים. מ־2 עובדים ל־4: <bdi dir="ltr" class="m mw">MP = (54 − 29) ÷ (4 − 2) = 12.5</bdi>. כל אחד משני העובדים החדשים הוסיף, בממוצע, 12.5 ארוחות.</p>
+  <div class="co ex"><b class="co-k">הדוגמה מהסיכום</b><p>מהנקודה <bdi dir="ltr" class="m">(0, 20)</bdi> לנקודה <bdi dir="ltr" class="m">(1, 45)</bdi>: <bdi dir="ltr" class="m mw">MP = (45 − 20) : (1 − 0) = 25</bdi>. אלה הציונים בכלכלה בלי לימוד ואחרי שעת לימוד אחת. נפגוש אותם שוב <a href="#hours">בנושא 9</a>.</p></div>
+  <p>ואם מוסיפים כמה עובדים בבת אחת? מחלקים. מ־2 עובדים ל־4: <bdi dir="ltr" class="m mw">MP = (54 − 29) : (4 − 2) = 12.5</bdi>. כל אחד משני העובדים החדשים הוסיף, בממוצע, 12.5 ארוחות.</p>
   <div class="lab" id="geo">
     <div class="lab-title"><span class="tag">ניסוי 1</span><b>שני שיפועים על העקומה של מסעדה 1</b></div>
     <p class="lab-how"><b>נסו:</b> הזיזו את הסרגל. הקו המקווקו מהראשית מראה את <bdi dir="ltr" class="m">AP</bdi>, והקטע העבה מהנקודה הקודמת מראה את <bdi dir="ltr" class="m">MP</bdi>.</p>
@@ -1154,9 +1154,9 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
     <div class="readout" id="geoRead" aria-live="polite"></div>
     <p class="nojs note">הניסוי צריך JavaScript. הגרף מראה 3 עובדים: שיפוע הקו מהראשית הוא <bdi dir="ltr" class="m">AP = 14</bdi>, ושיפוע הקטע האחרון הוא <bdi dir="ltr" class="m">MP = 13</bdi>.</p>
   </div>
-  <div class="co trap"><b class="co-k">זהירות: מלכודת</b><p>לעובד הראשון תמיד <bdi dir="ltr" class="m">MP = AP</bdi>, כי <bdi dir="ltr" class="m">TP ÷ 1 = TP − 0</bdi>. זה לא אומר כלום על שיא. במסעדה 1: <bdi dir="ltr" class="m">MP = AP = 15</bdi>.</p></div>
+  <div class="co trap"><b class="co-k">זהירות: מלכודת</b><p>לעובד הראשון תמיד <bdi dir="ltr" class="m">MP = AP</bdi>, כי <bdi dir="ltr" class="m">TP : 1 = TP − 0</bdi>. זה לא אומר כלום על שיא. במסעדה 1: <bdi dir="ltr" class="m">MP = AP = 15</bdi>.</p></div>
   <p>בהמשך נראה את <bdi dir="ltr" class="m">MP</bdi> כשיפוע של עקומה שלמה (<a href="#tp">נושא 5</a>), ואת <bdi dir="ltr" class="m">AP</bdi> ו־<bdi dir="ltr" class="m">MP</bdi> זו לצד זו (<a href="#curves">נושא 6</a>).</p>
-  <div class="co exam"><b class="co-k">מה כותבים במבחן</b><p><bdi dir="ltr" class="m">AP = TP ÷ L</bdi> ו־<bdi dir="ltr" class="m">MP = ΔTP ÷ ΔL</bdi>. בטבלה, <bdi dir="ltr" class="m">MP</bdi> היא ההפרש בין שתי שורות סמוכות. טעות נפוצה: לחלק את <bdi dir="ltr" class="m">TP</bdi> במספר העובדים גם בשביל <bdi dir="ltr" class="m">MP</bdi>. <bdi dir="ltr" class="m">MP</bdi> היא רק התוספת של העובד האחרון.</p></div>
+  <div class="co exam"><b class="co-k">מה כותבים במבחן</b><p><bdi dir="ltr" class="m">AP = TP : L</bdi> ו־<bdi dir="ltr" class="m">MP = ΔTP : ΔL</bdi>. בטבלה, <bdi dir="ltr" class="m">MP</bdi> היא ההפרש בין שתי שורות סמוכות. טעות נפוצה: לחלק את <bdi dir="ltr" class="m">TP</bdi> במספר העובדים גם בשביל <bdi dir="ltr" class="m">MP</bdi>. <bdi dir="ltr" class="m">MP</bdi> היא רק התוספת של העובד האחרון.</p></div>
   <a class="nextsec chap-next" href="#chB"><span>הפרק הבא · פרק ב׳</span><b>טווח קצר וטווח ארוך</b></a>
 </section>
 
@@ -1392,7 +1392,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
   </div>
   <h3>שעה אחרי שעה</h3>
   <ol class="steps"><li><strong>שעה 1:</strong> בכלכלה היא תוסיף 25 נקודות, במחשבה 12 ובשיטות 10. לכן כלכלה.</li><li><strong>שעה 2:</strong> בכלכלה היא תוסיף 20 נקודות, במחשבה 12 ובשיטות 10. לכן כלכלה.</li><li><strong>שעה 3:</strong> בכלכלה היא תוסיף 10 נקודות, במחשבה 12 ובשיטות 10. לכן מחשבה.</li><li><strong>שעה 4:</strong> בכלכלה היא תוסיף 10 נקודות, במחשבה 11 ובשיטות 10. לכן מחשבה.</li><li><strong>שעה 5:</strong> בכלכלה היא תוסיף 10 נקודות, במחשבה 8 ובשיטות 10. תיקו בין כלכלה לשיטות. נבחר כלכלה, והשעה הבאה תלך לשיטות.</li><li><strong>שעה 6:</strong> בכלכלה היא תוסיף 8 נקודות, במחשבה 8 ובשיטות 10. לכן שיטות.</li></ol>
-  <p><strong>התוצאה:</strong> 3 שעות כלכלה (ציון 75), 2 שעות מחשבה (ציון 63) ושעה אחת שיטות (ציון 90). הסכום: <bdi dir="ltr" class="m">75 + 63 + 90 = 228</bdi>, והממוצע: <bdi dir="ltr" class="m">228 ÷ 3 = 76</bdi>.</p>
+  <p><strong>התוצאה:</strong> 3 שעות כלכלה (ציון 75), 2 שעות מחשבה (ציון 63) ושעה אחת שיטות (ציון 90). הסכום: <bdi dir="ltr" class="m">75 + 63 + 90 = 228</bdi>, והממוצע: <bdi dir="ltr" class="m">228 : 3 = 76</bdi>.</p>
   <p class="note">בדקנו את כל 28 הדרכים לחלק 6 שעות בין שלושה מבחנים. לאף אחת מהן אין ממוצע גבוה מ־76. ולמה מספיק לחשוב על הסכום? כי תמיד מחלקים ב־3, ולכן הסכום הגבוה ביותר נותן גם את הממוצע הגבוה ביותר.</p>
   <div class="co trap"><b class="co-k">זהירות: מלכודת</b><p>לא שולחים את השעה למקצוע עם הציון הנמוך ביותר, וגם לא למקצוע עם הציון הגבוה ביותר. משווים רק את מה שהשעה <strong>הבאה</strong> תוסיף. שיטות מתחילה מ־80, ובכל זאת השעה השנייה בה מוסיפה רק 5.</p></div>
   <h3>ואם יש רק 5 שעות?</h3>
@@ -1401,8 +1401,8 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
     <li>2 שעות כלכלה, 2 שעות מחשבה ושעה אחת שיטות (כמו בסיכום): <bdi dir="ltr" class="m">65 + 63 + 90 = 218</bdi>.</li>
     <li>3 שעות כלכלה, 2 שעות מחשבה, ובלי שיטות: <bdi dir="ltr" class="m">75 + 63 + 80 = 218</bdi>.</li>
   </ul>
-  <p>בשתיהן הממוצע הוא <bdi dir="ltr" class="m">218 ÷ 3 ≈ 72.67</bdi>. השעה שירדה הוסיפה 10 נקודות לסכום, ולכן הממוצע ירד ב־<bdi dir="ltr" class="m">10 ÷ 3 ≈ 3.33</bdi>.</p>
-  <div class="co slide fix" id="fix5"><b class="co-k">תיקון לסיכום</b><p>בסיכום כתוב 72.6. החישוב המדויק: <bdi dir="ltr" class="m">218 ÷ 3 = 72.666…</bdi>, ולכן בעיגול <bdi dir="ltr" class="m">72.67</bdi> (או <bdi dir="ltr" class="m">72.7</bdi>). חותכים ל־72.6 רק אם לא מעגלים בכלל.</p></div>
+  <p>בשתיהן הממוצע הוא <bdi dir="ltr" class="m">218 : 3 ≈ 72.67</bdi>. השעה שירדה הוסיפה 10 נקודות לסכום, ולכן הממוצע ירד ב־<bdi dir="ltr" class="m">10 : 3 ≈ 3.33</bdi>.</p>
+  <div class="co slide fix" id="fix5"><b class="co-k">תיקון לסיכום</b><p>בסיכום כתוב 72.6. החישוב המדויק: <bdi dir="ltr" class="m">218 : 3 = 72.666…</bdi>, ולכן בעיגול <bdi dir="ltr" class="m">72.67</bdi> (או <bdi dir="ltr" class="m">72.7</bdi>). חותכים ל־72.6 רק אם לא מעגלים בכלל.</p></div>
   <div class="co exam"><b class="co-k">מה כותבים במבחן</b><p>מחשבים <bdi dir="ltr" class="m">MP</bdi> לכל מקצוע (ההפרש בין שורות סמוכות). בכל צעד נותנים את השעה הבאה למקצוע שבו <bdi dir="ltr" class="m">MP</bdi> הבאה הכי גבוהה. בתיקו אפשר לבחור כל אחד מהם. בסוף מחברים את הציונים ומחלקים במספר המבחנים.</p></div>
   <a class="nextsec" href="#rest"><span>הנושא הבא · נושא 10</span><b>שתי מסעדות, 5 עובדים</b></a>
 </section>
@@ -1437,7 +1437,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
   <p class="note">בדיקה: כל חלוקה אחרת של 5 העובדים נותנת פחות. למשל 4 ו־1 נותנים <bdi dir="ltr" class="m">54 + 20 = 74</bdi>, ו־2 ו־3 נותנים <bdi dir="ltr" class="m">29 + 51 = 80</bdi>.</p>
   <h3>מה התפוקה השולית של העובד החמישי?</h3>
   <p>מסתכלים על העובד האחרון ששובץ: השלישי במסעדה 1. הוא הוסיף 13 ארוחות, ולכן <bdi dir="ltr" class="m">MP₅ = 13</bdi>.</p>
-  <div class="co trap"><b class="co-k">זהירות: מלכודת</b><p>בשאלה ״מה ה־<bdi dir="ltr" class="m">MP</bdi> של העובד החמישי״ לא מחלקים <bdi dir="ltr" class="m">81 ÷ 5</bdi>. זו התפוקה הממוצעת <bdi dir="ltr" class="m">AP</bdi>, ולא התוספת של העובד האחרון.</p></div>
+  <div class="co trap"><b class="co-k">זהירות: מלכודת</b><p>בשאלה ״מה ה־<bdi dir="ltr" class="m">MP</bdi> של העובד החמישי״ לא מחלקים <bdi dir="ltr" class="m">81 : 5</bdi>. זו התפוקה הממוצעת <bdi dir="ltr" class="m">AP</bdi>, ולא התוספת של העובד האחרון.</p></div>
   <p>הכלל עובד כי בכל מסעדה <bdi dir="ltr" class="m">MP</bdi> רק יורדת. אין ״הפתעה טובה״ שמחכה מאחורי עובד חלש. <a href="#fields">גם בשני השדות מהמצגת</a> זה אותו כלל.</p>
   <div class="co exam"><b class="co-k">מה כותבים במבחן</b><p>מחשבים <bdi dir="ltr" class="m">MP</bdi> בכל מסעדה. משבצים עובד אחרי עובד למקום שבו <bdi dir="ltr" class="m">MP</bdi> הבאה גבוהה יותר. בסוף: <bdi dir="ltr" class="m">TP</bdi> = סכום התפוקות בשני המקומות, וה־<bdi dir="ltr" class="m">MP</bdi> של העובד האחרון = התוספת של העובד האחרון ששובץ.</p></div>
   <a class="nextsec" href="#close"><span>הנושא הבא · נושא 11</span><b>סוגרים את מסעדה 2: כמה מפסידים?</b></a>
@@ -1480,14 +1480,14 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
   <div class="tab-panel" id="bikes" data-tab="מפעל האופנועים">
     <figure class="pic wide"><img src="img/bikes.webp" width="1600" height="904" loading="lazy" decoding="async" alt="סדנת ייצור עם שולחן הרכבה אחד: בהתחלה העובדים עובדים יחד, ובסוף שניים מחכים בלי עבודה."><figcaption>שולחן אחד וסט כלים אחד (גורם קבוע). מה קורה כשמוסיפים עוד עובדים?</figcaption></figure>
     <p>במפעל יש מכונות קבועות, ולכן זה טווח קצר. משנים רק את מספר העובדים:</p>
-    <div class="tscroll"><table class="t" id="bikeTable"><caption>מפעל האופנועים (מהמצגת)</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small>עובדים</small></th><th scope="col"><bdi dir="ltr">q</bdi><small>אופנועים</small></th><th scope="col"><bdi dir="ltr">AP = q ÷ L</bdi><small>ממוצע</small></th><th scope="col"><bdi dir="ltr">MP = Δq ÷ ΔL</bdi><small>תוספת</small></th></tr></thead><tbody>
+    <div class="tscroll"><table class="t" id="bikeTable"><caption>מפעל האופנועים (מהמצגת)</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small>עובדים</small></th><th scope="col"><bdi dir="ltr">q</bdi><small>אופנועים</small></th><th scope="col"><bdi dir="ltr">AP = q : L</bdi><small>ממוצע</small></th><th scope="col"><bdi dir="ltr">MP = Δq : ΔL</bdi><small>תוספת</small></th></tr></thead><tbody>
 <tr><th scope="row" class="n">0</th><td class="n">0</td><td class="n">—</td><td class="n">—</td></tr>
-<tr class="z1"><th scope="row" class="n">1</th><td class="n">4</td><td class="n cx"><b>4</b><small>4 ÷ 1</small></td><td class="n cx"><b>4</b><small>4 − 0</small></td></tr>
-<tr class="z1"><th scope="row" class="n">2</th><td class="n">12</td><td class="n cx"><b>6</b><small>12 ÷ 2</small></td><td class="n cx"><b>8</b><small>12 − 4</small></td></tr>
-<tr class="z1"><th scope="row" class="n">3</th><td class="n">24</td><td class="n cx"><b>8</b><small>24 ÷ 3</small></td><td class="n cx"><b>12</b><small>24 − 12</small></td></tr>
-<tr class="z2"><th scope="row" class="n">4</th><td class="n">32</td><td class="n cx"><b>8</b><small>32 ÷ 4</small></td><td class="n cx"><b>8</b><small>32 − 24</small></td></tr>
-<tr class="z2"><th scope="row" class="n">5</th><td class="n">35</td><td class="n cx"><b>7</b><small>35 ÷ 5</small></td><td class="n cx"><b>3</b><small>35 − 32</small></td></tr>
-<tr class="z3"><th scope="row" class="n">6</th><td class="n">30</td><td class="n cx"><b>5</b><small>30 ÷ 6</small></td><td class="n cx"><b>−5</b><small>30 − 35</small></td></tr>
+<tr class="z1"><th scope="row" class="n">1</th><td class="n">4</td><td class="n cx"><b>4</b><small>4 : 1</small></td><td class="n cx"><b>4</b><small>4 − 0</small></td></tr>
+<tr class="z1"><th scope="row" class="n">2</th><td class="n">12</td><td class="n cx"><b>6</b><small>12 : 2</small></td><td class="n cx"><b>8</b><small>12 − 4</small></td></tr>
+<tr class="z1"><th scope="row" class="n">3</th><td class="n">24</td><td class="n cx"><b>8</b><small>24 : 3</small></td><td class="n cx"><b>12</b><small>24 − 12</small></td></tr>
+<tr class="z2"><th scope="row" class="n">4</th><td class="n">32</td><td class="n cx"><b>8</b><small>32 : 4</small></td><td class="n cx"><b>8</b><small>32 − 24</small></td></tr>
+<tr class="z2"><th scope="row" class="n">5</th><td class="n">35</td><td class="n cx"><b>7</b><small>35 : 5</small></td><td class="n cx"><b>3</b><small>35 − 32</small></td></tr>
+<tr class="z3"><th scope="row" class="n">6</th><td class="n">30</td><td class="n cx"><b>5</b><small>30 : 6</small></td><td class="n cx"><b>−5</b><small>30 − 35</small></td></tr>
 </tbody></table></div>
     <p class="note">הפס בצד הטבלה: <span class="zk z1">ירוק</span> = <bdi dir="ltr" class="m">MP</bdi> עולה (עובדים 1 עד 3), <span class="zk z2">צהוב</span> = פוחתת וחיובית (4 ו־5), <span class="zk z3">אדום</span> = שלילית (6).</p>
     <div class="lab" id="bikelab">
@@ -1546,7 +1546,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
   </div>
   <div class="tab-panel" id="more" data-tab="עוד מהשקפים">
     <h3 id="bakery5">מאפייה: <bdi dir="ltr" class="m">q = 2L</bdi></h3>
-    <p>בכל שעת עבודה מכינים 2 עוגות. לכן <bdi dir="ltr" class="m">AP = 2L ÷ L = 2</bdi>, וגם <bdi dir="ltr" class="m">MP = 2</bdi>, בכל נקודה. הגרף הוא קו ישר. אין כאן גורם קבוע, ולכן אין סיבה שהתוספת תרד: אין תפוקה שולית פוחתת, ול־<bdi dir="ltr" class="m">AP</bdi> אין שיא.</p>
+    <p>בכל שעת עבודה מכינים 2 עוגות. לכן <bdi dir="ltr" class="m">AP = 2L : L = 2</bdi>, וגם <bdi dir="ltr" class="m">MP = 2</bdi>, בכל נקודה. הגרף הוא קו ישר. אין כאן גורם קבוע, ולכן אין סיבה שהתוספת תרד: אין תפוקה שולית פוחתת, ול־<bdi dir="ltr" class="m">AP</bdi> אין שיא.</p>
     <h3 id="ten">מפעל עם 10 עובדים</h3>
     <p>בשקפים יש עוד מפעל, עם עד 10 עובדים. לא צריך לזכור את המספרים, רק את הצורה: <bdi dir="ltr" class="m">MP</bdi> עולה עד העובד השישי. בעובדים 7 ו־8 היא כבר יורדת, אבל עדיין מעל <bdi dir="ltr" class="m">AP</bdi>, ולכן <bdi dir="ltr" class="m">AP</bdi> עדיין עולה ומגיעה לשיא. בעובדים 9 ו־10 <bdi dir="ltr" class="m">MP</bdi> מתחת ל־<bdi dir="ltr" class="m">AP</bdi>, ו־<bdi dir="ltr" class="m">AP</bdi> יורדת. כש־<bdi dir="ltr" class="m">MP</bdi> מתחילה לרדת, <bdi dir="ltr" class="m">AP</bdi> יכולה עוד לעלות.</p>
     <h3>פונקציית הייצור של המשק</h3>
@@ -1578,11 +1578,11 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
     <li><details class="card trapd"><summary><span>״<bdi dir="ltr" class="m">MP</bdi> חוצה את <bdi dir="ltr" class="m">AP</bdi> בשיא של <bdi dir="ltr" class="m">MP</bdi>״.</span></summary><p>לא. בשיא של <bdi dir="ltr" class="m">AP</bdi>. השיא של <bdi dir="ltr" class="m">MP</bdi> בא קודם, מעל נקודת הפיתול <bdi dir="ltr" class="m">L̂</bdi>. (זו גם הטעות בגרף שבסיכום.)</p></details></li>
     <li><details class="card trapd"><summary><span>״השיא של <bdi dir="ltr" class="m">AP</bdi> הוא הנקודה הטובה ביותר״.</span></summary><p>לא בדיוק. הוא <strong>תחילת</strong> התחום הרלוונטי. הפירמה יכולה לעבוד בכל מקום עד <bdi dir="ltr" class="m">L*</bdi>.</p></details></li>
     <li><details class="card trapd"><summary><span>״גורם קבוע יש בטווח הארוך״.</span></summary><p>הפוך. גורם קבוע יש רק בטווח הקצר. בטווח הארוך כל הגורמים משתנים.</p></details></li>
-    <li><details class="card trapd"><summary><span>״לעובד הראשון <bdi dir="ltr" class="m">MP = AP</bdi>, ולכן <bdi dir="ltr" class="m">AP</bdi> בשיא״.</span></summary><p>לא. לעובד הראשון תמיד <bdi dir="ltr" class="m">MP = AP</bdi>, כי <bdi dir="ltr" class="m">TP ÷ 1 = TP − 0</bdi>. זה לא אומר כלום על שיא.</p></details></li>
+    <li><details class="card trapd"><summary><span>״לעובד הראשון <bdi dir="ltr" class="m">MP = AP</bdi>, ולכן <bdi dir="ltr" class="m">AP</bdi> בשיא״.</span></summary><p>לא. לעובד הראשון תמיד <bdi dir="ltr" class="m">MP = AP</bdi>, כי <bdi dir="ltr" class="m">TP : 1 = TP − 0</bdi>. זה לא אומר כלום על שיא.</p></details></li>
     <li><details class="card trapd"><summary><span>״<bdi dir="ltr" class="m">MAX TP</bdi> כש־<bdi dir="ltr" class="m">AP</bdi> מקסימלית״.</span></summary><p>לא. <bdi dir="ltr" class="m">MAX TP</bdi> כש־<bdi dir="ltr" class="m">MP = 0</bdi>, ב־<bdi dir="ltr" class="m">L*</bdi>. השיא של <bdi dir="ltr" class="m">AP</bdi> בא לפני.</p></details></li>
     <li><details class="card trapd"><summary><span>״את השעה הבאה נותנים למקצוע עם הציון הנמוך ביותר״.</span></summary><p>לא. משווים רק את מה שהשעה הבאה <strong>תוסיף</strong> (<bdi dir="ltr" class="m">MP</bdi>), ולא את הציון (<bdi dir="ltr" class="m">TP</bdi>) ולא את הממוצע (<bdi dir="ltr" class="m">AP</bdi>).</p></details></li>
     <li><details class="card trapd"><summary><span>״סוגרים מסעדה, ולכן מפסידים את כל מה שהיא ייצרה״.</span></summary><p>לא. העובדים עוברים למקום אחר ומוסיפים שם. ההפסד: <bdi dir="ltr" class="m">−39 + 12 + 9 = −18</bdi>, ולא <bdi dir="ltr" class="m">−39</bdi>.</p></details></li>
-    <li><details class="card trapd"><summary><span>״ה־<bdi dir="ltr" class="m">MP</bdi> של העובד החמישי היא <bdi dir="ltr" class="m">TP ÷ 5</bdi>״.</span></summary><p>לא. <bdi dir="ltr" class="m">TP ÷ 5</bdi> היא <bdi dir="ltr" class="m">AP</bdi>. <bdi dir="ltr" class="m">MP</bdi> היא רק התוספת של העובד החמישי: <bdi dir="ltr" class="m">TP₅ − TP₄</bdi>.</p></details></li>
+    <li><details class="card trapd"><summary><span>״ה־<bdi dir="ltr" class="m">MP</bdi> של העובד החמישי היא <bdi dir="ltr" class="m">TP : 5</bdi>״.</span></summary><p>לא. <bdi dir="ltr" class="m">TP : 5</bdi> היא <bdi dir="ltr" class="m">AP</bdi>. <bdi dir="ltr" class="m">MP</bdi> היא רק התוספת של העובד החמישי: <bdi dir="ltr" class="m">TP₅ − TP₄</bdi>.</p></details></li>
   </ol>
   <a class="nextsec" href="#exam"><span>הנושא הבא</span><b>25 שאלות מבחן, עם פתרון מלא</b></a>
 </section>
@@ -1603,7 +1603,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
     <button type="button" class="opt">63 ארוחות</button>
     <button type="button" class="opt">13.5 ארוחות</button>
     <p class="fb" aria-live="polite"></p>
-    <details class="exp"><summary>ההסבר המלא</summary><p class="nojs-ans">התשובה הנכונה: ב׳.</p><p><b>שלב 1:</b> <bdi dir="ltr" class="m">MP = ΔTP ÷ ΔL</bdi>.</p><p><b>שלב 2:</b> <bdi dir="ltr" class="m mw">(63 − 54) ÷ (5 − 4) = 9</bdi>.</p><p>למה לא האחרות? 12.6 היא <bdi dir="ltr" class="m">AP</bdi> של 5 עובדים (<bdi dir="ltr" class="m">63 ÷ 5</bdi>), ו־13.5 היא <bdi dir="ltr" class="m">AP</bdi> של 4 עובדים. 63 היא <bdi dir="ltr" class="m">TP</bdi>.</p></details></div>
+    <details class="exp"><summary>ההסבר המלא</summary><p class="nojs-ans">התשובה הנכונה: ב׳.</p><p><b>שלב 1:</b> <bdi dir="ltr" class="m">MP = ΔTP : ΔL</bdi>.</p><p><b>שלב 2:</b> <bdi dir="ltr" class="m mw">(63 − 54) : (5 − 4) = 9</bdi>.</p><p>למה לא האחרות? 12.6 היא <bdi dir="ltr" class="m">AP</bdi> של 5 עובדים (<bdi dir="ltr" class="m">63 : 5</bdi>), ו־13.5 היא <bdi dir="ltr" class="m">AP</bdi> של 4 עובדים. 63 היא <bdi dir="ltr" class="m">TP</bdi>.</p></details></div>
 
   <div class="card mcq" data-a="3" id="q2" data-topic="apmp"><p class="qtext"><b>שאלה 2.</b> במסעדה 2, 3 עובדים מכינים 51 ארוחות. מה התפוקה הממוצעת?</p>
     <button type="button" class="opt">12 ארוחות לעובד</button>
@@ -1611,7 +1611,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
     <button type="button" class="opt">153 ארוחות לעובד</button>
     <button type="button" class="opt">17 ארוחות לעובד</button>
     <p class="fb" aria-live="polite"></p>
-    <details class="exp"><summary>ההסבר המלא</summary><p class="nojs-ans">התשובה הנכונה: ד׳.</p><p><bdi dir="ltr" class="m mw">AP = TP ÷ L = 51 ÷ 3 = 17</bdi>. 12 היא <bdi dir="ltr" class="m">MP</bdi> של העובד השלישי (<bdi dir="ltr" class="m">51 − 39</bdi>). 153 יוצא אם כופלים במקום לחלק.</p></details></div>
+    <details class="exp"><summary>ההסבר המלא</summary><p class="nojs-ans">התשובה הנכונה: ד׳.</p><p><bdi dir="ltr" class="m mw">AP = TP : L = 51 : 3 = 17</bdi>. 12 היא <bdi dir="ltr" class="m">MP</bdi> של העובד השלישי (<bdi dir="ltr" class="m">51 − 39</bdi>). 153 יוצא אם כופלים במקום לחלק.</p></details></div>
 
   <div class="card mcq" data-a="0" id="q3" data-topic="run"><p class="qtext"><b>שאלה 3.</b> מה נכון לגבי גורם ייצור קבוע?</p>
     <button type="button" class="opt">יש כזה רק בטווח הקצר</button>
@@ -1691,7 +1691,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
     <button type="button" class="opt">81 ארוחות</button>
     <button type="button" class="opt">16.2 ארוחות</button>
     <p class="fb" aria-live="polite"></p>
-    <details class="exp"><summary>ההסבר המלא</summary><p class="nojs-ans">התשובה הנכונה: ב׳.</p><p>העובד האחרון ששובץ הוא השלישי במסעדה 1: <bdi dir="ltr" class="m">42 − 29 = 13</bdi>. 16.2 היא <bdi dir="ltr" class="m">81 ÷ 5</bdi>, כלומר <bdi dir="ltr" class="m">AP</bdi>. 12 היא התוספת של העובד <em>הבא</em>, השישי. 81 היא <bdi dir="ltr" class="m">TP</bdi>.</p></details></div>
+    <details class="exp"><summary>ההסבר המלא</summary><p class="nojs-ans">התשובה הנכונה: ב׳.</p><p>העובד האחרון ששובץ הוא השלישי במסעדה 1: <bdi dir="ltr" class="m">42 − 29 = 13</bdi>. 16.2 היא <bdi dir="ltr" class="m">81 : 5</bdi>, כלומר <bdi dir="ltr" class="m">AP</bdi>. 12 היא התוספת של העובד <em>הבא</em>, השישי. 81 היא <bdi dir="ltr" class="m">TP</bdi>.</p></details></div>
 
   <div class="card mcq" data-a="1" id="q13" data-topic="close"><p class="qtext"><b>שאלה 13.</b> סוגרים את מסעדה 2, שהכינה 39 ארוחות, ומעבירים את שני העובדים שלה למסעדה 1 (שבה כבר 3 עובדים). בכמה ארוחות יורדת התפוקה?</p>
     <button type="button" class="opt">ב־39 ארוחות</button>
@@ -1745,7 +1745,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
   </div></details>
 
   <details class="card sol" id="s18"><summary>שאלה 18 · הפוך: נתון <bdi dir="ltr" class="m">L = 1, 2, 3, 4</bdi> ו־<bdi dir="ltr" class="m">AP = 10, 12, 11, 9</bdi>. מצאו <bdi dir="ltr" class="m">TP</bdi> ו־<bdi dir="ltr" class="m">MP</bdi><span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
-    <p><b>שלב 1:</b> אם <bdi dir="ltr" class="m">AP = TP ÷ L</bdi>, אז <bdi dir="ltr" class="m">TP = AP × L</bdi>.</p>
+    <p><b>שלב 1:</b> אם <bdi dir="ltr" class="m">AP = TP : L</bdi>, אז <bdi dir="ltr" class="m">TP = AP × L</bdi>.</p>
     <div class="tscroll"><table class="t"><caption>הפתרון</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small></small></th><th scope="col"><bdi dir="ltr">AP</bdi><small>נתון</small></th><th scope="col"><bdi dir="ltr">TP = AP × L</bdi><small></small></th><th scope="col"><bdi dir="ltr">MP</bdi><small></small></th></tr></thead><tbody>
 <tr><td class="n">1</td><td class="n">10</td><td class="n">10 × 1 = 10</td><td class="n">10</td></tr>
 <tr><td class="n">2</td><td class="n">12</td><td class="n">12 × 2 = 24</td><td class="n">14</td></tr>
@@ -1757,8 +1757,8 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
   </div></details>
 
   <details class="card sol" id="s19"><summary>שאלה 19 · נתונות התפוקות השוליות <bdi dir="ltr" class="m">6, 10, 8, 5, 0, −3</bdi>. מצאו <bdi dir="ltr" class="m">TP</bdi> ו־<bdi dir="ltr" class="m">AP</bdi>, את השיא של <bdi dir="ltr" class="m">AP</bdi>, את <bdi dir="ltr" class="m">MAX TP</bdi> ואת התחום הרלוונטי<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
-    <p><b>שלב 1:</b> <bdi dir="ltr" class="m">TP</bdi> היא סכום כל ה־<bdi dir="ltr" class="m">MP</bdi> עד אותו עובד. <bdi dir="ltr" class="m">AP = TP ÷ L</bdi>.</p>
-    <div class="tscroll"><table class="t"><caption>הפתרון</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small></small></th><th scope="col"><bdi dir="ltr">MP</bdi><small>נתון</small></th><th scope="col"><bdi dir="ltr">TP</bdi><small>סכום ה־MP</small></th><th scope="col"><bdi dir="ltr">AP = TP ÷ L</bdi><small></small></th></tr></thead><tbody>
+    <p><b>שלב 1:</b> <bdi dir="ltr" class="m">TP</bdi> היא סכום כל ה־<bdi dir="ltr" class="m">MP</bdi> עד אותו עובד. <bdi dir="ltr" class="m">AP = TP : L</bdi>.</p>
+    <div class="tscroll"><table class="t"><caption>הפתרון</caption><thead><tr><th scope="col"><bdi dir="ltr">L</bdi><small></small></th><th scope="col"><bdi dir="ltr">MP</bdi><small>נתון</small></th><th scope="col"><bdi dir="ltr">TP</bdi><small>סכום ה־MP</small></th><th scope="col"><bdi dir="ltr">AP = TP : L</bdi><small></small></th></tr></thead><tbody>
 <tr><td class="n">1</td><td class="n">6</td><td class="n">6</td><td class="n">6</td></tr>
 <tr><td class="n">2</td><td class="n">10</td><td class="n">16</td><td class="n">8</td></tr>
 <tr><td class="n">3</td><td class="n">8</td><td class="n">24</td><td class="n">8</td></tr>
@@ -1771,7 +1771,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
   </div></details>
 
   <details class="card sol" id="s20"><summary>שאלה 20 · <bdi dir="ltr" class="m">TP = 6L² − L³</bdi>. מצאו את <bdi dir="ltr" class="m">L̂</bdi>, את השיא של <bdi dir="ltr" class="m">AP</bdi> ואת <bdi dir="ltr" class="m">L*</bdi><span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
-    <p><b>שלב 1:</b> <bdi dir="ltr" class="m">MP</bdi> היא הנגזרת: <bdi dir="ltr" class="m">MP = 12L − 3L²</bdi>. <bdi dir="ltr" class="m">AP = TP ÷ L = 6L − L²</bdi>.</p>
+    <p><b>שלב 1:</b> <bdi dir="ltr" class="m">MP</bdi> היא הנגזרת: <bdi dir="ltr" class="m">MP = 12L − 3L²</bdi>. <bdi dir="ltr" class="m">AP = TP : L = 6L − L²</bdi>.</p>
     <p><b>שלב 2:</b> שיא <bdi dir="ltr" class="m">MP</bdi>: <bdi dir="ltr" class="m">12 − 6L = 0</bdi>, כלומר <bdi dir="ltr" class="m">L̂ = 2</bdi>. שיא <bdi dir="ltr" class="m">AP</bdi>: <bdi dir="ltr" class="m">6 − 2L = 0</bdi>, כלומר <bdi dir="ltr" class="m">L = 3</bdi>. בדיקה: <bdi dir="ltr" class="m mw">MP(3) = 36 − 27 = 9 = AP(3)</bdi> ✓.</p>
     <p><b>שלב 3:</b> <bdi dir="ltr" class="m">MP = 0</bdi>: <bdi dir="ltr" class="m">3L(4 − L) = 0</bdi>, כלומר <bdi dir="ltr" class="m">L* = 4</bdi> ו־<bdi dir="ltr" class="m">MAX TP = 96 − 64 = 32</bdi>. התחום הרלוונטי: מ־3 עד 4. הסדר: <bdi dir="ltr" class="m">MP</bdi> (2), <bdi dir="ltr" class="m">AP</bdi> (3), <bdi dir="ltr" class="m">TP</bdi> (4).</p>
     <p class="note">זו בדיוק הצורה של העקומה בניסויים 2 ו־3. מלכודת: <bdi dir="ltr" class="m mw">TP(3) − TP(2) = 27 − 16 = 11</bdi>, אבל הנגזרת ב־3 היא 9. כשנתונה נוסחה, גוזרים.</p>
@@ -1788,7 +1788,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
 </tbody></table></div>
     <p><b>שלב 1:</b> <bdi dir="ltr" class="m">MP</bdi> בסטטיסטיקה: 20, 15, 10, 5. באנגלית: 12, 9, 6, 3.</p>
     <p><b>שלב 2:</b> שעה 1: 20 מול 12, סטטיסטיקה. שעה 2: 15 מול 12, סטטיסטיקה. שעה 3: 10 מול 12, אנגלית. שעה 4: 10 מול 9, סטטיסטיקה.</p>
-    <p><b>שלב 3:</b> 3 שעות סטטיסטיקה ושעה אחת אנגלית: <bdi dir="ltr" class="m">75 + 72 = 147</bdi>, ממוצע <bdi dir="ltr" class="m">147 ÷ 2 = 73.5</bdi>. בדיקה: 2 ו־2 נותנות <bdi dir="ltr" class="m">65 + 81 = 146</bdi>, ו־4 ו־0 נותנות <bdi dir="ltr" class="m">80 + 60 = 140</bdi>. שתיהן פחות.</p>
+    <p><b>שלב 3:</b> 3 שעות סטטיסטיקה ושעה אחת אנגלית: <bdi dir="ltr" class="m">75 + 72 = 147</bdi>, ממוצע <bdi dir="ltr" class="m">147 : 2 = 73.5</bdi>. בדיקה: 2 ו־2 נותנות <bdi dir="ltr" class="m">65 + 81 = 146</bdi>, ו־4 ו־0 נותנות <bdi dir="ltr" class="m">80 + 60 = 140</bdi>. שתיהן פחות.</p>
   </div></details>
 
   <details class="card sol" id="s22"><summary>שאלה 22 · רשת פיצריות עם שני סניפים ו־6 עובדים: איך לחלק? מה ה־<bdi dir="ltr" class="m">MP</bdi> של העובד השישי? ומה קורה אם סוגרים את סניף ב׳?<span class="hint"> · לחצו לפתרון</span></summary><div class="sol-body">
@@ -1839,8 +1839,8 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
       <div class="tscroll"><table class="t sumt" id="sumTable"><caption>מה שצריך לדעת בעל פה</caption><thead><tr><th scope="col">מושג</th><th scope="col">נוסחה</th><th scope="col">לזכור</th></tr></thead><tbody>
         <tr><th scope="row">פונקציית ייצור</th><td data-l="נוסחה"><bdi dir="ltr" class="m">q = f(K, L)</bdi></td><td data-l="לזכור">מקסימלית, בלי בזבוז, בטכנולוגיה הקיימת</td></tr>
         <tr><th scope="row">תפוקה כוללת</th><td data-l="נוסחה"><bdi dir="ltr" class="m">TP = q</bdi></td><td data-l="לזכור">כמה בסך הכול</td></tr>
-        <tr><th scope="row">תפוקה ממוצעת</th><td data-l="נוסחה"><bdi dir="ltr" class="m">AP = TP ÷ L</bdi></td><td data-l="לזכור">כמה לעובד, בממוצע</td></tr>
-        <tr><th scope="row">תפוקה שולית</th><td data-l="נוסחה"><bdi dir="ltr" class="m">MP = ΔTP ÷ ΔL</bdi></td><td data-l="לזכור">השיפוע בין שתי נקודות. נוסחה: נגזרת</td></tr>
+        <tr><th scope="row">תפוקה ממוצעת</th><td data-l="נוסחה"><bdi dir="ltr" class="m">AP = TP : L</bdi></td><td data-l="לזכור">כמה לעובד, בממוצע</td></tr>
+        <tr><th scope="row">תפוקה שולית</th><td data-l="נוסחה"><bdi dir="ltr" class="m">MP = ΔTP : ΔL</bdi></td><td data-l="לזכור">השיפוע בין שתי נקודות. נוסחה: נגזרת</td></tr>
         <tr><th scope="row">גורם קבוע</th><td data-l="נוסחה">רק בטווח הקצר</td><td data-l="לזכור">מבנה, מכונות</td></tr>
         <tr><th scope="row">גורם משתנה</th><td data-l="נוסחה">בשני הטווחים</td><td data-l="לזכור">עובדים, חומרי גלם</td></tr>
         <tr><th scope="row">נקודת פיתול</th><td data-l="נוסחה"><bdi dir="ltr" class="m">L̂</bdi></td><td data-l="לזכור">השיא של <bdi dir="ltr" class="m">MP</bdi></td></tr>
@@ -1864,7 +1864,7 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
       <h3>הדוגמאות מהסיכום במספרים</h3>
       <ul class="stats sm">
         <li><b>76</b><span>הממוצע הכי גבוה עם 6 שעות (3, 2, 1)</span></li>
-        <li><b>72.67</b><span>הממוצע עם 5 שעות (<bdi dir="ltr" class="m">218 ÷ 3</bdi>)</span></li>
+        <li><b>72.67</b><span>הממוצע עם 5 שעות (<bdi dir="ltr" class="m">218 : 3</bdi>)</span></li>
         <li><b>81</b><span>ארוחות עם 5 עובדים (3 ו־2)</span></li>
         <li><b>13</b><span><bdi dir="ltr" class="m">MP</bdi> של העובד החמישי</span></li>
         <li><b>−18</b><span>סגירת מסעדה 2: <bdi dir="ltr" class="m">−39 + 12 + 9</bdi></span></li>
@@ -1889,8 +1889,8 @@ html:not(.js) .lab svg.chart.keep{display:block!important}
       <div data-k="production function f q"><dt>פונקציית ייצור <span class="ab"><bdi dir="ltr" class="m">q = f(K, L)</bdi></span></dt><dd>כמה הכי הרבה אפשר לייצר מכמות נתונה של גורמי ייצור, בלי בזבוז, בטכנולוגיה הקיימת. <a href="#def">איפה בשיעור</a></dd></div>
       <div data-k="factors of production גוי"><dt>גורמי ייצור <span class="ab">גו״י</span></dt><dd>מה שנכנס לייצור: עבודה <bdi dir="ltr" class="m">(L)</bdi>, הון <bdi dir="ltr" class="m">(K)</bdi> ומשאבי טבע <bdi dir="ltr" class="m">(N)</bdi>. <a href="#idea">איפה בשיעור</a></dd></div>
       <div data-k="total product tp q"><dt>תפוקה כוללת <span class="ab"><bdi dir="ltr" class="m">TP</bdi></span></dt><dd>כמה מייצרים בסך הכול. <a href="#apmp">איפה בשיעור</a></dd></div>
-      <div data-k="average product ap"><dt>תפוקה ממוצעת <span class="ab"><bdi dir="ltr" class="m">AP</bdi></span></dt><dd><bdi dir="ltr" class="m">TP ÷ L</bdi>: כמה מייצר עובד אחד בממוצע. <a href="#apmp">איפה בשיעור</a></dd></div>
-      <div data-k="marginal product mp תש תפש"><dt>תפוקה שולית <span class="ab"><bdi dir="ltr" class="m">MP</bdi></span></dt><dd><bdi dir="ltr" class="m">ΔTP ÷ ΔL</bdi>: כמה הוסיף העובד האחרון. השיפוע בין שתי נקודות. <a href="#apmp">איפה בשיעור</a></dd></div>
+      <div data-k="average product ap"><dt>תפוקה ממוצעת <span class="ab"><bdi dir="ltr" class="m">AP</bdi></span></dt><dd><bdi dir="ltr" class="m">TP : L</bdi>: כמה מייצר עובד אחד בממוצע. <a href="#apmp">איפה בשיעור</a></dd></div>
+      <div data-k="marginal product mp תש תפש"><dt>תפוקה שולית <span class="ab"><bdi dir="ltr" class="m">MP</bdi></span></dt><dd><bdi dir="ltr" class="m">ΔTP : ΔL</bdi>: כמה הוסיף העובד האחרון. השיפוע בין שתי נקודות. <a href="#apmp">איפה בשיעור</a></dd></div>
       <div data-k="delta change"><dt>דלתא <span class="ab"><bdi dir="ltr" class="m">Δ</bdi></span></dt><dd>שינוי: הערך אחרי, פחות הערך לפני. <a href="#apmp">איפה בשיעור</a></dd></div>
       <div data-k="firm"><dt>פירמה</dt><dd>עסק שמייצר ומוכר. בקורס מניחים שהמטרה שלה היא מקסימום רווח. <a href="#idea">איפה בשיעור</a></dd></div>
     </dl></div>
@@ -2001,7 +2001,7 @@ function geo(){const s=$('#r1Chart');if(!s)return;const l=+$('#geoL').value,C=CO
   lab(c,[l-0.5,(q+q0)/2],'MP',C.mp,-10,-8,'end');
   $('#geoOut').innerHTML=bd('L = '+l);$('#geoL').setAttribute('aria-valuetext',wk(l));
   $$('#r1Table tbody tr').forEach((r,i)=>r.classList.toggle('sel',i===l));
-  let t=`<p class="rhead"><strong>${wk(l)}: ${q} ארוחות.</strong></p><p><strong>הקו מהראשית</strong> (מקווקו): השיפוע ${bd(`${q} ÷ ${l} ${eqv(ap)}`)}. זו ${bd('AP')}.</p><p><strong>הקטע האחרון</strong> (מ־${l-1} עובדים ל־${l}): השיפוע ${bd(`(${q} − ${q0}) ÷ (${l} − ${l-1}) = ${mp}`)}. זו ${bd('MP')}.</p>`;
+  let t=`<p class="rhead"><strong>${wk(l)}: ${q} ארוחות.</strong></p><p><strong>הקו מהראשית</strong> (מקווקו): השיפוע ${bd(`${q} : ${l} ${eqv(ap)}`)}. זו ${bd('AP')}.</p><p><strong>הקטע האחרון</strong> (מ־${l-1} עובדים ל־${l}): השיפוע ${bd(`(${q} − ${q0}) : (${l} − ${l-1}) = ${mp}`)}. זו ${bd('MP')}.</p>`;
   if(l===1)t+='<p>לעובד הראשון הקו מהראשית והקטע האחרון הם אותו קו, ולכן '+bd('MP = AP')+'. זה לא שיא.</p>';
   else t+=`<p>הקטע פחות תלול מהקו מהראשית: ${bd('MP &lt; AP')}, ולכן ${bd('AP')} ירדה (מ־${fmt(R1[l-1]/(l-1))} ל־${fmt(ap)}). אבל ${bd('MP')} חיובית, ולכן ${bd('TP')} עלתה.</p>`;
   $('#geoRead').innerHTML=t;
@@ -2119,7 +2119,7 @@ function alloc(cfg){const root=$(cfg.root);if(!root)return null;const n=cfg.name
       const a=add(i);col.querySelector('.anext').textContent=a==null?'אין עוד נתונים':`${cfg.nextLbl}: +${a}`;
       col.querySelectorAll('.btn').forEach(b=>{const d=+b.dataset.d;const off=d>0?(L<=0||a==null):cnt[i]<=0;b.setAttribute('aria-disabled',off?'true':'false');});
       col.querySelector('.astep').setAttribute('aria-label',`${cfg.names[i]}: ${cnt[i]===1?cfg.one:cnt[i]+' '+cfg.unitPl}`);});
-    let t=`${cfg.where(cnt)} ${cfg.sumLbl}: <strong>${S}</strong>${cfg.avg?`, ממוצע ${bd(`${S} ÷ ${n} ${eqv(S/n)}`)}`:''}. `;
+    let t=`${cfg.where(cnt)} ${cfg.sumLbl}: <strong>${S}</strong>${cfg.avg?`, ממוצע ${bd(`${S} : ${n} ${eqv(S/n)}`)}`:''}. `;
     if(L>0)t+=cfg.leftTxt(L);
     else t+=S===cfg.best?'<span class="okmsg">מצוין! זה הכי הרבה שאפשר.</span>':`אפשר להגיע ל־${cfg.best}. רמז: בכל צעד בדקו ${cfg.hint} (${bd('MP')}) בכל מקום.`;
     read.innerHTML=t;stepB.textContent=k>=cfg.total?'שוב מההתחלה':k===0?cfg.stepFirst:cfg.stepLbl;}
