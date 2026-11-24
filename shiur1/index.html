@@ -339,7 +339,27 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
 .narr-all-restart{font:inherit;font-size:.875rem;background:none;border:0;color:var(--accent,#2340d0);text-decoration:underline;cursor:pointer;min-height:44px;padding:0 6px}
 .narr :focus-visible,.narr-all :focus-visible{outline:3px solid var(--n-acc,var(--accent,#2340d0));outline-offset:2px}
 @media (prefers-reduced-motion: reduce){.narr-lines li{transition:none}}
-@media print{.narr,.narr-all{display:none!important}}
+/* the dock: fixed at the bottom, always there */
+.narr-dock{--n-acc:var(--accent,#2340d0);--n-acc-soft:var(--accent-soft,#e7ecff);--n-surf:var(--surface,#fff);--n-ink:var(--ink,#141a2c);
+  --n-mut:var(--muted,#566079);--n-line:var(--line,#dce2ec);
+  position:fixed;z-index:40;bottom:calc(8px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+  width:min(560px,calc(100% - 16px));box-sizing:border-box;display:flex;align-items:center;gap:6px;padding:6px 8px;
+  background:var(--n-surf);color:var(--n-ink);border:1px solid var(--n-line);border-radius:16px;
+  box-shadow:0 6px 24px rgba(10,20,50,.18);font-size:.95rem}
+.narr-dock.is-on{border-color:var(--n-acc)}
+.narr-dock button{font:inherit;min-width:44px;min-height:44px;border-radius:12px;border:0;background:none;color:var(--n-acc);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;padding:0}
+.narr-dock button:disabled{color:var(--n-line);cursor:default}
+.narr-dock .narr-dock-play{background:var(--n-acc);color:var(--n-surf);border-radius:999px;min-width:48px;min-height:48px}
+.narr-dock-ctl{display:flex;gap:2px;align-items:center;flex:0 0 auto}
+.narr-dock .narr-dock-where{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;
+  color:var(--n-ink);padding:2px 6px;text-align:start;line-height:1.3}
+.narr-dock-t{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:.9rem}
+.narr-dock-time{font-size:.8rem;color:var(--n-mut);font-variant-numeric:tabular-nums;min-height:1.2em}
+.narr-dock-sp{height:76px}
+.narr-dock :focus-visible{outline:3px solid var(--n-acc);outline-offset:2px}
+@media (max-width:360px){.narr-dock{gap:2px;padding:5px 6px}.narr-dock-ctl{gap:0}}
+@media print{.narr,.narr-all,.narr-dock,.narr-dock-sp{display:none!important}}
 </style><script>document.documentElement.classList.add("narr-js")</script><!--/narr:css-->
 <div class="wrap" dir="rtl" lang="he">
 
@@ -1752,7 +1772,8 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
   // ---- one audio at a time (narration and the page's videos) ----
   document.addEventListener('play', function (e) {
     var t = e.target;
-    [].forEach.call(document.querySelectorAll('audio, video'), function (m) { if (m !== t && !m.paused) m.pause(); });
+    if (t.muted) return;   // a silent looping clip (autoplays when scrolled into view) never stops the narration
+    [].forEach.call(document.querySelectorAll('audio, video'), function (m) { if (m !== t && !m.paused && !m.muted) m.pause(); });
     // a page may also have the device's read-aloud (speechSynthesis): stop it while media plays
     try { if (window.speechSynthesis && speechSynthesis.speaking) speechSynthesis.cancel(); } catch (x) { }
     [].forEach.call(document.querySelectorAll('.say[aria-pressed="true"]'), function (b) { b.setAttribute('aria-pressed', 'false'); });
@@ -1864,21 +1885,110 @@ footer{color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padd
     if (cur + 1 < players.length) start(cur + 1, 0);
     else { allMode = false; cur = -1; del(KEY); status('סוף השיעור. כל הכבוד!'); allUI(); }
   }
+  function lessonToggle() {
+    if (allMode && cur >= 0 && !players[cur].audio.paused) { players[cur].audio.pause(); status('ההאזנה נעצרה. אפשר להמשיך מאותו מקום.'); return; }
+    if (allMode && cur >= 0) { play(players[cur]); return; }
+    var s = get(KEY) || { i: 0, t: 0 };
+    var i = Math.max(0, Math.min(players.length - 1, s.i | 0));
+    start(i, +s.t || 0);
+  }
   function stopAll(clear) { if (allMode) { allMode = false; allUI(); status(''); } if (clear) del(KEY); }
   if (allBtn) {
-    allBtn.addEventListener('click', function () {
-      if (allMode && cur >= 0 && !players[cur].audio.paused) { players[cur].audio.pause(); status('ההאזנה נעצרה. אפשר להמשיך מאותו מקום.'); return; }
-      if (allMode && cur >= 0) { play(players[cur]); return; }
-      var s = get(KEY) || { i: 0, t: 0 };
-      var i = Math.max(0, Math.min(players.length - 1, s.i | 0));
-      start(i, +s.t || 0);
-    });
+    allBtn.addEventListener('click', lessonToggle);
     if (allRestart) allRestart.addEventListener('click', function () {
       players.forEach(function (q) { q.audio.pause(); });
       del(KEY); allMode = false; start(0, 0);
     });
     allUI();
   }
-  window.__narr = { players: players, next: next, start: start, state: function () { return { allMode: allMode, cur: cur }; } };
+
+  // ---- the dock: a small bar fixed at the bottom of the screen, so stop / play is always one tap away ----
+  var last = -1;   // the section that played last (the one the dock controls)
+  var SVG = function (d) { return '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">' + d + '</svg>'; };
+  var I_PLAY = SVG('<path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/>');
+  var I_PAUSE = SVG('<path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/>');
+  var I_PREV = SVG('<path d="M6 5h2.4v14H6zM19 5.5v13L9.6 12z" fill="currentColor"/>');
+  var I_NEXT = SVG('<path d="M15.6 5H18v14h-2.4zM5 5.5v13L14.4 12z" fill="currentColor"/>');
+  var I_BACK = SVG('<path d="M12 4.5V1.8L7.6 5.6 12 9.4V6.6a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8.1z" fill="currentColor"/><text x="12" y="16.2" text-anchor="middle" font-size="7.2" font-weight="700" fill="currentColor" font-family="system-ui,sans-serif">10</text>');
+  var dock = document.createElement('div');
+  dock.className = 'narr-dock'; dock.setAttribute('role', 'region'); dock.setAttribute('aria-label', 'נגן ההקראה'); dock.dir = 'rtl';
+  dock.innerHTML =
+    '<button type="button" class="narr-dock-where" aria-label="מעבר לנושא שמתנגן"><span class="narr-dock-t"></span>' +
+    '<bdi dir="ltr" class="narr-dock-time"></bdi></button>' +
+    '<div class="narr-dock-ctl" dir="ltr">' +
+    '<button type="button" class="narr-dock-prev" aria-label="לנושא הקודם">' + I_PREV + '</button>' +
+    '<button type="button" class="narr-dock-back" aria-label="עשר שניות אחורה">' + I_BACK + '</button>' +
+    '<button type="button" class="narr-dock-play" aria-label="המשך ההאזנה">' + I_PLAY + '</button>' +
+    '<button type="button" class="narr-dock-next" aria-label="לנושא הבא">' + I_NEXT + '</button></div>';
+  var sp = document.createElement('div'); sp.className = 'narr-dock-sp'; sp.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(sp); document.body.appendChild(dock);
+  var dPlay = dock.querySelector('.narr-dock-play'), dT = dock.querySelector('.narr-dock-t'), dTime = dock.querySelector('.narr-dock-time');
+  var dPrev = dock.querySelector('.narr-dock-prev'), dNext = dock.querySelector('.narr-dock-next'), dBack = dock.querySelector('.narr-dock-back');
+  function curP() { return last >= 0 ? players[last] : null; }
+  function dockUI() {
+    var p = curP(), on = !!(p && !p.audio.paused && !p.audio.ended);
+    dPlay.innerHTML = on ? I_PAUSE : I_PLAY;
+    dPlay.setAttribute('aria-label', on ? 'עצירת ההקראה' : (p ? 'המשך ההקראה' : 'האזנה לשיעור'));
+    dock.classList.toggle('is-on', on);
+    if (p) {
+      dT.textContent = (last + 1) + '. ' + p.title;
+      var d = p.audio.duration;
+      dTime.textContent = fmt(p.audio.currentTime) + ' / ' + (isFinite(d) ? fmt(d) : '');
+    } else {
+      var s = get(KEY);
+      dT.textContent = s && players[s.i] ? 'המשך מנושא ' + (s.i + 1) + ': ' + players[s.i].title : 'האזנה לכל השיעור';
+      dTime.textContent = '';
+    }
+    var i = p ? last : -1;
+    dPrev.disabled = i <= 0; dNext.disabled = i >= players.length - 1;
+    dBack.disabled = !p;
+    meta(p);
+  }
+  function dockToggle() {
+    var p = curP();
+    if (!p) { lessonToggle(); return; }
+    if (!p.audio.paused && !p.audio.ended) { p.audio.pause(); return; }
+    if (p.audio.ended && last < players.length - 1) { start(last + 1, 0); return; }   // a section finished: go on to the next
+    open(p, true); play(p);
+  }
+  function go(d) {
+    var i = (last < 0 ? 0 : last) + d;
+    if (i < 0 || i >= players.length) return;
+    players.forEach(function (q) { if (!q.audio.paused) q.audio.pause(); });
+    start(i, 0);
+  }
+  function back() { var p = curP(); if (!p) return; try { p.audio.currentTime = Math.max(0, p.audio.currentTime - 10); } catch (e) { } dockUI(); }
+  dPlay.addEventListener('click', dockToggle);
+  dPrev.addEventListener('click', function () { go(-1); });
+  dNext.addEventListener('click', function () { go(1); });
+  dBack.addEventListener('click', back);
+  dock.querySelector('.narr-dock-where').addEventListener('click', function () {
+    var p = curP(); if (!p) { var s = get(KEY); p = players[s && players[s.i] ? s.i : 0]; }
+    p.el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  var lastTick = 0;
+  players.forEach(function (p, i) {
+    p.audio.addEventListener('play', function () { last = i; dockUI(); });
+    ['pause', 'ended', 'loadedmetadata', 'seeked'].forEach(function (ev) { p.audio.addEventListener(ev, function () { if (last === i) dockUI(); }); });
+    p.audio.addEventListener('timeupdate', function () {
+      if (last !== i || Date.now() - lastTick < 500) return;
+      lastTick = Date.now(); var d = p.audio.duration;
+      dTime.textContent = fmt(p.audio.currentTime) + ' / ' + (isFinite(d) ? fmt(d) : '');
+    });
+  });
+  // phone lock screen and headphone buttons
+  var ms = navigator.mediaSession, metaFor = null;
+  function meta(p) {
+    if (!ms || !window.MediaMetadata || metaFor === p) return;
+    metaFor = p;
+    try { ms.metadata = new MediaMetadata({ title: p ? p.title : 'האזנה לכל השיעור', artist: document.title }); } catch (e) { }
+  }
+  if (ms) {
+    [['play', dockToggle], ['pause', function () { var p = curP(); if (p) p.audio.pause(); }],
+     ['previoustrack', function () { go(-1); }], ['nexttrack', function () { go(1); }], ['seekbackward', back]
+    ].forEach(function (h) { try { ms.setActionHandler(h[0], h[1]); } catch (e) { } });
+  }
+  dockUI();
+  window.__narr = { players: players, next: next, start: start, dock: dock, state: function () { return { allMode: allMode, cur: cur, last: last }; } };
 })();
 </script><!--/narr:js--></body></html>
