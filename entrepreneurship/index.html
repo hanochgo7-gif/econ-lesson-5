@@ -12,6 +12,72 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<!--narr:css--><style>/* narr: lesson narration players (shared by all lesson pages; injected inline by each page's build) */
+.narr{--n-acc:var(--accent,#2340d0);--n-acc-soft:var(--accent-soft,#e7ecff);--n-surf:var(--surface,#fff);--n-ink:var(--ink,#141a2c);
+  --n-mut:var(--muted,#566079);--n-line:var(--line,#dce2ec);
+  display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;margin:4px 0 6px;scroll-margin-top:16px;max-width:100%;min-width:0}
+.narr-btn,.narr-all-btn,.narr-tr>summary,.narr-speed button{font:inherit;font-size:.95rem;font-weight:600;min-height:44px;border-radius:999px;
+  border:1.5px solid var(--n-acc);background:var(--n-surf);color:var(--n-acc);cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;line-height:1.3;text-align:start}
+.narr-btn{display:none}
+.narr-js .narr-btn{display:inline-flex}
+.narr-btn[aria-expanded="true"],.narr-all-btn[aria-pressed="true"]{background:var(--n-acc);color:var(--n-surf)}
+.narr-btn .narr-d,.narr-all-btn .narr-d{font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.narr-tr{min-width:0;flex:0 1 auto}
+.narr-tr[open]{flex:1 1 100%}
+.narr-tr>summary{list-style:none;color:var(--n-mut);border-color:var(--n-line);width:max-content}
+.narr-tr>summary::-webkit-details-marker{display:none}
+.narr-tr>summary::after{content:"▾";font-size:.8em}
+.narr-tr[open]>summary::after{content:"▴"}
+.narr-lines{margin:8px 0 0;padding:10px 14px;padding-inline-start:30px;background:var(--n-surf);border:1px solid var(--n-line);border-radius:12px;
+  display:flex;flex-direction:column;gap:4px;font-size:1rem;line-height:1.65}
+.narr .narr-lines li bdi.m{white-space:normal!important;overflow-wrap:anywhere}
+.narr-tr:not([open])>.narr-lines{display:none}
+.narr-lines li{border-radius:6px;padding:1px 6px;margin-inline-start:-6px;transition:background-color .2s}
+.narr-lines li.is-on{background:var(--n-acc-soft);box-shadow:inset 3px 0 0 var(--n-acc)}
+.narr-lines li.narr-gap{margin-top:6px}
+.narr-panel{flex:1 1 100%;display:flex;flex-direction:column;gap:8px;background:var(--n-surf);border:1px solid var(--n-line);border-radius:14px;padding:10px 12px;min-width:0}
+.narr-js .narr-panel:not(.is-open){display:none}
+.narr-nojs{margin:0;font-weight:600;color:var(--n-acc);font-size:.95rem}
+.narr-js .narr-nojs{display:none}
+.narr audio{width:100%;max-width:100%;min-height:44px;display:block}
+.narr-tools{display:none;flex-wrap:wrap;gap:6px;align-items:center}
+.narr-js .narr-tools{display:flex}
+.narr-speed{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.narr-speed .lbl{font-size:.875rem;color:var(--n-mut)}
+.narr-speed button{min-width:56px;justify-content:center;padding:6px 10px;border-color:var(--n-line);color:var(--n-ink);font-variant-numeric:tabular-nums}
+.narr-speed button[aria-pressed="true"]{border-color:var(--n-acc);background:var(--n-acc-soft);color:var(--n-acc)}
+.narr-cap{margin:0;min-height:3.3em;font-size:1rem;line-height:1.65;color:var(--n-ink)}
+.narr-all{display:none;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0}
+.narr-js .narr-all{display:flex}
+.narr-all-btn{--n-acc:var(--accent,#2340d0);--n-surf:var(--surface,#fff);border-color:var(--n-acc);color:var(--n-acc);background:var(--n-surf)}
+.narr-all-status{font-size:.9rem;color:var(--muted,#566079);min-height:1.4em}
+.narr-all-restart[data-off]{display:none}
+.narr-all-restart{font:inherit;font-size:.875rem;background:none;border:0;color:var(--accent,#2340d0);text-decoration:underline;cursor:pointer;min-height:44px;padding:0 6px}
+.narr :focus-visible,.narr-all :focus-visible{outline:3px solid var(--n-acc,var(--accent,#2340d0));outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.narr-lines li{transition:none}}
+/* the dock: fixed at the bottom, always there */
+.narr-dock{--n-acc:var(--accent,#2340d0);--n-acc-soft:var(--accent-soft,#e7ecff);--n-surf:var(--surface,#fff);--n-ink:var(--ink,#141a2c);
+  --n-mut:var(--muted,#566079);--n-line:var(--line,#dce2ec);
+  position:fixed;z-index:40;bottom:calc(8px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+  width:min(560px,calc(100% - 16px));box-sizing:border-box;display:flex;align-items:center;gap:6px;padding:6px 8px;
+  background:var(--n-surf);color:var(--n-ink);border:1px solid var(--n-line);border-radius:16px;
+  box-shadow:0 6px 24px rgba(10,20,50,.18);font-size:.95rem}
+.narr-dock.is-on{border-color:var(--n-acc)}
+.narr-dock button{font:inherit;min-width:44px;min-height:44px;border-radius:12px;border:0;background:none;color:var(--n-acc);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;padding:0}
+.narr-dock button:disabled{color:var(--n-line);cursor:default}
+.narr-dock .narr-dock-play{background:var(--n-acc);color:var(--n-surf);border-radius:999px;min-width:48px;min-height:48px}
+.narr-dock-ctl{display:flex;gap:2px;align-items:center;flex:0 0 auto}
+.narr-dock .narr-dock-where{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;
+  color:var(--n-ink);padding:2px 6px;text-align:start;line-height:1.3}
+.narr-dock-t{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:.9rem}
+.narr-dock-time{font-size:.8rem;color:var(--n-mut);font-variant-numeric:tabular-nums;min-height:1.2em}
+.narr-dock-sp{height:76px}
+.narr-dock :focus-visible{outline:3px solid var(--n-acc);outline-offset:2px}
+@media (max-width:360px){.narr-dock{gap:2px;padding:5px 6px}.narr-dock-ctl{gap:0}}
+@media print{.narr,.narr-all,.narr-dock,.narr-dock-sp{display:none!important}}
+</style><script>document.documentElement.classList.add("narr-js")</script><!--/narr:css-->
 
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -967,6 +1033,9 @@ footer{border-top:0;padding-top:24px;text-align:center}
 .hero,.cover{grid-template-columns:minmax(0,1fr)}
 .hero-in,.cover-in{min-width:0}
 .cd.acc .k{color:var(--accent)}
+
+/* narration player inside the section header grid: full row, so it never widens the empty first column */
+.sec-head>.narr{grid-column:1/-1}
 </style>
 
 <div class="wrap" dir="rtl" lang="he">
@@ -1000,6 +1069,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
       <a class="cta ghost" href="#video1" data-play="video1"><span class="play" aria-hidden="true"></span>צפו בסרטון · <bdi dir="ltr">1:15</bdi></a>
       <a class="cta ghost" id="resume" href="#top" hidden>המשך מאיפה שעצרתם</a>
     </div>
+<!--narr:all--><div class="narr-all" role="group" aria-label="האזנה לשיעור"><button type="button" class="narr-all-btn" aria-pressed="false"><span aria-hidden="true">🎧</span><span class="narr-all-lbl">האזנה לכל השיעור</span> <span class="narr-d">(≈ 43 דקות)</span></button><button type="button" class="narr-all-restart" data-off>מההתחלה</button><span class="narr-all-status" role="status"></span></div><!--/narr:all-->
     <ul class="hero-stats" aria-label="השיעור במספרים">
       <li><b>4</b> <span>חלקים</span></li>
       <li><b>29</b> <span>נושאים</span></li>
@@ -1132,7 +1202,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 1 WHY ===== -->
 <section id="why" class="stack" aria-labelledby="h-why">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 1 · </span>למה זה חשוב</div><h2 id="h-why">למה בכלל לחשב גודל שוק?</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 1 · </span>למה זה חשוב</div><h2 id="h-why">למה בכלל לחשב גודל שוק?</h2><!--narr:why--><div class="narr" id="narr-why" data-key="why" data-title="למה בכלל לחשב גודל שוק?"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-why"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:22)</span></button><div class="narr-panel" id="narr-p-why"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:22)</p><audio controls preload="none" src="audio/why.m4a" aria-label="האזנה לנושא: למה בכלל לחשב גודל שוק?"><track kind="captions" srclang="he" label="עברית" src="audio/why.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">ניתוח שוק הוא לא שקף שממלאים בשביל משקיעים.</li><li data-n="2">זו הדרך לא לבזבז שלוש שנים על משהו שאף אחד לא צריך.</li><li data-n="3" class="narr-gap">בקורס, חישוב גודל שוק עונה על שלוש שאלות.</li><li data-n="4">האם יש כאן עסק גדול מספיק? מאיפה נכון להתחיל? ומה באמת אפשר להשיג?</li><li data-n="5">ובמצגת הקורס יש משפט שכדאי לזכור: &quot;מי שמכוון לכולם נשאר בלי אף אחד.&quot;</li><li data-n="6" class="narr-gap">גם במציאות, השוק חשוב יותר מכל דבר אחר.</li><li data-n="7">המשקיע מרק אנדריסן כתב שהשוק הוא הגורם הכי חשוב להצלחה או לכישלון של סטארט־אפ.</li><li data-n="8">בשוק טוב, הלקוחות &quot;מושכים&quot; את המוצר מהחברה.</li><li data-n="9">והוא מצטט משפט קצר: &quot;כשצוות מצוין פוגש שוק גרוע, השוק מנצח.&quot;</li><li data-n="10" class="narr-gap">מחקר על סטארט־אפים שנכשלו מצא סיבה שחוזרת שוב ושוב: &quot;לא היה צורך בשוק&quot;.</li><li data-n="11">אלה סיבות שהמייסדים עצמם דיווחו, והמספרים משתנים בין המהדורות של המחקר.</li><li data-n="12">לכן נגיד רק כך: חוסר ביקוש הוא אחד הרוצחים הגדולים של סטארט־אפים.</li><li data-n="13" class="narr-gap">בקיצור: לפני שבונים, בודקים שיש מספיק לקוחות שבאמת צריכים את המוצר.</li></ol></details></div><!--/narr:why--></div>
   <p class="brief"><span class="lbl">במשפט אחד</span>ניתוח שוק הוא לא שקף שממלאים בשביל משקיעים. זו הדרך לא לבזבז שלוש שנים על משהו שאף אחד לא צריך.</p>
   <p><span class="bdg course">מהקורס</span>חישוב גודל שוק עונה על שלוש שאלות:</p>
   <div class="g3">
@@ -1150,7 +1220,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 2 TAM SAM SOM TM ===== -->
 <section id="tam" class="stack" aria-labelledby="h-tam">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 2 · </span>ההגדרות</div><h2 id="h-tam">ארבעה מעגלים: TAM, SAM, SOM ו־TM</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 2 · </span>ההגדרות</div><h2 id="h-tam">ארבעה מעגלים: TAM, SAM, SOM ו־TM</h2><!--narr:tam--><div class="narr" id="narr-tam" data-key="tam" data-title="ארבעה מעגלים: TAM, SAM, SOM ו־TM"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-tam"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:43)</span></button><div class="narr-panel" id="narr-p-tam"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:43)</p><audio controls preload="none" src="audio/tam.m4a" aria-label="האזנה לנושא: ארבעה מעגלים: TAM, SAM, SOM ו־TM"><track kind="captions" srclang="he" label="עברית" src="audio/tam.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">את השוק מציירים כארבעה מעגלים, אחד בתוך השני.</li><li data-n="2">כל מעגל קטן מהקודם, כי מוסיפים לו עוד מגבלה.</li><li data-n="3" class="narr-gap">המעגל הגדול הוא <bdi dir="ltr" class="m">TAM</bdi>: השוק הכולל.</li><li data-n="4">זה כל הכסף שהיה נכנס בשנה, אם כל הלקוחות הרלוונטיים היו קונים מכם.</li><li data-n="5" class="narr-gap">בתוכו נמצא <bdi dir="ltr" class="m">SAM</bdi>: השוק שאפשר לשרת.</li><li data-n="6">זה החלק שהחברה יכולה לשרת בפועל, אחרי מגבלות של מוצר, טכנולוגיה, אזור וחוקים.</li><li data-n="7" class="narr-gap">בתוכו נמצא <bdi dir="ltr" class="m">SOM</bdi>: השוק שאפשר להשיג.</li><li data-n="8">זה החלק שתזכו בו באמת, בזמן מוגדר. בדוגמאות של הקורס, 3 עד 5 שנים.</li><li data-n="9" class="narr-gap">ובמרכז נמצא <bdi dir="ltr" class="m">TM</bdi>: שוק היעד.</li><li data-n="10">זו קבוצת הלקוחות המדויקת שבה בוחרים להתחיל, ולה מוכרים ראשונה.</li><li data-n="11" class="narr-gap">הדוגמה של הקורס היא סימפלי, חברה ישראלית של אפליקציות ללימוד נגינה.</li><li data-n="12">במעגל הגדול: כל מי שמוכן לשלם על אפליקציה ללימוד מוזיקה, בכל העולם.</li><li data-n="13">ובמרכז: מבוגרים בני 18 עד 40 בארה״ב, שרוצים ללמוד פסנתר כתחביב.</li><li data-n="14" class="narr-gap">שימו לב: <bdi dir="ltr" class="m">TM</bdi> הוא תוספת של הקורס, ובספרים יש בדרך כלל רק שלושה מעגלים.</li><li data-n="15">ולמבחן: <bdi dir="ltr" class="m">TAM</bdi> ו־<bdi dir="ltr" class="m">SAM</bdi> נמדדים בכסף, ו־<bdi dir="ltr" class="m">TM</bdi> מתואר כקבוצת אנשים.</li><li data-n="16" class="narr-gap">בקיצור: <bdi dir="ltr" class="m">TAM</bdi> הוא כל השוק, <bdi dir="ltr" class="m">SAM</bdi> מה שאפשר לשרת, <bdi dir="ltr" class="m">SOM</bdi> מה שתשיגו ו־<bdi dir="ltr" class="m">TM</bdi> הקבוצה שבה מתחילים.</li></ol></details></div><!--/narr:tam--></div>
   <div class="split">
   <p><span class="bdg course">מהקורס</span>מציירים ארבעה מעגלים, אחד בתוך השני. כל מעגל קטן יותר מהקודם, כי מוסיפים לו עוד מגבלה. לחצו על כל מעגל כדי לראות את ההגדרה שלו ואת הדוגמה של הקורס: סימפלי (<span lang="en">Simply</span>), חברה ישראלית של אפליקציות ללימוד נגינה.</p>
   <figure class="pic"><img src="img/market.webp" srcset="img/market-640.webp 640w, img/market.webp 1600w" sizes="(max-width:760px) calc(100vw - 32px), 420px" decoding="async" alt="מייסד עם תיק גב עומד על צוק ומשקיף על אי גדול בים. באי יש טבעות בצבעים שונים, אחת בתוך השנייה, ועליהן אנשים קטנים. במרכז יש אי קטן וכתום עם דגל." loading="lazy" width="1600" height="904"><figcaption>השוק הוא כמו אי עם טבעות. הטבעת החיצונית היא כל השוק. הדגל במרכז הוא המקום שבו מתחילים.</figcaption></figure>
@@ -1214,7 +1284,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 3 COURSE EXAMPLES ===== -->
 <section id="examples" class="stack" aria-labelledby="h-ex">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 3 · </span>הדוגמאות מהשקפים</div><h2 id="h-ex">נטפליקס, אפליקציית כושר ו־וולט: מה נכון ומה לתקן</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 3 · </span>הדוגמאות מהשקפים</div><h2 id="h-ex">נטפליקס, אפליקציית כושר ו־וולט: מה נכון ומה לתקן</h2><!--narr:examples--><div class="narr" id="narr-examples" data-key="examples" data-title="נטפליקס, אפליקציית כושר ו־וולט: מה נכון ומה לתקן"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-examples"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:54)</span></button><div class="narr-panel" id="narr-p-examples"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:54)</p><audio controls preload="none" src="audio/examples.m4a" aria-label="האזנה לנושא: נטפליקס, אפליקציית כושר ו־וולט: מה נכון ומה לתקן"><track kind="captions" srclang="he" label="עברית" src="audio/examples.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">הקורס נותן עוד שלוש דוגמאות: נטפליקס, אפליקציית כושר וחברת המשלוחים וולט.</li><li data-n="2">בכולן חסר אותו דבר: החשבון עצמו.</li><li data-n="3">גם הכותרת בשקפים אומרת את זה: השערה של גודל שוק.</li><li data-n="4">גודל שוק הוא ניחוש מנומק שבודקים, לא עובדה.</li><li data-n="5" class="narr-gap">הדוגמה של נטפליקס בנויה מלמעלה למטה, מכל משקי הבית בעולם עם אינטרנט מהיר.</li><li data-n="6">אבל נטפליקס היא חברה גדולה וקיימת, ולא סטארט־אפ.</li><li data-n="7">ובשקף כתוב שהיא תשיג 10% עד 20% מהשוק, בלי הסבר מאיפה זה בא.</li><li data-n="8" class="narr-gap">באפליקציית הכושר יש מספרים, להמחשה בלבד.</li><li data-n="9">השוק שאפשר לשרת הוא בערך 8 עד 10 מיליארד דולר בשנה.</li><li data-n="10">והשקף לוקח ממנו 2% עד 4%.</li><li data-n="11">בדקנו את החשבון: הגבול התחתון של הטווח יוצא 160 מיליון דולר, ולא 200 מיליון.</li><li data-n="12">וחסר נתון חשוב: כמה משלם כל משתמש.</li><li data-n="13" class="narr-gap">בוולט הסדר הפוך: מתחילים מהקבוצה הקטנה, ועולים למעלה.</li><li data-n="14">הקבוצה היא צרכנים עירוניים בהלסינקי, שמזמינים אוכל באפליקציות באופן קבוע.</li><li data-n="15">אבל רק השוק שאפשר להשיג נבנה באמת מלמטה, ממספרים קטנים שאפשר לבדוק.</li><li data-n="16">ושימו לב: בשני המעגלים הגדולים <bdi dir="ltr" class="m">(TAM</bdi> ו־<bdi dir="ltr" class="m">SAM)</bdi> מודדים את כל ההוצאה של הלקוחות.</li><li data-n="17">ובשוק שאפשר להשיג <bdi dir="ltr" class="m">(SOM)</bdi>, רק את העמלה של וולט.</li><li data-n="18">שתי הדרכים מקובלות, אבל צריך לכתוב במפורש באיזו מהן אתם משתמשים.</li><li data-n="19" class="narr-gap">בקיצור: הדוגמאות מלמדות את המושגים, אבל את החשבון עושים בעצמכם, צעד אחר צעד.</li></ol></details></div><!--/narr:examples--></div>
   <p class="brief"><span class="lbl">המסקנה</span>בכל הדוגמאות חסר אותו דבר: החשבון עצמו. בנושא 5 נעשה אותו, צעד אחר צעד.</p>
   <p><span class="bdg course">מהקורס</span>הקורס נותן עוד שלוש דוגמאות. נעבור עליהן, ונסמן איפה צריך זהירות.</p>
   <p>שימו לב לכותרת בשקפים: <span lang="en">Market Size Hypothesis</span>, כלומר <strong>השערה</strong> של גודל שוק. גודל שוק הוא ניחוש מנומק שבודקים, לא עובדה.</p>
@@ -1250,7 +1320,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
   <div class="fix"><b>בדקנו את החשבון</b><ul>
     <li>2% מ־8 מיליארד הם <bdi dir="ltr" class="m">$160M</bdi>, ו־4% מ־10 מיליארד הם <bdi dir="ltr" class="m">$400M</bdi>. לכן הטווח הנכון הוא <strong>160 עד 400 מיליון דולר</strong>, ולא 200 עד 400. זו טעות קטנה.</li>
     <li>ה־SOM מוגבל לארה״ב ולקנדה, אבל האחוז נלקח מה־SAM שלא הוגבל לאזור. לא ברור אם 2% עד 4% הם מכל העולם או רק מצפון אמריקה.</li>
-    <li>מה שלא כתוב: כמה משלם כל משתמש. אם מחלקים את ההכנסות במספר המשתמשים, יוצא בערך <bdi dir="ltr" class="m">$67–200</bdi> למשתמש בשנה. כדאי לכתוב את זה במפורש. זה בדיוק "המחיר" במשוואה של נושא 5.</li>
+    <li>מה שלא כתוב: כמה משלם כל משתמש. אם מחלקים את ההכנסות במספר המשתמשים, יוצא בערך <bdi dir="ltr" class="m">$53–200</bdi> למשתמש בשנה (לפי הטווח המתוקן, 160 עד 400 מיליון דולר). כדאי לכתוב את זה במפורש. זה בדיוק "המחיר" במשוואה של נושא 5.</li>
   </ul></div>
 </div>
 <div class="tab-panel" data-tab="וולט">
@@ -1271,7 +1341,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 4 METHODS ===== -->
 <section id="methods" class="stack" aria-labelledby="h-methods">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 4 · </span>איך מחשבים</div><h2 id="h-methods">שתי שיטות: מלמעלה למטה, ומלמטה למעלה</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 4 · </span>איך מחשבים</div><h2 id="h-methods">שתי שיטות: מלמעלה למטה, ומלמטה למעלה</h2><!--narr:methods--><div class="narr" id="narr-methods" data-key="methods" data-title="שתי שיטות: מלמעלה למטה, ומלמטה למעלה"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-methods"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(2:09)</span></button><div class="narr-panel" id="narr-p-methods"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (2:09)</p><audio controls preload="none" src="audio/methods.m4a" aria-label="האזנה לנושא: שתי שיטות: מלמעלה למטה, ומלמטה למעלה"><track kind="captions" srclang="he" label="עברית" src="audio/methods.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">יש שתי דרכים לחשב גודל שוק: מלמעלה למטה, ומלמטה למעלה.</li><li data-n="2" class="narr-gap">מלמעלה למטה מתחילים מדוחות שוק וממחקרי תעשייה.</li><li data-n="3">לוקחים את השוק הכולל, ומצמצמים אותו בהדרגה לפי מגבלות אמיתיות.</li><li data-n="4" class="narr-gap">מלמטה למעלה מתחילים בקטן, ממכירות ראשונות ומלקוחות אמיתיים.</li><li data-n="5">הנוסחה: שוק בשנה <bdi dir="ltr" class="m">=</bdi> לקוחות × מחיר × תדירות.</li><li data-n="6">לקוחות הם מי שמתאים לפרופיל שלכם, ומחיר הוא כמה משלמים בכל קנייה.</li><li data-n="7">ותדירות היא כמה פעמים בשנה קונים.</li><li data-n="8">ובזירת מסחר שלוקחת עמלה, ההכנסה שלכם היא סך הקניות × העמלה.</li><li data-n="9" class="narr-gap">משקיעים קוראים את השיטה, ולא את המספר.</li><li data-n="10">חישוב מלמטה מראה שאתם יודעים מי הלקוח, כמה הוא משלם ואיך תגיעו אליו.</li><li data-n="11">המשקיעים גם בודקים שהשוק גדול מספיק, כי קרן הון סיכון צריכה שהצלחה אחת תחזיר את כל הקרן.</li><li data-n="12" class="narr-gap">ועכשיו, הדגל האדום הקלאסי.</li><li data-n="13">השקף אומר: &quot;השוק העולמי שווה 50 מיליארד דולר.&quot;</li><li data-n="14">&quot;ואם נשיג רק 1%, נכניס 500 מיליון דולר בשנה.&quot;</li><li data-n="15">השקף הזה מסתיר את החלק הקשה: מי קונה ראשון, למה ובאיזה מחיר.</li><li data-n="16">ו־1% זה לא &quot;קצת&quot;: כדי להשיג אותו, צריך בדרך כלל לנצח את רוב המתחרים.</li><li data-n="17" class="narr-gap">יש גם טעות הפוכה.</li><li data-n="18">פרופסור אחד חישב את השוק של <bdi dir="ltr" class="m">Uber</bdi> לפי שוק המוניות הקיים, בערך 100 מיליארד דולר.</li><li data-n="19">משקיע של <bdi dir="ltr" class="m">Uber</bdi> ענה שהעתיד לא חייב להיראות כמו העבר.</li><li data-n="20">כי מוצר זול ונוח בהרבה יכול ליצור ביקוש חדש, שאף דוח עוד לא מודד.</li><li data-n="21" class="narr-gap">בקיצור: בונים את השוק מלמטה, מלקוחות, מחיר ותדירות, ולא מאחוז קטן של מספר ענק.</li></ol></details></div><!--/narr:methods--></div>
   <div class="vs">
     <div class="cd"><span class="k">שיטה 1 · <span lang="en">Top-down</span></span><b class="h">מלמעלה למטה</b><p><span class="bdg course">מהקורס</span>מתחילים ממחקרי תעשייה ודוחות שוק. לוקחים את השוק הכולל, ומצמצמים אותו בהדרגה לפי מגבלות אמיתיות, עד לשוק שאפשר להשיג ולשוק היעד.</p></div>
     <span class="vs-mark" aria-hidden="true">מול</span>
@@ -1309,7 +1379,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 5 CALCULATOR ===== -->
 <section id="calc" class="stack" aria-labelledby="h-calc">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 5 · </span>דוגמה פתורה ומחשבון</div><h2 id="h-calc">בונים שוק מלמטה: PawWalk, צעד אחר צעד</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 5 · </span>דוגמה פתורה ומחשבון</div><h2 id="h-calc">בונים שוק מלמטה: PawWalk, צעד אחר צעד</h2><!--narr:calc--><div class="narr" id="narr-calc" data-key="calc" data-title="בונים שוק מלמטה: PawWalk, צעד אחר צעד"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-calc"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(2:08)</span></button><div class="narr-panel" id="narr-p-calc"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (2:08)</p><audio controls preload="none" src="audio/calc.m4a" aria-label="האזנה לנושא: בונים שוק מלמטה: PawWalk, צעד אחר צעד"><track kind="captions" srclang="he" label="עברית" src="audio/calc.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">עכשיו נבנה שוק מלמטה, צעד אחר צעד, עם רעיון בדוי: <bdi dir="ltr" class="m">PawWalk</bdi>.</li><li data-n="2">זו אפליקציה בתל אביב, שמחברת בעלי כלבים עם מוליכי כלבים שנבדקו.</li><li data-n="3">כל המספרים כאן הם הנחות ללימוד, לא עובדות.</li><li data-n="4" class="narr-gap">מתחילים מהלקוחות: בעיר יש 40,000 משקי בית עם כלב.</li><li data-n="5">נניח שרבע מהם עובדים שעות ארוכות, וישלמו על הליכות.</li><li data-n="6">זה 10,000 משקי בית מתאימים.</li><li data-n="7" class="narr-gap">עכשיו התדירות: 3 הליכות בשבוע, 48 שבועות בשנה.</li><li data-n="8">יחד, זה 144 הליכות בשנה, לכל משק בית.</li><li data-n="9" class="narr-gap">המחיר הוא 50 ₪ להליכה.</li><li data-n="10">אז כל הכסף שמשלמים על הליכות בעיר הוא 72 מיליון ₪ בשנה.</li><li data-n="11"><bdi dir="ltr" class="m">PawWalk</bdi> שומרת לעצמה 20% מהמחיר של כל הליכה.</li><li data-n="12">לכן ההכנסה האפשרית שלה היא 14.4 מיליון ₪ בשנה.</li><li data-n="13">זה השוק שאפשר לשרת, <bdi dir="ltr" class="m">SAM</bdi>, מדוד בהכנסות.</li><li data-n="14" class="narr-gap">ומה אפשר באמת להשיג בעוד 3 שנים?</li><li data-n="15">נניח שנחתים 5% מהמשקים המתאימים, כלומר 500 משקי בית.</li><li data-n="16">ההכנסה של <bdi dir="ltr" class="m">PawWalk</bdi> מהם היא 720,000 ₪ בשנה.</li><li data-n="17">וזה <bdi dir="ltr" class="m">SOM</bdi>, השוק שאפשר להשיג.</li><li data-n="18" class="narr-gap">ועכשיו החלק הכי חשוב: בדיקת רגישות.</li><li data-n="19">מה אם בראיונות מתברר שאנשים רוצים הליכה אחת בשבוע, ולא שלוש?</li><li data-n="20">ההכנסה האפשרית יורדת ל־4.8 מיליון ₪ בשנה.</li><li data-n="21">הנחה אחת הורידה את השוק בשני שלישים.</li><li data-n="22">לכן מוצאים את ההנחה הכי חלשה, ובודקים אותה ראשונה, עוד לפני שבונים.</li><li data-n="23" class="narr-gap">בקיצור: לקוחות × תדירות × מחיר × עמלה, ואז בודקים איזו הנחה הכי רגישה.</li></ol></details></div><!--/narr:calc--></div>
   <p><span class="bdg ill">דוגמה בדויה</span>הרעיון: <strong>PawWalk</strong>, אפליקציה בתל אביב־יפו שמחברת בעלי כלבים עם מוליכי כלבים שנבדקו. PawWalk שומרת לעצמה 20% מהמחיר של כל הליכה. <strong>כל המספרים הם הנחות ללימוד, לא עובדות.</strong></p>
   <div class="tscroll"><table role="table" class="t stack-t">
     <caption>ההנחות, ומאיפה מייסד אמיתי היה מביא אותן</caption>
@@ -1370,7 +1440,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 6 WHY NOW ===== -->
 <section id="timing" class="stack" aria-labelledby="h-timing">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 6 · </span>תזמון</div><h2 id="h-timing">למה עכשיו? (<span lang="en">Why now</span>) ושוק שגדל</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 6 · </span>תזמון</div><h2 id="h-timing">למה עכשיו? (<span lang="en">Why now</span>) ושוק שגדל</h2><!--narr:timing--><div class="narr" id="narr-timing" data-key="timing" data-title="למה עכשיו? (Why now) ושוק שגדל"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-timing"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(2:05)</span></button><div class="narr-panel" id="narr-p-timing"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (2:05)</p><audio controls preload="none" src="audio/timing.m4a" aria-label="האזנה לנושא: למה עכשיו? (Why now) ושוק שגדל"><track kind="captions" srclang="he" label="עברית" src="audio/timing.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">הקורס לא מדבר על תזמון, אבל כל משקיע ישאל: למה עכשיו?</li><li data-n="2">קרן <bdi dir="ltr" class="m">Sequoia</bdi> כותבת שלחברות הטובות ביותר כמעט תמיד יש תשובה ברורה לשאלה הזאת.</li><li data-n="3">והיא שואלת: &quot;הטבע שונא ואקום, אז למה אף אחד לא בנה את הפתרון שלכם עד היום?&quot;</li><li data-n="4" class="narr-gap">המשקיע ביל גרוס ניתח כמה מאות חברות.</li><li data-n="5">לפי הניתוח שלו, התזמון הסביר את ההבדל בין הצלחה לכישלון יותר מהצוות, מהרעיון, מהמודל העסקי ומהכסף.</li><li data-n="6">אבל זהירות: זה ניתוח של משקיע אחד על החברות שלו, ולא מחקר שעבר ביקורת.</li><li data-n="7" class="narr-gap">יש חמישה טריגרים נפוצים ל&quot;למה עכשיו&quot;.</li><li data-n="8">טכנולוגיה חדשה נהייתה טובה או זולה מספיק, כמו הטלפון החכם, שאפשר את וייז.</li><li data-n="9">שינוי בהתנהגות, כמו המעבר לעבודה מהבית.</li><li data-n="10">שינוי בחוק, שינוי בעלויות, או חברה מובילה שהלקוחות כבר לא מרוצים ממנה.</li><li data-n="11" class="narr-gap">ותזמון במספרים: זום.</li><li data-n="12">בדצמבר 2019 היו לזום בערך 10 מיליון משתתפים יומיים בפגישות.</li><li data-n="13">באפריל 2020 הם היו יותר מ־300 מיליון.</li><li data-n="14">זה גידול של פי 30, בארבעה חודשים.</li><li data-n="15">אבל אדם שנכנס לכמה פגישות נספר כמה פעמים.</li><li data-n="16">לכן תמיד שואלים מה המדד באמת סופר.</li><li data-n="17" class="narr-gap">ועוד דבר: שוק שגדל עדיף על שוק שעומד במקום.</li><li data-n="18">בשוק שגדל יש לקוחות שקונים בפעם הראשונה, ולא צריך לשכנע אותם לעבור מספק אחר.</li><li data-n="19">בשוק שעומד, כל לקוח צריך להילקח ממישהו אחר, והחברות הקיימות יילחמו במחיר.</li><li data-n="20" class="narr-gap">בקיצור: משקיעים רוצים לראות שהשוק גדל, וגם מה השתנה שמאפשר את הרעיון דווקא עכשיו.</li></ol></details></div><!--/narr:timing--></div>
   <p><span class="bdg real">במציאות</span>הקורס לא מדבר על תזמון, אבל כל משקיע ישאל עליו. קרן <span lang="en">Sequoia</span> כותבת למייסדים שלחברות הטובות ביותר כמעט תמיד יש תשובה ברורה ל"למה עכשיו?". והיא שואלת: "הטבע שונא ואקום. אז למה אף אחד לא בנה את הפתרון שלכם עד היום?" <a class="cite" href="#src-s2" aria-label="מקור S2"><bdi dir="ltr">S2</bdi></a></p>
   <div class="rw"><b>כמה תזמון חשוב?</b><p>ביל גרוס מ־<span lang="en">Idealab</span> ניתח כמה מאות חברות בהרצאת <span lang="en">TED</span> ב־2015. לפי הניתוח שלו, התזמון הסביר את החלק הגדול ביותר של ההבדל בין הצלחה לכישלון (42%), יותר מהצוות, הרעיון, המודל העסקי והכסף. הדוגמה שלו: <span lang="en">Airbnb</span> נעזרה במשבר הכלכלי, כשאנשים חיפשו הכנסה נוספת. <strong>זהירות:</strong> זה ניתוח של משקיע אחד על החברות שלו, לא מחקר שעבר ביקורת. <a class="cite" href="#src-s6" aria-label="מקור S6"><bdi dir="ltr">S6</bdi></a> גם אנדריסן אמר שלהקדים מדי זה כמעט כמו לטעות. <a class="cite" href="#src-s36" aria-label="מקור S36"><bdi dir="ltr">S36</bdi></a></p></div>
   <h3>חמישה טריגרים נפוצים ל"למה עכשיו"</h3>
@@ -1396,7 +1466,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 7 BEACHHEAD ===== -->
 <section id="beachhead" class="stack" aria-labelledby="h-beach">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 7 · </span>איפה מתחילים</div><h2 id="h-beach">ראש גשר (<span lang="en">beachhead</span>): מתחילים בקטן, ומנצחים</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 7 · </span>איפה מתחילים</div><h2 id="h-beach">ראש גשר (<span lang="en">beachhead</span>): מתחילים בקטן, ומנצחים</h2><!--narr:beachhead--><div class="narr" id="narr-beachhead" data-key="beachhead" data-title="ראש גשר (beachhead): מתחילים בקטן, ומנצחים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-beachhead"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:50)</span></button><div class="narr-panel" id="narr-p-beachhead"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:50)</p><audio controls preload="none" src="audio/beachhead.m4a" aria-label="האזנה לנושא: ראש גשר (beachhead): מתחילים בקטן, ומנצחים"><track kind="captions" srclang="he" label="עברית" src="audio/beachhead.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">לא תוקפים את כל השוק בבת אחת.</li><li data-n="2">בוחרים קבוצה אחת קטנה ומדויקת, שבה אפשר להפוך לבחירה הראשונה והברורה.</li><li data-n="3">מנצחים בה, ורק אז מתרחבים.</li><li data-n="4">זה שוק היעד של הקורס, <bdi dir="ltr" class="m">TM</bdi>.</li><li data-n="5" class="narr-gap">ג׳פרי מור, בספר מפורסם, קורא לזה &quot;ראש גשר&quot;, כמו בנחיתה בנורמנדי.</li><li data-n="6">כובשים חוף אחד קטן, ורק אחר כך מתקדמים פנימה.</li><li data-n="7">פיטר תיל אומר שכל סטארט־אפ צריך להתחיל בשוק קטן מאוד, ולשלוט בו.</li><li data-n="8">פייסבוק התחילה בהרווארד, ואמזון התחילה בספרים.</li><li data-n="9">ופול גרהם אומר: עדיף משהו שמעט אנשים רוצים מאוד, על משהו שהרבה אנשים רוצים קצת.</li><li data-n="10" class="narr-gap">דוגמה ישראלית: <bdi dir="ltr" class="m">monday.com</bdi> התחילה ככלי פנימי בחברת <bdi dir="ltr" class="m">Wix</bdi>.</li><li data-n="11">כשהיא הפכה לחברה נפרדת, <bdi dir="ltr" class="m">Wix</bdi> הייתה הלקוחה הראשונה שלה.</li><li data-n="12" class="narr-gap">איך בוחרים ראש גשר? יש חמישה סימנים.</li><li data-n="13">הכאב חד: הם כבר מוציאים כסף או זמן על הבעיה.</li><li data-n="14">הם יכולים לקנות, ואתם יודעים איפה למצוא אותם.</li><li data-n="15">הם מדברים זה עם זה, ולכן לקוח מרוצה אחד מביא את הבא.</li><li data-n="16">והניצחון בהם עוזר לנצח בקבוצה הבאה.</li><li data-n="17" class="narr-gap">ומפלחים לפי מצב, ולא לפי גיל.</li><li data-n="18">לא &quot;מרפאות שיניים&quot;, אלא &quot;מרפאות עם יותר מ־3 רופאים, שעדיין קובעות תורים בטלפון&quot;.</li><li data-n="19">והמבחן: האם תוכלו לכתוב השבוע רשימה של 50 לקוחות, עם שם?</li><li data-n="20" class="narr-gap">בקיצור: מתחילים בקבוצה קטנה שרוצה אתכם מאוד, מנצחים בה, ורק אז מתרחבים.</li></ol></details></div><!--/narr:beachhead--></div>
   <div class="split">
   <p><span class="bdg real">במציאות</span>לא תוקפים את כל השוק בבת אחת. בוחרים קבוצה אחת קטנה ומדויקת, שבה אפשר להפוך ל<strong>בחירה הראשונה והברורה</strong>. מנצחים בה, ורק אז מתרחבים. זה ה־TM של הקורס.</p>
   <figure class="pic"><img src="img/beachhead-960.webp" srcset="img/beachhead-640.webp 640w, img/beachhead-960.webp 960w, img/beachhead-1200.webp 1200w" sizes="(max-width:760px) calc(100vw - 32px), 420px" alt="מטפסת נועצת דגל כתום על דיונה בחוף. מאחוריה צוות קטן, שהגיע בסירת משוטים, מריע לה. לפניהם נפרש שטח ירוק וגדול עד ההרים." loading="lazy" decoding="async" width="960" height="543"><figcaption>כובשים חוף אחד קטן, ורק אחר כך מתקדמים פנימה.</figcaption></figure>
@@ -1421,7 +1491,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 8 DEMAND ===== -->
 <section id="demand" class="stack" aria-labelledby="h-demand">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 8 · </span>האם באמת רוצים את זה?</div><h2 id="h-demand">הוכחת ביקוש: סולם הראיות ו"מבחן אמא"</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 8 · </span>האם באמת רוצים את זה?</div><h2 id="h-demand">הוכחת ביקוש: סולם הראיות ו"מבחן אמא"</h2><!--narr:demand--><div class="narr" id="narr-demand" data-key="demand" data-title="הוכחת ביקוש: סולם הראיות ו&quot;מבחן אמא&quot;"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-demand"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:43)</span></button><div class="narr-panel" id="narr-p-demand"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:43)</p><audio controls preload="none" src="audio/demand.m4a" aria-label="האזנה לנושא: הוכחת ביקוש: סולם הראיות ו&quot;מבחן אמא&quot;"><track kind="captions" srclang="he" label="עברית" src="audio/demand.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">גודל שוק הוא השערה.</li><li data-n="2">משקיעים רוצים לראות ראיות שהלקוחות באמת רוצים את המוצר.</li><li data-n="3">ולא כל ראיה שווה אותו דבר.</li><li data-n="4" class="narr-gap">הראיה הכי חזקה: לקוחות משלמים, וקונים שוב.</li><li data-n="5">אחריה: מכירה מראש, פיילוט בתשלום או מקדמה.</li><li data-n="6">אחר כך: מכתב כוונות חתום, ממי שמחליט.</li><li data-n="7">באמצע: שימוש פעיל באב־טיפוס, ואחריו הרשמה לרשימת המתנה.</li><li data-n="8">והחלשות ביותר: דעות בראיון, כמו &quot;בטוח הייתי משתמש&quot;, ולייקים ומחמאות מחברים.</li><li data-n="9" class="narr-gap">דוגמה לרשימת המתנה: <bdi dir="ltr" class="m">Dropbox</bdi>.</li><li data-n="10">המייסד הכין סרטון קצר, שמראה את המוצר עובד.</li><li data-n="11">לדבריו, רשימת ההמתנה קפצה מ־5,000 ל־75,000 איש, כמעט בן לילה.</li><li data-n="12">זה עבד, כי אנשים ראו מוצר מסוים עובד.</li><li data-n="13" class="narr-gap">ואיך מראיינים לקוחות? בעזרת &quot;מבחן אמא&quot;.</li><li data-n="14">השם בא מהרעיון שגם אמא שלכם תשקר לכם, כדי להיות נחמדה.</li><li data-n="15">לכן מדברים על החיים שלהם, ולא על הרעיון שלכם.</li><li data-n="16">שואלים על דברים שקרו בעבר, ולא על דעות לגבי העתיד.</li><li data-n="17">ומדברים פחות, ומקשיבים יותר.</li><li data-n="18" class="narr-gap">לא שואלים: &quot;כמה הייתם משלמים על זה?&quot;</li><li data-n="19">שואלים: &quot;כמה אתם משלמים על זה היום? אפשר לראות?&quot;</li><li data-n="20" class="narr-gap">בקיצור: דעות לא מוכיחות ביקוש. כסף, התחייבות ושימוש אמיתי, כן.</li></ol></details></div><!--/narr:demand--></div>
   <p><span class="bdg real">במציאות</span>גודל שוק הוא השערה. משקיעים רוצים לראות <strong>ראיות</strong> שהלקוחות באמת רוצים את המוצר. לא כל ראיה שווה אותו דבר. מייסדים ומשקיעים מדרגים ראיות בערך כך, מהחזקה לחלשה:</p>
   <ol class="ladder" aria-label="סולם הראיות לביקוש, מהחזקה ביותר לחלשה ביותר">
     <li style="--w:100%"><span class="st">הכי חזקה</span><b>לקוחות משלמים, וקונים שוב</b><span class="n">כסף ושימוש חוזר הם האות הכי ברור.</span></li>
@@ -1509,7 +1579,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 9 RIVALS ===== -->
 <section id="rivals" class="stack" aria-labelledby="h-rivals">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 9 · </span>מי המתחרה</div><h2 id="h-rivals">מי באמת מתחרה בכם?</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 9 · </span>מי המתחרה</div><h2 id="h-rivals">מי באמת מתחרה בכם?</h2><!--narr:rivals--><div class="narr" id="narr-rivals" data-key="rivals" data-title="מי באמת מתחרה בכם?"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-rivals"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:48)</span></button><div class="narr-panel" id="narr-p-rivals"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:48)</p><audio controls preload="none" src="audio/rivals.m4a" aria-label="האזנה לנושא: מי באמת מתחרה בכם?"><track kind="captions" srclang="he" label="עברית" src="audio/rivals.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">המתחרה הכי קשה הוא בדרך כלל לא סטארט־אפ אחר.</li><li data-n="2">זה ההרגל: פתקים, טבלה ישנה, או לא לעשות כלום.</li><li data-n="3" class="narr-gap">בקורס, מתחרה הוא פתרון לאותה בעיה, ולאותו צורך של הלקוח.</li><li data-n="4">תחרות ישירה היא בין מוצרים דומים, כמו אייפון מול סמסונג.</li><li data-n="5">תחרות עקיפה היא על אותו צורך, או על אותם משאבים של הלקוח: זמן, כסף, נוחות ואנרגיה.</li><li data-n="6" class="narr-gap">מי מתחרה בסמארטפון? התשובה הראשונה: טלפונים אחרים.</li><li data-n="7">אבל לפני הטלפון הנייד, אנשים השאירו פתק, או התקשרו מטלפון ציבורי.</li><li data-n="8">זה המצב הקיים, והוא גם מתחרה.</li><li data-n="9">הוא חינמי, הוא כבר שם, והלקוח יודע להשתמש בו.</li><li data-n="10">לכן לרוב הסטארט־אפים שמוכרים לעסקים, המשימה הראשונה היא לנצח את אקסל.</li><li data-n="11">פיטר תיל טוען שצריך להיות טובים בערך פי 10 מהתחליף הקרוב, בממד חשוב אחד לפחות.</li><li data-n="12" class="narr-gap">והדוגמה המפורסמת: נטפליקס אמרה ש&quot;השינה היא המתחרה שלנו&quot;.</li><li data-n="13">היא מתחרה על שעות הערב שלכם, מול הטלפון, משחקי המחשב וגם המיטה.</li><li data-n="14">ב־2019 היא כתבה שהמשחק <bdi dir="ltr" class="m">Fortnite</bdi> הוא מתחרה גדול יותר משירותי סטרימינג אחרים.</li><li data-n="15">ובסוף נטפליקס הגיבה, ונכנסה בעצמה לתחום המשחקים.</li><li data-n="16" class="narr-gap">ובינה מלאכותית נותנת רשימת מתחרים תוך שניות, אבל זו טיוטה, לא מקור.</li><li data-n="17" class="narr-gap">בקיצור: מתחרה הוא כל מה שהלקוח יכול לעשות במקום המוצר שלכם, כולל לא לעשות כלום.</li></ol></details></div><!--/narr:rivals--></div>
   <p class="brief"><span class="lbl">הלקח</span>המתחרים העקיפים מתחרים על <strong>אותו משאב של הלקוח</strong>: הזמן והקשב שלו בערב.</p>
   <blockquote class="quote"><p>"כל חיי התמודדתי מול תחרות קשה. לא הייתי יודע איך להסתדר בלעדיה."</p><p class="en" lang="en" dir="ltr">“I have been up against tough competition all my life. I wouldn't know how to get along without it.”</p><cite>וולט דיסני, מתוך מצגת הקורס</cite></blockquote>
   <div class="defbox"><span class="bdg course">מהקורס</span><strong>מתחרה</strong> הוא פתרון שמתייחס לאותו מוצר או לאותה בעיה, ולאותו שוק או צורך של לקוח שאנחנו רוצים לפתור. גם ישיר וגם עקיף.<br>תחרות לא מוגדרת רק לפי מוצרים. היא מוגדרת גם לפי <strong>צרכים, הרגלים ופתרונות קיימים</strong>.</div>
@@ -1565,12 +1635,12 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 10 NO COMPETITORS ===== -->
 <section id="nocomp" class="stack" aria-labelledby="h-nocomp">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 10 · </span>דגל אדום</div><h2 id="h-nocomp">"אין לנו מתחרים": הדגל האדום הכי נפוץ</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 10 · </span>דגל אדום</div><h2 id="h-nocomp">"אין לנו מתחרים": הדגל האדום הכי נפוץ</h2><!--narr:nocomp--><div class="narr" id="narr-nocomp" data-key="nocomp" data-title="&quot;אין לנו מתחרים&quot;: הדגל האדום הכי נפוץ"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-nocomp"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:26)</span></button><div class="narr-panel" id="narr-p-nocomp"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:26)</p><audio controls preload="none" src="audio/nocomp.m4a" aria-label="האזנה לנושא: &quot;אין לנו מתחרים&quot;: הדגל האדום הכי נפוץ"><track kind="captions" srclang="he" label="עברית" src="audio/nocomp.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">כשמייסד אומר &quot;אין לנו מתחרים&quot;, משקיע שומע אחד משלושה דברים.</li><li data-n="2">אחד: &quot;לא בדקתי.&quot;</li><li data-n="3">שתיים: &quot;אף אחד לא רוצה את זה.&quot;</li><li data-n="4">כי אם הבעיה אמיתית וכואבת, אנשים כבר פותרים אותה איכשהו.</li><li data-n="5">שלוש: &quot;לא הבנתי שהמתחרה האמיתי הוא ההרגל&quot;, מה שהלקוח עושה היום.</li><li data-n="6" class="narr-gap">פול גרהם אומר שעדיף לבחור רעיונות שבהם יהיו לכם מתחרים.</li><li data-n="7">לדבריו, &quot;נדיר מאוד שמתחרים הורגים סטארט־אפ&quot;.</li><li data-n="8">ומשקיע אחר מוסיף: מתחרים הם בדרך כלל סימן שהבעיה אמיתית.</li><li data-n="9" class="narr-gap">גם החוקרים במאמר כותבים שמייסדים &quot;מתעקשים שהם הראשונים והיחידים&quot;.</li><li data-n="10">וניתוח מתחרים שטחי לא משכנע משקיעים, ומוביל להחלטות גרועות.</li><li data-n="11" class="narr-gap">יש גם טריק הפוך: להגדיר את השוק צר מדי, כדי להיות &quot;היחידים&quot;.</li><li data-n="12">פיטר תיל נותן דוגמה: &quot;המסעדה הבריטית היחידה בפאלו אלטו&quot;.</li><li data-n="13" class="narr-gap">אז מה כן כותבים בשקף?</li><li data-n="14">&quot;היום הלקוחות שלנו פותרים את זה עם <bdi dir="ltr" class="m">X</bdi> ו־<bdi dir="ltr" class="m">Y</bdi>. זה למה זה כואב,</li><li data-n="15">וזה למה אנחנו טובים יותר ללקוח מסוים.&quot;</li><li data-n="16" class="narr-gap">בקיצור: לכל בעיה אמיתית כבר יש פתרון כלשהו, ומשקיעים רוצים לראות שאתם מכירים אותו.</li></ol></details></div><!--/narr:nocomp--></div>
   <p class="brief"><span class="lbl">משפט טוב יותר לשקף</span>"היום הלקוחות שלנו פותרים את זה עם X ו־Y. זה למה זה כואב, וזה למה אנחנו טובים יותר <strong>ללקוח מסוים</strong>."</p>
   <p><span class="bdg real">במציאות</span>כשמייסד אומר "אין לנו מתחרים", משקיע שומע אחד משלושה דברים:</p>
   <div class="g3">
     <div class="cd bad"><span class="k">1</span><b class="h">"לא בדקתי."</b><p>חסרים שיעורי בית.</p></div>
-    <div class="cd bad"><span class="k">2</span><b class="h">"אף אחד לא רוצה את זה."</b><p>אם בעיה אמיתית וכואבת, אנשים כבר פותרים אותה <strong>איכשהו</strong>.</p></div>
+    <div class="cd bad"><span class="k">2</span><b class="h">"אף אחד לא רוצה את זה."</b><p>אם הבעיה אמיתית וכואבת, אנשים כבר פותרים אותה <strong>איכשהו</strong>.</p></div>
     <div class="cd bad"><span class="k">3</span><b class="h">"לא הבנתי שהמתחרה האמיתי הוא ההרגל."</b><p>המתחרה הוא מה שהלקוח עושה היום.</p></div>
   </div>
   <ul class="plain">
@@ -1585,7 +1655,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 11 MAPS ===== -->
 <section id="maps" class="stack" aria-labelledby="h-maps">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 11 · </span>שלושה כלים</div><h2 id="h-maps">איך ממפים תחרות: צירים, כדורי הארווי ופרחים</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 11 · </span>שלושה כלים</div><h2 id="h-maps">איך ממפים תחרות: צירים, כדורי הארווי ופרחים</h2><!--narr:maps--><div class="narr" id="narr-maps" data-key="maps" data-title="איך ממפים תחרות: צירים, כדורי הארווי ופרחים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-maps"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:41)</span></button><div class="narr-panel" id="narr-p-maps"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:41)</p><audio controls preload="none" src="audio/maps.m4a" aria-label="האזנה לנושא: איך ממפים תחרות: צירים, כדורי הארווי ופרחים"><track kind="captions" srclang="he" label="עברית" src="audio/maps.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">המטרה של מיפוי התחרות: למצוא במה אתם טובים יותר, בשביל לקוח מסוים.</li><li data-n="2">הקורס מלמד שלושה כלים, ולכל אחד יש מקום משלו.</li><li data-n="3" class="narr-gap">הכלי הראשון: מפה של שני צירים, למשל מחיר מול איכות.</li><li data-n="4">היא מתאימה בעיקר לשוק קיים ומוגדר, שבו הלקוחות כבר מכירים את המדדים.</li><li data-n="5">האתגר הוא לבחור צירים שהלקוחות באמת משתמשים בהם כדי להחליט.</li><li data-n="6">&quot;חדשנות&quot; ו&quot;איכות&quot; הם צירים גרועים, כי כולם טוענים שהם גבוהים בשניהם.</li><li data-n="7">ופינה ריקה במפה היא לא בהכרח הזדמנות. אולי אף אחד לא רוצה את השילוב הזה.</li><li data-n="8" class="narr-gap">הכלי השני: טבלה של כדורי הארווי.</li><li data-n="9">בכל שורה תכונה, בכל עמודה מתחרה, ובכל תא עיגול שמלא יותר, ככל שהמתחרה חזק יותר.</li><li data-n="10">והקורס מדגיש: תהיו כנים. אם אתם מנצחים בכל שורה, אף אחד לא יאמין לכם.</li><li data-n="11">בדוגמה של <bdi dir="ltr" class="m">PawWalk</bdi>, היא מפסידה במחיר ובקלות ההתחלה.</li><li data-n="12">והיא מנצחת באמון, בדיווח על ההליכה ובזמינות. לטבלה כזאת משקיע יאמין.</li><li data-n="13" class="narr-gap">הכלי השלישי: דיאגרמת הפרח של סטיב בלנק.</li><li data-n="14">שמים את הסטארט־אפ במרכז, ומסביב, כמו עלי כותרת, את פלחי השוק הסמוכים.</li><li data-n="15">זה הכלי לסטארט־אפ שיוצר קטגוריה חדשה.</li><li data-n="16" class="narr-gap">בקיצור: צירים לשוק קיים, כדורי הארווי להצעת הערך, ופרח לקטגוריה חדשה.</li></ol></details></div><!--/narr:maps--></div>
   <p class="brief"><span class="lbl">מתי מה</span>שוק קיים ומוגדר: מפת צירים. השוואת הצעת ערך: כדורי הארווי. קטגוריה חדשה: דיאגרמת פרח.</p>
   <p><span class="bdg course">מהקורס</span>המטרה של מיפוי התחרות: <strong>למצוא את היתרון התחרותי שלנו</strong>. כלומר, במה אנחנו טובים יותר בשביל לקוח מסוים. הקורס מלמד שלושה כלים.</p>
 
@@ -1706,7 +1776,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 12 PITFALLS ===== -->
 <section id="pitfalls" class="stack" aria-labelledby="h-pit">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 12 · </span>מה משתבש</div><h2 id="h-pit">4 מלכודות במפות תחרות, ואיך יוצאים מהן</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 12 · </span>מה משתבש</div><h2 id="h-pit">4 מלכודות במפות תחרות, ואיך יוצאים מהן</h2><!--narr:pitfalls--><div class="narr" id="narr-pitfalls" data-key="pitfalls" data-title="מלכודות במפות תחרות, ואיך יוצאים מהן"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-pitfalls"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:38)</span></button><div class="narr-panel" id="narr-p-pitfalls"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:38)</p><audio controls preload="none" src="audio/pitfalls.m4a" aria-label="האזנה לנושא: מלכודות במפות תחרות, ואיך יוצאים מהן"><track kind="captions" srclang="he" label="עברית" src="audio/pitfalls.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">הקורס מונה ארבע מלכודות במפות תחרות, ולכל אחת יש תיקון.</li><li data-n="2" class="narr-gap">מלכודת ראשונה: ממוקדים במוצר, &quot;שלנו מול שלהם&quot;, במקום בבעיה של הלקוח.</li><li data-n="3">התיקון: העמודות הן החלופות שהלקוח באמת שוקל, כולל אקסל, וגם האפשרות &quot;לא לעשות כלום&quot;.</li><li data-n="4" class="narr-gap">מלכודת שנייה: צירים סובייקטיביים, שנבחרו לפי מה שנוח לכם.</li><li data-n="5">התיקון: השורות הן מה שהלקוחות אמרו בראיונות שחשוב להם כשהם קונים.</li><li data-n="6" class="narr-gap">מלכודת שלישית: משווים רק את המוצר, ושוכחים את ההצעה המלאה.</li><li data-n="7">התיקון: מוסיפים שורות כמו מחיר, הטמעה, תמיכה וחיבורים לכלים אחרים.</li><li data-n="8" class="narr-gap">מלכודת רביעית: רק מתחרים של היום.</li><li data-n="9">התיקון: מוסיפים מתחרים פוטנציאליים והיסטוריים, ושואלים איך הגדולים יגיבו.</li><li data-n="10" class="narr-gap">וזכרו את ההבדל בין טבלת יוהרה לטבלה שימושית.</li><li data-n="11">בטבלת יוהרה, בעמודה שלכם יש רק ✓ ירוקים, ואצל כל השאר ✗ אדומים.</li><li data-n="12">משקיעים יודעים שזה נבחר בפינצטה, וזה פוגע באמינות שלכם.</li><li data-n="13">טבלה שימושית היא כנה: אתם מפסידים בחלק מהשורות.</li><li data-n="14">ושורה או שתיים מסבירות למה אתם מנצחים, במה שהכי חשוב ללקוח הראשון.</li><li data-n="15" class="narr-gap">בקיצור: משווים מנקודת המבט של הלקוח, עם כל החלופות, ובכנות.</li></ol></details></div><!--/narr:pitfalls--></div>
   <p><span class="bdg course">מהקורס</span>ארבע הבעיות. <span class="bdg real">במציאות</span>והתיקון של המייסדים לכל אחת.</p>
   <div class="tscroll"><table role="table" class="t stack-t">
     <caption>ארבע המלכודות</caption>
@@ -1735,7 +1805,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 13 MOATS ===== -->
 <section id="moats" class="stack" aria-labelledby="h-moats">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 13 · </span>מה שומר עליכם</div><h2 id="h-moats">בידול מול חפיר (<span lang="en">moat</span>)</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 13 · </span>מה שומר עליכם</div><h2 id="h-moats">בידול מול חפיר (<span lang="en">moat</span>)</h2><!--narr:moats--><div class="narr" id="narr-moats" data-key="moats" data-title="בידול מול חפיר (moat)"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-moats"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:45)</span></button><div class="narr-panel" id="narr-p-moats"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:45)</p><audio controls preload="none" src="audio/moats.m4a" aria-label="האזנה לנושא: בידול מול חפיר (moat)"><track kind="captions" srclang="he" label="עברית" src="audio/moats.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">בידול הוא למה בוחרים בכם היום.</li><li data-n="2">חפיר הוא למה גם מחר.</li><li data-n="3">חפיר הוא כמו תעלת מים סביב טירה: משהו שקשה מאוד לחצות.</li><li data-n="4">פיצ׳רים הם בידול, אבל בדרך כלל הם לא חפיר, כי אפשר להעתיק אותם.</li><li data-n="5" class="narr-gap">המילטון הלמר, בספר <bdi dir="ltr" class="m">7 Powers</bdi>, נותן מבחן פשוט.</li><li data-n="6">יתרון אמיתי צריך שני דברים יחד: הוא מכניס לכם יותר כסף, ומתחרים לא יכולים להעתיק אותו.</li><li data-n="7" class="narr-gap">הכוח הראשון הוא אפקט רשת: המוצר שווה יותר ככל שיותר אנשים משתמשים בו.</li><li data-n="8">באפליקציית וייז, כל נהג ששולח דיווח משפר את המידע לכל השאר.</li><li data-n="9">השני הוא עלויות מעבר: יקר או מסוכן ללקוח לעזוב.</li><li data-n="10">השלישי הוא יתרון לגודל: העלות ליחידה יורדת ככל שגדלים.</li><li data-n="11">הרביעי הוא מיצוב־נגדי: מודל חדש שהחברה הגדולה לא תעתיק, כי זה יפגע בעסק שלה.</li><li data-n="12">רשת הסרטים בלוקבסטר הרוויחה מקנסות על איחור, ולכן לא העתיקה מודל בלי קנסות, כמו של נטפליקס.</li><li data-n="13">ויש עוד שלושה: מותג, משאב נעול ודרך עבודה שקשה להעתיק.</li><li data-n="14" class="narr-gap">בשלב הראשון, כמעט לאף אחד אין עדיין חפיר.</li><li data-n="15">המשקיע רוצה לשמוע למה תנצחו עכשיו בקבוצה הראשונה, ואיזה חפיר אתם בונים.</li><li data-n="16">וגם &quot;הצוות שלנו טוב יותר&quot; ו&quot;נזוז מהר יותר&quot; הם לא חפיר.</li><li data-n="17" class="narr-gap">בקיצור: בידול מביא לקוחות היום, וחפיר שומר עליהם מחר.</li></ol></details></div><!--/narr:moats--></div>
   <p class="brief"><span class="lbl">הכלל</span>פיצ׳רים הם בידול. פיצ׳רים הם בדרך כלל <strong>לא</strong> חפיר, כי אפשר להעתיק אותם.</p>
   <figure class="pic wide"><img src="img/moat-1200.webp" srcset="img/moat-640.webp 640w, img/moat-960.webp 960w, img/moat-1200.webp 1200w" sizes="(max-width:1132px) calc(100vw - 32px), 1100px" alt="טירה עם חנות על אי, מוקפת תעלת מים סוערת. לקוחות חוצים גשר עץ אל החנות, ובחוץ שלושה אנשים בסירות משוטים קטנות נאבקים בגלים." loading="lazy" decoding="async" width="1200" height="679"><figcaption>בידול הוא למה בוחרים בכם היום. חפיר הוא התעלה שמונעת מאחרים לקחת את הלקוח מחר.</figcaption></figure>
   <div class="vs">
@@ -1764,7 +1834,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 14 INCUMBENTS ===== -->
 <section id="incumbents" class="stack" aria-labelledby="h-inc">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 14 · </span>התגובה של הגדולים</div><h2 id="h-inc">איך החברות הגדולות מגיבות, ומתי מותר להיכנס לשוק צפוף</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 14 · </span>התגובה של הגדולים</div><h2 id="h-inc">איך החברות הגדולות מגיבות, ומתי מותר להיכנס לשוק צפוף</h2><!--narr:incumbents--><div class="narr" id="narr-incumbents" data-key="incumbents" data-title="איך החברות הגדולות מגיבות, ומתי מותר להיכנס לשוק צפוף"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-incumbents"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:51)</span></button><div class="narr-panel" id="narr-p-incumbents"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:51)</p><audio controls preload="none" src="audio/incumbents.m4a" aria-label="האזנה לנושא: איך החברות הגדולות מגיבות, ומתי מותר להיכנס לשוק צפוף"><track kind="captions" srclang="he" label="עברית" src="audio/incumbents.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">החברה הגדולה והקיימת בשוק לא תשב בשקט.</li><li data-n="2">לכן שואלים: &quot;מה אנחנו יודעים על השוק, שהמובילים לא יודעים, או לא יפעלו לפיו?&quot;</li><li data-n="3" class="narr-gap">לפי פורטר, שהמאמר מצטט, כדי לחזות איך מתחרה יגיב צריך לדעת עליו ארבעה דברים.</li><li data-n="4">מה האסטרטגיה שלו היום, מה המטרות שלו, מה ההנחות שלו ומה היכולות שלו.</li><li data-n="5" class="narr-gap">לחברה גדולה יש חמש תגובות נפוצות.</li><li data-n="6">היא יכולה להתעלם: סיסקו לא פעלה לפי ההצעה של אריק יואן, והוא עזב והקים את זום.</li><li data-n="7">היא יכולה להעתיק: אינסטגרם העתיקה את ה־<bdi dir="ltr" class="m">Stories</bdi> של סנאפצ׳ט.</li><li data-n="8">תוך כ־8 חודשים, היו ב־<bdi dir="ltr" class="m">Stories</bdi> שלה יותר משתמשים יומיים מאשר בכל סנאפצ׳ט.</li><li data-n="9">היא יכולה לצרף לחבילה: מיקרוסופט הוסיפה את <bdi dir="ltr" class="m">Teams</bdi> ל־<bdi dir="ltr" class="m">Office</bdi>.</li><li data-n="10">היא יכולה לקנות את הסטארט־אפ, כמו גוגל שקנתה את וייז.</li><li data-n="11">או שהיא פותחת במלחמת מחירים.</li><li data-n="12" class="narr-gap">אז מה עושים? לא סומכים על פיצ׳ר אחד, ובונים משהו שקשה להעתיק.</li><li data-n="13">ולא נלחמים ראש בראש על מחיר, אלא בוחרים פלח שבו המחיר הוא לא העיקר.</li><li data-n="14" class="narr-gap">ומתי מותר להיכנס לשוק צפוף?</li><li data-n="15">כשהלקוחות של החברות הקיימות לא מרוצים, ואתם יודעים בדיוק למה.</li><li data-n="16">כשיש לכם גישה אחרת, ולא רק העתק זול יותר.</li><li data-n="17">וכשמשהו השתנה, או שהשוק גדל.</li><li data-n="18">גוגל נכנסה אחרי מנועי חיפוש רבים, וניצחה בזכות תוצאות רלוונטיות יותר.</li><li data-n="19" class="narr-gap">בקיצור: תכננו מראש איך הגדולים יגיבו, ונצחו במקום שבו הם לא יכולים או לא רוצים להילחם.</li></ol></details></div><!--/narr:incumbents--></div>
   <p class="brief"><span class="lbl">השאלה שכל מנצח יודע לענות עליה</span>"מה אנחנו יודעים על השוק הזה, שהמובילים לא יודעים, או לא יפעלו לפיו?" מייקל סייבל קורא לזה <strong>התובנה הייחודית</strong>. <a class="cite" href="#src-s3" aria-label="מקור S3"><bdi dir="ltr">S3</bdi></a></p>
   <div class="split">
   <div class="stack"><p><span class="bdg real">במציאות</span>החברה הגדולה והקיימת בשוק (<span lang="en">incumbent</span>) לא תשב בשקט.</p>
@@ -1788,7 +1858,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
   <ol class="plain">
     <li><strong>הלקוחות של החברות הקיימות לא מרוצים</strong>, ואתם יודעים בדיוק למה.</li>
     <li><strong>יש לכם גישה אחרת</strong> (טכנולוגיה או מודל עסקי), ולא רק העתק זול יותר.</li>
-    <li><strong>משהו השתנה</strong> (ה"למה עכשיו"), והחברות הקיימות לאט לנצל אותו.</li>
+    <li><strong>משהו השתנה</strong> (ה"למה עכשיו"), והחברות הקיימות איטיות לנצל אותו.</li>
     <li><strong>השוק גדל</strong>, כך שאפשר לזכות בלקוחות חדשים בלי לגנוב אותם.</li>
   </ol>
   <div class="g2">
@@ -1801,7 +1871,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 15 THIEL VS GRAHAM ===== -->
 <section id="thiel" class="stack" aria-labelledby="h-thiel">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 15 · </span>ויכוח מפורסם</div><h2 id="h-thiel">תיל מול גרהם: האם תחרות זה טוב?</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 15 · </span>ויכוח מפורסם</div><h2 id="h-thiel">תיל מול גרהם: האם תחרות זה טוב?</h2><!--narr:thiel--><div class="narr" id="narr-thiel" data-key="thiel" data-title="תיל מול גרהם: האם תחרות זה טוב?"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-thiel"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:23)</span></button><div class="narr-panel" id="narr-p-thiel"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:23)</p><audio controls preload="none" src="audio/thiel.m4a" aria-label="האזנה לנושא: תיל מול גרהם: האם תחרות זה טוב?"><track kind="captions" srclang="he" label="עברית" src="audio/thiel.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">ויכוח מפורסם: האם תחרות זה טוב?</li><li data-n="2" class="narr-gap">פיטר תיל אומר ש&quot;תחרות היא בשביל מפסידים&quot;.</li><li data-n="3">בתחרות מושלמת, הרבה חברות מוכרות כמעט אותו דבר, ואף אחת לא יכולה להעלות מחיר.</li><li data-n="4">הרווחים נשחקים לאפס, כמו בדוכני פלאפל באותו רחוב.</li><li data-n="5">לכן הוא ממליץ להתחיל קטן, לשלוט בנישה, ורק אז להתרחב.</li><li data-n="6" class="narr-gap">פול גרהם אומר את ההפך: &quot;עדיף שיהיו מתחרים&quot;.</li><li data-n="7">סטארט־אפים כמעט לא מתים בגלל מתחרים.</li><li data-n="8">והרבה מנצחים גדולים לא היו ראשונים, כמו גוגל וזום.</li><li data-n="9" class="narr-gap">איך שניהם צודקים? הם מדברים על רגעים שונים.</li><li data-n="10">בהתחלה, תחרות היא ראיה שיש שוק.</li><li data-n="11">ובסוף, אתם רוצים להיות כל כך שונים בפלח שלכם, שאתם כבר לא במלחמת מחירים.</li><li data-n="12">&quot;לברוח מתחרות&quot; לא אומר &quot;לבחור שוק בלי מתחרים&quot;.</li><li data-n="13">זה אומר למצוא פלח, גישה או מודל, שבהם אתם הכי טובים בבירור.</li><li data-n="14">ולהיות ראשון חשוב פחות מלהיות הראשון שעושה את זה נכון.</li><li data-n="15" class="narr-gap">בקיצור: תחרות מוכיחה שיש שוק, והמטרה היא להיות שונים מספיק כדי לא להילחם על מחיר.</li></ol></details></div><!--/narr:thiel--></div>
   <div class="vs">
     <div class="cd"><span class="k">פיטר תיל · "תחרות היא בשביל מפסידים"</span><ul class="plain">
       <li>בתחרות מושלמת, כלומר הרבה חברות שמוכרות כמעט אותו דבר, אף אחת לא יכולה להעלות מחיר, והרווחים נשחקים לאפס. דוגמה: דוכני פלאפל באותו רחוב. רווח שנשאר לאורך שנים בא ממונופול, כלומר מלהיות כמעט היחידים שעושים משהו טוב בשוק שלכם, בזכות חדשנות.</li>
@@ -1826,7 +1896,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 16 ISRAEL ===== -->
 <section id="israel" class="stack" aria-labelledby="h-il">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 16 · </span>מהבית</div><h2 id="h-il">דוגמאות מישראל</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 16 · </span>מהבית</div><h2 id="h-il">דוגמאות מישראל</h2><!--narr:israel--><div class="narr" id="narr-israel" data-key="israel" data-title="דוגמאות מישראל"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-israel"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:38)</span></button><div class="narr-panel" id="narr-p-israel"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:38)</p><audio controls preload="none" src="audio/israel.m4a" aria-label="האזנה לנושא: דוגמאות מישראל"><track kind="captions" srclang="he" label="עברית" src="audio/israel.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שש חברות ישראליות, והלקח מכל אחת.</li><li data-n="2" class="narr-gap">וייז היא דוגמה לאפקט רשת: כל נהג שיפר את המידע לכל השאר.</li><li data-n="3">גוגל קנתה אותה ב־2013, ב־966 מיליון דולר במזומן.</li><li data-n="4" class="narr-gap">מובילאיי מראה שחברה גדולה מעדיפה לפעמים לקנות, במקום להתחרות.</li><li data-n="5">אינטל קנתה אותה ב־15.3 מיליארד דולר.</li><li data-n="6" class="narr-gap"><bdi dir="ltr" class="m">monday.com</bdi> היא דוגמה לראש גשר של לקוח אחד: <bdi dir="ltr" class="m">Wix</bdi>.</li><li data-n="7">היא התחילה ככלי פנימי, וחברת <bdi dir="ltr" class="m">Wix</bdi> הייתה הלקוחה הראשונה שלה.</li><li data-n="8" class="narr-gap"><bdi dir="ltr" class="m">Fiverr</bdi> נכנסה לשוק צפוף של פרילנסרים, עם גישה אחרת.</li><li data-n="9">היא ארזה שירותים כ&quot;גיגים&quot;, עם היקף ומחיר קבועים.</li><li data-n="10">בהתחלה כולם עלו 5 דולר, ומכאן השם.</li><li data-n="11" class="narr-gap"><bdi dir="ltr" class="m">Gong</bdi> נכנסה לשוק צפוף של תוכנות מכירה, והגדירה קטגוריה חדשה.</li><li data-n="12">היא מקליטה ומנתחת שיחות מכירה.</li><li data-n="13" class="narr-gap"><bdi dir="ltr" class="m">Wiz</bdi> נכנסה לאבטחת ענן, שבה כבר מכרו חברות גדולות.</li><li data-n="14">לפי החברה, ההכנסות השנתיות החוזרות שלה עלו ממיליון ל־100 מיליון דולר.</li><li data-n="15">וזה קרה בתוך כ־18 חודשים.</li><li data-n="16">במרץ 2026, גוגל השלימה את הרכישה של <bdi dir="ltr" class="m">Wiz</bdi>, ב־32 מיליארד דולר.</li><li data-n="17" class="narr-gap">בקיצור: אפקט רשת, לקוח ראשון אחד, וגישה אחרת בשוק צפוף, עובדים גם אצלנו.</li></ol></details></div><!--/narr:israel--></div>
   <p><span class="bdg real">במציאות</span>שש חברות ישראליות, והלקח מכל אחת. כתבנו רק עובדות שיש להן מקור, עם קישור.</p>
   <div class="g2 il" data-scroll aria-label="שש חברות ישראליות">
     <article class="cd"><span class="tagl">אפקט רשת · קנייה</span><b class="h">וייז (Waze)</b><p>אספה נתוני מיקום וזמני נסיעה מהטלפונים של הנהגים, ודיווחים מהם. כל נהג שיפר את המידע לכל השאר: אפקט רשת. <a class="cite" href="#src-s26" aria-label="מקור S26"><bdi dir="ltr">S26</bdi></a> גוגל קנתה אותה ב־2013 ב־966 מיליון דולר במזומן, לפי הדיווח של גוגל. <a class="cite" href="#src-s25" aria-label="מקור S25"><bdi dir="ltr">S25</bdi></a></p><a class="out" href="https://www.startribune.com/google-finally-reveals-that-acquisition-of-waze-mapping-service-cost-966-million/217016051" rel="noopener">המקור על הרכישה</a></article>
@@ -1855,7 +1925,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 17 PAPER / WHAT IS CA ===== -->
 <section id="paper" class="stack" aria-labelledby="h-paper">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 17 · </span>המאמר</div><h2 id="h-paper">מה זה ניתוח מתחרים (CA), ומה בדק המחקר</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 17 · </span>המאמר</div><h2 id="h-paper">מה זה ניתוח מתחרים (CA), ומה בדק המחקר</h2><!--narr:paper--><div class="narr" id="narr-paper" data-key="paper" data-title="מה זה ניתוח מתחרים (CA), ומה בדק המחקר"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-paper"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:37)</span></button><div class="narr-panel" id="narr-p-paper"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:37)</p><audio controls preload="none" src="audio/paper.m4a" aria-label="האזנה לנושא: מה זה ניתוח מתחרים (CA), ומה בדק המחקר"><track kind="captions" srclang="he" label="עברית" src="audio/paper.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">ניתוח מתחרים <bdi dir="ltr" class="m">(CA)</bdi> הוא איסוף מידע על יריבים, ניתוח שלו ופירוש שלו, כדי לקבל החלטות.</li><li data-n="2" class="narr-gap">בחלק הזה נסכם מאמר אחד: סקירה שיטתית של המחקר על ניתוח מתחרים.</li><li data-n="3">שלושה חוקרים מגרמניה פרסמו אותה ב־2019.</li><li data-n="4">סקירה שיטתית מחפשת מאמרים לפי כללים קבועים מראש, ולא לפי תחושה.</li><li data-n="5" class="narr-gap">למה הם כתבו את המאמר? כי הפסד למתחרים הוא אחת הסיבות המובילות לכישלון של סטארט־אפים.</li><li data-n="6">והם עובדים כמאמנים וכמשקיעים, וראו שמייסדים &quot;מתקשים מאוד&quot; לעשות ניתוח מתחרים טוב.</li><li data-n="7" class="narr-gap">הם התחילו מיותר מ־4,000 תוצאות חיפוש.</li><li data-n="8">בסוף נכנסו לסקירה רק 78 מחקרים.</li><li data-n="9">כולם אומרים &quot;תכירו את המתחרים&quot;, אבל מעט חוקרים בודקים איך.</li><li data-n="10">ורק 4 מחקרים עוסקים בסטארט־אפים.</li><li data-n="11" class="narr-gap">לפי המאמר, סטארט־אפ הוא &quot;לא רק עסק גדול בקטן&quot;.</li><li data-n="12">יש לו היסטוריה קצרה, סביבה משתנה ומעט משאבים.</li><li data-n="13">ואין בו מחלקה שעושה ניתוח מתחרים.</li><li data-n="14" class="narr-gap">סטארט־אפ עושה ניתוח מתחרים כדי לבדוק את המודל העסקי, לשכנע משקיעים ולמצוא מקום בשוק.</li><li data-n="15">חברה קיימת עושה אותו בעיקר כדי לנחש איך מתחרים יגיבו.</li><li data-n="16" class="narr-gap">בקיצור: יש הרבה מחקר על מתחרים, אבל מעט מאוד על איך סטארט־אפ צריך לנתח אותם.</li></ol></details></div><!--/narr:paper--></div>
   <p class="brief"><span class="lbl">ממצא בפני עצמו</span>מתוך כ־8,000 תוצאות חיפוש (כולל החיפוש בהפניות), רק 78 עוסקות באמת באיך עושים ניתוח מתחרים. כולם אומרים "תכירו את המתחרים", אבל מעט חוקרים בודקים איך.</p>
   <div class="refbox"><b>המאמר</b><p lang="en" dir="ltr" style="text-align:left">Hatzijordanou, N., Bohn, N., &amp; Terzidis, O. (2019). A systematic literature review on competitor analysis: status quo and start-up specifics. <i>Management Review Quarterly, 69</i>, 415–458. <a href="https://doi.org/10.1007/s11301-019-00158-5" rel="noopener">doi.org/10.1007/s11301-019-00158-5</a></p><p>החוקרים: נדיה חציורדנו וניקולאי בון מבית הספר ליזמות של מכון האסו פלטנר בפוטסדם, ואורסטיס טרזידיס ממכון קרלסרואה לטכנולוגיה (KIT), גרמניה. מספרי העמודים שנציין הם של כתב העת.</p></div>
   <p class="note"><span class="bdg paper">מהמאמר</span>מה שכתוב במאמר. <span class="bdg ours">פרשנות שלנו</span>מסקנה או דוגמה שלנו, שהמאמר לא אומר.</p>
@@ -1954,7 +2024,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 18 LOOP ===== -->
 <section id="loop" class="stack" aria-labelledby="h-loop">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 18 · </span>התהליך</div><h2 id="h-loop">ניתוח מתחרים הוא לולאה, לא שקף</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 18 · </span>התהליך</div><h2 id="h-loop">ניתוח מתחרים הוא לולאה, לא שקף</h2><!--narr:loop--><div class="narr" id="narr-loop" data-key="loop" data-title="ניתוח מתחרים הוא לולאה, לא שקף"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-loop"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:35)</span></button><div class="narr-panel" id="narr-p-loop"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:35)</p><audio controls preload="none" src="audio/loop.m4a" aria-label="האזנה לנושא: ניתוח מתחרים הוא לולאה, לא שקף"><track kind="captions" srclang="he" label="עברית" src="audio/loop.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">ניתוח מתחרים הוא לולאה, ולא שקף שעושים פעם אחת.</li><li data-n="2" class="narr-gap">החוקרים איחדו את כל המחקרים לתהליך אחד, עם שלושה שלבים.</li><li data-n="3">תכנון: מחליטים מה המטרה, ומה היקף הניתוח.</li><li data-n="4">ביצוע: לולאה של שלושה צעדים. מזהים את המתחרים, אוספים מידע ומנתחים אותו.</li><li data-n="5">ומסקנות לפעולה: מה עושים עם התוצאות, ומי צריך לדעת אותן.</li><li data-n="6" class="narr-gap">למה זו לולאה? כי כשמדברים עם לקוחות, מתגלים מתחרים חדשים, וחוזרים לזיהוי.</li><li data-n="7">וגם כל כלי ניתוח צריך מידע אחר, ולכן הכלי קובע מה אוספים.</li><li data-n="8" class="narr-gap">המאמר נותן ארבע דרכים למצוא מתחרים.</li><li data-n="9">מגדירים את גבולות השוק, ושואלים מה הלקוחות רואים כחלופה.</li><li data-n="10">מחפשים למי יש יכולות ומשאבים דומים, ושואלים את מי המנהלים רואים כמתחרים.</li><li data-n="11" class="narr-gap">ויש ארבעה סוגי מתחרים: ישיר, עקיף, פוטנציאלי והיסטורי.</li><li data-n="12">פוטנציאלי הוא מי שיכול להיכנס לשוק, כי יש לו משאבים דומים.</li><li data-n="13">היסטורי הוא מי שהתחרה בעבר, ואפשר ללמוד ממנו למה הוא נכשל.</li><li data-n="14">למשל, למאפייה שכונתית חדשה, המאפייה שנסגרה באותו רחוב היא מתחרה היסטורי.</li><li data-n="15" class="narr-gap">בקיצור: מתכננים, מזהים, אוספים ומנתחים, וחוזרים שוב בכל פעם שלומדים משהו חדש.</li></ol></details></div><!--/narr:loop--></div>
   <p class="brief"><span class="lbl">שימו לב</span>הקורס מזהיר שמייסדים ממפים רק מתחרים של היום (מלכודת 4 בנושא 12). המאמר נותן את התיקון: לחפש במפורש גם מתחרים <strong>פוטנציאליים והיסטוריים</strong>.</p>
   <p><span class="bdg paper">מהמאמר</span>החוקרים איחדו את כל המחקרים לתהליך אחד עם שלושה שלבים. בתוך שלב הביצוע יש לולאה שחוזרת על עצמה. (תרשים 2, עמ׳ 431)</p>
   <div class="split loop-split">
@@ -2017,7 +2087,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 19 PURPOSES ===== -->
 <section id="purposes" class="stack" aria-labelledby="h-purp">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 19 · </span>בשביל מה</div><h2 id="h-purp">4 מטרות ו־11 תת־מטרות</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 19 · </span>בשביל מה</div><h2 id="h-purp">4 מטרות ו־11 תת־מטרות</h2><!--narr:purposes--><div class="narr" id="narr-purposes" data-key="purposes" data-title="מטרות ו־11 תת־מטרות"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-purposes"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:13)</span></button><div class="narr-panel" id="narr-p-purposes"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:13)</p><audio controls preload="none" src="audio/purposes.m4a" aria-label="האזנה לנושא: מטרות ו־11 תת־מטרות"><track kind="captions" srclang="he" label="עברית" src="audio/purposes.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">לפני שמתחילים, כתבו במשפט אחד בשביל מה הניתוח.</li><li data-n="2">התשובה קובעת כמה עמוק לחפור, ובאיזה כלי להשתמש.</li><li data-n="3" class="narr-gap">החוקרים מצאו ארבע קבוצות של מטרות, ובתוכן 11 תת־מטרות.</li><li data-n="4">המטרה הראשונה: להבין את המצב היום, מי מתחרה במי ואיפה אנחנו.</li><li data-n="5">זו המטרה הנפוצה ביותר במחקרים.</li><li data-n="6">השנייה: להגדיר אסטרטגיה, כמו מחיר, מיצוב וערוצי הפצה.</li><li data-n="7">השלישית: לגיטימציה, מוטיבציה ותקשורת, כלומר להצדיק החלטה ולגייס אנשים.</li><li data-n="8">והרביעית: השראה ולמידה מהיריבים.</li><li data-n="9" class="narr-gap">דוגמה: מייסדת של אפליקציית משלוחים.</li><li data-n="10">היא בונה טבלת השוואה מפורטת כדי לבחור מחיר, וזו אסטרטגיה.</li><li data-n="11">למשקיעים היא מראה מפה פשוטה בשקף אחד, וזו לגיטימציה.</li><li data-n="12">ועם הצוות היא שואלת &quot;מה אפשר ללמוד מהם?&quot;, וזו למידה.</li><li data-n="13" class="narr-gap">בקיצור: קודם המטרה, ורק אחריה הכלי.</li></ol></details></div><!--/narr:purposes--></div>
   <p class="brief"><span class="lbl">הכלל המעשי</span>לפני שמתחילים, כתבו במשפט אחד <strong>בשביל מה</strong> הניתוח. התשובה קובעת כמה עמוק לחפור ובאיזה כלי להשתמש.</p>
   <p><span class="bdg paper">מהמאמר</span>החוקרים מצאו ארבע קבוצות של מטרות, ובתוכן 11 תת־מטרות. המספר בסוגריים הוא כמה פעמים המטרה הוזכרה במחקרים. מטרות חופפות, והרבה פעמים רודפים אחרי כמה יחד. (טבלה 6, עמ׳ 433)</p>
   <div class="tscroll"><table role="table" class="t stack-t small">
@@ -2047,7 +2117,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 20 QUALITY ===== -->
 <section id="quality" class="stack" aria-labelledby="h-qual">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 20 · </span>איך יודעים שזה טוב</div><h2 id="h-qual">איכות, נקודות עיוורות והטיות</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 20 · </span>איך יודעים שזה טוב</div><h2 id="h-qual">איכות, נקודות עיוורות והטיות</h2><!--narr:quality--><div class="narr" id="narr-quality" data-key="quality" data-title="איכות, נקודות עיוורות והטיות"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-quality"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:29)</span></button><div class="narr-panel" id="narr-p-quality"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:29)</p><audio controls preload="none" src="audio/quality.m4a" aria-label="האזנה לנושא: איכות, נקודות עיוורות והטיות"><track kind="captions" srclang="he" label="עברית" src="audio/quality.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">ניתוח מתחרים טוב נותן תוצאות שימושיות, ולא רק דוח יפה.</li><li data-n="2" class="narr-gap">המאמר מונה ארבע קבוצות של כללי איכות.</li><li data-n="3">הראשונה היא תכנון השיטה: מטרה ברורה, כמה מקורות וצורה קצרה שאפשר לפעול לפיה.</li><li data-n="4">וגם לראות את השוק דרך העיניים של הלקוח ושל המתחרה.</li><li data-n="5">השנייה: לבחור בכוונה שיטה שמתאימה למטרה.</li><li data-n="6">ולא להשתמש תמיד באותה שיטה מוכרת, גם כשהיא לא מתאימה.</li><li data-n="7">השלישית היא הסביבה בארגון: להודות שיש תחרות, ולהחזיק את הניתוח קרוב למי שמחליט.</li><li data-n="8">והרביעית היא התוצר: תוצאה רלוונטית, מדויקת, בזמן ועם רמת ביטחון ברורה.</li><li data-n="9">טבלה של עמוד אחד עדיפה על דוח של 40 עמודים שאף אחד לא קורא.</li><li data-n="10" class="narr-gap">הצד השני של האיכות הוא נקודות עיוורות והטיות.</li><li data-n="11">נקודה עיוורת היא משהו חשוב על המתחרים, שאתם לא רואים.</li><li data-n="12">הטיה היא עיוות קבוע בשיפוט, כמו הנחות שגויות על המתחרים.</li><li data-n="13">מייסדים אוהבים את הרעיון שלהם, ולכן נוטים לזלזל ביריבים.</li><li data-n="14">נסו משחק תפקידים: אם הייתם החברה הגדולה, איך הייתם מוחקים את הסטארט־אפ שלכם?</li><li data-n="15" class="narr-gap">בקיצור: מקפידים על כללי האיכות, וכך ההטיות קטנות.</li></ol></details></div><!--/narr:quality--></div>
   <p><span class="bdg paper">מהמאמר</span>"איכות" כאן היא עד כמה השיטה נותנת את התוצאות הכי טובות ושימושיות. יש ארבע קבוצות של כללים. (טבלה 7, עמ׳ 438)</p>
   <div class="g2">
     <div class="cd r1"><span class="lbl">1 · תכנון השיטה</span><ul class="plain">
@@ -2083,7 +2153,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 21 FRAMEWORK ===== -->
 <section id="framework" class="stack" aria-labelledby="h-fw">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 21 · </span>התמונה המלאה</div><h2 id="h-fw">המסגרת: 5 ממדים של ניתוח מתחרים</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 21 · </span>התמונה המלאה</div><h2 id="h-fw">המסגרת: 5 ממדים של ניתוח מתחרים</h2><!--narr:framework--><div class="narr" id="narr-framework" data-key="framework" data-title="המסגרת: 5 ממדים של ניתוח מתחרים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-framework"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:33)</span></button><div class="narr-panel" id="narr-p-framework"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:33)</p><audio controls preload="none" src="audio/framework.m4a" aria-label="האזנה לנושא: המסגרת: 5 ממדים של ניתוח מתחרים"><track kind="captions" srclang="he" label="עברית" src="audio/framework.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">התרומה המרכזית של המאמר היא מסגרת אחת, עם 5 ממדים של ניתוח מתחרים.</li><li data-n="2">היא אומרת על מה לחשוב, כשמתכננים, עושים או בודקים ניתוח כזה.</li><li data-n="3" class="narr-gap">הממד הראשון: תיאוריות, העדשה וההנחות שדרכן מסתכלים.</li><li data-n="4">השני: מטרה, למה עושים את הניתוח.</li><li data-n="5">השלישי: תהליך, הלולאה של תכנון, ביצוע ומסקנות.</li><li data-n="6">הרביעי: תוקף, האם אפשר לסמוך על התוצאות.</li><li data-n="7">והחמישי: הקשר עסקי, כלומר הסביבה, התרבות בחברה ומגבלות המשאבים.</li><li data-n="8">כל הממדים משפיעים זה על זה.</li><li data-n="9" class="narr-gap">הנה המסגרת על <bdi dir="ltr" class="m">PawWalk</bdi>.</li><li data-n="10">תיאוריות: אנחנו מניחים שבעלי כלבים בוחרים לפי אמון, ולא לפי מחיר.</li><li data-n="11">וזו הנחה שצריך לבדוק.</li><li data-n="12">מטרה: להחליט על מחיר, ולשכנע משקיע.</li><li data-n="13">תהליך: אחרי 20 ראיונות גילינו את גני הכלבים, וחזרנו לזיהוי.</li><li data-n="14">תוקף: האם דיברנו גם עם מוליכים? האם אנחנו מזלזלים בקבוצות הוואטסאפ?</li><li data-n="15">הקשר עסקי: שני מייסדים ושבועיים, ולכן טבלה אחת, ולא תהליך ארוך.</li><li data-n="16" class="narr-gap">בקיצור: תיאוריות, מטרה, תהליך, תוקף והקשר עסקי, חמש שאלות לפני כל ניתוח.</li></ol></details></div><!--/narr:framework--></div>
   <p><span class="bdg paper">מהמאמר</span>התרומה המרכזית של המאמר היא מסגרת אחת. יש בה <strong>חמישה ממדים</strong> נפרדים שמשלימים ומשפיעים זה על זה. היא אומרת על מה צריך לחשוב כשמתכננים, עושים או בודקים ניתוח מתחרים. (תרשים 3, עמ׳ 439)</p>
   <div class="fw" role="group" aria-label="המסגרת של חמשת הממדים">
     <div class="fw-top"><h3 class="h4">1 · תיאוריות</h3><small>העדשה וההנחות שדרכן מסתכלים על הניתוח. יושבות למעלה ומשפיעות על הכול.</small></div>
@@ -2109,7 +2179,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 22 TOOLBOX ===== -->
 <section id="toolbox" class="stack" aria-labelledby="h-tools">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 22 · </span>ארגז הכלים</div><h2 id="h-tools">22 הכלים בטבלה אחת</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 22 · </span>ארגז הכלים</div><h2 id="h-tools">22 הכלים בטבלה אחת</h2><!--narr:toolbox--><div class="narr" id="narr-toolbox" data-key="toolbox" data-title="הכלים בטבלה אחת"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-toolbox"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:32)</span></button><div class="narr-panel" id="narr-p-toolbox"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:32)</p><audio controls preload="none" src="audio/toolbox.m4a" aria-label="האזנה לנושא: הכלים בטבלה אחת"><track kind="captions" srclang="he" label="עברית" src="audio/toolbox.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">המאמר מצא 22 מחקרים שהציעו כלים לזיהוי ולניתוח מתחרים.</li><li data-n="2">בסך הכול, המחקרים מזכירים 74 גישות שונות.</li><li data-n="3">אבל כמעט אף אחת לא אומרת למי היא מתאימה, ולאיזו מטרה.</li><li data-n="4" class="narr-gap">ב־15 מתוך 22 הכלים, לא כתוב בשביל מי הם.</li><li data-n="5">שאר הכלים נבנו ונבדקו על חברות שאינן סטארט־אפים.</li><li data-n="6">ורק שני מחקרים עוזרים לבחור כלי, והם ישנים.</li><li data-n="7" class="narr-gap">כמה כלים מוכרים מהרשימה.</li><li data-n="8">חמשת הכוחות של פורטר: מתחרים חדשים, לקוחות, ספקים, תחליפים והיריבות בענף.</li><li data-n="9">מטריצה שמצליבה חוזקות וחולשות מבפנים, עם הזדמנויות ואיומים מבחוץ.</li><li data-n="10">בנצ׳מרקינג, כלומר השוואה לטובים ביותר.</li><li data-n="11">ומטריצת הפרופיל התחרותי: נותנים משקל לכל גורם הצלחה, ומדרגים את עצמכם ואת המתחרים.</li><li data-n="12" class="narr-gap">אז מה מתאים לצוות של שלושה אנשים?</li><li data-n="13">כלים פשוטים: מטריצת הפרופיל התחרותי, מפת שני צירים, או זיהוי לפי צרכי הלקוח.</li><li data-n="14">תהליך בנצ׳מרקינג של 54 צעדים מתאים לתאגיד, ולא לסטארט־אפ.</li><li data-n="15" class="narr-gap">בקיצור: יש הרבה כלים ומעט הדרכה, ולכן בוחרים כלי פשוט שמתאים למטרה.</li></ol></details></div><!--/narr:toolbox--></div>
   <p><span class="bdg paper">מהמאמר</span>22 מחקרים הציעו כלים לזיהוי ולניתוח מתחרים. הנה כולם, כל אחד בשורה. (טבלה 5, עמ׳ 426 עד 429)</p>
   <p>בסך הכול 78 המחקרים מזכירים 74 גישות שונות לזיהוי ולניתוח. כמעט אף אחת לא אומרת למי היא מתאימה, לאיזו מטרה, או איך משלבים אותה עם אחרות.</p>
   <ul class="stats" aria-label="ארגז הכלים במספרים">
@@ -2163,7 +2233,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 23 STARTUPS ===== -->
 <section id="startups" class="stack" aria-labelledby="h-su">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 23 · </span>השורה התחתונה ליזמים</div><h2 id="h-su">מה מיוחד בסטארט־אפים</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 23 · </span>השורה התחתונה ליזמים</div><h2 id="h-su">מה מיוחד בסטארט־אפים</h2><!--narr:startups--><div class="narr" id="narr-startups" data-key="startups" data-title="מה מיוחד בסטארט־אפים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-startups"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:42)</span></button><div class="narr-panel" id="narr-p-startups"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:42)</p><audio controls preload="none" src="audio/startups.m4a" aria-label="האזנה לנושא: מה מיוחד בסטארט־אפים"><track kind="captions" srclang="he" label="עברית" src="audio/startups.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">רק 4 מתוך 78 המחקרים עוסקים בניתוח מתחרים בסטארט־אפים.</li><li data-n="2">ואין אף כלי שנבנה במיוחד לסטארט־אפים.</li><li data-n="3">סקר אחד מצא שניתוח מתחרים מסודר קשור לביצועים טובים יותר.</li><li data-n="4">אבל זהירות: זה קשר, ולא סיבה. אולי מיזמים טובים פשוט גם מנתחים יותר.</li><li data-n="5" class="narr-gap">החוקרים טוענים שבסטארט־אפ, שתי מטרות מקבלות משקל מיוחד.</li><li data-n="6">הראשונה היא לגיטימציה: להצדיק את &quot;הזכות של הסטארט־אפ להתקיים&quot;, מול משקיעים ועובדים.</li><li data-n="7">השנייה היא למידה, והם מציעים שהיא תהיה הממד המוביל.</li><li data-n="8" class="narr-gap">זה מתחבר לשיטה הרזה <bdi dir="ltr" class="m">(Lean Startup)</bdi>: לבנות, למדוד וללמוד, בסבבים מהירים.</li><li data-n="9">ולאפקטואציה: מתחילים ממה שיש לכם ביד, ובוחרים מה אפשר לבנות ממנו.</li><li data-n="10" class="narr-gap">ואחרי כל פיבוט, כלומר שינוי כיוון, מתגלים מתחרים חדשים.</li><li data-n="11">למשל, כשסטארט־אפ ללימוד שפות עובר מילדים לאנשי עסקים, המתחרים שלו משתנים לגמרי.</li><li data-n="12">לכן עושים את הניתוח מחדש.</li><li data-n="13" class="narr-gap">ומה עושים מחר בבוקר?</li><li data-n="14">מחזיקים יומן מתחרים חי, ומעדכנים אותו אחרי כל סבב ראיונות.</li><li data-n="15">שואלים לקוחות מה הם עשו לפני שהייתם, ומחפשים מי ניסה לפניכם ולמה נכשל.</li><li data-n="16">וכותבים את המטרה לפני שבוחרים כלי.</li><li data-n="17" class="narr-gap">בקיצור: בסטארט־אפ, ניתוח מתחרים הוא כלי ללמידה, וחוזרים עליו אחרי כל שינוי.</li></ol></details></div><!--/narr:startups--></div>
   <p><span class="bdg paper">מהמאמר</span><strong>רק 4 מתוך 78 המחקרים</strong> נותנים מידע על ניתוח מתחרים בסטארט־אפים. החוקרים קוראים לזה "מפוכח עוד יותר". (סעיפים 4.5 ו־5.1 במאמר)</p>
   <ul class="stats" aria-label="סטארט־אפים במחקר, במספרים">
     <li><b>4/78</b> <span>מחקרים עוסקים בסטארט־אפים</span></li>
@@ -2241,7 +2311,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 24 PRACTICE ===== -->
 <section id="practice" class="stack" aria-labelledby="h-prac">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 24 · </span>עושים בעצמכם</div><h2 id="h-prac">3 תרגילים מעשיים, עם פתרונות</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 24 · </span>עושים בעצמכם</div><h2 id="h-prac">3 תרגילים מעשיים, עם פתרונות</h2><!--narr:practice--><div class="narr" id="narr-practice" data-key="practice" data-title="תרגילים מעשיים, עם פתרונות"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-practice"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:43)</span></button><div class="narr-panel" id="narr-p-practice"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:43)</p><audio controls preload="none" src="audio/practice.m4a" aria-label="האזנה לנושא: תרגילים מעשיים, עם פתרונות"><track kind="captions" srclang="he" label="עברית" src="audio/practice.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">בנושא הזה יש שלושה תרגילים. נסו קודם לבד, ורק אחר כך פתחו את הפתרון.</li><li data-n="2" class="narr-gap">תרגיל ראשון: גודל שוק מלמטה, לאפליקציה בדויה לסידור משמרות במסעדות <bdi dir="ltr" class="m">(ShiftBot)</bdi>.</li><li data-n="3">נניח 3,000 עסקים, ומנוי של 200 ₪ בחודש.</li><li data-n="4">זה 2,400 ₪ לעסק בשנה.</li><li data-n="5">והשוק שאפשר לשרת <bdi dir="ltr" class="m">(SAM)</bdi> הוא 7.2 מיליון ₪ בשנה.</li><li data-n="6">את השוק שאפשר להשיג <bdi dir="ltr" class="m">(SOM)</bdi> מחשבים לפי יכולת המכירה: כמה לקוחות תוכלו באמת להחתים.</li><li data-n="7">בסוף השנה השלישית יוצאים בערך 318 לקוחות.</li><li data-n="8">זה קצת יותר מ־10% מהשוק שאפשר לשרת.</li><li data-n="9">והמסקנה: זה אולי עסק קטן וטוב, אבל לא עסק להון סיכון.</li><li data-n="10" class="narr-gap">תרגיל שני: מפת תחרות ל־<bdi dir="ltr" class="m">monday.com</bdi>, בשביל צוות שיווק לא טכני.</li><li data-n="11">המתחרים הקשים הם לא רק כלים דומים, אלא אקסל וקבוצת הוואטסאפ, שמנצחים במחיר ובהרגל.</li><li data-n="12">וחובה ש־<bdi dir="ltr" class="m">monday.com</bdi> תפסיד בשורה אחת לפחות, אחרת אף אחד לא יאמין לטבלה.</li><li data-n="13">והחפיר שלה הוא בעיקר עלויות מעבר: התהליכים של הצוות יושבים בתוך המערכת.</li><li data-n="14" class="narr-gap">תרגיל שלישי: שקף אחד של שוק ותחרות, עד 60 מילים.</li><li data-n="15">שקף טוב מציג בגלוי את ההנחה החלשה, ואת המצב הקיים כמתחרה.</li><li data-n="16" class="narr-gap">בקיצור: מספרים שאפשר לבדוק, טבלה כנה, ושקף אחד שמראה איך אתם חושבים.</li></ol></details></div><!--/narr:practice--></div>
   <div class="box">
     <h3>כל השיעור על דוגמה אחת: PawWalk מההתחלה ועד הסוף</h3>
     <p class="note">לפני התרגילים, הנה כל הכלים של השיעור על אותו רעיון. <strong>כל המספרים הם הנחות ללימוד.</strong></p>
@@ -2360,7 +2430,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 25 CHECKLIST + TEMPLATE ===== -->
 <section id="checklist" class="stack" aria-labelledby="h-chk">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 25 · </span>לפני שאתם מציגים</div><h2 id="h-chk">צ׳ק־ליסט של משקיע, ותבנית לשקף אחד</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 25 · </span>לפני שאתם מציגים</div><h2 id="h-chk">צ׳ק־ליסט של משקיע, ותבנית לשקף אחד</h2><!--narr:checklist--><div class="narr" id="narr-checklist" data-key="checklist" data-title="צ׳ק־ליסט של משקיע, ותבנית לשקף אחד"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-checklist"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:14)</span></button><div class="narr-panel" id="narr-p-checklist"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:14)</p><audio controls preload="none" src="audio/checklist.m4a" aria-label="האזנה לנושא: צ׳ק־ליסט של משקיע, ותבנית לשקף אחד"><track kind="captions" srclang="he" label="עברית" src="audio/checklist.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">משקיעים לא בודקים כמה גדול המספר.</li><li data-n="2">הם בודקים איך הגעתם אליו, ואם אתם כנים לגבי המתחרים.</li><li data-n="3" class="narr-gap">בשקף השוק, בדקו שיש לקוח ראשון מסוים, שאפשר לתת לו שם.</li><li data-n="4">שיש חשבון מלמטה: לקוחות × מחיר × תדירות, עם הנחות מסומנות.</li><li data-n="5">שיש תשובה ברורה לשאלה &quot;למה עכשיו&quot;.</li><li data-n="6">שיש הוכחת ביקוש חזקה מדעות, כמו תשלומים, פיילוטים ושימוש אמיתי.</li><li data-n="7">ושאתם יודעים מה ההנחה הכי רגישה, ואיך תבדקו אותה.</li><li data-n="8" class="narr-gap">בשקף התחרות, בדקו שמופיעות כל החלופות, כולל המצב הקיים.</li><li data-n="9">שהקריטריונים הם אלה שהלקוח בוחר לפיהם, ושאתם חלשים בחלק מהם.</li><li data-n="10">ושיש חפיר שאתם בונים, והערכה איך הגדולים יגיבו.</li><li data-n="11" class="narr-gap">ומה אסור? &quot;1% משוק ענק&quot;, והמשפט &quot;אין לנו מתחרים&quot;.</li><li data-n="12">וגם טבלה שבה אתם מנצחים בכל שורה.</li><li data-n="13" class="narr-gap">בקיצור: לקוח מסוים, חשבון מלמטה, ראיות אמיתיות ותחרות כנה.</li></ol></details></div><!--/narr:checklist--></div>
   <figure class="pic"><img src="img/pitch.webp" srcset="img/pitch-640.webp 640w, img/pitch.webp 1600w" sizes="(max-width:832px) calc(100vw - 32px), 800px" decoding="async" alt="מייסדת מציגה בהתלהבות לשני משקיעים שיושבים ליד שולחן עגול עם כוסות קפה. על המסך מאחוריה: עיגולים אחד בתוך השני, וטבלה של ריבועים צבעוניים." loading="lazy" width="1600" height="904"><figcaption>המשקיעים לא בודקים כמה גדול המספר. הם בודקים איך הגעתם אליו, ואם אתם כנים לגבי המתחרים.</figcaption></figure>
   <p>עברו על השקפים שלכם וסמנו מה כבר יש. הסימונים נשמרים רק בדפדפן שלכם.</p>
   <div class="chkbar"><span class="chkmsg" id="chkMsg" aria-live="polite">סימנתם 0 מתוך 17</span><div class="bar" aria-hidden="true"><i id="chkBar" style="width:0%"></i></div><button class="btn" type="button" id="chkReset">ניקוי</button></div>
@@ -2531,7 +2601,7 @@ footer{border-top:0;padding-top:24px;text-align:center}
 
 <!-- ===== 27 SUMMARY ===== -->
 <section id="sum" class="stack" aria-labelledby="h-sum">
-  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 27 · </span>הכול בעמוד אחד</div><h2 id="h-sum">דף סיכום</h2></div>
+  <div class="sec-head"><div class="eyebrow"><span class="sr">נושא 27 · </span>הכול בעמוד אחד</div><h2 id="h-sum">דף סיכום</h2><!--narr:sum--><div class="narr" id="narr-sum" data-key="sum" data-title="דף סיכום"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-sum"><span aria-hidden="true">🎧</span><span>האזנה לנושא</span> <span class="narr-d">(1:13)</span></button><div class="narr-panel" id="narr-p-sum"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לנושא (1:13)</p><audio controls preload="none" src="audio/sum.m4a" aria-label="האזנה לנושא: דף סיכום"><track kind="captions" srclang="he" label="עברית" src="audio/sum.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">הנה הנקודות הכי חשובות בשיעור.</li><li data-n="2" class="narr-gap">אחת: <bdi dir="ltr" class="m">TAM</bdi> הוא כל השוק, <bdi dir="ltr" class="m">SAM</bdi> מה שאפשר לשרת, <bdi dir="ltr" class="m">SOM</bdi> מה שתשיגו ו־<bdi dir="ltr" class="m">TM</bdi> הקבוצה שבה מתחילים.</li><li data-n="3">שתיים: שוק <bdi dir="ltr" class="m">=</bdi> לקוחות × מחיר × תדירות, ובזירת מסחר גם × העמלה.</li><li data-n="4">שלוש: משקיעים קוראים את השיטה, ולא את המספר. &quot;1% משוק ענק&quot; הוא דגל אדום.</li><li data-n="5">ארבע: מוצאים את ההנחה הכי לא בטוחה, ובודקים אותה קודם.</li><li data-n="6">חמש: מתחילים בראש גשר, ומוכיחים ביקוש בכסף ובהתחייבות, לא במחמאות.</li><li data-n="7">שש: המתחרה הכי חזק הוא בדרך כלל המצב הקיים, והמשפט &quot;אין לנו מתחרים&quot; הוא דגל אדום.</li><li data-n="8">שבע: בידול הוא למה בוחרים בכם היום, וחפיר הוא למה גם מחר.</li><li data-n="9">ושמונה: ניתוח מתחרים הוא לולאה, וחוזרים עליו אחרי כל פיבוט.</li><li data-n="10" class="narr-gap">ושאלה לסיום: מה ההנחה הכי חלשה בגודל השוק שלכם, ואיך תבדקו אותה השבוע?</li></ol></details></div><!--/narr:sum--></div>
   <div class="g2 sumcards">
     <div class="cd"><b class="h">1 · גודל השוק</b><ul class="plain">
       <li><strong>TAM</strong> כל הכסף אם כולם קונים. <strong>SAM</strong> מה שאפשר לשרת. <strong>SOM</strong> מה שאפשר להשיג בזמן מוגדר (בדוגמאות של הקורס: 3 עד 5 שנים). <strong>TM</strong> הקבוצה שבה מתחילים.</li>
@@ -2961,5 +3031,251 @@ window.addEventListener('resize',()=>{if(window.innerWidth===rw)return;rw=window
 })();
 </script>
 
+<!--narr:js--><script>/* narr: lesson narration players. Per section: .narr (button, panel with <audio>, speed, live caption, transcript).
+   Per lesson: .narr-all plays every section in order, scrolls each into view, remembers the place (localStorage).
+   Only one audio/video plays at a time. Without JS the plain <audio controls> and the transcript still work. */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  root.classList.add('narr-js');
+  var players = [].slice.call(document.querySelectorAll('.narr'));
+  if (!players.length) return;
+  var KEY = 'narr:' + location.pathname, RKEY = 'narr:rate';
+  function get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
+  function del(k) { try { localStorage.removeItem(k); } catch (e) { } }
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rate = +get(RKEY) || 1;
+  var allBox = document.querySelector('.narr-all');
+  var allBtn = allBox && allBox.querySelector('.narr-all-btn');
+  var allStatus = allBox && allBox.querySelector('.narr-all-status');
+  var allRestart = allBox && allBox.querySelector('.narr-all-restart');
+  var allMode = false, cur = -1, lastSave = 0;
+
+  function fmt(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+
+  // ---- one audio at a time (narration and the page's videos) ----
+  document.addEventListener('play', function (e) {
+    var t = e.target;
+    if (t.muted) return;   // a silent looping clip (autoplays when scrolled into view) never stops the narration
+    [].forEach.call(document.querySelectorAll('audio, video'), function (m) { if (m !== t && !m.paused && !m.muted) m.pause(); });
+    // a page may also have the device's read-aloud (speechSynthesis): stop it while media plays
+    try { if (window.speechSynthesis && speechSynthesis.speaking) speechSynthesis.cancel(); } catch (x) { }
+    [].forEach.call(document.querySelectorAll('.say[aria-pressed="true"]'), function (b) { b.setAttribute('aria-pressed', 'false'); });
+  }, true);
+  document.addEventListener('click', function (e) {   // the page's own read-aloud button pauses the narration
+    if (e.target.closest && e.target.closest('.say')) players.forEach(function (p) { if (p.audio && !p.audio.paused) p.audio.pause(); });
+  }, true);
+
+  function open(p, yes) {
+    p.panel.classList.toggle('is-open', yes);
+    p.btn.setAttribute('aria-expanded', yes ? 'true' : 'false');
+  }
+
+  function setRate(r) {
+    rate = r; set(RKEY, r);
+    players.forEach(function (p) {
+      p.audio.defaultPlaybackRate = r; p.audio.playbackRate = r;
+      [].forEach.call(p.speed, function (b) { b.setAttribute('aria-pressed', +b.dataset.rate === r ? 'true' : 'false'); });
+    });
+  }
+
+  function showCue(p) {
+    var tr = p.track, c = tr && tr.activeCues && tr.activeCues[0];
+    var id = c ? c.id : null;
+    if (id === p.on) return;
+    p.on = id;
+    [].forEach.call(p.lines, function (li) {
+      var on = li.dataset.n === id;
+      li.classList.toggle('is-on', on);
+      if (on) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
+    });
+    if (c) p.cap.textContent = c.text.replace(/^‏/, '');
+  }
+
+  players.forEach(function (el, i) {
+    var p = { el: el, i: i, btn: el.querySelector('.narr-btn'), panel: el.querySelector('.narr-panel'), audio: el.querySelector('audio'),
+      speed: el.querySelectorAll('.narr-speed button'), cap: el.querySelector('.narr-cap'), lines: el.querySelectorAll('.narr-lines li'),
+      title: el.dataset.title || '', on: null };
+    players[i] = p;
+    var tEl = p.audio.querySelector('track');
+    p.track = tEl ? tEl.track : (p.audio.textTracks && p.audio.textTracks[0]);
+    if (p.track) {
+      p.track.mode = 'hidden';
+      p.track.addEventListener('cuechange', function () { showCue(p); });
+    }
+    p.btn.addEventListener('click', function () {
+      var willOpen = p.btn.getAttribute('aria-expanded') !== 'true';
+      open(p, willOpen);
+      if (willOpen) { stopAll(false); play(p); } else { p.audio.pause(); }
+    });
+    [].forEach.call(p.speed, function (b) { b.addEventListener('click', function () { setRate(+b.dataset.rate); }); });
+    p.audio.addEventListener('play', function () {
+      open(p, true); p.audio.playbackRate = rate;
+      if (allMode && cur !== i) { cur = i; status(); }
+      if (allMode) allUI();
+    });
+    p.audio.addEventListener('pause', function () { save(p); if (allMode) allUI(); });
+    p.audio.addEventListener('timeupdate', function () {
+      if (Date.now() - lastSave > 2000) save(p);
+      if (p.track && p.track.mode === 'disabled') p.track.mode = 'hidden';
+    });
+    p.audio.addEventListener('ended', function () {
+      [].forEach.call(p.lines, function (li) { li.classList.remove('is-on'); li.removeAttribute('aria-current'); });
+      p.on = null;
+      if (allMode && cur === i) next(); else save(p, true);
+    });
+  });
+  setRate(rate);
+
+  function play(p, at) {
+    var a = p.audio;
+    function go() { if (at) { try { a.currentTime = at; } catch (e) { } } var r = a.play(); if (r && r.catch) r.catch(function () { allUI(); }); }
+    if (at && a.readyState < 1) { a.preload = 'auto'; a.addEventListener('loadedmetadata', function h() { a.removeEventListener('loadedmetadata', h); go(); }); a.load(); }
+    else go();
+  }
+
+  function save(p, done) {
+    lastSave = Date.now();
+    if (done) { set(KEY, { i: Math.min(p.i + 1, players.length - 1), t: 0 }); if (p.i === players.length - 1) del(KEY); return; }
+    if (p.audio.currentTime > 0.5) set(KEY, { i: p.i, t: Math.round(p.audio.currentTime * 10) / 10 });
+  }
+
+  // ---- whole lesson ----
+  function scrollTo(p) {
+    var r = p.el.getBoundingClientRect();
+    if (r.top >= 0 && r.top <= innerHeight * 0.6) return;
+    // show the section (or topic) heading with its player; fall back to the player when the section is taller than the screen
+    var t = p.el.parentElement && p.el.parentElement.closest('[id]');
+    if (!t || p.el.getBoundingClientRect().top - t.getBoundingClientRect().top > innerHeight * 0.5) t = p.el;
+    t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+  function status(msg) {
+    if (!allStatus) return;
+    allStatus.textContent = msg || (allMode && cur >= 0 ? 'חלק ' + (cur + 1) + ' מתוך ' + players.length + ': ' + players[cur].title : '');
+  }
+  function allUI() {
+    if (!allBtn) return;
+    var playing = allMode && cur >= 0 && !players[cur].audio.paused;
+    allBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    allBtn.querySelector('.narr-all-lbl').textContent = playing ? 'עצירת ההאזנה לשיעור' : (allMode || get(KEY) ? 'המשך האזנה לשיעור' : 'האזנה לכל השיעור');
+    if (allRestart) allRestart.toggleAttribute('data-off', !(get(KEY) || allMode));
+  }
+  function start(i, t) {
+    allMode = true; cur = i; var p = players[i];
+    players.forEach(function (q) { if (q !== p) open(q, false); });
+    open(p, true); scrollTo(p); status(); play(p, t); allUI();
+  }
+  function next() {
+    if (cur + 1 < players.length) start(cur + 1, 0);
+    else { allMode = false; cur = -1; del(KEY); status('סוף השיעור. כל הכבוד!'); allUI(); }
+  }
+  function lessonToggle() {
+    if (allMode && cur >= 0 && !players[cur].audio.paused) { players[cur].audio.pause(); status('ההאזנה נעצרה. אפשר להמשיך מאותו מקום.'); return; }
+    if (allMode && cur >= 0) { play(players[cur]); return; }
+    var s = get(KEY) || { i: 0, t: 0 };
+    var i = Math.max(0, Math.min(players.length - 1, s.i | 0));
+    start(i, +s.t || 0);
+  }
+  function stopAll(clear) { if (allMode) { allMode = false; allUI(); status(''); } if (clear) del(KEY); }
+  if (allBtn) {
+    allBtn.addEventListener('click', lessonToggle);
+    if (allRestart) allRestart.addEventListener('click', function () {
+      players.forEach(function (q) { q.audio.pause(); });
+      del(KEY); allMode = false; start(0, 0);
+    });
+    allUI();
+  }
+
+  // ---- the dock: a small bar fixed at the bottom of the screen, so stop / play is always one tap away ----
+  var last = -1;   // the section that played last (the one the dock controls)
+  var SVG = function (d) { return '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">' + d + '</svg>'; };
+  var I_PLAY = SVG('<path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/>');
+  var I_PAUSE = SVG('<path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/>');
+  var I_PREV = SVG('<path d="M6 5h2.4v14H6zM19 5.5v13L9.6 12z" fill="currentColor"/>');
+  var I_NEXT = SVG('<path d="M15.6 5H18v14h-2.4zM5 5.5v13L14.4 12z" fill="currentColor"/>');
+  var I_BACK = SVG('<path d="M12 4.5V1.8L7.6 5.6 12 9.4V6.6a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8.1z" fill="currentColor"/><text x="12" y="16.2" text-anchor="middle" font-size="7.2" font-weight="700" fill="currentColor" font-family="system-ui,sans-serif">10</text>');
+  var dock = document.createElement('div');
+  dock.className = 'narr-dock'; dock.setAttribute('role', 'region'); dock.setAttribute('aria-label', 'נגן ההקראה'); dock.dir = 'rtl';
+  dock.innerHTML =
+    '<button type="button" class="narr-dock-where" aria-label="מעבר לנושא שמתנגן"><span class="narr-dock-t"></span>' +
+    '<bdi dir="ltr" class="narr-dock-time"></bdi></button>' +
+    '<div class="narr-dock-ctl" dir="ltr">' +
+    '<button type="button" class="narr-dock-prev" aria-label="לנושא הקודם">' + I_PREV + '</button>' +
+    '<button type="button" class="narr-dock-back" aria-label="עשר שניות אחורה">' + I_BACK + '</button>' +
+    '<button type="button" class="narr-dock-play" aria-label="המשך ההאזנה">' + I_PLAY + '</button>' +
+    '<button type="button" class="narr-dock-next" aria-label="לנושא הבא">' + I_NEXT + '</button></div>';
+  var sp = document.createElement('div'); sp.className = 'narr-dock-sp'; sp.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(sp); document.body.appendChild(dock);
+  var dPlay = dock.querySelector('.narr-dock-play'), dT = dock.querySelector('.narr-dock-t'), dTime = dock.querySelector('.narr-dock-time');
+  var dPrev = dock.querySelector('.narr-dock-prev'), dNext = dock.querySelector('.narr-dock-next'), dBack = dock.querySelector('.narr-dock-back');
+  function curP() { return last >= 0 ? players[last] : null; }
+  function dockUI() {
+    var p = curP(), on = !!(p && !p.audio.paused && !p.audio.ended);
+    dPlay.innerHTML = on ? I_PAUSE : I_PLAY;
+    dPlay.setAttribute('aria-label', on ? 'עצירת ההקראה' : (p ? 'המשך ההקראה' : 'האזנה לשיעור'));
+    dock.classList.toggle('is-on', on);
+    if (p) {
+      dT.textContent = (last + 1) + '. ' + p.title;
+      var d = p.audio.duration;
+      dTime.textContent = fmt(p.audio.currentTime) + ' / ' + (isFinite(d) ? fmt(d) : '');
+    } else {
+      var s = get(KEY);
+      dT.textContent = s && players[s.i] ? 'המשך מנושא ' + (s.i + 1) + ': ' + players[s.i].title : 'האזנה לכל השיעור';
+      dTime.textContent = '';
+    }
+    var i = p ? last : -1;
+    dPrev.disabled = i <= 0; dNext.disabled = i >= players.length - 1;
+    dBack.disabled = !p;
+    meta(p);
+  }
+  function dockToggle() {
+    var p = curP();
+    if (!p) { lessonToggle(); return; }
+    if (!p.audio.paused && !p.audio.ended) { p.audio.pause(); return; }
+    if (p.audio.ended && last < players.length - 1) { start(last + 1, 0); return; }   // a section finished: go on to the next
+    open(p, true); play(p);
+  }
+  function go(d) {
+    var i = (last < 0 ? 0 : last) + d;
+    if (i < 0 || i >= players.length) return;
+    players.forEach(function (q) { if (!q.audio.paused) q.audio.pause(); });
+    start(i, 0);
+  }
+  function back() { var p = curP(); if (!p) return; try { p.audio.currentTime = Math.max(0, p.audio.currentTime - 10); } catch (e) { } dockUI(); }
+  dPlay.addEventListener('click', dockToggle);
+  dPrev.addEventListener('click', function () { go(-1); });
+  dNext.addEventListener('click', function () { go(1); });
+  dBack.addEventListener('click', back);
+  dock.querySelector('.narr-dock-where').addEventListener('click', function () {
+    var p = curP(); if (!p) { var s = get(KEY); p = players[s && players[s.i] ? s.i : 0]; }
+    p.el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  var lastTick = 0;
+  players.forEach(function (p, i) {
+    p.audio.addEventListener('play', function () { last = i; dockUI(); });
+    ['pause', 'ended', 'loadedmetadata', 'seeked'].forEach(function (ev) { p.audio.addEventListener(ev, function () { if (last === i) dockUI(); }); });
+    p.audio.addEventListener('timeupdate', function () {
+      if (last !== i || Date.now() - lastTick < 500) return;
+      lastTick = Date.now(); var d = p.audio.duration;
+      dTime.textContent = fmt(p.audio.currentTime) + ' / ' + (isFinite(d) ? fmt(d) : '');
+    });
+  });
+  // phone lock screen and headphone buttons
+  var ms = navigator.mediaSession, metaFor = null;
+  function meta(p) {
+    if (!ms || !window.MediaMetadata || metaFor === p) return;
+    metaFor = p;
+    try { ms.metadata = new MediaMetadata({ title: p ? p.title : 'האזנה לכל השיעור', artist: document.title }); } catch (e) { }
+  }
+  if (ms) {
+    [['play', dockToggle], ['pause', function () { var p = curP(); if (p) p.audio.pause(); }],
+     ['previoustrack', function () { go(-1); }], ['nexttrack', function () { go(1); }], ['seekbackward', back]
+    ].forEach(function (h) { try { ms.setActionHandler(h[0], h[1]); } catch (e) { } });
+  }
+  dockUI();
+  window.__narr = { players: players, next: next, start: start, dock: dock, state: function () { return { allMode: allMode, cur: cur, last: last }; } };
+})();
+</script><!--/narr:js-->
 </body>
 </html>
