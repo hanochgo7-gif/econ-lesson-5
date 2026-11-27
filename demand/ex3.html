@@ -8,6 +8,72 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<!--narr:css--><style>/* narr: lesson narration players (shared by all lesson pages; injected inline by each page's build) */
+.narr{--n-acc:var(--accent,#2340d0);--n-acc-soft:var(--accent-soft,#e7ecff);--n-surf:var(--surface,#fff);--n-ink:var(--ink,#141a2c);
+  --n-mut:var(--muted,#566079);--n-line:var(--line,#dce2ec);
+  display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;margin:4px 0 6px;scroll-margin-top:16px;max-width:100%;min-width:0}
+.narr-btn,.narr-all-btn,.narr-tr>summary,.narr-speed button{font:inherit;font-size:.95rem;font-weight:600;min-height:44px;border-radius:999px;
+  border:1.5px solid var(--n-acc);background:var(--n-surf);color:var(--n-acc);cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;line-height:1.3;text-align:start}
+.narr-btn{display:none}
+.narr-js .narr-btn{display:inline-flex}
+.narr-btn[aria-expanded="true"],.narr-all-btn[aria-pressed="true"]{background:var(--n-acc);color:var(--n-surf)}
+.narr-btn .narr-d,.narr-all-btn .narr-d{font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.narr-tr{min-width:0;flex:0 1 auto}
+.narr-tr[open]{flex:1 1 100%}
+.narr-tr>summary{list-style:none;color:var(--n-mut);border-color:var(--n-line);width:max-content}
+.narr-tr>summary::-webkit-details-marker{display:none}
+.narr-tr>summary::after{content:"▾";font-size:.8em}
+.narr-tr[open]>summary::after{content:"▴"}
+.narr-lines{margin:8px 0 0;padding:10px 14px;padding-inline-start:30px;background:var(--n-surf);border:1px solid var(--n-line);border-radius:12px;
+  display:flex;flex-direction:column;gap:4px;font-size:1rem;line-height:1.65}
+.narr .narr-lines li bdi.m{white-space:normal!important;overflow-wrap:anywhere}
+.narr-tr:not([open])>.narr-lines{display:none}
+.narr-lines li{border-radius:6px;padding:1px 6px;margin-inline-start:-6px;transition:background-color .2s}
+.narr-lines li.is-on{background:var(--n-acc-soft);box-shadow:inset 3px 0 0 var(--n-acc)}
+.narr-lines li.narr-gap{margin-top:6px}
+.narr-panel{flex:1 1 100%;display:flex;flex-direction:column;gap:8px;background:var(--n-surf);border:1px solid var(--n-line);border-radius:14px;padding:10px 12px;min-width:0}
+.narr-js .narr-panel:not(.is-open){display:none}
+.narr-nojs{margin:0;font-weight:600;color:var(--n-acc);font-size:.95rem}
+.narr-js .narr-nojs{display:none}
+.narr audio{width:100%;max-width:100%;min-height:44px;display:block}
+.narr-tools{display:none;flex-wrap:wrap;gap:6px;align-items:center}
+.narr-js .narr-tools{display:flex}
+.narr-speed{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.narr-speed .lbl{font-size:.875rem;color:var(--n-mut)}
+.narr-speed button{min-width:56px;justify-content:center;padding:6px 10px;border-color:var(--n-line);color:var(--n-ink);font-variant-numeric:tabular-nums}
+.narr-speed button[aria-pressed="true"]{border-color:var(--n-acc);background:var(--n-acc-soft);color:var(--n-acc)}
+.narr-cap{margin:0;min-height:3.3em;font-size:1rem;line-height:1.65;color:var(--n-ink)}
+.narr-all{display:none;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0}
+.narr-js .narr-all{display:flex}
+.narr-all-btn{--n-acc:var(--accent,#2340d0);--n-surf:var(--surface,#fff);border-color:var(--n-acc);color:var(--n-acc);background:var(--n-surf)}
+.narr-all-status{font-size:.9rem;color:var(--muted,#566079);min-height:1.4em}
+.narr-all-restart[data-off]{display:none}
+.narr-all-restart{font:inherit;font-size:.875rem;background:none;border:0;color:var(--accent,#2340d0);text-decoration:underline;cursor:pointer;min-height:44px;padding:0 6px}
+.narr :focus-visible,.narr-all :focus-visible{outline:3px solid var(--n-acc,var(--accent,#2340d0));outline-offset:2px}
+@media (prefers-reduced-motion: reduce){.narr-lines li{transition:none}}
+/* the dock: fixed at the bottom, always there */
+.narr-dock{--n-acc:var(--accent,#2340d0);--n-acc-soft:var(--accent-soft,#e7ecff);--n-surf:var(--surface,#fff);--n-ink:var(--ink,#141a2c);
+  --n-mut:var(--muted,#566079);--n-line:var(--line,#dce2ec);
+  position:fixed;z-index:40;bottom:calc(8px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+  width:min(560px,calc(100% - 16px));box-sizing:border-box;display:flex;align-items:center;gap:6px;padding:6px 8px;
+  background:var(--n-surf);color:var(--n-ink);border:1px solid var(--n-line);border-radius:16px;
+  box-shadow:0 6px 24px rgba(10,20,50,.18);font-size:.95rem}
+.narr-dock.is-on{border-color:var(--n-acc)}
+.narr-dock button{font:inherit;min-width:44px;min-height:44px;border-radius:12px;border:0;background:none;color:var(--n-acc);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;padding:0}
+.narr-dock button:disabled{color:var(--n-line);cursor:default}
+.narr-dock .narr-dock-play{background:var(--n-acc);color:var(--n-surf);border-radius:999px;min-width:48px;min-height:48px}
+.narr-dock-ctl{display:flex;gap:2px;align-items:center;flex:0 0 auto}
+.narr-dock .narr-dock-where{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;
+  color:var(--n-ink);padding:2px 6px;text-align:start;line-height:1.3}
+.narr-dock-t{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:.9rem}
+.narr-dock-time{font-size:.8rem;color:var(--n-mut);font-variant-numeric:tabular-nums;min-height:1.2em}
+.narr-dock-sp{height:76px}
+.narr-dock :focus-visible{outline:3px solid var(--n-acc);outline-offset:2px}
+@media (max-width:360px){.narr-dock{gap:2px;padding:5px 6px}.narr-dock-ctl{gap:0}}
+@media print{.narr,.narr-all,.narr-dock,.narr-dock-sp{display:none!important}}
+</style><script>document.documentElement.classList.add("narr-js")</script><!--/narr:css-->
 
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -279,6 +345,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
   <div class="eyebrow">מבוא למיקרו־כלכלה · תרגיל 3 · הביקוש</div>
   <h1>תרגיל 3: הביקוש</h1>
   <p class="lead">הסבר לכל השאלות בתרגיל: ביקוש של צרכן אחד, מה מזיז את עקומת הביקוש, וביקוש מצרפי (של כל השוק). לכל שאלה: איך חושבים, החישוב, שרטוט, ומה כותבים בתשובה.</p>
+  <!--narr:all--><div class="narr-all" role="group" aria-label="האזנה לתרגיל"><button type="button" class="narr-all-btn" aria-pressed="false"><span aria-hidden="true">🎧</span><span class="narr-all-lbl">המורה מסבירה את כל התרגיל</span> <span class="narr-d">(≈ 41 דקות)</span></button><button type="button" class="narr-all-restart" data-off>מההתחלה</button><span class="narr-all-status" role="status"></span></div><!--/narr:all-->
   <p class="brief"><span class="lbl">לפני שמתחילים</span>התרגיל נשען על <a href="./#p1">שיעור הביקוש והגמישות</a>. אם מילה לא ברורה, יש <a href="../#dict">מילון</a>.</p>
   <nav class="jump" aria-label="קפיצה לשאלות">
     <a class="main" href="#rules">3 הכללים</a><span class="sep">חלק א׳:</span><a href="#a1">שאלה 1</a><a href="#a2">שאלה 2</a><a href="#a3">שאלה 3</a><span class="sep">ביקוש מצרפי:</span><a href="#b1">שאלה 1</a><a href="#b2">שאלה 2</a><a href="#b3">שאלה 3</a><span class="sep">אמריקאיות:</span><a href="#c1">1</a><a href="#c2">2</a><a href="#sum">סיכום</a>
@@ -288,7 +355,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 <main class="mainflow">
 
 <section id="rules" class="stack" aria-labelledby="h-rules">
-  <div class="sec-head"><div class="eyebrow">לפני השאלות</div><h2 id="h-rules">3 כללים שפותרים את כל התרגיל</h2></div>
+  <div class="sec-head"><div class="eyebrow">לפני השאלות</div><h2 id="h-rules">3 כללים שפותרים את כל התרגיל</h2><!--narr:rules--><div class="narr" id="narr-rules" data-key="rules" data-title="3 כללים שפותרים את כל התרגיל"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-rules"><span aria-hidden="true">🎧</span><span>האזנה לכללים</span> <span class="narr-d">(2:31)</span></button><div class="narr-panel" id="narr-p-rules"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לכללים (2:31)</p><audio controls preload="none" src="audio-ex3/rules.m4a" aria-label="האזנה לכללים: 3 כללים שפותרים את כל התרגיל"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/rules.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שלום לכולם. היום נפתור יחד את תרגיל 3, על הביקוש.</li><li data-n="2">לפני שמתחילים, אני רוצה לתת לכם 3 כללים.</li><li data-n="3">עם שלושת הכללים האלה פותרים את כל התרגיל.</li><li data-n="4" class="narr-gap">הכלל הראשון: מחיר המוצר עצמו משתנה.</li><li data-n="5">אז זזים לאורך עקומת הביקוש, והעקומה עצמה לא זזה.</li><li data-n="6">לזה קוראים &quot;שינוי בכמות המבוקשת&quot;.</li><li data-n="7">דוגמה קטנה: הקפה מתייקר, ואתם קונים פחות כוסות קפה.</li><li data-n="8">זו תנועה על אותה עקומה של הקפה.</li><li data-n="9" class="narr-gap">הכלל השני: משהו אחר משתנה, לא המחיר של המוצר עצמו.</li><li data-n="10">למשל ההכנסה, המחיר של מוצר אחר, או הטעם של הצרכנים.</li><li data-n="11">אז כל העקומה זזה, ימינה או שמאלה.</li><li data-n="12">לזה קוראים &quot;שינוי בביקוש&quot;.</li><li data-n="13">דוגמה: קיבלתם העלאה במשכורת, ובכל מחיר אתם קונים יותר קפה.</li><li data-n="14">כלומר עקומת הביקוש לקפה זזה ימינה.</li><li data-n="15" class="narr-gap">הכלל השלישי: ביקוש מצרפי, כלומר הביקוש של כל השוק.</li><li data-n="16">בכל מחיר, מחברים את הכמויות של כל הצרכנים.</li><li data-n="17">מחברים לרוחב, כלומר כמויות, ולא לגובה, כלומר לא מחירים.</li><li data-n="18">דוגמה: במחיר 10 ₪, משה קונה 3 יחידות, ומנחם קונה 5.</li><li data-n="19">ביחד, בשוק קונים 8 יחידות במחיר 10 ₪.</li><li data-n="20" class="narr-gap">ועוד דבר שכדאי לזכור: לאן זזה העקומה.</li><li data-n="21">כשההכנסה עולה, הביקוש למוצר נורמלי עולה, והעקומה זזה ימינה.</li><li data-n="22">במוצר נחות זה הפוך: כשההכנסה עולה, קונים פחות, והעקומה זזה שמאלה.</li><li data-n="23" class="narr-gap">כשהמחיר של מוצר אחר עולה, זה תלוי בקשר בין המוצרים.</li><li data-n="24">אם הם תחליפיים, עוברים אלינו, והעקומה שלנו זזה ימינה.</li><li data-n="25">אם הם משלימים, קונים פחות מהזוג, והעקומה שלנו זזה שמאלה.</li><li data-n="26" class="narr-gap">ומוצר ניטרלי: כשההכנסה משתנה, הביקוש לא משתנה בכלל.</li><li data-n="27" class="narr-gap">בקיצור: מחיר המוצר עצמו מזיז אותנו על העקומה, כל דבר אחר מזיז את העקומה, ובשוק מחברים כמויות.</li></ol></details></div><!--/narr:rules--></div>
   <div class="rules">
     <div class="rule-c"><div class="k">כלל 1</div><b>מחיר המוצר עצמו משתנה</b><span>זזים <strong>לאורך</strong> עקומת הביקוש. העקומה לא זזה. זה "שינוי בכמות המבוקשת".</span></div>
     <div class="rule-c"><div class="k">כלל 2</div><b>משהו אחר משתנה</b><span>הכנסה, מחיר של מוצר אחר, טעמים: <strong>כל העקומה זזה</strong>. זה "שינוי בביקוש".</span></div>
@@ -307,7 +374,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- A1 -->
 <section id="a1" class="stack qsec" aria-labelledby="h-a1">
-  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a1" style="font-size:1.6rem">שאלה 1 · ביקוש לבשר בקר</h3></div>
+  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a1" style="font-size:1.6rem">שאלה 1 · ביקוש לבשר בקר</h3><!--narr:a1--><div class="narr" id="narr-a1" data-key="a1" data-title="שאלה 1 · ביקוש לבשר בקר"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-a1"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 1</span> <span class="narr-d">(9:08)</span></button><div class="narr-panel" id="narr-p-a1"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 1 (9:08)</p><audio controls preload="none" src="audio-ex3/a1.m4a" aria-label="המורה מסבירה את שאלה 1: שאלה 1 · ביקוש לבשר בקר"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/a1.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלה ראשונה, על בשר בקר. אני מקריאה אותה לאט, עם כל הנתונים.</li><li data-n="2">הביקוש של צרכן לבשר בקר תלוי בשלושה דברים: מחיר הבקר, מחיר העוף וההכנסה.</li><li data-n="3">בנוסחה יש שלושה חלקים, ומחברים אותם: Q_B <bdi dir="ltr" class="m">= 0.03I −</bdi> 3P_B + 2P_C.</li><li data-n="4">החלק הראשון: <bdi dir="ltr" class="m">0.03I</bdi>.</li><li data-n="5">החלק השני: −3P_B.</li><li data-n="6">והחלק השלישי: +2P_C.</li><li data-n="7">התוצאה היא Q_B, הכמות של בשר בקר שהצרכן קונה.</li><li data-n="8" class="narr-gap">הנתונים (בש״ח): מחיר העוף 5 ₪ לק״ג, וההכנסה 2,000 ₪.</li><li data-n="9">קודם מתארים את עקומת הביקוש לבשר בקר, ואחר כך יש ארבעה סעיפים.</li><li data-n="10">סעיף ראשון: מה הכמות, כשמחיר הבקר הוא 8 ₪ לק״ג?</li><li data-n="11">סעיף שני: מחיר הבקר עלה ל־14 ₪. מה הכמות, והאם העקומה השתנתה?</li><li data-n="12">סעיף שלישי: מחיר העוף עלה ל־10 ₪.</li><li data-n="13">מה הכמות של בקר, האם העקומה השתנתה, והאם העוף תחליפי או משלים לבקר?</li><li data-n="14">סעיף רביעי: ההכנסה עלתה ל־3,000 ₪.</li><li data-n="15">מה הכמות, האם העקומה השתנתה, והאם בשר בקר הוא מוצר נורמלי או נחות?</li><li data-n="16">ובסוף מבקשים להסביר ולשרטט.</li><li data-n="17" class="narr-gap">מה השאלה באמת בודקת? את הכלל הראשון ואת הכלל השני.</li><li data-n="18">בסעיף השני משתנה מחיר הבקר עצמו. זה הכלל הראשון.</li><li data-n="19">בסעיף השלישי והרביעי משתנה משהו אחר, העוף וההכנסה. זה הכלל השני.</li><li data-n="20" class="narr-gap">אני מתחילה מהנוסחה. מה כל מספר בה אומר?</li><li data-n="21">מינוס 3 ליד מחיר הבקר: כשהבקר מתייקר בשקל, קונים 3 ק״ג פחות. זה חוק הביקוש.</li><li data-n="22">פלוס 2 ליד מחיר העוף: כשהעוף מתייקר, קונים יותר בקר. כלומר עוף ובקר הם תחליפים.</li><li data-n="23">והמספר ליד ההכנסה (0.03) חיובי: כשההכנסה עולה, קונים יותר בקר. כלומר בקר הוא מוצר נורמלי.</li><li data-n="24" class="narr-gap">עכשיו נמצא את עקומת הביקוש. מציבים את הנתונים בנוסחה.</li><li data-n="25">נסו לפתור את זה לבד. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="26" class="narr-gap">נבדוק יחד. מה אנחנו יודעים? ההכנסה 2,000, ומחיר העוף 5.</li><li data-n="27"><bdi dir="ltr" class="m">0.03 · 2000 = 60</bdi>.</li><li data-n="28"><bdi dir="ltr" class="m">2 · 5 = 10</bdi>.</li><li data-n="29"><bdi dir="ltr" class="m">60 + 10 = 70</bdi>.</li><li data-n="30">ומקבלים: Q_B <bdi dir="ltr" class="m">= 70 −</bdi> 3P_B.</li><li data-n="31" class="narr-gap">איך העקומה הזאת נראית בגרף?</li><li data-n="32">המחיר על הציר האנכי, והכמות על הציר האופקי, כמו בכל גרף ביקוש.</li><li data-n="33">זה קו ישר שיורד: ככל שהמחיר עולה, הכמות קטנה.</li><li data-n="34">אם הבקר בחינם, הצרכן קונה 70 ק״ג. שם הקו פוגש את ציר הכמות.</li><li data-n="35">ובמחיר 70 : 3, בערך 23.3 ₪, הוא לא קונה כלום.</li><li data-n="36">שם הקו פוגש את ציר המחיר.</li><li data-n="37" class="narr-gap">סעיף ראשון: מחיר הבקר 8 ₪.</li><li data-n="38">נסו לחשב לבד את הכמות. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="39" class="narr-gap">מציבים 8 במקום המחיר. <bdi dir="ltr" class="m">3 · 8 = 24</bdi>.</li><li data-n="40"><bdi dir="ltr" class="m">70 − 24 = 46</bdi>.</li><li data-n="41">הכמות המבוקשת היא 46 ק״ג. בגרף זו נקודה <bdi dir="ltr" class="m">A</bdi>.</li><li data-n="42" class="narr-gap">סעיף שני: מחיר הבקר עלה ל־14 ₪.</li><li data-n="43">נסו לחשב, ולהחליט איזה כלל מתאים כאן. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="44" class="narr-gap"><bdi dir="ltr" class="m">3 · 14 = 42</bdi>.</li><li data-n="45"><bdi dir="ltr" class="m">70 − 42 = 28</bdi>.</li><li data-n="46">הכמות ירדה ל־28 ק״ג. זו נקודה <bdi dir="ltr" class="m">B</bdi>.</li><li data-n="47" class="narr-gap">האם העקומה זזה? לא.</li><li data-n="48">השתנה רק המחיר של הבקר עצמו. זה הכלל הראשון.</li><li data-n="49">לכן זזים לאורך אותה עקומה, מנקודה <bdi dir="ltr" class="m">A</bdi> לנקודה <bdi dir="ltr" class="m">B</bdi>.</li><li data-n="50">בגרף עולים על הקו: המחיר גבוה יותר, והכמות קטנה יותר.</li><li data-n="51" class="narr-gap">שימו לב, כאן הרבה סטודנטים טועים.</li><li data-n="52">הם כותבים שהביקוש ירד. זה לא נכון.</li><li data-n="53">הביקוש לא השתנה. ירדה רק הכמות המבוקשת.</li><li data-n="54">שינוי בכמות המבוקשת הוא תנועה על העקומה. שינוי בביקוש הוא תזוזה של כל העקומה.</li><li data-n="55" class="narr-gap">סעיף שלישי: מחיר העוף עלה מ־5 ₪ ל־10 ₪.</li><li data-n="56">עכשיו משתנה משהו אחר, לא מחיר הבקר. זה הכלל השני.</li><li data-n="57">נסו למצוא לבד את עקומת הביקוש החדשה. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="58" class="narr-gap">ההכנסה לא השתנתה, אז החלק שלה נשאר 60.</li><li data-n="59"><bdi dir="ltr" class="m">2 · 10 = 20</bdi>. ו־<bdi dir="ltr" class="m">60 + 20 = 80</bdi>.</li><li data-n="60">העקומה החדשה: Q_B <bdi dir="ltr" class="m">= 80 −</bdi> 3P_B.</li><li data-n="61">במחיר 14 ₪: 80 − 42, כלומר 38 ק״ג.</li><li data-n="62">בכל מחיר של בקר, קונים עכשיו 10 ק״ג יותר.</li><li data-n="63" class="narr-gap">אז האם העקומה זזה? כן, היא זזה ימינה.</li><li data-n="64">בגרף, הקו החדש מקביל לקו הקודם, ו־10 ק״ג ימינה ממנו.</li><li data-n="65">העוף התייקר, ואנשים עוברים לבקר. לכן עוף ובקר הם מוצרים תחליפיים.</li><li data-n="66" class="narr-gap">סעיף רביעי: ההכנסה עלתה מ־2,000 ₪ ל־3,000 ₪.</li><li data-n="67">נסו לבד: מה העקומה החדשה, ומה הכמות במחיר 14?</li><li data-n="68">עצרו את ההקראה, ואז תמשיכו.</li><li data-n="69" class="narr-gap">שימו לב: מחיר העוף חוזר ל־5 ₪, כמו בנתונים המקוריים.</li><li data-n="70">בכל סעיף משנים רק את הנתון של אותו סעיף.</li><li data-n="71"><bdi dir="ltr" class="m">0.03 · 3000 = 90</bdi>.</li><li data-n="72"><bdi dir="ltr" class="m">2 · 5 = 10</bdi>. ו־<bdi dir="ltr" class="m">90 + 10 = 100</bdi>.</li><li data-n="73">העקומה החדשה: Q_B <bdi dir="ltr" class="m">= 100 −</bdi> 3P_B.</li><li data-n="74">במחיר 14 ₪: 100 − 42, כלומר 58 ק״ג.</li><li data-n="75">בכל מחיר קונים 30 ק״ג יותר מבהתחלה.</li><li data-n="76" class="narr-gap">האם העקומה זזה? כן, ימינה.</li><li data-n="77">ההכנסה עלתה והביקוש עלה, ולכן בשר בקר הוא מוצר נורמלי.</li><li data-n="78" class="narr-gap">ועוד מלכודת קטנה.</li><li data-n="79">יש מי שמשאירים את העוף ב־10 ₪, ומחברים את שני השינויים.</li><li data-n="80">בשאלה כמו שהיא כתובה, לא עושים את זה.</li><li data-n="81">רק אם מבקשים שהשינויים יצטברו, מקבלים: Q_B <bdi dir="ltr" class="m">= 110 −</bdi> 3P_B.</li><li data-n="82" class="narr-gap">ועכשיו הגרף של כל הסעיפים ביחד.</li><li data-n="83">יש בו שלושה קווים מקבילים. הם פוגשים את ציר הכמות ב־70, ב־80 וב־100.</li><li data-n="84">המעבר מנקודה <bdi dir="ltr" class="m">A</bdi> לנקודה <bdi dir="ltr" class="m">B</bdi> הוא תנועה על הקו. המעבר לקו חדש הוא תזוזה של העקומה.</li><li data-n="85" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="86">עקומת הביקוש: Q_B <bdi dir="ltr" class="m">= 70 −</bdi> 3P_B.</li><li data-n="87">(1) Q_B <bdi dir="ltr" class="m">= 46</bdi>.</li><li data-n="88">(2) Q_B <bdi dir="ltr" class="m">= 28</bdi>. זו תנועה לאורך העקומה, כי השתנה מחיר המוצר עצמו.</li><li data-n="89">(3) Q_B <bdi dir="ltr" class="m">= 80 −</bdi> 3P_B. ובמחיר 14, ‏Q_B <bdi dir="ltr" class="m">= 38</bdi>.</li><li data-n="90">העקומה זזה ימינה, כי השתנה מחיר של מוצר אחר.</li><li data-n="91">העוף הוא מוצר תחליפי לבקר, כי עלייה במחירו הגדילה את הביקוש לבקר.</li><li data-n="92">(4) Q_B <bdi dir="ltr" class="m">= 100 −</bdi> 3P_B. ובמחיר 14, ‏Q_B <bdi dir="ltr" class="m">= 58</bdi>.</li><li data-n="93">העקומה זזה ימינה. בשר בקר הוא מוצר נורמלי, כי עלייה בהכנסה הגדילה את הביקוש.</li></ol></details></div><!--/narr:a1--></div>
   <div class="qtext">הביקוש לבשר בקר: <bdi dir="ltr" class="m">Q_B = 0.03I − 3P_B + 2P_C</bdi>. ‏<bdi dir="ltr" class="m">Q_B</bdi> = כמות בשר בקר, <bdi dir="ltr" class="m">P_B</bdi> = מחיר ק״ג בקר, <bdi dir="ltr" class="m">P_C</bdi> = מחיר ק״ג עוף, <bdi dir="ltr" class="m">I</bdi> = הכנסה. הניחו <bdi dir="ltr" class="m">P_C = 5</bdi> ו־<bdi dir="ltr" class="m">I = 2,000</bdi>. תארו את עקומת הביקוש, ואז ענו על סעיפים 1–4.</div>
   <div class="tstep"><div class="tnum">0</div><div class="tbody">
     <h3>קודם כול: מה כל מספר בנוסחה אומר</h3>
@@ -359,7 +426,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- A2 -->
 <section id="a2" class="stack qsec" aria-labelledby="h-a2">
-  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a2" style="font-size:1.6rem">שאלה 2 · גרביים</h3></div>
+  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a2" style="font-size:1.6rem">שאלה 2 · גרביים</h3><!--narr:a2--><div class="narr" id="narr-a2" data-key="a2" data-title="שאלה 2 · גרביים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-a2"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 2</span> <span class="narr-d">(4:54)</span></button><div class="narr-panel" id="narr-p-a2"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 2 (4:54)</p><audio controls preload="none" src="audio-ex3/a2.m4a" aria-label="המורה מסבירה את שאלה 2: שאלה 2 · גרביים"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/a2.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלה שנייה, על גרביים.</li><li data-n="2">יש לנו טבלה: כמה זוגות גרביים צרכן אחד מתכוון לקנות בשנה.</li><li data-n="3">הכמות תלויה בשני דברים: במחיר של זוג גרביים, ובהכנסה החודשית של הצרכן.</li><li data-n="4">המחירים וההכנסה הם בשקלים.</li><li data-n="5" class="narr-gap">בטבלה יש שלושה מחירים: 2, 3 ו־4 ₪ לזוג.</li><li data-n="6">ויש ארבע הכנסות, מהנמוכה לגבוהה: 800 ₪, 1,000, 1,200, ו־1,400.</li><li data-n="7" class="narr-gap">אני מקריאה את הטבלה לפי ההכנסה.</li><li data-n="8">בכל הכנסה יש שלוש כמויות, לפי המחירים 2, 3 ו־4.</li><li data-n="9">בהכנסה של 800: ‏12 זוגות, 8 זוגות ו־6 זוגות.</li><li data-n="10">בהכנסה של 1,000: ‏14, 10 ו־7 זוגות.</li><li data-n="11">בהכנסה של 1,200: ‏18, 13 ו־8 זוגות.</li><li data-n="12">ובהכנסה של 1,400: ‏20, 16 ו־10 זוגות.</li><li data-n="13" class="narr-gap">יש שני סעיפים.</li><li data-n="14">סעיף ראשון: למצוא בטבלה נקודות על עקומות ביקוש שונות.</li><li data-n="15">ולשרטט את העקומות בקווים ישרים, כשהמחיר על הציר האנכי.</li><li data-n="16">סעיף שני: האם גרביים הם מוצר נורמלי או נחות?</li><li data-n="17" class="narr-gap">מה השאלה בודקת? את הכלל הראשון ואת הכלל השני ביחד.</li><li data-n="18">עקומת ביקוש אחת מראה מה קורה כשרק המחיר משתנה.</li><li data-n="19">וכשההכנסה משתנה, עוברים לעקומה אחרת.</li><li data-n="20" class="narr-gap">נסו לחשוב לבד: כמה עקומות ביקוש יש בטבלה?</li><li data-n="21">עצרו את ההקראה, ואז תמשיכו.</li><li data-n="22" class="narr-gap">התשובה: 4. כל הכנסה נותנת עקומה אחת.</li><li data-n="23">עקומת ביקוש מקשרת בין מחיר לכמות, כשההכנסה קבועה.</li><li data-n="24">לכן מחזיקים הכנסה אחת, ולוקחים את שלוש הנקודות שלה.</li><li data-n="25" class="narr-gap">נתחיל מההכנסה של 800.</li><li data-n="26">במחיר 2 ₪, הצרכן קונה 12 זוגות. זו נקודה אחת.</li><li data-n="27">במחיר 3 ₪, 8 זוגות. ובמחיר 4 ₪, 6 זוגות.</li><li data-n="28">מחברים את שלוש הנקודות בקווים ישרים, וזו העקומה הראשונה.</li><li data-n="29">בגרף, הכמות על הציר האופקי, והמחיר על הציר האנכי.</li><li data-n="30">הקו יורד: ככל שהמחיר עולה, הכמות קטנה. זה חוק הביקוש.</li><li data-n="31" class="narr-gap">עושים אותו דבר לכל הכנסה.</li><li data-n="32">העקומה של 1,000 עוברת דרך 14, 10 ו־7 זוגות.</li><li data-n="33">העקומה של 1,200, דרך 18, 13 ו־8.</li><li data-n="34">והעקומה של 1,400, דרך 20, 16 ו־10.</li><li data-n="35">ליד כל קו כותבים את ההכנסה שלו, כדי לדעת איזה קו הוא איזה.</li><li data-n="36" class="narr-gap">שימו לב, כאן הרבה סטודנטים טועים.</li><li data-n="37">הם מחברים נקודות לאורך שורה, כלומר באותו מחיר ובהכנסות שונות.</li><li data-n="38">זו לא עקומת ביקוש. בעקומת ביקוש ההכנסה קבועה, והמחיר משתנה.</li><li data-n="39">ועוד טעות: להחליף בין הצירים. המחיר תמיד על הציר האנכי.</li><li data-n="40" class="narr-gap">עכשיו הסעיף השני: נורמלי או נחות?</li><li data-n="41">נסו לענות לבד, לפי שורה אחת בטבלה. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="42" class="narr-gap">קוראים שורה, כלומר מחזיקים את המחיר קבוע.</li><li data-n="43">במחיר 2 ₪, ככל שההכנסה עולה, הכמות עולה: 12, 14, 18 ו־20.</li><li data-n="44">גם בשורות האחרות זה כך: הכנסה גבוהה יותר, יותר זוגות.</li><li data-n="45">לכן כל עקומה חדשה נמצאת מימין לקודמת.</li><li data-n="46">ההכנסה עלתה, והעקומה זזה ימינה. לכן גרביים הם מוצר נורמלי.</li><li data-n="47" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="48">כל עמודה בטבלה, כלומר הכנסה קבועה, נותנת עקומת ביקוש אחת.</li><li data-n="49">בכל עקומה, ככל שהמחיר עולה, הכמות יורדת.</li><li data-n="50">גרביים הם מוצר נורמלי, כי בכל מחיר, עלייה בהכנסה מגדילה את הכמות המבוקשת.</li><li data-n="51">כלומר עקומת הביקוש זזה ימינה כשההכנסה עולה.</li></ol></details></div><!--/narr:a2--></div>
   <div class="qtext">הטבלה: כמה זוגות גרביים צרכן יקנה בשנה, לפי המחיר (P) וההכנסה החודשית (I). (1) התוו את עקומות הביקוש (המחיר על ציר Y). (2) האם גרביים הם מוצר נורמלי או נחות?</div>
   <div class="tscroll"><table class="t"><caption>זוגות גרביים בשנה</caption><thead><tr><th scope="col">מחיר P</th><th scope="col">I = 800</th><th scope="col">I = 1000</th><th scope="col">I = 1200</th><th scope="col">I = 1400</th></tr></thead>
   <tbody><tr><th scope="row">2</th><td class="n">12</td><td class="n">14</td><td class="n">18</td><td class="n">20</td></tr><tr><th scope="row">3</th><td class="n">8</td><td class="n">10</td><td class="n">13</td><td class="n">16</td></tr><tr><th scope="row">4</th><td class="n">6</td><td class="n">7</td><td class="n">8</td><td class="n">10</td></tr></tbody></table></div>
@@ -378,7 +445,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- A3 -->
 <section id="a3" class="stack qsec" aria-labelledby="h-a3">
-  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a3" style="font-size:1.6rem">שאלה 3 · נכון או לא נכון</h3></div>
+  <div class="sec-head"><div class="eyebrow">חלק א׳</div><h3 id="h-a3" style="font-size:1.6rem">שאלה 3 · נכון או לא נכון</h3><!--narr:a3--><div class="narr" id="narr-a3" data-key="a3" data-title="שאלה 3 · נכון או לא נכון"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-a3"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 3</span> <span class="narr-d">(2:36)</span></button><div class="narr-panel" id="narr-p-a3"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 3 (2:36)</p><audio controls preload="none" src="audio-ex3/a3.m4a" aria-label="המורה מסבירה את שאלה 3: שאלה 3 · נכון או לא נכון"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/a3.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלה שלישית: נכון או לא נכון.</li><li data-n="2">אני מקריאה את הטענה לאט, בשני חלקים.</li><li data-n="3">החלק הראשון: אם מצרך נתון הוא מצרך משלים למצרך אחר.</li><li data-n="4">והחלק השני: אזי עלייה במחיר השוק של המוצר האחר תביא לעלייה בכמות המבוקשת מן המצרך הנתון.</li><li data-n="5">וצריך להסביר ולצייר.</li><li data-n="6" class="narr-gap">מה השאלה בודקת? את הכלל השני: המחיר של מוצר אחר משתנה.</li><li data-n="7">ובעיקר, מה קורה למוצרים משלימים.</li><li data-n="8" class="narr-gap">נסו להחליט לבד: נכון או לא נכון, ולמה?</li><li data-n="9">עצרו את ההקראה, ואז תמשיכו.</li><li data-n="10" class="narr-gap">נחשוב על דוגמה. מוצרים משלימים קונים יחד, כמו מדפסת ודיו.</li><li data-n="11">נניח שהמדפסת מתייקרת. מה קורה? קונים פחות מדפסות.</li><li data-n="12">ומי שלא קונה מדפסת, לא צריך דיו.</li><li data-n="13">לכן קונים פחות דיו, בכל מחיר של דיו.</li><li data-n="14">הביקוש לדיו יורד, ועקומת הביקוש של הדיו זזה שמאלה.</li><li data-n="15" class="narr-gap">אז התשובה: לא נכון.</li><li data-n="16">במוצרים משלימים, עלייה במחיר המוצר האחר מקטינה את הביקוש למוצר שלנו.</li><li data-n="17" class="narr-gap">איך מציירים את זה?</li><li data-n="18">מציירים גרף של הביקוש לדיו: המחיר על הציר האנכי, והכמות על הציר האופקי.</li><li data-n="19">יש קו ביקוש יורד, של לפני.</li><li data-n="20">ואחרי שהמדפסת התייקרה, מציירים קו חדש, מקביל לו ומשמאל לו.</li><li data-n="21">חץ שמאלה מראה שבכל מחיר קונים פחות דיו.</li><li data-n="22" class="narr-gap">שימו לב, כאן הרבה סטודנטים טועים.</li><li data-n="23">הטענה מתאימה דווקא למוצרים תחליפיים.</li><li data-n="24">אם הקפה מתייקר, קונים יותר תה. שם הביקוש לתה באמת עולה.</li><li data-n="25">ועוד דבר: מחיר של מוצר אחר לא מזיז אותנו על העקומה. הוא מזיז את כל העקומה.</li><li data-n="26" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="27">לא נכון. מוצרים משלימים נצרכים יחד.</li><li data-n="28">עלייה במחיר המוצר האחר מקטינה את הכמות שקונים ממנו, ולכן גם את הביקוש למוצר הנתון.</li><li data-n="29">עקומת הביקוש למוצר הנתון זזה שמאלה, ובכל מחיר הכמות המבוקשת קטנה.</li><li data-n="30">עלייה בכמות המבוקשת הייתה קורית אם המוצרים היו תחליפיים.</li></ol></details></div><!--/narr:a3--></div>
   <div class="qtext">"אם מצרך נתון הוא מצרך משלים למצרך אחר, אזי עלייה במחיר השוק של המוצר האחר תביא לעלייה בכמות המבוקשת מן המצרך הנתון."</div>
   <div class="tstep"><div class="tnum">✗</div><div class="tbody">
     <h3>לא נכון</h3>
@@ -393,7 +460,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- B1 -->
 <section id="b1" class="stack qsec" aria-labelledby="h-b1">
-  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי</div><h3 id="h-b1" style="font-size:1.6rem">שאלה 1 · טיסות נופש: פרטיים וּוַעדים</h3></div>
+  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי</div><h3 id="h-b1" style="font-size:1.6rem">שאלה 1 · טיסות נופש: פרטיים וּוַעדים</h3><!--narr:b1--><div class="narr" id="narr-b1" data-key="b1" data-title="שאלה 1 · טיסות נופש: פרטיים וּוַעדים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-b1"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 1</span> <span class="narr-d">(7:45)</span></button><div class="narr-panel" id="narr-p-b1"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 1 (7:45)</p><audio controls preload="none" src="audio-ex3/b1.m4a" aria-label="המורה מסבירה את שאלה 1: שאלה 1 · טיסות נופש: פרטיים וּוַעדים"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/b1.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">עוברים לחלק השני, ביקוש מצרפי. שאלה ראשונה: טיסות נופש לחוץ לארץ.</li><li data-n="2">יש שתי קבוצות של צרכנים: צרכנים פרטיים וועדי עובדים.</li><li data-n="3">השוק מורכב רק משתי הקבוצות האלה.</li><li data-n="4" class="narr-gap">אני מקריאה את הטבלה, שורה אחרי שורה.</li><li data-n="5">בכל שורה יש מחיר, אחריו הכמות של הפרטיים, ואז הכמות של ועדי העובדים.</li><li data-n="6">במחיר 3: הפרטיים רוצים 20 טיסות, וועדי העובדים 40.</li><li data-n="7">במחיר 6: ‏16, ו־34.</li><li data-n="8">במחיר 8: ‏12, ו־27.</li><li data-n="9">במחיר 12: ‏6, ו־21.</li><li data-n="10">במחיר 15: ‏4, ו־18.</li><li data-n="11">ובמחיר 20: ‏2, ו־14.</li><li data-n="12" class="narr-gap">יש ארבעה סעיפים.</li><li data-n="13">סעיף א: לבנות עקומת ביקוש לכל קבוצה, ועקומת ביקוש לכל השוק.</li><li data-n="14">סעיף ב: ההכנסה של חברי ועדי העובדים עלתה.</li><li data-n="15">בכל מחיר נמוך מ־10, הם רוצים 5 טיסות יותר.</li><li data-n="16">ובכל מחיר גבוה מ־10, ‏3 טיסות יותר.</li><li data-n="17">משרטטים את העקומה החדשה שלהם, ושואלים אם טיסות נופש הן מוצר נורמלי בשבילם.</li><li data-n="18">סעיף ג: השכר של הפרטיים נשחק ב־10%.</li><li data-n="19">בגלל זה, הכמות שהם רוצים ירדה בכ־20%, בכל מחיר. גם כאן משרטטים ושואלים.</li><li data-n="20">וסעיף ד: מה קרה לשוק כולו, אחרי שני השינויים.</li><li data-n="21" class="narr-gap">מה השאלה בודקת? את הכלל השלישי: ביקוש מצרפי מחברים לרוחב.</li><li data-n="22">ובסעיפים ב ו־ג גם את הכלל השני, כי ההכנסה משתנה.</li><li data-n="23" class="narr-gap">נתחיל מסעיף א. בכל מחיר, מחברים את הכמות של הפרטיים ואת הכמות של ועדי העובדים.</li><li data-n="24">נסו לחבר לבד את כל שש השורות. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="25" class="narr-gap">במחיר 3: ‏20 <bdi dir="ltr" class="m">+ 40 = 60</bdi> טיסות.</li><li data-n="26">במחיר 6: ‏16 <bdi dir="ltr" class="m">+ 34 = 50</bdi>.</li><li data-n="27">במחיר 8: ‏12 <bdi dir="ltr" class="m">+ 27 = 39</bdi>.</li><li data-n="28">במחיר 12: ‏6 <bdi dir="ltr" class="m">+ 21 = 27</bdi>.</li><li data-n="29">במחיר 15: ‏4 <bdi dir="ltr" class="m">+ 18 = 22</bdi>.</li><li data-n="30">ובמחיר 20: ‏2 <bdi dir="ltr" class="m">+ 14 = 16</bdi>.</li><li data-n="31" class="narr-gap">עכשיו הגרפים. בכל גרף, המחיר על הציר האנכי, ומספר הטיסות על הציר האופקי. כל קבוצה מקבלת קו יורד.</li><li data-n="32">עקומת השוק נמצאת מימין לשתיהן, כי בכל מחיר היא הסכום שלהן.</li><li data-n="33" class="narr-gap">שימו לב, כאן הרבה סטודנטים טועים.</li><li data-n="34">הם מחברים מחירים, או מחברים את הגרפים לגובה.</li><li data-n="35">הנכון: המחיר נשאר אותו מחיר, ומחברים רק כמויות. זה חיבור לרוחב.</li><li data-n="36" class="narr-gap">סעיף ב: ועדי העובדים.</li><li data-n="37">נסו לחשב לבד את הכמויות החדשות שלהם. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="38" class="narr-gap">המחירים 3, 6 ו־8 נמוכים מ־10, אז מוסיפים 5.</li><li data-n="39">הכמויות החדשות במחירים האלה: 45, 39 ו־32 טיסות.</li><li data-n="40">המחירים 12, 15 ו־20 גבוהים מ־10, אז מוסיפים 3.</li><li data-n="41">הכמויות החדשות במחירים האלה: 24, 21 ו־17 טיסות.</li><li data-n="42">בכל מחיר הם רוצים יותר טיסות, ולכן העקומה שלהם זזה ימינה.</li><li data-n="43">ההכנסה עלתה והביקוש עלה. לכן, בשביל ועדי העובדים, טיסות נופש הן מוצר נורמלי.</li><li data-n="44" class="narr-gap">סעיף ג: הפרטיים.</li><li data-n="45">ירידה של 20% פירושה שנשארים 80% מהכמות.</li><li data-n="46">לכן כופלים כל כמות ב־0.8.</li><li data-n="47">נסו לחשב לבד. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="48" class="narr-gap">20 × <bdi dir="ltr" class="m">0.8 = 16</bdi> טיסות.</li><li data-n="49">16 הופכות ל־12.8, ו־12 הופכות ל־9.6.</li><li data-n="50">6 הופכות ל־4.8, ו־4 הופכות ל־3.2.</li><li data-n="51">ו־2 הופכות ל־1.6.</li><li data-n="52">בכל מחיר הם רוצים פחות, ולכן העקומה של הפרטיים זזה שמאלה.</li><li data-n="53">ההכנסה ירדה והביקוש ירד. לכן גם בשבילם, טיסות נופש הן מוצר נורמלי.</li><li data-n="54" class="narr-gap">ושימו לב לטעות קטנה בשאלה עצמה.</li><li data-n="55">בסעיף ג כתוב: האם זה מוצר נורמלי &quot;בשביל ועדי העובדים&quot;?</li><li data-n="56">אבל הסעיף עוסק בפרטיים, אז כנראה התכוונו אליהם. וגם בשבילם זה מוצר נורמלי.</li><li data-n="57" class="narr-gap">סעיף ד: השוק אחרי שני השינויים.</li><li data-n="58">נסו לחשוב לבד: עקומת השוק זזה ימינה או שמאלה?</li><li data-n="59">עצרו את ההקראה, ואז תמשיכו.</li><li data-n="60" class="narr-gap">מחברים שוב, בכל מחיר, את הכמויות החדשות.</li><li data-n="61">במחיר 3: ‏45 <bdi dir="ltr" class="m">+ 16 = 61</bdi> טיסות.</li><li data-n="62">לפני השינויים היו 60, אז הכמות עלתה בטיסה אחת.</li><li data-n="63">במחיר 8: ‏32 <bdi dir="ltr" class="m">+ 9.6 = 41.6</bdi>.</li><li data-n="64">לפני השינויים היו 39, אז הכמות עלתה ב־2.6.</li><li data-n="65">וכך בכל מחיר: הכמות בשוק עולה בין טיסה אחת ל־2.6 טיסות.</li><li data-n="66">בכל מחיר, התוספת של ועדי העובדים גדולה מהירידה של הפרטיים.</li><li data-n="67">לכן הביקוש בשוק עלה, ועקומת השוק זזה ימינה, אבל רק מעט.</li><li data-n="68">בגרפים, את העקומה של לפני מציירים בקו מקווקו, ואת העקומה של אחרי בקו רציף.</li><li data-n="69" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="70">(א) עקומת הביקוש של השוק מתקבלת מסכימה אופקית.</li><li data-n="71">בכל מחיר מחברים את הכמויות של שתי הקבוצות.</li><li data-n="72">(ב) עקומת הביקוש של ועדי העובדים זזה ימינה.</li><li data-n="73">טיסות נופש הן מוצר נורמלי בשבילם, כי עלייה בהכנסה הגדילה את הביקוש.</li><li data-n="74">(ג) עקומת הביקוש של הפרטיים זזה שמאלה.</li><li data-n="75">גם בשבילם זה מוצר נורמלי, כי ירידה בהכנסה הקטינה את הביקוש.</li><li data-n="76">(ד) בכל מחיר, הגידול אצל ועדי העובדים גדול מהירידה אצל הפרטיים.</li><li data-n="77">ולכן עקומת הביקוש של השוק זזה מעט ימינה.</li></ol></details></div><!--/narr:b1--></div>
   <div class="qtext">ביקוש לטיסות נופש של צרכנים פרטיים ושל ועדי עובדים. השוק = שתי הקבוצות בלבד. (א) עקומת ביקוש לכל קבוצה ולשוק. (ב) ההכנסה של חברי הוועדים עלתה: +5 טיסות בכל מחיר נמוך מ־10, ו־+3 בכל מחיר גבוה מ־10. (ג) שכר הפרטיים נשחק ב־10%, והכמות שלהם ירדה בכ־20% בכל מחיר. (ד) מה קרה לשוק?</div>
   <div class="tstep"><div class="tnum">א</div><div class="tbody">
     <h3>הביקוש בשוק = פרטיים + ועדים, בכל מחיר</h3>
@@ -426,7 +493,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- B2 -->
 <section id="b2" class="stack qsec" aria-labelledby="h-b2">
-  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי</div><h3 id="h-b2" style="font-size:1.6rem">שאלה 2 · 700 צרכנים זהים</h3></div>
+  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי</div><h3 id="h-b2" style="font-size:1.6rem">שאלה 2 · 700 צרכנים זהים</h3><!--narr:b2--><div class="narr" id="narr-b2" data-key="b2" data-title="שאלה 2 · 700 צרכנים זהים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-b2"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 2</span> <span class="narr-d">(3:42)</span></button><div class="narr-panel" id="narr-p-b2"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 2 (3:42)</p><audio controls preload="none" src="audio-ex3/b2.m4a" aria-label="המורה מסבירה את שאלה 2: שאלה 2 · 700 צרכנים זהים"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/b2.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלה שנייה בביקוש מצרפי: 700 צרכנים זהים.</li><li data-n="2">בשוק בתחרות משוכללת יש 700 צרכנים של מוצר <bdi dir="ltr" class="m">X</bdi>.</li><li data-n="3">פונקציית הביקוש של צרכן בודד: <bdi dir="ltr" class="m">P = 700 − 2100q</bdi>.</li><li data-n="4">צריך לחשב את עקומת הביקוש המצרפית, כלומר של כל השוק.</li><li data-n="5" class="narr-gap">מה השאלה בודקת? את הכלל השלישי: מחברים כמויות, לא מחירים.</li><li data-n="6">והקושי: הנוסחה כתובה הפוך, מחיר לפי כמות.</li><li data-n="7" class="narr-gap">מה אנחנו יודעים? את הקשר בין מחיר לכמות של צרכן אחד, ויש 700 כאלה.</li><li data-n="8">מה מחפשים? כמה כל השוק קונה, בכל מחיר.</li><li data-n="9" class="narr-gap">שלב ראשון: מבודדים את הכמות.</li><li data-n="10">נסו לבודד לבד את הכמות של צרכן אחד. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="11" class="narr-gap">מעבירים אגפים: <bdi dir="ltr" class="m">2100q = 700 − P</bdi>.</li><li data-n="12">מחלקים ב־2100.</li><li data-n="13">הכמות של צרכן אחד: <bdi dir="ltr" class="m">q = (700 − P) : 2100</bdi>.</li><li data-n="14" class="narr-gap">שלב שני: כופלים במספר הצרכנים.</li><li data-n="15">כל 700 הצרכנים זהים, אז בכל מחיר, השוק קונה פי 700.</li><li data-n="16">נסו לכפול ולצמצם לבד. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="17" class="narr-gap"><bdi dir="ltr" class="m">700 : 2100 = 1 : 3</bdi>, שליש.</li><li data-n="18">לכן הכמות בשוק: <bdi dir="ltr" class="m">Q = (700 − P) : 3</bdi>.</li><li data-n="19" class="narr-gap">שלב שלישי: אפשר לכתוב את זה גם כמחיר לפי כמות.</li><li data-n="20">כופלים ב־3: ‏3Q <bdi dir="ltr" class="m">= 700 − P</bdi>.</li><li data-n="21">ומקבלים: <bdi dir="ltr" class="m">P = 700 − 3Q</bdi>.</li><li data-n="22" class="narr-gap">בואו נבדוק במחיר 400.</li><li data-n="23">צרכן אחד קונה 300 : 2100, כלומר שביעית.</li><li data-n="24">700 צרכנים × שביעית <bdi dir="ltr" class="m">= 100</bdi> יחידות.</li><li data-n="25">ומהנוסחה: <bdi dir="ltr" class="m">(700 − 400) : 3 = 100</bdi>.</li><li data-n="26">יוצא אותו דבר, אז החישוב נכון.</li><li data-n="27" class="narr-gap">איך נראה הגרף? קו ישר יורד.</li><li data-n="28">על ציר המחיר הוא מתחיל ב־700.</li><li data-n="29">ועל ציר הכמות הוא מגיע ל־233⅓.</li><li data-n="30" class="narr-gap">שימו לב, כאן הרבה סטודנטים טועים.</li><li data-n="31">הטעות הכי נפוצה: לכפול את המחיר ב־700. לא!</li><li data-n="32">מחברים כמויות, ולכן קודם מבודדים את הכמות, ורק אחר כך כופלים.</li><li data-n="33">סימן לבדיקה: המחיר המקסימלי, 700, נשאר אותו דבר.</li><li data-n="34">רק הכמות גדלה, פי 700.</li><li data-n="35" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="36">מבודדים את הכמות של צרכן בודד: <bdi dir="ltr" class="m">q = (700 − P) : 2100</bdi>.</li><li data-n="37">כל הצרכנים זהים, ולכן הביקוש המצרפי הוא סכימה אופקית של 700 ביקושים זהים.</li><li data-n="38"><bdi dir="ltr" class="m">Q = 700q = (700 − P) : 3</bdi>.</li><li data-n="39">כלומר <bdi dir="ltr" class="m">P = 700 − 3Q</bdi>, בתחום 0 ≤ <bdi dir="ltr" class="m">P</bdi> ≤ 700.</li></ol></details></div><!--/narr:b2--></div>
   <div class="qtext">בשוק בתחרות משוכללת יש 700 צרכנים למוצר X. פונקציית הביקוש של צרכן בודד: <bdi dir="ltr" class="m">P = 700 − 2100q</bdi>. חשבו את עקומת הביקוש המצרפית.</div>
   <div class="tstep"><div class="tnum">1</div><div class="tbody">
     <h3>שלב 1: מבודדים את הכמות</h3>
@@ -450,7 +517,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 
 <!-- B3 -->
 <section id="b3" class="stack qsec" aria-labelledby="h-b3">
-  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי · רשות</div><h3 id="h-b3" style="font-size:1.6rem">שאלה 3 · מזגנים: פרטיים ועסקיים</h3></div>
+  <div class="sec-head"><div class="eyebrow">ביקוש מצרפי · רשות</div><h3 id="h-b3" style="font-size:1.6rem">שאלה 3 · מזגנים: פרטיים ועסקיים</h3><!--narr:b3--><div class="narr" id="narr-b3" data-key="b3" data-title="שאלה 3 · מזגנים: פרטיים ועסקיים"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-b3"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 3</span> <span class="narr-d">(4:32)</span></button><div class="narr-panel" id="narr-p-b3"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 3 (4:32)</p><audio controls preload="none" src="audio-ex3/b3.m4a" aria-label="המורה מסבירה את שאלה 3: שאלה 3 · מזגנים: פרטיים ועסקיים"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/b3.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלה שלישית בביקוש מצרפי, שאלת רשות: מזגנים.</li><li data-n="2">הביקוש למזגנים מגיע משני סוגי צרכנים: פרטיים ועסקיים.</li><li data-n="3">יש 100 צרכנים פרטיים זהים.</li><li data-n="4">הביקוש של כל אחד מהם: q_c <bdi dir="ltr" class="m">= 80 − 0.2P</bdi>.</li><li data-n="5">ויש 20 צרכנים עסקיים זהים.</li><li data-n="6">הביקוש של כל אחד מהם: q_f <bdi dir="ltr" class="m">= 400 − P</bdi>.</li><li data-n="7">צריך לנסח את פונקציית הביקוש המצרפית.</li><li data-n="8" class="narr-gap">מה השאלה בודקת? שוב את הכלל השלישי, אבל עם שתי קבוצות שונות.</li><li data-n="9">ויש פה עוד דבר שבודקים בכל שאלת ביקוש מצרפי: מאיזה מחיר כל קבוצה מפסיקה לקנות.</li><li data-n="10" class="narr-gap">שלב ראשון: כל קבוצה בנפרד. כופלים את הכמות במספר הצרכנים.</li><li data-n="11">נסו לחשב לבד את הביקוש של כל קבוצה. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="12" class="narr-gap">הפרטיים: <bdi dir="ltr" class="m">100 · 80 = 8000</bdi>.</li><li data-n="13">ו־<bdi dir="ltr" class="m">100 · 0.2 = 20</bdi>.</li><li data-n="14">לכן הביקוש של כל הפרטיים: Q_c <bdi dir="ltr" class="m">= 8000 − 20P</bdi>.</li><li data-n="15">העסקיים: <bdi dir="ltr" class="m">20 · 400 = 8000</bdi>.</li><li data-n="16">ו־<bdi dir="ltr" class="m">20 · P</bdi>. לכן הביקוש שלהם: Q_f <bdi dir="ltr" class="m">= 8000 − 20P</bdi>.</li><li data-n="17">ויצא דבר מעניין: לשתי הקבוצות יש בדיוק אותו ביקוש.</li><li data-n="18" class="narr-gap">שלב שני: מאיזה מחיר כל קבוצה מפסיקה לקנות?</li><li data-n="19">נסו למצוא לבד. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="20" class="narr-gap">צרכן פרטי: <bdi dir="ltr" class="m">80 − 0.2P = 0</bdi>, ולכן <bdi dir="ltr" class="m">P = 400</bdi>.</li><li data-n="21">צרכן עסקי: <bdi dir="ltr" class="m">400 − P = 0</bdi>. גם כאן <bdi dir="ltr" class="m">P = 400</bdi>.</li><li data-n="22">שתי הקבוצות מפסיקות לקנות באותו מחיר, 400.</li><li data-n="23">לכן אין &quot;שבירה&quot; בעקומה המצרפית, וזה מקרה פשוט.</li><li data-n="24" class="narr-gap">שימו לב, כאן הרבה סטודנטים מדלגים על בדיקה חשובה.</li><li data-n="25">אם קבוצה אחת הייתה מפסיקה לקנות במחיר נמוך יותר, מעליו הייתה נשארת בשוק רק הקבוצה השנייה.</li><li data-n="26">ואז העקומה המצרפית הייתה שבורה, עם שני חלקים.</li><li data-n="27" class="narr-gap">שלב שלישי: מחברים.</li><li data-n="28"><bdi dir="ltr" class="m">8000 + 8000 = 16000</bdi>.</li><li data-n="29">ו־<bdi dir="ltr" class="m">20 + 20 = 40</bdi>.</li><li data-n="30">הביקוש המצרפי: <bdi dir="ltr" class="m">Q = 16000 − 40P</bdi>.</li><li data-n="31">זה נכון במחירים 0 ≤ <bdi dir="ltr" class="m">P</bdi> ≤ 400. מעל 400, ‏Q <bdi dir="ltr" class="m">= 0</bdi>.</li><li data-n="32">ואפשר לכתוב גם הפוך: <bdi dir="ltr" class="m">P = 400 − Q : 40</bdi>.</li><li data-n="33" class="narr-gap">בואו נבדוק במחיר 100.</li><li data-n="34">צרכן פרטי קונה 80 − 20, כלומר 60 מזגנים.</li><li data-n="35">100 צרכנים פרטיים קונים 6000.</li><li data-n="36">צרכן עסקי קונה 400 − 100, כלומר 300 מזגנים.</li><li data-n="37">20 צרכנים עסקיים קונים 6000.</li><li data-n="38">ביחד הם קונים 12000 מזגנים.</li><li data-n="39">ומהנוסחה: 16000 − 4000, גם 12000. ✓</li><li data-n="40">בגרף, הקו של כל קבוצה מתחיל במחיר 400, ומגיע ל־8000 מזגנים.</li><li data-n="41">והקו המצרפי מתחיל באותו מחיר, ומגיע ל־16000.</li><li data-n="42" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="43">הביקוש של כל קבוצה: Q_c <bdi dir="ltr" class="m">= 8000 − 20P</bdi>, ‏Q_f <bdi dir="ltr" class="m">= 8000 − 20P</bdi>.</li><li data-n="44">שתי הקבוצות מפסיקות לצרוך במחיר 400, ולכן הביקוש המצרפי הוא סכום שתיהן.</li><li data-n="45"><bdi dir="ltr" class="m">Q = 16000 − 40P</bdi> עבור 0 ≤ <bdi dir="ltr" class="m">P</bdi> ≤ 400.</li><li data-n="46">ו־<bdi dir="ltr" class="m">Q = 0</bdi> עבור <bdi dir="ltr" class="m">P &gt; 400</bdi>.</li></ol></details></div><!--/narr:b3--></div>
   <div class="qtext">100 צרכנים פרטיים זהים: <bdi dir="ltr" class="m">q_c = 80 − 0.2P</bdi>. ‏20 צרכנים עסקיים זהים: <bdi dir="ltr" class="m">q_f = 400 − P</bdi>. נסחו את פונקציית הביקוש המצרפית.</div>
   <div class="tstep"><div class="tnum">1</div><div class="tbody">
     <h3>שלב 1: כל קבוצה בנפרד (כמות × מספר הצרכנים)</h3>
@@ -474,7 +541,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 <div class="part-sep"><span>שאלות אמריקאיות</span><h2>סמנו ונמקו בקצרה</h2></div>
 
 <section id="c1" class="stack qsec" aria-labelledby="h-c1">
-  <div class="sec-head"><div class="eyebrow">אמריקאית</div><h3 id="h-c1" style="font-size:1.6rem">שאלה 1 · משה, מנחם וסיגריות</h3></div>
+  <div class="sec-head"><div class="eyebrow">אמריקאית</div><h3 id="h-c1" style="font-size:1.6rem">שאלה 1 · משה, מנחם וסיגריות</h3><!--narr:c1--><div class="narr" id="narr-c1" data-key="c1" data-title="שאלה 1 · משה, מנחם וסיגריות"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-c1"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 1</span> <span class="narr-d">(2:15)</span></button><div class="narr-panel" id="narr-p-c1"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 1 (2:15)</p><audio controls preload="none" src="audio-ex3/c1.m4a" aria-label="המורה מסבירה את שאלה 1: שאלה 1 · משה, מנחם וסיגריות"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/c1.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלה אמריקאית ראשונה.</li><li data-n="2">עבור משה, סיגריות הן מוצר נחות. עבור מנחם, הן מוצר ניטרלי.</li><li data-n="3">יש ארבע תשובות.</li><li data-n="4">תשובה ראשונה: עלייה במחיר הסיגריות תגרום לעלייה בכמות המבוקשת של מנחם.</li><li data-n="5">תשובה שנייה: עלייה בהכנסה של מנחם תגדיל את הביקוש שלו לסיגריות.</li><li data-n="6">תשובה שלישית: עלייה בהכנסה של משה תגדיל את הביקוש שלו לסיגריות.</li><li data-n="7">ותשובה רביעית: אף תשובה אינה נכונה.</li><li data-n="8" class="narr-gap">מה השאלה בודקת? את חוק הביקוש, ואת המילים &quot;נחות&quot; ו&quot;ניטרלי&quot;.</li><li data-n="9">התשובה הראשונה היא הכלל הראשון. השנייה והשלישית הן הכלל השני.</li><li data-n="10">נחות: כשההכנסה עולה, הביקוש יורד. ניטרלי: כשההכנסה משתנה, הביקוש לא משתנה.</li><li data-n="11" class="narr-gap">נסו לבדוק לבד כל תשובה. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="12" class="narr-gap">התשובה הראשונה מדברת על מחיר, לא על הכנסה.</li><li data-n="13">לפי חוק הביקוש, כשהמחיר עולה, מנחם קונה פחות, לא יותר. לא נכון.</li><li data-n="14">שימו לב, זו המלכודת: ניטרלי מדבר רק על הכנסה, לא על מחיר.</li><li data-n="15">התשובה השנייה: למנחם הסיגריות ניטרליות, אז הכנסה גבוהה יותר לא משנה את הביקוש. לא נכון.</li><li data-n="16">התשובה השלישית: למשה הסיגריות נחותות, אז כשההכנסה עולה, הביקוש שלו יורד. לא נכון.</li><li data-n="17">שלוש התשובות הראשונות שגויות, ולכן התשובה הנכונה היא הרביעית.</li><li data-n="18" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="19">תשובה 4.</li><li data-n="20">(1) לפי חוק הביקוש, עלייה במחיר מקטינה את הכמות המבוקשת.</li><li data-n="21">(2) למנחם הסיגריות ניטרליות, ולכן שינוי בהכנסה לא משנה את הביקוש.</li><li data-n="22">(3) למשה הסיגריות נחותות, ולכן עלייה בהכנסה מקטינה את הביקוש.</li></ol></details></div><!--/narr:c1--></div>
   <div class="qtext">עבור משה, סיגריות הן מוצר <strong>נחות</strong>. עבור מנחם הן מוצר <strong>ניטרלי</strong>.</div>
   <div class="mcq" data-ans="3">
     <button class="opt" type="button" data-i="0" data-why="לא. ׳ניטרלי׳ מדבר על הכנסה, לא על מחיר. כשמחיר הסיגריות עולה, מנחם קונה פחות, לפי חוק הביקוש.">1. עלייה במחיר הסיגריות תגרום לעלייה בכמות המבוקשת של מנחם</button>
@@ -487,7 +554,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 </section>
 
 <section id="c2" class="stack qsec" aria-labelledby="h-c2">
-  <div class="sec-head"><div class="eyebrow">אמריקאית</div><h3 id="h-c2" style="font-size:1.6rem">שאלה 2 · מה מזיז ימינה את הביקוש לצנון</h3></div>
+  <div class="sec-head"><div class="eyebrow">אמריקאית</div><h3 id="h-c2" style="font-size:1.6rem">שאלה 2 · מה מזיז ימינה את הביקוש לצנון</h3><!--narr:c2--><div class="narr" id="narr-c2" data-key="c2" data-title="שאלה 2 · מה מזיז ימינה את הביקוש לצנון"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-c2"><span aria-hidden="true">🎧</span><span>המורה מסבירה את שאלה 2</span> <span class="narr-d">(2:09)</span></button><div class="narr-panel" id="narr-p-c2"><p class="narr-nojs"><span aria-hidden="true">🎧</span> המורה מסבירה את שאלה 2 (2:09)</p><audio controls preload="none" src="audio-ex3/c2.m4a" aria-label="המורה מסבירה את שאלה 2: שאלה 2 · מה מזיז ימינה את הביקוש לצנון"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/c2.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">שאלה אמריקאית שנייה.</li><li data-n="2">השאלה: תזוזה ימינה של עקומת הביקוש לצנון עשויה להתרחש בעקבות מה?</li><li data-n="3">תשובה ראשונה: ירידה במחיר השוק של הצנון.</li><li data-n="4">תשובה שנייה: עלייה במחיר של מצרך אחר, שצנון משלים לו.</li><li data-n="5">תשובה שלישית: ירידה במחיר של מצרך אחר, שצנון תחליפי לו.</li><li data-n="6">ותשובה רביעית: ירידה בהכנסה של הצרכן, אם צנון הוא מצרך נחות.</li><li data-n="7" class="narr-gap">מה השאלה בודקת? תזוזה של כל העקומה, כלומר את הכלל השני.</li><li data-n="8">תזוזה ימינה פירושה שבכל מחיר קונים יותר צנון.</li><li data-n="9" class="narr-gap">נסו לבדוק לבד כל תשובה. עצרו את ההקראה, ואז תמשיכו.</li><li data-n="10" class="narr-gap">התשובה הראשונה: המחיר של הצנון עצמו. זה הכלל הראשון, תנועה על העקומה.</li><li data-n="11">שימו לב, כאן הרבה סטודנטים טועים: מחיר נמוך לא מזיז את העקומה. הוא מזיז אותנו עליה.</li><li data-n="12">התשובה השנייה: הצנון משלים למוצר שהתייקר. קונים פחות מהמוצר, ולכן גם פחות צנון.</li><li data-n="13">העקומה זזה שמאלה. לא נכון.</li><li data-n="14">התשובה השלישית: התחליף של הצנון הוזל. אנשים עוברים אליו, וקונים פחות צנון.</li><li data-n="15">גם כאן העקומה זזה שמאלה. לא נכון.</li><li data-n="16">התשובה הרביעית: צנון הוא מוצר נחות. כשההכנסה יורדת, קונים ממנו יותר.</li><li data-n="17">בכל מחיר קונים יותר צנון, והעקומה זזה ימינה. זו התשובה.</li><li data-n="18" class="narr-gap">במבחן הייתי כותבת כך.</li><li data-n="19">תשובה 4. צנון הוא מוצר נחות, ולכן ירידה בהכנסה מגדילה את הביקוש לו.</li><li data-n="20">ועקומת הביקוש זזה ימינה.</li><li data-n="21">תשובה 1 היא תנועה לאורך העקומה.</li><li data-n="22">בתשובות 2 ו־3 הביקוש לצנון יורד, והעקומה זזה שמאלה.</li></ol></details></div><!--/narr:c2--></div>
   <div class="qtext">תזוזה ימינה של עקומת הביקוש לצנון עשויה להתרחש בעקבות:</div>
   <div class="mcq" data-ans="3">
     <button class="opt" type="button" data-i="0" data-why="לא. שינוי במחיר הצנון עצמו הוא תנועה לאורך העקומה, לא תזוזה שלה.">1. ירידה במחיר השוק של הצנון</button>
@@ -500,7 +567,7 @@ th.veg{color:var(--good)} th.wheat{color:var(--sun)}
 </section>
 
 <section id="sum" class="stack" aria-labelledby="h-sum">
-  <div class="sec-head"><div class="eyebrow">סיכום</div><h2 id="h-sum">כל התשובות במבט אחד</h2></div>
+  <div class="sec-head"><div class="eyebrow">סיכום</div><h2 id="h-sum">כל התשובות במבט אחד</h2><!--narr:sum--><div class="narr" id="narr-sum" data-key="sum" data-title="כל התשובות במבט אחד"><button type="button" class="narr-btn" aria-expanded="false" aria-controls="narr-p-sum"><span aria-hidden="true">🎧</span><span>האזנה לסיכום</span> <span class="narr-d">(1:11)</span></button><div class="narr-panel" id="narr-p-sum"><p class="narr-nojs"><span aria-hidden="true">🎧</span> האזנה לסיכום (1:11)</p><audio controls preload="none" src="audio-ex3/sum.m4a" aria-label="האזנה לסיכום: כל התשובות במבט אחד"><track kind="captions" srclang="he" label="עברית" src="audio-ex3/sum.he.vtt" default></audio><div class="narr-tools"><div class="narr-speed" role="group" aria-label="מהירות ההקראה"><span class="lbl">מהירות:</span><button type="button" data-rate="0.9" aria-pressed="false" aria-label="מהירות 0.9"><span dir="ltr">0.9×</span></button><button type="button" data-rate="1" aria-pressed="true" aria-label="מהירות 1"><span dir="ltr">1×</span></button><button type="button" data-rate="1.15" aria-pressed="false" aria-label="מהירות 1.15"><span dir="ltr">1.15×</span></button></div></div><p class="narr-cap" aria-hidden="true"></p></div><details class="narr-tr"><summary>תמליל</summary><ol class="narr-lines"><li data-n="1">לסיום, מה חשוב לזכור מהתרגיל הזה.</li><li data-n="2">1. מחיר המוצר עצמו משתנה? זזים על העקומה. זה שינוי בכמות המבוקשת.</li><li data-n="3">2. משהו אחר משתנה, הכנסה או מחיר של מוצר אחר? כל העקומה זזה.</li><li data-n="4">3. מוצר נורמלי זז עם ההכנסה, ומוצר נחות זז נגדה.</li><li data-n="5">4. כשהמחיר של תחליף עולה, העקומה שלנו זזה ימינה.</li><li data-n="6">וכשהמחיר של מוצר משלים עולה, היא זזה שמאלה.</li><li data-n="7">5. בטבלה עם כמה הכנסות, כל הכנסה נותנת עקומת ביקוש אחת.</li><li data-n="8">6. ביקוש מצרפי מחברים לרוחב. בכל מחיר מחברים כמויות, אף פעם לא מחירים.</li><li data-n="9">7. כשהנוסחה כתובה כמחיר לפי כמות, קודם מבודדים את הכמות, ורק אחר כך כופלים.</li><li data-n="10">ובכל שאלת ביקוש מצרפי, בודקים מאיזה מחיר כל קבוצה מפסיקה לקנות.</li><li data-n="11" class="narr-gap">זהו, עברנו יחד על כל התרגיל. כל הכבוד, ובהצלחה במבחן.</li></ol></details></div><!--/narr:sum--></div>
   <div class="tscroll"><table class="t"><thead><tr><th scope="col">שאלה</th><th scope="col">תשובה</th></tr></thead><tbody>
     <tr><th scope="row">א1</th><td><bdi dir="ltr" class="m">Q_B = 70 − 3P_B</bdi>; ‏46; ‏28 (תנועה על העקומה); ‏38 (ימינה, תחליפים); ‏58 (ימינה, נורמלי)</td></tr>
     <tr><th scope="row">א2</th><td>4 עקומות, אחת לכל הכנסה. גרביים: מוצר נורמלי</td></tr>
@@ -603,5 +670,251 @@ new MutationObserver(all).observe(document.documentElement,{attributes:true,attr
 })();
 </script>
 
+<!--narr:js--><script>/* narr: lesson narration players. Per section: .narr (button, panel with <audio>, speed, live caption, transcript).
+   Per lesson: .narr-all plays every section in order, scrolls each into view, remembers the place (localStorage).
+   Only one audio/video plays at a time. Without JS the plain <audio controls> and the transcript still work. */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  root.classList.add('narr-js');
+  var players = [].slice.call(document.querySelectorAll('.narr'));
+  if (!players.length) return;
+  var KEY = 'narr:' + location.pathname, RKEY = 'narr:rate';
+  function get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
+  function del(k) { try { localStorage.removeItem(k); } catch (e) { } }
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rate = +get(RKEY) || 1;
+  var allBox = document.querySelector('.narr-all');
+  var allBtn = allBox && allBox.querySelector('.narr-all-btn');
+  var allStatus = allBox && allBox.querySelector('.narr-all-status');
+  var allRestart = allBox && allBox.querySelector('.narr-all-restart');
+  var allMode = false, cur = -1, lastSave = 0;
+
+  function fmt(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+
+  // ---- one audio at a time (narration and the page's videos) ----
+  document.addEventListener('play', function (e) {
+    var t = e.target;
+    if (t.muted) return;   // a silent looping clip (autoplays when scrolled into view) never stops the narration
+    [].forEach.call(document.querySelectorAll('audio, video'), function (m) { if (m !== t && !m.paused && !m.muted) m.pause(); });
+    // a page may also have the device's read-aloud (speechSynthesis): stop it while media plays
+    try { if (window.speechSynthesis && speechSynthesis.speaking) speechSynthesis.cancel(); } catch (x) { }
+    [].forEach.call(document.querySelectorAll('.say[aria-pressed="true"]'), function (b) { b.setAttribute('aria-pressed', 'false'); });
+  }, true);
+  document.addEventListener('click', function (e) {   // the page's own read-aloud button pauses the narration
+    if (e.target.closest && e.target.closest('.say')) players.forEach(function (p) { if (p.audio && !p.audio.paused) p.audio.pause(); });
+  }, true);
+
+  function open(p, yes) {
+    p.panel.classList.toggle('is-open', yes);
+    p.btn.setAttribute('aria-expanded', yes ? 'true' : 'false');
+  }
+
+  function setRate(r) {
+    rate = r; set(RKEY, r);
+    players.forEach(function (p) {
+      p.audio.defaultPlaybackRate = r; p.audio.playbackRate = r;
+      [].forEach.call(p.speed, function (b) { b.setAttribute('aria-pressed', +b.dataset.rate === r ? 'true' : 'false'); });
+    });
+  }
+
+  function showCue(p) {
+    var tr = p.track, c = tr && tr.activeCues && tr.activeCues[0];
+    var id = c ? c.id : null;
+    if (id === p.on) return;
+    p.on = id;
+    [].forEach.call(p.lines, function (li) {
+      var on = li.dataset.n === id;
+      li.classList.toggle('is-on', on);
+      if (on) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
+    });
+    if (c) p.cap.textContent = c.text.replace(/^‏/, '');
+  }
+
+  players.forEach(function (el, i) {
+    var p = { el: el, i: i, btn: el.querySelector('.narr-btn'), panel: el.querySelector('.narr-panel'), audio: el.querySelector('audio'),
+      speed: el.querySelectorAll('.narr-speed button'), cap: el.querySelector('.narr-cap'), lines: el.querySelectorAll('.narr-lines li'),
+      title: el.dataset.title || '', on: null };
+    players[i] = p;
+    var tEl = p.audio.querySelector('track');
+    p.track = tEl ? tEl.track : (p.audio.textTracks && p.audio.textTracks[0]);
+    if (p.track) {
+      p.track.mode = 'hidden';
+      p.track.addEventListener('cuechange', function () { showCue(p); });
+    }
+    p.btn.addEventListener('click', function () {
+      var willOpen = p.btn.getAttribute('aria-expanded') !== 'true';
+      open(p, willOpen);
+      if (willOpen) { stopAll(false); play(p); } else { p.audio.pause(); }
+    });
+    [].forEach.call(p.speed, function (b) { b.addEventListener('click', function () { setRate(+b.dataset.rate); }); });
+    p.audio.addEventListener('play', function () {
+      open(p, true); p.audio.playbackRate = rate;
+      if (allMode && cur !== i) { cur = i; status(); }
+      if (allMode) allUI();
+    });
+    p.audio.addEventListener('pause', function () { save(p); if (allMode) allUI(); });
+    p.audio.addEventListener('timeupdate', function () {
+      if (Date.now() - lastSave > 2000) save(p);
+      if (p.track && p.track.mode === 'disabled') p.track.mode = 'hidden';
+    });
+    p.audio.addEventListener('ended', function () {
+      [].forEach.call(p.lines, function (li) { li.classList.remove('is-on'); li.removeAttribute('aria-current'); });
+      p.on = null;
+      if (allMode && cur === i) next(); else save(p, true);
+    });
+  });
+  setRate(rate);
+
+  function play(p, at) {
+    var a = p.audio;
+    function go() { if (at) { try { a.currentTime = at; } catch (e) { } } var r = a.play(); if (r && r.catch) r.catch(function () { allUI(); }); }
+    if (at && a.readyState < 1) { a.preload = 'auto'; a.addEventListener('loadedmetadata', function h() { a.removeEventListener('loadedmetadata', h); go(); }); a.load(); }
+    else go();
+  }
+
+  function save(p, done) {
+    lastSave = Date.now();
+    if (done) { set(KEY, { i: Math.min(p.i + 1, players.length - 1), t: 0 }); if (p.i === players.length - 1) del(KEY); return; }
+    if (p.audio.currentTime > 0.5) set(KEY, { i: p.i, t: Math.round(p.audio.currentTime * 10) / 10 });
+  }
+
+  // ---- whole lesson ----
+  function scrollTo(p) {
+    var r = p.el.getBoundingClientRect();
+    if (r.top >= 0 && r.top <= innerHeight * 0.6) return;
+    // show the section (or topic) heading with its player; fall back to the player when the section is taller than the screen
+    var t = p.el.parentElement && p.el.parentElement.closest('[id]');
+    if (!t || p.el.getBoundingClientRect().top - t.getBoundingClientRect().top > innerHeight * 0.5) t = p.el;
+    t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+  function status(msg) {
+    if (!allStatus) return;
+    allStatus.textContent = msg || (allMode && cur >= 0 ? 'חלק ' + (cur + 1) + ' מתוך ' + players.length + ': ' + players[cur].title : '');
+  }
+  function allUI() {
+    if (!allBtn) return;
+    var playing = allMode && cur >= 0 && !players[cur].audio.paused;
+    allBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    allBtn.querySelector('.narr-all-lbl').textContent = playing ? 'עצירת ההאזנה לשיעור' : (allMode || get(KEY) ? 'המשך האזנה לשיעור' : 'האזנה לכל השיעור');
+    if (allRestart) allRestart.toggleAttribute('data-off', !(get(KEY) || allMode));
+  }
+  function start(i, t) {
+    allMode = true; cur = i; var p = players[i];
+    players.forEach(function (q) { if (q !== p) open(q, false); });
+    open(p, true); scrollTo(p); status(); play(p, t); allUI();
+  }
+  function next() {
+    if (cur + 1 < players.length) start(cur + 1, 0);
+    else { allMode = false; cur = -1; del(KEY); status('סוף השיעור. כל הכבוד!'); allUI(); }
+  }
+  function lessonToggle() {
+    if (allMode && cur >= 0 && !players[cur].audio.paused) { players[cur].audio.pause(); status('ההאזנה נעצרה. אפשר להמשיך מאותו מקום.'); return; }
+    if (allMode && cur >= 0) { play(players[cur]); return; }
+    var s = get(KEY) || { i: 0, t: 0 };
+    var i = Math.max(0, Math.min(players.length - 1, s.i | 0));
+    start(i, +s.t || 0);
+  }
+  function stopAll(clear) { if (allMode) { allMode = false; allUI(); status(''); } if (clear) del(KEY); }
+  if (allBtn) {
+    allBtn.addEventListener('click', lessonToggle);
+    if (allRestart) allRestart.addEventListener('click', function () {
+      players.forEach(function (q) { q.audio.pause(); });
+      del(KEY); allMode = false; start(0, 0);
+    });
+    allUI();
+  }
+
+  // ---- the dock: a small bar fixed at the bottom of the screen, so stop / play is always one tap away ----
+  var last = -1;   // the section that played last (the one the dock controls)
+  var SVG = function (d) { return '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">' + d + '</svg>'; };
+  var I_PLAY = SVG('<path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/>');
+  var I_PAUSE = SVG('<path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z" fill="currentColor"/>');
+  var I_PREV = SVG('<path d="M6 5h2.4v14H6zM19 5.5v13L9.6 12z" fill="currentColor"/>');
+  var I_NEXT = SVG('<path d="M15.6 5H18v14h-2.4zM5 5.5v13L14.4 12z" fill="currentColor"/>');
+  var I_BACK = SVG('<path d="M12 4.5V1.8L7.6 5.6 12 9.4V6.6a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8.1z" fill="currentColor"/><text x="12" y="16.2" text-anchor="middle" font-size="7.2" font-weight="700" fill="currentColor" font-family="system-ui,sans-serif">10</text>');
+  var dock = document.createElement('div');
+  dock.className = 'narr-dock'; dock.setAttribute('role', 'region'); dock.setAttribute('aria-label', 'נגן ההקראה'); dock.dir = 'rtl';
+  dock.innerHTML =
+    '<button type="button" class="narr-dock-where" aria-label="מעבר לנושא שמתנגן"><span class="narr-dock-t"></span>' +
+    '<bdi dir="ltr" class="narr-dock-time"></bdi></button>' +
+    '<div class="narr-dock-ctl" dir="ltr">' +
+    '<button type="button" class="narr-dock-prev" aria-label="לנושא הקודם">' + I_PREV + '</button>' +
+    '<button type="button" class="narr-dock-back" aria-label="עשר שניות אחורה">' + I_BACK + '</button>' +
+    '<button type="button" class="narr-dock-play" aria-label="המשך ההאזנה">' + I_PLAY + '</button>' +
+    '<button type="button" class="narr-dock-next" aria-label="לנושא הבא">' + I_NEXT + '</button></div>';
+  var sp = document.createElement('div'); sp.className = 'narr-dock-sp'; sp.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(sp); document.body.appendChild(dock);
+  var dPlay = dock.querySelector('.narr-dock-play'), dT = dock.querySelector('.narr-dock-t'), dTime = dock.querySelector('.narr-dock-time');
+  var dPrev = dock.querySelector('.narr-dock-prev'), dNext = dock.querySelector('.narr-dock-next'), dBack = dock.querySelector('.narr-dock-back');
+  function curP() { return last >= 0 ? players[last] : null; }
+  function dockUI() {
+    var p = curP(), on = !!(p && !p.audio.paused && !p.audio.ended);
+    dPlay.innerHTML = on ? I_PAUSE : I_PLAY;
+    dPlay.setAttribute('aria-label', on ? 'עצירת ההקראה' : (p ? 'המשך ההקראה' : 'האזנה לשיעור'));
+    dock.classList.toggle('is-on', on);
+    if (p) {
+      dT.textContent = (last + 1) + '. ' + p.title;
+      var d = p.audio.duration;
+      dTime.textContent = fmt(p.audio.currentTime) + ' / ' + (isFinite(d) ? fmt(d) : '');
+    } else {
+      var s = get(KEY);
+      dT.textContent = s && players[s.i] ? 'המשך מנושא ' + (s.i + 1) + ': ' + players[s.i].title : 'האזנה לכל השיעור';
+      dTime.textContent = '';
+    }
+    var i = p ? last : -1;
+    dPrev.disabled = i <= 0; dNext.disabled = i >= players.length - 1;
+    dBack.disabled = !p;
+    meta(p);
+  }
+  function dockToggle() {
+    var p = curP();
+    if (!p) { lessonToggle(); return; }
+    if (!p.audio.paused && !p.audio.ended) { p.audio.pause(); return; }
+    if (p.audio.ended && last < players.length - 1) { start(last + 1, 0); return; }   // a section finished: go on to the next
+    open(p, true); play(p);
+  }
+  function go(d) {
+    var i = (last < 0 ? 0 : last) + d;
+    if (i < 0 || i >= players.length) return;
+    players.forEach(function (q) { if (!q.audio.paused) q.audio.pause(); });
+    start(i, 0);
+  }
+  function back() { var p = curP(); if (!p) return; try { p.audio.currentTime = Math.max(0, p.audio.currentTime - 10); } catch (e) { } dockUI(); }
+  dPlay.addEventListener('click', dockToggle);
+  dPrev.addEventListener('click', function () { go(-1); });
+  dNext.addEventListener('click', function () { go(1); });
+  dBack.addEventListener('click', back);
+  dock.querySelector('.narr-dock-where').addEventListener('click', function () {
+    var p = curP(); if (!p) { var s = get(KEY); p = players[s && players[s.i] ? s.i : 0]; }
+    p.el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  var lastTick = 0;
+  players.forEach(function (p, i) {
+    p.audio.addEventListener('play', function () { last = i; dockUI(); });
+    ['pause', 'ended', 'loadedmetadata', 'seeked'].forEach(function (ev) { p.audio.addEventListener(ev, function () { if (last === i) dockUI(); }); });
+    p.audio.addEventListener('timeupdate', function () {
+      if (last !== i || Date.now() - lastTick < 500) return;
+      lastTick = Date.now(); var d = p.audio.duration;
+      dTime.textContent = fmt(p.audio.currentTime) + ' / ' + (isFinite(d) ? fmt(d) : '');
+    });
+  });
+  // phone lock screen and headphone buttons
+  var ms = navigator.mediaSession, metaFor = null;
+  function meta(p) {
+    if (!ms || !window.MediaMetadata || metaFor === p) return;
+    metaFor = p;
+    try { ms.metadata = new MediaMetadata({ title: p ? p.title : 'האזנה לכל השיעור', artist: document.title }); } catch (e) { }
+  }
+  if (ms) {
+    [['play', dockToggle], ['pause', function () { var p = curP(); if (p) p.audio.pause(); }],
+     ['previoustrack', function () { go(-1); }], ['nexttrack', function () { go(1); }], ['seekbackward', back]
+    ].forEach(function (h) { try { ms.setActionHandler(h[0], h[1]); } catch (e) { } });
+  }
+  dockUI();
+  window.__narr = { players: players, next: next, start: start, dock: dock, state: function () { return { allMode: allMode, cur: cur, last: last }; } };
+})();
+</script><!--/narr:js--><!--narr:relabel--><script>(function(){var M={"האזנה לכל השיעור": "המורה מסבירה את כל התרגיל", "המשך האזנה לשיעור": "המשך ההסבר של התרגיל", "עצירת ההאזנה לשיעור": "עצירת ההסבר", "סוף השיעור. כל הכבוד!": "סוף התרגיל. כל הכבוד!"};function fix(el){if(!el)return;var t=el.textContent;if(Object.prototype.hasOwnProperty.call(M,t))el.textContent=M[t];}var box=document.querySelector(".narr-all");if(!box)return;[".narr-all-lbl",".narr-all-status"].forEach(function(s){var el=box.querySelector(s);if(!el)return;fix(el);new MutationObserver(function(){fix(el);}).observe(el,{childList:true,characterData:true,subtree:true});});})();</script><!--/narr:relabel-->
 </body>
 </html>
